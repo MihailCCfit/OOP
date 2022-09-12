@@ -12,7 +12,7 @@ public class Heap {
     }
 
     public ArrayList<Integer> getData() {
-        return new ArrayList<Integer>(data);
+        return new ArrayList<>(data);
     }
 
     public Heap() {
@@ -68,7 +68,6 @@ public class Heap {
             if (data.get(next1) < data.get(index)) {
                 swap(next1, index);
                 siftDown(next1);
-                return;
             }
         }
 
@@ -114,11 +113,6 @@ public class Heap {
         data = (ArrayList<Integer>) ar.clone();
     }
 
-    private Heap cloneHeap() {
-        Heap newHeap = new Heap();
-        newHeap.setData(data);
-        return newHeap;
-    }
 
     public int[] toArray() {
         int[] arr = new int[sizeOfHeap];

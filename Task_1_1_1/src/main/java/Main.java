@@ -1,15 +1,13 @@
-//import Heap;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+public class Main {
+    public static void main() {
+        checkSorting();
+        correctOrderInHeap();
+    }
 
-public class HeapTest {
-    int[] getRandomArr(int length) {
+    static int[] getRandomArr(int length) {
         Random random = new Random();
         int[] arr = new int[length];
         for (int i = 0; i < length; i++) {
@@ -18,24 +16,22 @@ public class HeapTest {
         return arr;
     }
 
-    @Test
-    void CheckSorting() {
+    static void checkSorting() {
         for (int i = 0; i < 1000; i++) {
             int[] arr = getRandomArr(1000);
             int[] arrForCheck = arr.clone();
             Arrays.sort(arrForCheck);
-            Assertions.assertArrayEquals(arrForCheck, Heap.heapSort(arr));
+            assert Arrays.equals(arrForCheck, Heap.heapSort(arr));
         }
 
     }
 
-    @Test
-    void CorrectOrderInHeap() {
+    static void correctOrderInHeap() {
         int size = 1000;
         for (int i = 0; i < 1000; i++) {
             Heap heap = new Heap(getRandomArr(size));
             for (int j = 1; j < heap.size(); j++) {
-                assertTrue(heap.get(j) > heap.get((j - 1) / 2));
+                assert (heap.get(j) > heap.get((j - 1) / 2));
             }
         }
 
