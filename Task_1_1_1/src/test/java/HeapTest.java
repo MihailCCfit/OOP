@@ -38,6 +38,5 @@ public class HeapTest {
                 assertTrue(heap.get(j) > heap.get((j - 1) / 2));
             }
         }
-
     }
 }
