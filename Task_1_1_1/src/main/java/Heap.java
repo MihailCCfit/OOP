@@ -1,8 +1,18 @@
 import java.util.ArrayList;
+import java.util.EmptyStackException;
+import java.util.List;
+/*
+ *
+ *
+ *
+ *
+ *
+ * @author Tsukanov
+ */
 
 public class Heap {
 
-    private ArrayList<Integer> data;
+    private List<Integer> data;
     private int sizeOfHeap;
 
     private void swap(int ind1, int ind2) {
@@ -11,8 +21,8 @@ public class Heap {
         data.set(ind2, tmp);
     }
 
-    public ArrayList<Integer> getData() {
-        return new ArrayList<>(data);
+    public Integer[] getData() {
+        return (Integer[]) data.toArray();
     }
 
     public Heap() {
@@ -90,7 +100,7 @@ public class Heap {
 
     public int extractMin() {
         if (isEmpty()) {
-            return Integer.MIN_VALUE;//?
+            throw new EmptyStackException();
         }
         int res = data.get(0);
         sizeOfHeap--;
@@ -107,10 +117,6 @@ public class Heap {
 
     public boolean isEmpty() {
         return sizeOfHeap == 0;
-    }
-
-    private void setData(ArrayList<Integer> ar) {
-        data = (ArrayList<Integer>) ar.clone();
     }
 
 
