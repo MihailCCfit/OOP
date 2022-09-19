@@ -1,13 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-/*
- *
- *
- *
- *
- *
- * @author Tsukanov
- */
+
 /**
  * Binary heap that stores integer values.
  * It uses ArrayList for storing data.

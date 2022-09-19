@@ -1,12 +1,9 @@
-//import Heap;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HeapTest {
     int[] getRandomArr(int length) {
@@ -35,7 +32,7 @@ public class HeapTest {
         for (int i = 0; i < 1000; i++) {
             Heap heap = new Heap(getRandomArr(size));
             for (int j = 1; j < heap.size(); j++) {
-                assertTrue(heap.get(j) > heap.get((j - 1) / 2));
+                Assertions.assertTrue(heap.get(j) > heap.get((j - 1) / 2));
             }
         }
     }
