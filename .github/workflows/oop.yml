@@ -45,14 +45,15 @@ jobs:
           clean: false
           folder: Task_1_1_1/build/docs/javadoc
           target-folder: ${{ github.event.pull_request.title }}
-
+      - name: thr
+        run: tree
       - name: Publish jacocoTest
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           clean: false
-          folder: ${{ github.event.pull_request.title }}Task_1_1_1/build/docs/reports/jacoco
+          folder: ${{ github.event.pull_request.title }}/Task_1_1_1/build/docs/reports/jacoco
           target-folder: ${{ github.event.pull_request.title }}
 
 
