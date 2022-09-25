@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "task-1-1-1" ]
   workflow_dispatch:
 
 jobs:
@@ -19,6 +19,9 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
+
+      - name: Something
+        run: chmod +x gradlew
 
       - name: Execute Gradle build
         run: ./gradlew build
