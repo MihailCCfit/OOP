@@ -41,7 +41,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: Task_1_1_1
           clean: true
-          folder: Task_1_1_1
+          folder: Task_1_1_1/build/docs/javadoc
           target-folder: ${{ github.event.pull_request.title }}
 
 
