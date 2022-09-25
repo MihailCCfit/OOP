@@ -22,7 +22,7 @@ for %%i in (%*) do (
 )
 if [%compile%] == [1] javac main/java/Main.java main/java/Heap.java -d forScript
 if [%doc%] == [1] javadoc main/java/Main.java main/java/Heap.java -d forScript/doc
-if [%execute%] == [1] java -cp "forScript" main/java/Main.java
+if [%execute%] == [1] java -cp "forScript" Main
 : main/java/Main.java main/java/Heap.java
 :error
 if NOT [%flag%] == [] echo Error with keys %flag%

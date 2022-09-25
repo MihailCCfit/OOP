@@ -24,9 +24,16 @@ test {
 //    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 //}
 jacocoTestReport {
-    //dependsOn test // tests are required to run before generating the report
+    dependsOn test // tests are required to run before generating the report
     reports {
         xml.required = true
         //html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    'Main.class',
+            ])
+        })
     }
 }
