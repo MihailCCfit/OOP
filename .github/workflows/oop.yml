@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
+          branch: Task_1_1_1
           clean: true
           folder: ${{ github.event.pull_request.title }}/build/docs/javadoc
           target-folder: ${{ github.event.pull_request.title }}
