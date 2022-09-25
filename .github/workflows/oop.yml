@@ -52,7 +52,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
-          clean: false
+          clean: clean
           folder: ${{ github.event.pull_request.title }} Task_1_1_1/build/docs/reports/jacoco
           target-folder: ${{ github.event.pull_request.title }}
 
