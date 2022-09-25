@@ -32,8 +32,10 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew javadoc
       - name: Smth
-        run: cd ${{ github.event.pull_request.title }}
-          ls
+        run: cd ./${{ github.event.pull_request.title }}
+
+      - name: snd
+        run: ls
 
       - name: Check coverage and publish
         id: jacoco
