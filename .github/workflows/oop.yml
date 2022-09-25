@@ -21,8 +21,7 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-      - name: Perm
-        run: chmod +x gradlew
+
 
       - name: Execute Gradle build
         run: ./gradlew build
