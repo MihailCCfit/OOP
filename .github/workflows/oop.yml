@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "task-1-1-1" ]
   workflow_dispatch:
 
 jobs:
@@ -30,7 +30,8 @@ jobs:
 
       - name: Generate javadoc
         run: ./gradlew javadoc
-
+      - name: Smth
+        run: javadoc main/java/Main.java main/java/Heap.java -d doc
 
 
   checkstyle:
