@@ -43,6 +43,14 @@ jobs:
           clean: true
           folder: Task_1_1_1/build/docs/javadoc
           target-folder: ${{ github.event.pull_request.title }}
+      - name: Check coverage and publish
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.2
+        with:
+          paths: Task_1_1_1/build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 80
+          min-coverage-changed-files: 80
 
 
   checkstyle:
