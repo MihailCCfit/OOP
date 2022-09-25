@@ -1,2 +1,2 @@
-# oop
+# Oop
 NSU OOP Labs
