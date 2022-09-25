@@ -32,7 +32,7 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew javadoc
       - name: Smth
-        run: javadoc main/java/Main.java main/java/Heap.java -d doc
+        run: javadoc ${{ github.event.pull_request.title }/src}/main/java/Heap.java -d doc
 
 
   checkstyle:
