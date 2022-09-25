@@ -8,52 +8,26 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
-
-
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-      - name: Perm
+
+      - name: chmod
         run: chmod +x gradlew
 
       - name: Execute Gradle build
         run: ./gradlew build
 
+
+
       - name: Generate Jacoco report
         run: ./gradlew jacocoTestReport
-
-
-      - name: Generate javadoc
-        run: ./gradlew javadoc
-
-      - name: snd
-        run: tree
-
-
-      - name: thr
-        run: tree
-      - name: Publish jacocoTest
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          clean: clean
-          folder: Task_1_1_1/build/reports/jacoco/test/html/
-          target-folder: ${{ github.event.pull_request.title }}
-
-      - name: Publish javadoC
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          clean: false
-          folder: Task_1_1_1/build/docs/javadoc
-          target-folder: ${{ github.event.pull_request.title }}
 
       - name: Check coverage and publish
         id: jacoco
@@ -64,6 +38,17 @@ jobs:
           min-coverage-overall: 80
           min-coverage-changed-files: 80
 
+      - name: Generate javadoc
+        run: ./gradlew javadoc
+
+      - name: Publish javadoc
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          clean: true
+          folder: ${{ github.event.pull_request.title }}/build/docs/javadoc
+          target-folder: ${{ github.event.pull_request.title }}
 
   checkstyle:
     runs-on: ubuntu-latest
