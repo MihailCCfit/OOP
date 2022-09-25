@@ -20,9 +20,9 @@ for %%i in (%*) do (
     :continue
     rem Continue
 )
-if [%compile%] == [1] javac main/java/Main.java main/java/Heap.java -d forScript
-if [%doc%] == [1] javadoc main/java/Main.java main/java/Heap.java -d forScript/doc
-if [%execute%] == [1] java -cp "forScript" Main
+if [%compile%] == [1] javac src/main/java/Main.java src/main/java/Heap.java -d src/forScript
+if [%doc%] == [1] javadoc src/main/java/Main.java src/main/java/Heap.java -d src/forScript/doc
+if [%execute%] == [1] java -cp "src/forScript" Main
 : main/java/Main.java main/java/Heap.java
 :error
 if NOT [%flag%] == [] echo Error with keys %flag%
