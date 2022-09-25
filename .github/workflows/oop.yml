@@ -32,10 +32,10 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew javadoc
       - name: Smth
-        run: cd ./${{ github.event.pull_request.title }}
+        run: cd ./${{ github.event.pull_request.title }}/Task_1_1_1
 
       - name: snd
-        run: ls
+        run: tree
 
       - name: Check coverage and publish
         id: jacoco
