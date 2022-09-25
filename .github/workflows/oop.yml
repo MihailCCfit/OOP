@@ -37,14 +37,7 @@ jobs:
       - name: snd
         run: tree
 
-      - name: Publish javadoc
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          clean: true
-          folder: Task_1_1_1/build/docs/javadoc
-          target-folder: ${{ github.event.pull_request.title }}
+
       - name: thr
         run: tree
       - name: Publish jacocoTest
