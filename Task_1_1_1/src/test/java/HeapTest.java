@@ -36,4 +36,51 @@ public class HeapTest {
             }
         }
     }
+
+    @Test
+    void testThrows() {
+        Heap heap = new Heap();
+        boolean flag = false;
+        try {
+            heap.get(10);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            flag = true;
+        }
+        Assertions.assertTrue(flag);
+
+        flag = false;
+        try {
+            heap.get(-10);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            flag = true;
+        }
+        Assertions.assertTrue(flag);
+
+        flag = false;
+        try {
+            heap.extractMin();
+        } catch (IndexOutOfBoundsException e) {
+            flag = true;
+        }
+        Assertions.assertTrue(flag);
+    }
+
+    @Test
+    void testForMin() {
+        for (int i = 1; i < 100; i++) {
+            int[] arr = getRandomArr(i);
+            int x = Arrays.stream(arr).min().getAsInt();
+            Heap heap = new Heap(arr);
+            Assertions.assertEquals(heap.getMin(), x);
+            Assertions.assertEquals(heap.size(), arr.length);
+            x--;
+            heap.add(x);
+            Assertions.assertEquals(heap.getMin(), x);
+            x = Arrays.stream(arr).max().getAsInt() + 5;
+            heap.add(x);
+            Assertions.assertEquals(heap.get(heap.size() - 1), x);
+        }
+
+
+    }
 }

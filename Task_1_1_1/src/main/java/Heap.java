@@ -61,7 +61,6 @@ public class Heap {
     private void siftUp(int index) {
 
         int prev = (index - 1) / 2;
-        if (prev < 0) return;
         while (data.get(prev) > data.get(index)) {
 
             int tmp = data.get(prev);
@@ -104,17 +103,17 @@ public class Heap {
 
     }
 
-    /**
-     * Changes the position of element to correct position, for saving valid structure of heap.
-     *
-     * @param index the index of heap element, which could was changed.
-     * @see Heap#siftDown(int)
-     * @see Heap#siftUp(int)
-     */
-    private void correctionKey(int index) {
-        siftDown(index);
-        siftUp(index);
-    }
+//    /**
+//     * Changes the position of element to correct position, for saving valid structure of heap.
+//     *
+//     * @param index the index of heap element, which could was changed.
+//     * @see Heap#siftDown(int)
+//     * @see Heap#siftUp(int)
+//     */
+//    private void correctionKey(int index) {
+//        siftDown(index);
+//        siftUp(index);
+//    }
 
     /**
      * Adds element into heap.
