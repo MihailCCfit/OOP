@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="HeapTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-09-25T17:33:07" hostname="fv-az264-374" time="1.058">
+  <properties/>
+  <testcase name="testCorrectOrderInHeap()" classname="HeapTest" time="0.232"/>
+  <testcase name="testForMin()" classname="HeapTest" time="0.012"/>
+  <testcase name="testThrows()" classname="HeapTest" time="0.002"/>
+  <testcase name="testSorting()" classname="HeapTest" time="0.796"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
