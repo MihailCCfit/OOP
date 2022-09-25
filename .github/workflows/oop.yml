@@ -31,20 +31,18 @@ jobs:
 
       - name: Generate javadoc
         run: ./gradlew javadoc
-      - name: Smth
-        run: cd ./${{ github.event.pull_request.title }}/Task_1_1_1
 
       - name: snd
         run: tree
 
-      - name: Check coverage and publish
-        id: jacoco
-        uses: madrapps/jacoco-report@v1.2
+      - name: Publish javadoc
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          paths: ./${{ github.event.pull_request.title }}/build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 80
-          min-coverage-changed-files: 80
+          branch: Task_1_1_1
+          clean: true
+          folder: /Task_1_1_1/build/docs/javadoc
+          target-folder: ${{ github.event.pull_request.title }}
 
 
   checkstyle:
