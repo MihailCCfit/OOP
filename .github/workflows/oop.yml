@@ -32,7 +32,16 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew javadoc
       - name: Smth
-        run: javadoc ${{ github.event.pull_request.title }}/src/main/java/Heap.java -d doc
+        run: ls
+
+      - name: Check coverage and publish
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.2
+        with:
+          paths: ./${{ github.event.pull_request.title }}/build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 80
+          min-coverage-changed-files: 80
 
 
   checkstyle:
