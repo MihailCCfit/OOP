@@ -34,14 +34,7 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew javadoc
 
-      - name: Publish javadoc
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: task-1-1-1
-          clean: true
-          folder: ${{ github.event.pull_request.title }}/docs/javadoc
-          target-folder: ${{ github.event.pull_request.title }}
+
 
   checkstyle:
     runs-on: ubuntu-latest
