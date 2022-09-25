@@ -8,6 +8,8 @@ on:
     branches: [ "master" ]
   workflow_dispatch:
 
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,14 +45,15 @@ jobs:
           clean: true
           folder: Task_1_1_1/build/docs/javadoc
           target-folder: ${{ github.event.pull_request.title }}
-      - name: Check coverage and publish
-        id: jacoco
-        uses: madrapps/jacoco-report@v1.2
+
+      - name: Publish jacocoTest
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          paths: Task_1_1_1/build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 80
-          min-coverage-changed-files: 80
+          branch: gh-pages
+          clean: true
+          folder: Task_1_1_1/build/docs/reports/jacoco
+          target-folder: ${{ github.event.pull_request.title }}
 
 
   checkstyle:
