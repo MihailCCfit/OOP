@@ -24,7 +24,7 @@ public class Heap {
     }
 
     /**
-     * Creates binary Heap
+     * Creates binary Heap.
      * Started size is 0
      * ArrayList is used as data structure
      *
@@ -68,7 +68,9 @@ public class Heap {
             data.set(index, tmp);
             index = prev;
             prev = (index - 1) / 2;
-            if (index == 0) break;
+            if (index == 0) {
+                break;
+            }
         }
     }
 
@@ -102,18 +104,6 @@ public class Heap {
         }
 
     }
-
-//    /**
-//     * Changes the position of element to correct position, for saving valid structure of heap.
-//     *
-//     * @param index the index of heap element, which could was changed.
-//     * @see Heap#siftDown(int)
-//     * @see Heap#siftUp(int)
-//     */
-//    private void correctionKey(int index) {
-//        siftDown(index);
-//        siftUp(index);
-//    }
 
     /**
      * Adds element into heap.
@@ -155,7 +145,6 @@ public class Heap {
         swap(0, sizeOfHeap);
         data.remove(sizeOfHeap);
         siftDown(0);
-
         return res;
     }
 
