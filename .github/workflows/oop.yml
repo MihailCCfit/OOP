@@ -21,6 +21,8 @@ jobs:
       - name: chmod
         run: chmod +x gradlew
 
+
+
       - name: Execute Gradle build
         run: ./gradlew build
 
@@ -40,6 +42,10 @@ jobs:
 
       - name: Generate javadoc
         run: ./gradlew javadoc
+
+
+      - name: tst
+        run: tree
 
       - name: Publish javadoc
         uses: JamesIves/github-pages-deploy-action@v4
