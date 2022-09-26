@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -86,7 +86,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -131,9 +131,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - is any type.</dd>
 </dl>
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code>java.lang.Iterable&lt;T&gt;</code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Stack&lt;T&gt;</span>
-extends java.lang.Object</pre>
+extends java.lang.Object
+implements java.lang.Iterable&lt;T&gt;</pre>
 <div class="block">A stack is a linear data structure that follows the principle of Last In First Out (LIFO).
  This means the last element inserted inside the stack is removed first.
  You can think of the stack data structure as the pile of plates on top of another.
@@ -151,6 +156,29 @@ extends java.lang.Object</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Stack.iterStack.html" title="class in &lt;Unnamed&gt;">Stack.iterStack</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- =========== FIELD SUMMARY =========== -->
 <section role="region">
 <ul class="blockList">
@@ -244,34 +272,39 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.util.Iterator&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="Stack.html" title="type parameter in Stack">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pop()">pop</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Return an object from the stack, and extract this from array.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#popStack(int)">popStack</a></span>&#8203;(int&nbsp;len)</code></th>
 <td class="colLast">
 <div class="block">Pop elements from this stack and pop them into new stack, that will be returned.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#push(T)">push</a></span>&#8203;(<a href="Stack.html" title="type parameter in Stack">T</a>&nbsp;obj)</code></th>
 <td class="colLast">
 <div class="block">Add object to stack.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pushStack(Stack)">pushStack</a></span>&#8203;(<a href="Stack.html" title="class in &lt;Unnamed&gt;">Stack</a>&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;&nbsp;stack)</code></th>
 <td class="colLast">
 <div class="block">Push elements from initial stack into current stack.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -283,6 +316,13 @@ extends java.lang.Object</pre>
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.java.lang.Iterable">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;java.lang.Iterable</h3>
+<code>forEach, spliterator</code></li>
 </ul>
 </li>
 </ul>
@@ -481,13 +521,26 @@ extends java.lang.Object</pre>
 <a id="toString()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a id="iterator()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>iterator</h4>
+<pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;&nbsp;iterator()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.lang.Iterable&lt;<a href="Stack.html" title="type parameter in Stack">T</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -541,7 +594,7 @@ extends java.lang.Object</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
