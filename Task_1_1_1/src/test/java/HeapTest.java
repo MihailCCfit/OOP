@@ -30,9 +30,8 @@ public class HeapTest {
 
     @Test
     void testCorrectOrderInHeap() {
-        int size = 1000;
         for (int i = 0; i < 1000; i++) {
-            Heap heap = new Heap(getRandomArr(size));
+            Heap heap = new Heap(getRandomArr(i));
             for (int j = 1; j < heap.size(); j++) {
                 Assertions.assertTrue(heap.get(j) > heap.get((j - 1) / 2));
             }
@@ -45,12 +44,13 @@ public class HeapTest {
         Heap heap = new Heap();
         Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> heap.get(x));
         Assertions.assertThrows(IndexOutOfBoundsException.class, heap::extractMin);
+        Assertions.assertThrows(IllegalStateException.class, heap::getMin);
 
     }
 
     @Test
     void testForMin() {
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i < 500; i++) {
             int[] arr = getRandomArr(i);
             int x = Arrays.stream(arr).min().getAsInt();
             Heap heap = new Heap(arr);
@@ -63,6 +63,13 @@ public class HeapTest {
             heap.add(x);
             Assertions.assertEquals(heap.get(heap.size() - 1), x);
         }
+    }
+
+    @Test
+    void uselessTest() {
+        int[] ar = {4, 2, 3, 1};
+        Heap heap = new Heap(ar);
+        Assertions.assertEquals(heap.toString(), "[1, 2, 3, 4]");
     }
 
 

@@ -133,6 +133,10 @@ public class Heap {
      * @return Minimal element (minimal integer value) from heap.
      */
     public int getMin() {
+        if (sizeOfHeap == 0) {
+            throw new IllegalStateException("There are no elements");
+        }
+
         return data.get(0);
     }
 
