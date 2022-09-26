@@ -1,12 +1,14 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.Random;
 
 
 public class HeapTest {
-    int[] getRandomArr(int length) {
+    private int[] getRandomArr(int length) {
         Random random = new Random();
         int[] arr = new int[length];
         for (int i = 0; i < length; i++) {
@@ -37,32 +39,13 @@ public class HeapTest {
         }
     }
 
-    @Test
-    void testThrows() {
+    @ParameterizedTest
+    @ValueSource(ints = {100, -10})
+    void testThrows(int x) {
         Heap heap = new Heap();
-        boolean flag = false;
-        try {
-            heap.get(10);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            flag = true;
-        }
-        Assertions.assertTrue(flag);
+        Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> heap.get(x));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, heap::extractMin);
 
-        flag = false;
-        try {
-            heap.get(-10);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            flag = true;
-        }
-        Assertions.assertTrue(flag);
-
-        flag = false;
-        try {
-            heap.extractMin();
-        } catch (IndexOutOfBoundsException e) {
-            flag = true;
-        }
-        Assertions.assertTrue(flag);
     }
 
     @Test
@@ -80,7 +63,7 @@ public class HeapTest {
             heap.add(x);
             Assertions.assertEquals(heap.get(heap.size() - 1), x);
         }
-
-
     }
+
+
 }
