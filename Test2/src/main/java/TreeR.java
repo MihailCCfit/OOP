@@ -58,7 +58,6 @@ public class TreeR<T> implements Collection<T> {
     public TreeR() {
         root = new Node<>(null);
     }
-
     public TreeR(T obj) {
         root = new Node<>(null);
         root.add(obj);
@@ -113,7 +112,6 @@ public class TreeR<T> implements Collection<T> {
         root.add(o);
         return true;
     }
-
     public Node<T> addN(T o) {
         return root.add(o);
     }
@@ -144,7 +142,6 @@ public class TreeR<T> implements Collection<T> {
     public boolean addAll(Collection c) {
         return false;
     }
-
     @Override
     public void clear() {
         TreeIterBFS iterator = new TreeIterBFS();
@@ -235,7 +232,6 @@ public class TreeR<T> implements Collection<T> {
 
             return node.object;
         }
-
         public Node<T> nextN() {
             if (nodeList.isEmpty()) {
                 throw new NoSuchElementException();

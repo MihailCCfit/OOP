@@ -17,23 +17,26 @@ dependencies {
 }
 
 test {
-    //finalizedBy jacocoTestReport // report is always generated after tests run
     useJUnitPlatform()
 }
-//jacoco {
-//    toolVersion = "0.8.8"
-//    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-//}
+/*
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+    //Если включите данную опцию, то в воркфлоу у метки #JCC, поменяйте путь
+}
+ */
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
     reports {
         xml.required = true
-        //html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        //html.outputLocation = layout.buildDirectory.dir('jacocoHtml') Доп опция, чтобы у себя можно было открыть html
     }
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
                     "Main.class",
+                    //"<package>.Main.class" Указывайте полное имея пакета с точками
             ])
         }))
     }

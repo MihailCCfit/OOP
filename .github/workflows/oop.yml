@@ -30,12 +30,16 @@ jobs:
       - name: Generate Jacoco report
         run: ./gradlew ${{ github.event.pull_request.title }}:jacocoTestReport
 
+      - name: directory tree
+        run: tree
 
+      # При возникновении ошибок, можете посмотреть на рабочее дерево
       - name: Check coverage and publish
         id: jacoco
         uses: madrapps/jacoco-report@v1.2
         with:
           paths: ./${{ github.event.pull_request.title }}/build/reports/jacoco/test/jacocoTestReport.xml
+          #  ./${{ github.event.pull_request.title }}/build/customJacocoReportDir/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 80
           min-coverage-changed-files: 80
@@ -44,6 +48,8 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew ${{ github.event.pull_request.title }}:javadoc
 
+      - name: directory tree
+        run: tree
 
       - name: Publish javadoc
         uses: JamesIves/github-pages-deploy-action@v4
@@ -52,6 +58,7 @@ jobs:
           branch: gh-pages
           clean: true
           folder: ${{ github.event.pull_request.title }}/build/docs/javadoc
+          # Если джавадоки не там, то можете поменять директорию выше, опираясь на дерево выше
           target-folder: ${{ github.event.pull_request.title }}
 
   checkstyle:

@@ -1,4 +1,7 @@
 rootProject.name = 'oop'
 include 'Test'
 include 'Test2'
+include 'Task_1_1_2:src:main:hi'
+findProject(':Task_1_1_2:src:main:hi')?.name = 'hi'
+include 'hi'
 
