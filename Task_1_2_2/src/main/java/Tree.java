@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Tree<T> implements Collection<T> {
     private final Node<T> root;
-    private boolean iterating = false;
+
 
     private enum isChecked {
         CHECKED, UNCHECKED
@@ -149,9 +149,9 @@ public class Tree<T> implements Collection<T> {
     public void clear() {
         TreeIterBFS iterator = new TreeIterBFS();
         while (iterator.hasNext()) {
-            Node<T> node = iterator.nextN();
-            node.remove();
+            iterator.remove();//
         }
+
         System.gc();
 
     }
@@ -196,8 +196,8 @@ public class Tree<T> implements Collection<T> {
     }
 
     @Override
-    public Object[] toArray(Object[] a) {
-        return toArray();
+    public T[] toArray(Object[] a) {
+        return (T[]) this.toArray();
     }
 
     @Override
@@ -206,12 +206,12 @@ public class Tree<T> implements Collection<T> {
         return Arrays.toString(this.toArray());
     }
 
-    private class TreeIterBFS implements Iterator {
+    private class TreeIterBFS implements Iterator<T> {
 
         private final ArrayList<Node<T>> nodeList;
 
         TreeIterBFS() {
-            iterating = true;
+
             nodeList = new ArrayList<>();
             if (!root.childs.isEmpty()) {
                 var arr = root.childs;
@@ -221,14 +221,13 @@ public class Tree<T> implements Collection<T> {
 
         @Override
         public boolean hasNext() {
-            iterating = nodeList.isEmpty();
             return !nodeList.isEmpty();
         }
 
         @Override
-        public T next() {
+        public T next() throws IllegalArgumentException {
             if (nodeList.isEmpty()) {
-                throw new NoSuchElementException();
+                throw new IllegalStateException("No elements");
             }
             Node<T> node = nodeList.remove(0);
             nodeList.addAll(node.childs);
@@ -236,14 +235,24 @@ public class Tree<T> implements Collection<T> {
             return node.object;
         }
 
-        public Node<T> nextN() {
+        public Node<T> nextN() throws IllegalArgumentException {
             if (nodeList.isEmpty()) {
-                throw new NoSuchElementException();
+                throw new IllegalStateException("No elements");
             }
             Node<T> node = nodeList.remove(0);
             nodeList.addAll(node.childs);
 
             return node;
+        }
+
+        @Override
+        public void remove() throws IllegalArgumentException {
+            if (hasNext()) {
+                Node<T> node = nextN();
+                Tree.this.remove(node);
+            } else {
+                throw new IllegalStateException("No elements");
+            }
         }
 
         @Override
