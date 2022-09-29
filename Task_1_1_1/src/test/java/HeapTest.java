@@ -7,6 +7,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 
+/**
+ * Heap testing.
+ * Testing ordering, sorting, adding, removing and throwing exceptions.
+ */
 public class HeapTest {
     private int[] getRandomArr(int length) {
         Random random = new Random();

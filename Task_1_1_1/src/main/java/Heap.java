@@ -140,9 +140,8 @@ public class Heap {
         if (isEmpty()) {
             throw new IndexOutOfBoundsException();
         }
-        int res = data.get(0);
-        sizeOfHeap--;
-        swap(0, sizeOfHeap);
+        swap(0, --sizeOfHeap);
+        int res = data.get(sizeOfHeap);
         data.remove(sizeOfHeap);
         siftDown(0);
         return res;

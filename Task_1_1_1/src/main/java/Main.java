@@ -1,7 +1,13 @@
 import java.util.Scanner;
 
+/**
+ * Interact with heap.
+ */
 public class Main {
-    public static void main(String[] args) {
+    /**
+     * Doc for review dog, Hello world!
+     */
+    public static void main() {
         Scanner scanner = new Scanner(System.in);
         Heap heap = new Heap();
         System.out.print("Введите 0, чтобы ввести массив и получить отсортированный\n"
