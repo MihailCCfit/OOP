@@ -3,9 +3,6 @@ import java.util.*;
 public class Tree<T> implements Collection<T> {
     private final Node<T> root;
 
-
-
-
     public static class Node<T> {
         int cur = -1;
         ArrayList<Node<T>> children;
@@ -82,7 +79,9 @@ public class Tree<T> implements Collection<T> {
     public Iterator<T> iterator() {
         return new TreeIterBFS();
     }
-
+    public Iterator<T> iteratorDFS() {
+        return new TreeIterDFS();
+    }
     @Override
     public Object[] toArray() {
         Iterator<T> iterator = iterator();
@@ -106,7 +105,7 @@ public class Tree<T> implements Collection<T> {
         return root.add(o);
     }
 
-    public Node<T> add(T o, Node<T> node) {
+    public Node<T> add(Node<T> node,T o) {
         if (o == null) {
             return null;
         }
