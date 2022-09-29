@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 /**
  * Interact with heap.
+ *
+ * @see Main#main()
  */
 public class Main {
     /**
