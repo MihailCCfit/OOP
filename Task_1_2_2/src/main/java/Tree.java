@@ -8,17 +8,17 @@ public class Tree<T> implements Collection<T> {
 
     public static class Node<T> {
         int cur = -1;
-        ArrayList<Node<T>> childs;
+        ArrayList<Node<T>> children;
         Node<T> father;
         T object;
 
         Node(T obj) {
             object = obj;
-            childs = new ArrayList<>();
+            children = new ArrayList<>();
         }
 
         Node<T> add(Node<T> node) {
-            childs.add(node);
+            children.add(node);
             node.father = this;
             return node;
         }
@@ -32,12 +32,12 @@ public class Tree<T> implements Collection<T> {
         public String toString() {
             return "Node{" +
                     "[" + object +
-                    "], childs=" + childs +
+                    "], children=" + children +
                     '}';
         }
 
         void remove() {
-            father.childs.remove(this);
+            father.children.remove(this);
         }
 
     }
@@ -64,7 +64,7 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean isEmpty() {
-        return root.childs.isEmpty();
+        return root.children.isEmpty();
     }
 
     @Override
@@ -216,7 +216,7 @@ public class Tree<T> implements Collection<T> {
                 throw new IllegalStateException("No elements");
             }
             Node<T> node = nodeList.remove(0);
-            nodeList.addAll(node.childs);
+            nodeList.addAll(node.children);
 
             return nodeList.get(0).object;
         }
@@ -226,7 +226,7 @@ public class Tree<T> implements Collection<T> {
                 throw new IllegalStateException("No elements");
             }
             Node<T> node = nodeList.remove(0);
-            nodeList.addAll(node.childs);
+            nodeList.addAll(node.children);
 
             return nodeList.get(0);
         }
@@ -265,11 +265,11 @@ public class Tree<T> implements Collection<T> {
             }
 
             currentNode.cur +=1;
-            if (currentNode.cur >= currentNode.childs.size()){
+            if (currentNode.cur >= currentNode.children.size()){
                 currentNode = currentNode.father;
             }
             else {
-                currentNode=currentNode.childs.get(currentNode.cur);
+                currentNode=currentNode.children.get(currentNode.cur);
             }*/
             return nextN().object;
 
@@ -281,10 +281,10 @@ public class Tree<T> implements Collection<T> {
             }
 
             currentNode.cur += 1;
-            if (currentNode.cur >= currentNode.childs.size()) {
+            if (currentNode.cur >= currentNode.children.size()) {
                 currentNode = currentNode.father;
             } else {
-                currentNode = currentNode.childs.get(currentNode.cur);
+                currentNode = currentNode.children.get(currentNode.cur);
             }
             return currentNode;
         }
