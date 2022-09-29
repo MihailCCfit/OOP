@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 public class Main {
     /**
-     * Doc for review dog, Hello world!
+     * Doc for review dog, Hello world.
      */
     public static void main() {
         Scanner scanner = new Scanner(System.in);
