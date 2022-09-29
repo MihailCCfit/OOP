@@ -27,7 +27,7 @@ public class Tree<T> implements Collection<T> {
 
         @Override
         public String toString() {
-            return "Node{" +
+            return "Node{" + "cur=" + cur +
                     "[" + object +
                     "], children=" + children +
                     '}';
@@ -79,9 +79,7 @@ public class Tree<T> implements Collection<T> {
     public Iterator<T> iterator() {
         return new TreeIterBFS();
     }
-    public Iterator<T> iteratorDFS() {
-        return new TreeIterDFS();
-    }
+
     @Override
     public Object[] toArray() {
         Iterator<T> iterator = iterator();
@@ -182,6 +180,7 @@ public class Tree<T> implements Collection<T> {
         return set.isEmpty();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public T[] toArray(Object[] a) {
         return (T[]) this.toArray();
@@ -190,14 +189,21 @@ public class Tree<T> implements Collection<T> {
     @Override
     public String toString() {
         //return Arrays.toString( this.toArray());
-        return Arrays.toString(this.toArray());
+        return "Tree: size="+size()+"root:"+root;
+    }
+    public TreeIterBFS iteratorBFS(){
+        return new TreeIterBFS();
+    }
+    public TreeIterDFS iteratorDFS(){
+        return new TreeIterDFS();
     }
 
-    private class TreeIterBFS implements Iterator<T> {
+
+    public class TreeIterBFS implements Iterator<T> {
 
         private final ArrayList<Node<T>> nodeList;
 
-        TreeIterBFS() {
+        public TreeIterBFS() {
 
             nodeList = new ArrayList<>();
             nodeList.add(root);
@@ -205,27 +211,27 @@ public class Tree<T> implements Collection<T> {
 
         @Override
         public boolean hasNext() {
-            return !nodeList.isEmpty();
+            return (nodeList.size()>1) || (!nodeList.get(0).children.isEmpty());
         }
 
         @Override
         public T next() throws IllegalArgumentException {
 
+            Node<T> node = nodeList.remove(0);
+            nodeList.addAll(node.children);
             if (nodeList.isEmpty()) {
                 throw new IllegalStateException("No elements");
             }
-            Node<T> node = nodeList.remove(0);
-            nodeList.addAll(node.children);
 
             return nodeList.get(0).object;
         }
 
         public Node<T> nextN() throws IllegalArgumentException {
+            Node<T> node = nodeList.remove(0);
+            nodeList.addAll(node.children);
             if (nodeList.isEmpty()) {
                 throw new IllegalStateException("No elements");
             }
-            Node<T> node = nodeList.remove(0);
-            nodeList.addAll(node.children);
 
             return nodeList.get(0);
         }
@@ -241,19 +247,36 @@ public class Tree<T> implements Collection<T> {
         }
     }
 
-    private class TreeIterDFS implements Iterator<T> {
+    public class TreeIterDFS implements Iterator<T> {
 
         Node<T> currentNode;
 
         TreeIterDFS() {
-            Tree.this.root.cur = -1;
+            Tree.this.root.cur = 0;
+            var it = Tree.this.iteratorBFS();
+            while (it.hasNext()){
+                var tmp = it.nextN();
+                tmp.cur=-1;
+            }
             currentNode = Tree.this.root;
 
         }
 
         @Override
         public boolean hasNext() {
-            return Tree.this.root.cur < 1;//?
+            return peek(currentNode)!=null;//?
+        }
+        private Node<T> peek(Node<T> node){
+            if (node.cur<0){
+                return node;
+            }
+            if (node.cur<node.children.size()){
+                return node.children.get(node.cur);
+            }
+            else {
+                if(node==root) return null;
+                return peek(node.father);
+            }
         }
 
         @Override
@@ -278,14 +301,21 @@ public class Tree<T> implements Collection<T> {
             if (!hasNext()) {
                 throw new IllegalStateException("No elements");
             }
-
-            currentNode.cur += 1;
-            if (currentNode.cur >= currentNode.children.size()) {
-                currentNode = currentNode.father;
-            } else {
-                currentNode = currentNode.children.get(currentNode.cur);
+            if (currentNode.cur<0){
+                currentNode.cur=0;
+                return currentNode;
             }
-            return currentNode;
+            if (currentNode.cur<currentNode.children.size()){
+                currentNode = currentNode.children.get(currentNode.cur++);
+                currentNode.cur=0;
+                return currentNode;
+            }
+            else {
+                if(currentNode==root) return null;
+                currentNode.cur=-1;
+                currentNode = currentNode.father;
+                return nextN();
+            }
         }
 
         @Override

@@ -1,30 +1,39 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+
 
 public class Main {
     public static void main(String[] args) {
 
         Tree<String> tree = new Tree<>();
         tree.add("A");
-        Tree.Node<String> nodeB = tree.addN("B");
-        tree.add(nodeB,"BB");
-        tree.add(nodeB,"AB");
-        String str = "B";
-        String[] strings = {"B"};
-        System.out.println(tree);
-        System.out.println(Arrays.toString( tree.stream().filter(s -> s.contains(str)&& !s.equals(str)).toArray()));
+        Tree.Node<String> node = tree.addN("B");
+        node.add("AB");
+        node.add("BB");
 
-        for (String s : tree) {
+        var iterDFS = tree.iteratorDFS();
+        ArrayList<String> arrayList = new ArrayList<>();
+        while (iterDFS.hasNext()){
+            Tree.Node<String> tNode = iterDFS.nextN();
+            if (tNode.children.isEmpty() && tNode.object.contains("B")){
+                arrayList.add(tNode.object);
+            }
+        }
+        for (String s : arrayList) {
             System.out.println(s);
         }
-        //tree.removeAll(List.of(strings));
-        tree.remove("B");
-        for (String s : tree) {
+
+        iterDFS = tree.iteratorDFS();
+        arrayList = new ArrayList<>();
+        while (iterDFS.hasNext()){
+            Tree.Node<String> tNode = iterDFS.nextN();
+            if (tNode.children.isEmpty() && tNode.object.contains("B")){
+                arrayList.add(tNode.object);
+            }
+        }
+        for (String s : arrayList) {
             System.out.println(s);
         }
-        //tree.clear();
-        tree.remove("BB");
         System.out.println(tree);
-        System.out.println(tree.size());
 
     }
 }
