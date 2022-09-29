@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-/**
- * Interact with heap.
+/** Interact with heap.
  *
  * @see Main#main()
  */
