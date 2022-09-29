@@ -4,18 +4,15 @@ public class Tree<T> implements Collection<T> {
     private final Node<T> root;
 
 
-    private enum isChecked {
-        CHECKED, UNCHECKED
-    }
+
 
     public static class Node<T> {
-        isChecked checked;
+        int cur = -1;
         ArrayList<Node<T>> childs;
         Node<T> father;
         T object;
 
         Node(T obj) {
-            checked = isChecked.CHECKED;
             object = obj;
             childs = new ArrayList<>();
         }
@@ -40,18 +37,9 @@ public class Tree<T> implements Collection<T> {
         }
 
         void remove() {
-            if (!childs.isEmpty()) {
-                System.out.println("Son");
-                Node<T> son = childs.remove(0);
-                for (Node<T> child : childs) {
-                    son.add(child);
-                }
-                father.add(son);
-            }
             father.childs.remove(this);
-
-
         }
+
     }
 
 
@@ -68,7 +56,7 @@ public class Tree<T> implements Collection<T> {
     @Override
     public int size() {
         int count = 0;
-        for (Object t : this) {
+        for (Object ignored : this) {
             count++;
         }
         return count;
@@ -213,10 +201,7 @@ public class Tree<T> implements Collection<T> {
         TreeIterBFS() {
 
             nodeList = new ArrayList<>();
-            if (!root.childs.isEmpty()) {
-                var arr = root.childs;
-                nodeList.addAll(arr);
-            }
+            nodeList.add(root);
         }
 
         @Override
@@ -226,13 +211,14 @@ public class Tree<T> implements Collection<T> {
 
         @Override
         public T next() throws IllegalArgumentException {
+
             if (nodeList.isEmpty()) {
                 throw new IllegalStateException("No elements");
             }
             Node<T> node = nodeList.remove(0);
             nodeList.addAll(node.childs);
 
-            return node.object;
+            return nodeList.get(0).object;
         }
 
         public Node<T> nextN() throws IllegalArgumentException {
@@ -242,22 +228,71 @@ public class Tree<T> implements Collection<T> {
             Node<T> node = nodeList.remove(0);
             nodeList.addAll(node.childs);
 
-            return node;
+            return nodeList.get(0);
         }
 
         @Override
-        public void remove() throws IllegalArgumentException {
-            if (hasNext()) {
-                Node<T> node = nextN();
-                Tree.this.remove(node);
-            } else {
-                throw new IllegalStateException("No elements");
-            }
+        public void remove() {
+            nodeList.remove(0).remove();//?
         }
 
         @Override
         public String toString() {
             return nodeList.toString();
+        }
+    }
+
+    private class TreeIterDFS implements Iterator<T> {
+
+        Node<T> currentNode;
+
+        TreeIterDFS() {
+            Tree.this.root.cur = -1;
+            currentNode = Tree.this.root;
+
+        }
+
+        @Override
+        public boolean hasNext() {
+            return Tree.this.root.cur < 1;//?
+        }
+
+        @Override
+        public T next() throws IllegalArgumentException {
+            /*
+            if (!hasNext()) {
+                throw new IllegalStateException("No elements");
+            }
+
+            currentNode.cur +=1;
+            if (currentNode.cur >= currentNode.childs.size()){
+                currentNode = currentNode.father;
+            }
+            else {
+                currentNode=currentNode.childs.get(currentNode.cur);
+            }*/
+            return nextN().object;
+
+        }
+
+        public Node<T> nextN() {
+            if (!hasNext()) {
+                throw new IllegalStateException("No elements");
+            }
+
+            currentNode.cur += 1;
+            if (currentNode.cur >= currentNode.childs.size()) {
+                currentNode = currentNode.father;
+            } else {
+                currentNode = currentNode.childs.get(currentNode.cur);
+            }
+            return currentNode;
+        }
+
+        @Override
+        public void remove() throws IllegalArgumentException {
+            currentNode.remove();
+            currentNode = currentNode.father;
         }
     }
 }
