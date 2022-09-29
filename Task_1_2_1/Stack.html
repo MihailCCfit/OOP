@@ -142,7 +142,6 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <div class="block">A stack is a linear data structure that follows the principle of Last In First Out (LIFO).
  This means the last element inserted inside the stack is removed first.
  You can think of the stack data structure as the pile of plates on top of another.
- <p>
  This stack is based on a dynamic array that resizes match the current number of objects.
  After push operation, size may be increased. After pop operation, size may be decreased.</div>
 <dl>
@@ -177,7 +176,7 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DEFAULT_SIZE">DEFAULT_SIZE</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DEFAULTSIZE">DEFAULTSIZE</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -328,16 +327,16 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <pre>public&nbsp;<a href="Stack.html" title="type parameter in Stack">T</a>[] datas</pre>
 </li>
 </ul>
-<a id="DEFAULT_SIZE">
+<a id="DEFAULTSIZE">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>DEFAULT_SIZE</h4>
-<pre>public final&nbsp;int DEFAULT_SIZE</pre>
+<h4>DEFAULTSIZE</h4>
+<pre>public final&nbsp;int DEFAULTSIZE</pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="constant-values.html#Stack.DEFAULT_SIZE">Constant Field Values</a></dd>
+<dd><a href="constant-values.html#Stack.DEFAULTSIZE">Constant Field Values</a></dd>
 </dl>
 </li>
 </ul>
@@ -411,7 +410,8 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <li class="blockList">
 <h4>pop</h4>
 <pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">T</a>&nbsp;pop()</pre>
-<div class="block">Return an object from the stack, and extract this from array. This object is at the top of the array.</div>
+<div class="block">Return an object from the stack, and extract this from array.
+ This object is at the top of the array.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an object from the stack. This object is at the top of the array.</dd>
