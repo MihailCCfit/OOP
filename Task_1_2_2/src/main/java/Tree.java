@@ -216,14 +216,7 @@ public class Tree<T> implements Collection<T> {
 
         @Override
         public T next() throws IllegalArgumentException {
-
-            Node<T> node = nodeList.remove(0);
-            nodeList.addAll(node.children);
-            if (nodeList.isEmpty()) {
-                throw new IllegalStateException("No elements");
-            }
-
-            return nodeList.get(0).object;
+            return nextN().object;
         }
 
         public Node<T> nextN() throws IllegalArgumentException {
@@ -250,13 +243,16 @@ public class Tree<T> implements Collection<T> {
     public class TreeIterDFS implements Iterator<T> {
 
         Node<T> currentNode;
+        ArrayList<Node<T>> stack = new ArrayList<>();
+        int cur = 0;
 
         TreeIterDFS() {
+            stack.add(Tree.this.root);
             Tree.this.root.cur = 0;
             var it = Tree.this.iteratorBFS();
             while (it.hasNext()){
                 var tmp = it.nextN();
-                tmp.cur=-1;
+                tmp.cur=0;
             }
             currentNode = Tree.this.root;
 
@@ -264,64 +260,47 @@ public class Tree<T> implements Collection<T> {
 
         @Override
         public boolean hasNext() {
-            return peek(currentNode)!=null;//?
+            return peek(currentNode);//?
         }
-        private Node<T> peek(Node<T> node){
-            if (node.cur<0){
-                return node;
+        private boolean peek(Node<T> node){
+            while (node.cur>= node.children.size()){
+                if (node==Tree.this.root) return false;
+                node = node.father;
             }
-            if (node.cur<node.children.size()){
-                return node.children.get(node.cur);
-            }
-            else {
-                if(node==root) return null;
-                return peek(node.father);
-            }
+            return true;
+
         }
 
         @Override
         public T next() throws IllegalArgumentException {
-            /*
-            if (!hasNext()) {
-                throw new IllegalStateException("No elements");
-            }
-
-            currentNode.cur +=1;
-            if (currentNode.cur >= currentNode.children.size()){
-                currentNode = currentNode.father;
-            }
-            else {
-                currentNode=currentNode.children.get(currentNode.cur);
-            }*/
             return nextN().object;
 
         }
 
         public Node<T> nextN() {
-            if (!hasNext()) {
-                throw new IllegalStateException("No elements");
-            }
-            if (currentNode.cur<0){
-                currentNode.cur=0;
-                return currentNode;
-            }
-            if (currentNode.cur<currentNode.children.size()){
-                currentNode = currentNode.children.get(currentNode.cur++);
-                currentNode.cur=0;
-                return currentNode;
-            }
-            else {
-                if(currentNode==root) return null;
-                currentNode.cur=-1;
+            currentNode = stack.get(cur);
+            while (currentNode.cur>=currentNode.children.size()){
+                if (currentNode==Tree.this.root){
+                    throw new IllegalStateException("No element");
+                }
+                stack.remove(cur--);
                 currentNode = currentNode.father;
-                return nextN();
             }
+            currentNode = currentNode.children.get(currentNode.cur++);
+            stack.add(currentNode);
+            cur++;
+            return currentNode;
         }
 
         @Override
         public void remove() throws IllegalArgumentException {
-            currentNode.remove();
-            currentNode = currentNode.father;
+            var father = currentNode.father;
+            if (father.children.indexOf(currentNode)<=father.cur){//?
+                --father.cur;
+            }
+            father.children.remove(currentNode);
+            stack.remove(cur--);
+            currentNode = father;
         }
     }
 }

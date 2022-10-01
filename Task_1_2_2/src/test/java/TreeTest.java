@@ -22,17 +22,9 @@ public class TreeTest {
         node.add("AB");
         node.add("BB");
 
-        var iterBFS = tree.iteratorDFS();
-        ArrayList<String> arrayList = new ArrayList<>();
-        while (iterBFS.hasNext()){
-            Tree.Node<String> tNode = iterBFS.nextN();
-            if (tNode.children.isEmpty() && tNode.object.contains("B")){
-                arrayList.add(tNode.object);
-            }
-        }
-        for (String s : arrayList) {
-            System.out.println(s);
-        }
+
+
+
     }
     /*
     private int[] getRandomArr(int length) {
