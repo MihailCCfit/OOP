@@ -79,22 +79,22 @@ public class Main {
         for (ArrayList<Integer> arrayList : arr) {
             int choice = random.nextInt(4);
             switch (choice) {
-                case 0 -> {
+                case 0:
                     tree.addAll(arrayList);
                     arrForCheck.addAll(arrayList);
-                }
-                case 1 -> {
+                    break;
+                case 1:
                     tree.removeAll(arrayList);
                     arrForCheck.removeAll(arrayList);
-                }
-                case 2 -> {
+                    break;
+                case 2:
                     tree.retainAll(arrayList);
                     arrForCheck.retainAll(arrayList);
-                }
-                case 3 -> {
+                    break;
+                case 3:
                     tree.add(arrayList.get(0));
                     arrForCheck.add(arrayList.get(0));
-                }
+                    break;
             }
             if(!CheckContains(arrForCheck, tree)) {System.out.println("\n\n!!!!!!!!!!!!Bad\n");
                 System.out.println(choice);
