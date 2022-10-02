@@ -76,9 +76,6 @@ public class Tree<T> implements Collection<T> {
          */
         void remove() {
             var father = this.father;
-            if (father.children.indexOf(this)<father.cur){//?
-                --father.cur;
-            }
             father.children.remove(this);
         }
 
@@ -209,8 +206,9 @@ public class Tree<T> implements Collection<T> {
      * @param node to which will add new node with specify object.
      * @param o object that will be put in node.
      * @return new created node.
+     * @throws IllegalArgumentException if node is null pointr
      */
-    public Node<T> add(Node<T> node,T o) {
+    public Node<T> add(Node<T> node,T o) throws IllegalArgumentException{
         if (node == null) {
             throw new IllegalArgumentException("Null pointer");
         }
@@ -357,7 +355,7 @@ public class Tree<T> implements Collection<T> {
     /**
      * BFS iterator.
      */
-    private class TreeIterBFS implements Iterator<T> {
+    public class TreeIterBFS implements Iterator<T> {
 
         private final ArrayList<Node<T>> nodeList;
 
@@ -394,14 +392,10 @@ public class Tree<T> implements Collection<T> {
          */
         public Node<T> nextN() throws IllegalStateException {
             if (!hasNext()) {
-                throw new IllegalArgumentException("There is no element");
+                throw new IllegalStateException("There is no element");
             }
             Node<T> node = nodeList.remove(0);
             nodeList.addAll(node.children);
-            if (nodeList.isEmpty()) {
-                throw new IllegalStateException("No elements");
-            }
-
             return nodeList.get(0);
         }
 
@@ -475,9 +469,6 @@ public class Tree<T> implements Collection<T> {
                 throw new IllegalStateException("There is no element");
             }
             while (currentNode.cur>=currentNode.children.size()){
-                if (currentNode==Tree.this.root){
-                    throw new IllegalStateException("No element");
-                }
                 currentNode = currentNode.father;
             }
             currentNode = currentNode.children.get(currentNode.cur++);
@@ -491,8 +482,8 @@ public class Tree<T> implements Collection<T> {
         @Override
         public void remove() throws IllegalStateException {
             var father = currentNode.father;
-            if (father == null || (currentNode==root && root.cur>=root.children.size())) {
-                throw new IllegalStateException("Current node is root");
+            if (father == null) {
+                throw new IllegalStateException("Current node is root"); //
             }
             if (father.children.indexOf(currentNode)<father.cur){//?
                 --father.cur;

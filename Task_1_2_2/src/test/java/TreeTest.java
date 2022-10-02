@@ -26,7 +26,7 @@ public class TreeTest {
         Assertions.assertTrue(CheckContains(s, arrayList));
     }
     public ArrayList<Integer>[] getRandomArrayLists(){
-        ArrayList<Integer>[] arrayLists = new ArrayList[10];
+        ArrayList<Integer>[] arrayLists = new ArrayList[25];
         Random random = new Random();
         for (int i = 0; i < arrayLists.length; i++) {
             int bound = random.nextInt(25)+1;
@@ -64,8 +64,10 @@ public class TreeTest {
                     arrForCheck.add(arrayList.get(0));
                     break;
             }
+            Assertions.assertEquals(tree.containsAll(arrayList), arrForCheck.containsAll(arrayList));
             Assertions.assertTrue(CheckContains(arrForCheck, tree));
             Assertions.assertEquals(tree.size(), arrForCheck.size());
+            Assertions.assertFalse(tree.iteratorBFS().toString().isBlank());
         }
     }
     private<T> boolean CheckContains(Collection<T> fst, Collection<T> snd){
@@ -85,8 +87,24 @@ public class TreeTest {
         Assertions.assertFalse(tree.toString().isBlank());
         tree.add(4);
         Integer[] integers = {4};
-        System.out.println(Arrays.toString(tree.toArray()));
         Assertions.assertEquals(integers[0], tree.toArray()[0]);
+        tree.add(5);
+        var iterDFS = tree.iteratorDFS();
+        while (iterDFS.hasNext()){
+            if (iterDFS.next().equals(4)){
+                iterDFS.remove();
+            }
+        }
+        Assertions.assertEquals(tree.size(), 1);
+        Tree<String> stringTree = new Tree<>();
+        stringTree.add("A"); stringTree.add("B"); stringTree.add("B");
+        Tree<String>.TreeIterDFS itDfs = stringTree.iteratorDFS();
+        while (itDfs.hasNext()){
+            if (itDfs.next().equals("C")){
+                stringTree.remove("A");
+            }
+        }
+
     }
     @Test
     void testAsserts(){
@@ -95,11 +113,14 @@ public class TreeTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.retainAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.removeAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.containsAll(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> tree.add(null,5.0));
         var iter = tree.iteratorDFS();
         iter.next();
         iter.remove();
         Assertions.assertThrows(IllegalStateException.class,iter::next);
         Assertions.assertThrows(IllegalStateException.class,iter::remove);
+        var iterB = tree.iteratorBFS();
+        Assertions.assertThrows(IllegalStateException.class, iterB::next);
     }
 
 }
