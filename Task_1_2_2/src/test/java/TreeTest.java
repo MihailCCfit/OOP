@@ -1,10 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 
 
@@ -15,17 +12,81 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 public class TreeTest {
     @Test
-    void exampleTest(){
+    public void exampleTest(){
         Tree<String> tree = new Tree<>();
         tree.add("A");
         Tree.Node<String> node = tree.addN("B");
-        node.add("AB");
+        tree.add(node,"AB");
         node.add("BB");
+        var s = tree.contain((nod)->nod.children.isEmpty()).
+                stream().map((nod)->nod.object).filter((str)->str.contains("B"));
+        String[] strings = {"AB", "BB"};
+        var z = Arrays.stream(strings).toList();
+        Assertions.assertTrue(CheckContains(s.toList(),z));
+    }
+    public ArrayList<Integer>[] getRandomArrayLists(){
+        ArrayList<Integer>[] arrayLists = new ArrayList[10];
+        Random random = new Random();
+        for (int i = 0; i < arrayLists.length; i++) {
+            int bound = random.nextInt(25)+1;
+            arrayLists[i] = new ArrayList<>();
+            for (int i1 = 0; i1 < bound; i1++) {
+                arrayLists[i].add(random.nextInt(bound));
+            }
+        }
+        return arrayLists;
+    }
+
+    @Test
+    public void testsWithArrayList(){
+        Random random = new Random(15);
+        ArrayList<Integer>[] arr = getRandomArrayLists();
+        ArrayList<Integer> arrForCheck = new ArrayList<>();
+        Tree<Integer> tree = new Tree<>();
+        for (ArrayList<Integer> arrayList : arr) {
+            int choice = random.nextInt(4);
+            switch (choice) {
+                case 0 -> {
+                    tree.addAll(arrayList);
+                    arrForCheck.addAll(arrayList);
+                }
+                case 1 -> {
+                    tree.removeAll(arrayList);
+                    arrForCheck.removeAll(arrayList);
+                }
+                case 2 -> {
+                    tree.retainAll(arrayList);
+                    arrForCheck.retainAll(arrayList);
+                }
+                case 3 -> {
+                    tree.add(arrayList.get(0));
+                    arrForCheck.add(arrayList.get(0));
+                }
+            }
+            Assertions.assertTrue(CheckContains(arrForCheck, tree));
+            Assertions.assertEquals(tree.size(), arrForCheck.size());
 
 
-
+        }
+    }
+    private<T> boolean CheckContains(Collection<T> fst, Collection<T> snd){
+        return fst.containsAll(snd) && snd.containsAll(fst);
+    }
+    @Test
+    public void testSomething(){
+        Tree<Integer> tree = new Tree<>(1);
+        Assertions.assertFalse(tree.contain(1).isEmpty());
+        Assertions.assertTrue(tree.contain(2).isEmpty());
+        tree.clear();
+        Assertions.assertTrue(tree.contain(1).isEmpty());
+        Tree.Node<Integer> node = tree.addN(5);
+        node.add(6);
+        node.remove();
+        Assertions.assertTrue(tree.isEmpty());
+        Assertions.assertFalse(tree.toString().isBlank());
 
     }
+
     /*
     private int[] getRandomArr(int length) {
         Random random = new Random();
