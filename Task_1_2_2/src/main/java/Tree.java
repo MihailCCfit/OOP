@@ -43,7 +43,6 @@ public class Tree<T> implements Collection<T> {
          * @param node that exist.
          * @return new node.
          */
-
         Node<T> add(Node<T> node) {
             children.add(node);
             node.father = this;
@@ -90,6 +89,7 @@ public class Tree<T> implements Collection<T> {
      */
     public Tree() {
         root = new Node<>(null);
+        root.father = null;
     }
 
     /**
@@ -99,6 +99,7 @@ public class Tree<T> implements Collection<T> {
     public Tree(T obj) {
         root = new Node<>(null);
         root.add(obj);
+        root.father = null;
     }
 
     /**
@@ -267,7 +268,7 @@ public class Tree<T> implements Collection<T> {
 
     @Override
     public boolean retainAll(Collection c) {
-        if (c==null){
+        if (c == null){
             throw new IllegalArgumentException("Null pointer");
         }
         boolean flag = false;
@@ -380,18 +381,18 @@ public class Tree<T> implements Collection<T> {
         /**
          * Change current element, remove previous from stack and add his children.
          * @return next element
-         * @throws IllegalArgumentException if there is no object
+         * @throws IllegalStateException if there is no object
          */
         @Override
-        public T next() throws IllegalArgumentException {
+        public T next() throws IllegalStateException {
             return nextN().object;
         }
         /**
          * Change current Node, remove previous from stack and add his children.
          * @return next Node
-         * @throws IllegalArgumentException if there is no element
+         * @throws IllegalStateException if there is no element
          */
-        public Node<T> nextN() throws IllegalArgumentException {
+        public Node<T> nextN() throws IllegalStateException {
             if (!hasNext()) {
                 throw new IllegalArgumentException("There is no element");
             }
@@ -456,10 +457,10 @@ public class Tree<T> implements Collection<T> {
         /**
          * Return next object.
          * @return Next object
-         * @throws IllegalArgumentException if there is no element
+         * @throws IllegalStateException if there is no element
          */
         @Override
-        public T next() throws IllegalArgumentException {
+        public T next() throws IllegalStateException {
             return nextN().object;
 
         }
@@ -467,8 +468,9 @@ public class Tree<T> implements Collection<T> {
         /**
          * Return next node according to DFS algorithm, change some data in nodes.
          * @return next Node.
+         * @throws IllegalStateException if there is no element
          */
-        public Node<T> nextN() {
+        public Node<T> nextN() throws IllegalStateException{
             if(!hasNext()){
                 throw new IllegalStateException("There is no element");
             }
@@ -489,7 +491,7 @@ public class Tree<T> implements Collection<T> {
         @Override
         public void remove() throws IllegalStateException {
             var father = currentNode.father;
-            if (father == null) {
+            if (father == null || (currentNode==root && root.cur>=root.children.size())) {
                 throw new IllegalStateException("Current node is root");
             }
             if (father.children.indexOf(currentNode)<father.cur){//?

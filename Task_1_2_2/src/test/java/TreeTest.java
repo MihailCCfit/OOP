@@ -19,11 +19,10 @@ public class TreeTest {
         Tree.Node<String> node = tree.addN("B");
         tree.add(node,"AB");
         node.add("BB");
-        var s = tree.contain((nod)->nod.children.isEmpty()).
-                stream().map((nod)->nod.object).filter((str)->str.contains("B")).collect(Collectors.toList());
+        var s = tree.contain((nod) -> nod.children.isEmpty()).
+                stream().map((nod)->nod.object).filter((str) -> str.contains("B")).collect(Collectors.toList());
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("AB"); arrayList.add("BB");
-        //var z = Arrays.stream(strings).toList();
         Assertions.assertTrue(CheckContains(s, arrayList));
     }
     public ArrayList<Integer>[] getRandomArrayLists(){
@@ -67,8 +66,6 @@ public class TreeTest {
             }
             Assertions.assertTrue(CheckContains(arrForCheck, tree));
             Assertions.assertEquals(tree.size(), arrForCheck.size());
-
-
         }
     }
     private<T> boolean CheckContains(Collection<T> fst, Collection<T> snd){
@@ -86,73 +83,23 @@ public class TreeTest {
         node.remove();
         Assertions.assertTrue(tree.isEmpty());
         Assertions.assertFalse(tree.toString().isBlank());
-
+        tree.add(4);
+        Integer[] integers = {4};
+        System.out.println(Arrays.toString(tree.toArray()));
+        Assertions.assertEquals(integers[0], tree.toArray()[0]);
     }
-
-    /*
-    private int[] getRandomArr(int length) {
-        Random random = new Random();
-        int[] arr = new int[length];
-        for (int i = 0; i < length; i++) {
-            arr[i] = random.nextInt();
-        }
-        return arr;
-    }
-
     @Test
-    void testSorting() {
-        for (int i = 0; i < 1000; i++) {
-            int[] arr = getRandomArr(1000);
-            int[] arrForCheck = arr.clone();
-            Arrays.sort(arrForCheck);
-            Assertions.assertArrayEquals(arrForCheck, Heap.heapSort(arr));
-        }
-
+    void testAsserts(){
+        Tree<Double> tree = new Tree<>(5.0);
+//        Assertions.assertThrows(IllegalStateException.class, stack::pop);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> tree.retainAll(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> tree.removeAll(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> tree.containsAll(null));
+        var iter = tree.iteratorDFS();
+        iter.next();
+        iter.remove();
+        Assertions.assertThrows(IllegalStateException.class,iter::next);
+        Assertions.assertThrows(IllegalStateException.class,iter::remove);
     }
-
-    @Test
-    void testCorrectOrderInHeap() {
-        for (int i = 0; i < 1000; i++) {
-            Heap heap = new Heap(getRandomArr(i));
-            for (int j = 1; j < heap.size(); j++) {
-                Assertions.assertTrue(heap.get(j) > heap.get((j - 1) / 2));
-            }
-        }
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {100, -10})
-    void testThrows(int x) {
-        Heap heap = new Heap();
-        Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> heap.get(x));
-        Assertions.assertThrows(IndexOutOfBoundsException.class, heap::extractMin);
-        Assertions.assertThrows(IllegalStateException.class, heap::getMin);
-
-    }
-
-    @Test
-    void testForMin() {
-        for (int i = 1; i < 500; i++) {
-            int[] arr = getRandomArr(i);
-            int x = Arrays.stream(arr).min().getAsInt();
-            Heap heap = new Heap(arr);
-            Assertions.assertEquals(heap.getMin(), x);
-            Assertions.assertEquals(heap.size(), arr.length);
-            x--;
-            heap.add(x);
-            Assertions.assertEquals(heap.getMin(), x);
-            x = Arrays.stream(arr).max().getAsInt() + 5;
-            heap.add(x);
-            Assertions.assertEquals(heap.get(heap.size() - 1), x);
-        }
-    }
-
-    @Test
-    void uselessTest() {
-        int[] ar = {4, 2, 3, 1};
-        Heap heap = new Heap(ar);
-        Assertions.assertEquals(heap.toString(), "[1, 2, 3, 4]");
-    }
-*/
 
 }
