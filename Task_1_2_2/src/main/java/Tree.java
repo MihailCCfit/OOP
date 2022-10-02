@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.function.Predicate;
 
 /** Tree is collection. User can add new Nodes to root, or to other Nodes.
@@ -401,14 +403,6 @@ public class Tree<T> implements Collection<T> {
 
             return nodeList.get(0);
         }
-
-//        /**
-//         * Remove current Node from stack. Therefore, its children will not be elements of this iterator.
-//         */
-//        @Override
-//        public void remove() {
-//            nodeList.remove(0).remove();//?
-//        }
 
         /**
          * String representation
