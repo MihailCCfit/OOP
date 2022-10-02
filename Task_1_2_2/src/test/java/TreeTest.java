@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,10 +20,11 @@ public class TreeTest {
         tree.add(node,"AB");
         node.add("BB");
         var s = tree.contain((nod)->nod.children.isEmpty()).
-                stream().map((nod)->nod.object).filter((str)->str.contains("B"));
-        String[] strings = {"AB", "BB"};
-        var z = Arrays.stream(strings).toList();
-        Assertions.assertTrue(CheckContains(s.toList(),z));
+                stream().map((nod)->nod.object).filter((str)->str.contains("B")).collect(Collectors.toList());
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("AB"); arrayList.add("BB");
+        //var z = Arrays.stream(strings).toList();
+        Assertions.assertTrue(CheckContains(s, arrayList));
     }
     public ArrayList<Integer>[] getRandomArrayLists(){
         ArrayList<Integer>[] arrayLists = new ArrayList[10];
