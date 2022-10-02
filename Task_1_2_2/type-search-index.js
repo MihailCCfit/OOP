@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"Tree.Node"},{"p":"<Unnamed>","l":"Tree"},{"p":"<Unnamed>","l":"Tree.TreeIterDFS"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"Tree.Node"},{"p":"<Unnamed>","l":"Tree"},{"p":"<Unnamed>","l":"Tree.TreeIterBFS"},{"p":"<Unnamed>","l":"Tree.TreeIterDFS"}]

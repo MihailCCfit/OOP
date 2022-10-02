@@ -168,6 +168,13 @@ implements java.util.Collection&lt;T&gt;</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Tree.TreeIterBFS.html" title="class in &lt;Unnamed&gt;">Tree.TreeIterBFS</a></span></code></th>
+<td class="colLast">
+<div class="block">BFS iterator.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Tree.TreeIterDFS.html" title="class in &lt;Unnamed&gt;">Tree.TreeIterDFS</a></span></code></th>
 <td class="colLast">
 <div class="block">Tree iterator that uses DFS.</div>
@@ -295,7 +302,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code>Tree.TreeIterBFS</code></td>
+<td class="colFirst"><code><a href="Tree.TreeIterBFS.html" title="class in &lt;Unnamed&gt;">Tree.TreeIterBFS</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iteratorBFS()">iteratorBFS</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Create BFS iterator.</div>
@@ -578,7 +585,8 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>add</h4>
 <pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in &lt;Unnamed&gt;">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;add&#8203;(<a href="Tree.Node.html" title="class in &lt;Unnamed&gt;">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
-                        <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+                        <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)
+                 throws java.lang.IllegalArgumentException</pre>
 <div class="block">Create new node with specify object and put it into specify node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -586,6 +594,8 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dd><code>o</code> - object that will be put in node.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>new created node.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if node is null pointr</dd>
 </dl>
 </li>
 </ul>
@@ -735,7 +745,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>iteratorBFS</h4>
-<pre class="methodSignature">public&nbsp;Tree.TreeIterBFS&nbsp;iteratorBFS()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Tree.TreeIterBFS.html" title="class in &lt;Unnamed&gt;">Tree.TreeIterBFS</a>&nbsp;iteratorBFS()</pre>
 <div class="block">Create BFS iterator.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
