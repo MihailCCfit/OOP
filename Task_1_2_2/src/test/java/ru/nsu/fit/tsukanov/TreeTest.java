@@ -29,7 +29,7 @@ public class TreeTest {
     }
     @SuppressWarnings({"unchecked"})
     public ArrayList<Integer>[] getRandomArrayLists(){
-        ArrayList<Integer>[] arrayLists = new ArrayList<>[25];
+        ArrayList<Integer>[] arrayLists = new ArrayList[25];
         Random random = new Random();
         for (int i = 0; i < arrayLists.length; i++) {
             int bound = random.nextInt(25)+1;
