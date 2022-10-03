@@ -1,3 +1,5 @@
+package ru.nsu.fit.tsukanov;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * TreeTest testing.
+ * ru.nsu.fit.tsukanov.TreeTest testing.
  * Testing ordering, sorting, adding, removing and throwing exceptions.
  */
 public class TreeTest {
@@ -19,14 +21,15 @@ public class TreeTest {
         Tree.Node<String> node = tree.addN("B");
         tree.add(node,"AB");
         node.add("BB");
-        var s = tree.contain((nod) -> nod.children.isEmpty()).
-                stream().map((nod)->nod.object).filter((str) -> str.contains("B")).collect(Collectors.toList());
+        var s = tree.contain((nod) -> nod.getChildren().isEmpty()).
+                stream().map(Tree.Node::getObject).filter((str) -> str.contains("B")).collect(Collectors.toList());
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("AB"); arrayList.add("BB");
         Assertions.assertTrue(CheckContains(s, arrayList));
     }
+    @SuppressWarnings({"unchecked"})
     public ArrayList<Integer>[] getRandomArrayLists(){
-        ArrayList<Integer>[] arrayLists = new ArrayList[25];
+        ArrayList<Integer>[] arrayLists = new ArrayList<>[25];
         Random random = new Random();
         for (int i = 0; i < arrayLists.length; i++) {
             int bound = random.nextInt(25)+1;

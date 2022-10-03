@@ -1,4 +1,4 @@
-import java.util.*;
+package ru.nsu.fit.tsukanov;
 
 
 public class Main {

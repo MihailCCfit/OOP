@@ -1,11 +1,13 @@
+package ru.nsu.fit.tsukanov;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Predicate;
 
-/** Tree is collection. User can add new Nodes to root, or to other Nodes.
+/** ru.nsu.fit.tsukanov.Tree is collection. User can add new Nodes to root, or to other Nodes.
  * It's easy to create branches, this structure is fragile.
- * @param <T> for objects in Tree.
+ * @param <T> for objects in ru.nsu.fit.tsukanov.Tree.
  */
 public class Tree<T> implements Collection<T> {
     private final Node<T> root;
@@ -16,25 +18,16 @@ public class Tree<T> implements Collection<T> {
      */
     public static class Node<T> {
         private int cur = -1;
-        /**
-         * List of child nodes.
-         */
-        public ArrayList<Node<T>> children;
-        /**
-         * Upper (father) node.
-         */
-        public Node<T> father;
-        /**
-         * Object that saved in this node.
-         */
-        public T object;
+        private final ArrayList<Node<T>> children;
+        private Node<T> father;
+        private T object;
 
         /**
          * Create new Node with saving object in this.
          * @param obj object that will be place into node
          */
         Node(T obj) {
-            object = obj;
+            setObject(obj);
             children = new ArrayList<>();
         }
 
@@ -44,7 +37,7 @@ public class Tree<T> implements Collection<T> {
          * @return new node.
          */
         Node<T> add(Node<T> node) {
-            children.add(node);
+            getChildren().add(node);
             node.father = this;
             return node;
         }
@@ -66,8 +59,8 @@ public class Tree<T> implements Collection<T> {
         @Override
         public String toString() {
             return "Node{" + "cur=" + cur +
-                    "[" + object +
-                    "], children=" + children +
+                    "[" + getObject() +
+                    "], children=" + getChildren() +
                     '}';
         }
 
@@ -75,14 +68,38 @@ public class Tree<T> implements Collection<T> {
          * Remove this node from parent node.
          */
         void remove() {
-            var father = this.father;
-            father.children.remove(this);
+            var father = this.getFather();
+            father.getChildren().remove(this);
         }
 
+        /**
+         * Object that saved in this node.
+         */
+        public T getObject() {
+            return object;
+        }
+
+        public void setObject(T object) {
+            this.object = object;
+        }
+
+        /**
+         * List of child nodes.
+         */
+        public ArrayList<Node<T>> getChildren() {
+            return children;
+        }
+
+        /**
+         * Upper (father) node.
+         */
+        public Node<T> getFather() {
+            return father;
+        }
     }
 
     /**
-     * Create new Tree with root node.
+     * Create new ru.nsu.fit.tsukanov.Tree with root node.
      */
     public Tree() {
         root = new Node<>(null);
@@ -90,7 +107,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * Create new Tree with root node. Add to root new node with specify object.
+     * Create new ru.nsu.fit.tsukanov.Tree with root node. Add to root new node with specify object.
      * @param obj that will be added to tree.
      */
     public Tree(T obj) {
@@ -118,7 +135,7 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public boolean isEmpty() {
-        return root.children.isEmpty();
+        return root.getChildren().isEmpty();
     }
 
     /**
@@ -140,7 +157,7 @@ public class Tree<T> implements Collection<T> {
         TreeIterBFS iterBFS = this.iteratorBFS();
         while (iterBFS.hasNext()){
             var node = iterBFS.nextN();
-            if (node.object.equals(o)){
+            if (node.getObject().equals(o)){
                 nodeArrayList.add(node);
             }
         }
@@ -226,7 +243,7 @@ public class Tree<T> implements Collection<T> {
         boolean rem = false;
         while (iterator.hasNext()) {
             Node<T> node = iterator.nextN();
-            if (node.object.equals(o)) {
+            if (node.getObject().equals(o)) {
                 iterator.remove();
                 rem = true;
             }
@@ -235,7 +252,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * Tree will always add
+     * ru.nsu.fit.tsukanov.Tree will always add
      * @param c collection containing elements to be added to this collection
      * @return true
      */
@@ -273,7 +290,7 @@ public class Tree<T> implements Collection<T> {
         var iter = this.iteratorDFS();
         while (iter.hasNext()){
             Node<T> node = iter.nextN();
-            if (!c.contains(node.object)){
+            if (!c.contains(node.getObject())){
                     iter.remove();
             }
         }
@@ -333,7 +350,7 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public String toString() {
-        return "Tree: size="+size()+"root:"+root;
+        return "ru.nsu.fit.tsukanov.Tree: size="+size()+"root:"+root;
     }
 
     /**
@@ -373,7 +390,7 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public boolean hasNext() {
-            return (nodeList.size()>0) && ((nodeList.size()>1) || (!nodeList.get(0).children.isEmpty()));
+            return (nodeList.size()>0) && ((nodeList.size()>1) || (!nodeList.get(0).getChildren().isEmpty()));
         }
 
         /**
@@ -383,7 +400,7 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public T next() throws IllegalStateException {
-            return nextN().object;
+            return nextN().getObject();
         }
         /**
          * Change current Node, remove previous from stack and add his children.
@@ -395,7 +412,7 @@ public class Tree<T> implements Collection<T> {
                 throw new IllegalStateException("There is no element");
             }
             Node<T> node = nodeList.remove(0);
-            nodeList.addAll(node.children);
+            nodeList.addAll(node.getChildren());
             return nodeList.get(0);
         }
 
@@ -410,7 +427,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * Tree iterator that uses DFS.
+     * ru.nsu.fit.tsukanov.Tree iterator that uses DFS.
      */
     public class TreeIterDFS implements Iterator<T> {
 
@@ -440,9 +457,9 @@ public class Tree<T> implements Collection<T> {
             return peek(currentNode);//?
         }
         private boolean peek(Node<T> node){
-            while (node.cur>= node.children.size()){
+            while (node.cur>= node.getChildren().size()){
                 if (node==Tree.this.root) return false;
-                node = node.father;
+                node = node.getFather();
             }
             return true;
 
@@ -455,7 +472,7 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public T next() throws IllegalStateException {
-            return nextN().object;
+            return nextN().getObject();
 
         }
 
@@ -468,10 +485,10 @@ public class Tree<T> implements Collection<T> {
             if(!hasNext()){
                 throw new IllegalStateException("There is no element");
             }
-            while (currentNode.cur>=currentNode.children.size()){
-                currentNode = currentNode.father;
+            while (currentNode.cur>= currentNode.getChildren().size()){
+                currentNode = currentNode.getFather();
             }
-            currentNode = currentNode.children.get(currentNode.cur++);
+            currentNode = currentNode.getChildren().get(currentNode.cur++);
             return currentNode;
         }
 
@@ -481,14 +498,14 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public void remove() throws IllegalStateException {
-            var father = currentNode.father;
+            var father = currentNode.getFather();
             if (father == null) {
                 throw new IllegalStateException("Current node is root"); //
             }
-            if (father.children.indexOf(currentNode)<father.cur){//?
+            if (father.getChildren().indexOf(currentNode)<father.cur){//?
                 --father.cur;
             }
-            father.children.remove(currentNode);
+            father.getChildren().remove(currentNode);
             currentNode = father;
         }
     }
