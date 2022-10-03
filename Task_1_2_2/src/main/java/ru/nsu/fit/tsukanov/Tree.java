@@ -15,6 +15,10 @@ public class Tree<T> implements Collection<T> {
     private final Node<T> root;
 
     /**
+     * Node class for Tree. Node has many nodes and
+     * has one father node. There are object values in
+     * each node.
+     *
      * @param <T> that is given from tree
      */
     public static class Node<T> {
@@ -63,10 +67,13 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public String toString() {
-            return "Node{" + "cur=" + cur +
-                    "[" + getObject() +
-                    "], children=" + getChildren() +
-                    '}';
+            return "Node{"
+                    + "cur="
+                    + cur
+                    + "[" + getObject()
+                    + "], children="
+                    + getChildren()
+                    + '}';
         }
 
         /**
@@ -157,11 +164,20 @@ public class Tree<T> implements Collection<T> {
         TreeIterBFS iterBFS = this.iteratorBFS();
         while (iterBFS.hasNext()) {
             var obj = iterBFS.next();
-            if (o.equals(obj)) return true;
+            if (o.equals(obj)) {
+                return true;
+            }
         }
         return false;
     }
 
+    /**
+     * Similar to filter(object.equals),
+     * but return nodes rather than objects.
+     *
+     * @param o object for filter
+     * @return ArrayList of nodes.
+     */
     public ArrayList<Node<T>> contain(Object o) {
         ArrayList<Node<T>> nodeArrayList = new ArrayList<>();
         TreeIterBFS iterBFS = this.iteratorBFS();
@@ -174,6 +190,12 @@ public class Tree<T> implements Collection<T> {
         return nodeArrayList;
     }
 
+    /**
+     * Return all nodes, that have true test by predicate.
+     *
+     * @param predicate for choosing nodes
+     * @return ArrayList with objects
+     */
     public ArrayList<Node<T>> contain(Predicate<Node<T>> predicate) {
         ArrayList<Node<T>> nodeArrayList = new ArrayList<>();
         TreeIterBFS iterBFS = this.iteratorBFS();
@@ -197,21 +219,6 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * return object array from tree nodes using iterator
-     *
-     * @return object array from tree nodes.
-     */
-    @Override
-    public Object[] toArray() {
-        Object[] arr = new Object[size()];
-        int i = 0;
-        for (T t : this) {
-            arr[i++] = t;
-        }
-        return arr;
-    }
-
-    /**
      * Add object to tree.
      *
      * @param o element whose presence in this collection is to be ensured
@@ -222,16 +229,6 @@ public class Tree<T> implements Collection<T> {
     public boolean add(Object o) {
         root.add((T) o);
         return true;
-    }
-
-    /**
-     * Create node and put object into node.
-     *
-     * @param o object
-     * @return node with specify object.
-     */
-    public Node<T> addN(T o) {
-        return root.add(o);
     }
 
     /**
@@ -247,6 +244,16 @@ public class Tree<T> implements Collection<T> {
             throw new IllegalArgumentException("Null pointer");
         }
         return node.add(o);
+    }
+
+    /**
+     * Create node and put object into node.
+     *
+     * @param o object
+     * @return node with specify object.
+     */
+    public Node<T> addN(T o) {
+        return root.add(o);
     }
 
     /**
@@ -295,7 +302,8 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * removes from this collection all of its elements that are not contained in the specified collection.
+     * removes from this collection all of its elements
+     * that are not contained in the specified collection.
      *
      * @param c collection containing elements to be retained in this collection
      * @return true, if there are elements that was removed from tree
@@ -352,6 +360,21 @@ public class Tree<T> implements Collection<T> {
             }
         }
         return true;
+    }
+
+    /**
+     * return object array from tree nodes using iterator.
+     *
+     * @return object array from tree nodes.
+     */
+    @Override
+    public Object[] toArray() {
+        Object[] arr = new Object[size()];
+        int i = 0;
+        for (T t : this) {
+            arr[i++] = t;
+        }
+        return arr;
     }
 
     /**
@@ -418,7 +441,8 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public boolean hasNext() {
-            return (nodeList.size() > 0) && ((nodeList.size() > 1) || (!nodeList.get(0).getChildren().isEmpty()));
+            return (nodeList.size() > 0) && ((nodeList.size() > 1)
+                    || (!nodeList.get(0).getChildren().isEmpty()));
         }
 
         /**
@@ -448,7 +472,7 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * String representation
+         * String representation.
          *
          * @return String representation.
          */
@@ -487,12 +511,14 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public boolean hasNext() {
-            return peek(currentNode);//?
+            return peek(currentNode);
         }
 
         private boolean peek(Node<T> node) {
             while (node.cur >= node.getChildren().size()) {
-                if (node == Tree.this.root) return false;
+                if (node == Tree.this.root) {
+                    return false;
+                }
                 node = node.getFather();
             }
             return true;
@@ -537,9 +563,9 @@ public class Tree<T> implements Collection<T> {
         public void remove() throws IllegalStateException {
             var father = currentNode.getFather();
             if (father == null) {
-                throw new IllegalStateException("Current node is root"); //
+                throw new IllegalStateException("Current node is root");
             }
-            if (father.getChildren().indexOf(currentNode) < father.cur) {//?
+            if (father.getChildren().indexOf(currentNode) < father.cur) {
                 --father.cur;
             }
             father.getChildren().remove(currentNode);

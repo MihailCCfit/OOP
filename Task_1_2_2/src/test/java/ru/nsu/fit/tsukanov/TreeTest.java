@@ -19,12 +19,16 @@ public class TreeTest {
         Tree.Node<String> node = tree.addN("B");
         tree.add(node, "AB");
         node.add("BB");
-        var s = tree.contain((nod) -> nod.getChildren().isEmpty()).
-                stream().map(Tree.Node::getObject).filter((str) -> str.contains("B")).collect(Collectors.toList());
+        var s = tree.contain((nod) -> nod.getChildren()
+                        .isEmpty())
+                .stream()
+                .map(Tree.Node::getObject)
+                .filter((str) -> str.contains("B"))
+                .collect(Collectors.toList());
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("AB");
         arrayList.add("BB");
-        Assertions.assertTrue(CheckContains(s, arrayList));
+        Assertions.assertTrue(checkContains(s, arrayList));
     }
 
     @SuppressWarnings({"unchecked"})
@@ -67,14 +71,15 @@ public class TreeTest {
                     arrForCheck.add(arrayList.get(0));
                     break;
             }
-            Assertions.assertEquals(tree.containsAll(arrayList), arrForCheck.containsAll(arrayList));
-            Assertions.assertTrue(CheckContains(arrForCheck, tree));
+            Assertions.assertEquals(tree.containsAll(arrayList),
+                    arrForCheck.containsAll(arrayList));
+            Assertions.assertTrue(checkContains(arrForCheck, tree));
             Assertions.assertEquals(tree.size(), arrForCheck.size());
             Assertions.assertFalse(tree.iteratorBFS().toString().isBlank());
         }
     }
 
-    private <T> boolean CheckContains(Collection<T> fst, Collection<T> snd) {
+    private <T> boolean checkContains(Collection<T> fst, Collection<T> snd) {
         return fst.containsAll(snd) && snd.containsAll(fst);
     }
 
@@ -117,7 +122,6 @@ public class TreeTest {
     @Test
     void testAsserts() {
         Tree<Double> tree = new Tree<>(5.0);
-//        Assertions.assertThrows(IllegalStateException.class, stack::pop);
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.retainAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.removeAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.containsAll(null));
