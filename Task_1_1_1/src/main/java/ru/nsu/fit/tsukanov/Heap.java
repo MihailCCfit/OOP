@@ -1,3 +1,5 @@
+package ru.nsu.fit.tsukanov;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class Heap {
     }
 
     /**
-     * Creates binary Heap.
+     * Creates binary ru.nsu.fit.tsukanov.Heap.
      * Started size is 0
      * ArrayList is used as data structure
      *

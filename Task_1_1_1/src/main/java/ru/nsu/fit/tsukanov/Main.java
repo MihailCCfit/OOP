@@ -1,3 +1,5 @@
+package ru.nsu.fit.tsukanov;
+
 import java.util.Scanner;
 
 /** Interact with heap.

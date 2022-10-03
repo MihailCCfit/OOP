@@ -1,3 +1,5 @@
+package ru.nsu.fit.tsukanov;
+
 import java.util.Arrays;
 import java.util.Random;
 import org.junit.jupiter.api.Assertions;
@@ -9,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 
 /**
- * Heap testing.
+ * ru.nsu.fit.tsukanov.Heap testing.
  * Testing ordering, sorting, adding, removing and throwing exceptions.
  */
 public class HeapTest {
@@ -29,6 +31,7 @@ public class HeapTest {
             int[] arrForCheck = arr.clone();
             Arrays.sort(arrForCheck);
             Assertions.assertArrayEquals(arrForCheck, Heap.heapSort(arr));
+
         }
 
     }
