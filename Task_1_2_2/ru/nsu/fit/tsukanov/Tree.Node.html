@@ -166,33 +166,35 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChildren()">getChildren</a></span>()</code></th>
 <td class="colLast">
-<div class="block">List of child nodes.</div>
+<div class="block">Return children of this node.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFather()">getFather</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Upper (father) node.</div>
+<div class="block">Get the upper (father) node.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Tree.Node.html" title="type parameter in Tree.Node">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getObject()">getObject</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Object that saved in this node.</div>
+<div class="block">Return object that placed in this node.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setObject(T)">setObject</a></span>&#8203;(<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&nbsp;object)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Set object in this node.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
-<div class="block">return String representation.</div>
+<div class="block">return String representation of <code>Node</code>.</div>
 </td>
 </tr>
 </table>
@@ -226,7 +228,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
-<div class="block">return String representation.</div>
+<div class="block">return String representation of <code>Node</code>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
@@ -242,7 +244,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getObject</h4>
 <pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&nbsp;getObject()</pre>
-<div class="block">Object that saved in this node.</div>
+<div class="block">Return object that placed in this node.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>object of this node.</dd>
+</dl>
 </li>
 </ul>
 <a id="setObject(java.lang.Object)">
@@ -254,6 +260,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setObject</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setObject&#8203;(<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&nbsp;object)</pre>
+<div class="block">Set object in this node.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>object</code> - that's placed in the node.</dd>
+</dl>
 </li>
 </ul>
 <a id="getChildren()">
@@ -263,7 +274,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getChildren</h4>
 <pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&gt;&nbsp;getChildren()</pre>
-<div class="block">List of child nodes.</div>
+<div class="block">Return children of this node.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>child nodes list</dd>
+</dl>
 </li>
 </ul>
 <a id="getFather()">
@@ -273,7 +288,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getFather</h4>
 <pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.Node.html" title="type parameter in Tree.Node">T</a>&gt;&nbsp;getFather()</pre>
-<div class="block">Upper (father) node.</div>
+<div class="block">Get the upper (father) node.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>parent node.</dd>
+</dl>
 </li>
 </ul>
 </li>

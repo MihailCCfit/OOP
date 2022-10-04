@@ -188,21 +188,21 @@ implements java.util.Iterator&lt;T&gt;</pre>
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasNext()">hasNext</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Check for next element.</div>
+<div class="block">Returns <code>true</code> if the iteration has more elements.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Tree.html" title="type parameter in Tree">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#next()">next</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Change current element, remove previous from stack and add his children.</div>
+<div class="block">Returns the next element in the iteration.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextN()">nextN</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Change current Node, remove previous from stack and add his children.</div>
+<div class="block">Returns the next Node in the iteration.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -270,12 +270,14 @@ implements java.util.Iterator&lt;T&gt;</pre>
 <li class="blockList">
 <h4>hasNext</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;hasNext()</pre>
-<div class="block">Check for next element.</div>
+<div class="block">Returns <code>true</code> if the iteration has more elements.
+ (In other words, returns <code>true</code> if <a href="#next()"><code>next()</code></a> would
+ return an element rather than throwing an exception.)</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>hasNext</code>&nbsp;in interface&nbsp;<code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if it has next element.</dd>
+<dd><code>true</code> if the iteration has more elements</dd>
 </dl>
 </li>
 </ul>
@@ -287,14 +289,15 @@ implements java.util.Iterator&lt;T&gt;</pre>
 <h4>next</h4>
 <pre class="methodSignature">public&nbsp;<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;next()
        throws java.lang.IllegalStateException</pre>
-<div class="block">Change current element, remove previous from stack and add his children.</div>
+<div class="block">Returns the next element in the iteration.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>next</code>&nbsp;in interface&nbsp;<code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>next element</dd>
+<dd>the next element in the iteration</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IllegalStateException</code> - if there is no object</dd>
+<dd><code>java.util.NoSuchElementException</code> - if the iteration has no more elements</dd>
+<dd><code>java.lang.IllegalStateException</code></dd>
 </dl>
 </li>
 </ul>
@@ -306,12 +309,13 @@ implements java.util.Iterator&lt;T&gt;</pre>
 <h4>nextN</h4>
 <pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;nextN()
                    throws java.lang.IllegalStateException</pre>
-<div class="block">Change current Node, remove previous from stack and add his children.</div>
+<div class="block">Returns the next Node in the iteration.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>next Node</dd>
+<dd>the next Node in the iteration</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IllegalStateException</code> - if there is no element</dd>
+<dd><code>java.util.NoSuchElementException</code> - if the iteration has no more Nodes</dd>
+<dd><code>java.lang.IllegalStateException</code></dd>
 </dl>
 </li>
 </ul>
