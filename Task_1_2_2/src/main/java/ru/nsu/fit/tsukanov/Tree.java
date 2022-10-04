@@ -3,13 +3,14 @@ package ru.nsu.fit.tsukanov;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 /**
- * ru.nsu.fit.tsukanov.Tree is collection. User can add new Nodes to root, or to other Nodes.
+ * Tree is collection. User can add new Nodes to root, or to other Nodes.
  * It's easy to create branches, this structure is fragile.
  *
- * @param <T> for objects in ru.nsu.fit.tsukanov.Tree.
+ * @param <T> for objects in Tree.
  */
 public class Tree<T> implements Collection<T> {
     private final Node<T> root;
@@ -61,7 +62,7 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * return String representation.
+         * return String representation of {@code Node}.
          *
          * @return String representation.
          */
@@ -85,25 +86,33 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Object that saved in this node.
+         * Return object that placed in this node.
+         * @return object of this node.
          */
         public T getObject() {
             return object;
         }
+
+        /**
+         * Set object in this node.
+         * @param object that's placed in the node.
+         */
 
         public void setObject(T object) {
             this.object = object;
         }
 
         /**
-         * List of child nodes.
+         * Return children of this node.
+         * @return child nodes list
          */
         public ArrayList<Node<T>> getChildren() {
             return children;
         }
 
         /**
-         * Upper (father) node.
+         * Get the upper (father) node.
+         * @return parent node.
          */
         public Node<T> getFather() {
             return father;
@@ -111,7 +120,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * Create new ru.nsu.fit.tsukanov.Tree with root node.
+     * Create new Tree with root node.
      */
     public Tree() {
         root = new Node<>(null);
@@ -119,7 +128,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * Create new ru.nsu.fit.tsukanov.Tree with root node. Add to root new node with specify object.
+     * Create Tree with root node. Add to root new node with specify object.
      *
      * @param obj that will be added to tree.
      */
@@ -435,9 +444,11 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Check for next element.
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
          *
-         * @return true if it has next element.
+         * @return {@code true} if the iteration has more elements
          */
         @Override
         public boolean hasNext() {
@@ -446,10 +457,10 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Change current element, remove previous from stack and add his children.
+         * Returns the next element in the iteration.
          *
-         * @return next element
-         * @throws IllegalStateException if there is no object
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
          */
         @Override
         public T next() throws IllegalStateException {
@@ -457,10 +468,10 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Change current Node, remove previous from stack and add his children.
+         * Returns the next Node in the iteration.
          *
-         * @return next Node
-         * @throws IllegalStateException if there is no element
+         * @return the next Node in the iteration
+         * @throws NoSuchElementException if the iteration has no more Nodes
          */
         public Node<T> nextN() throws IllegalStateException {
             if (!hasNext()) {
@@ -483,7 +494,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * ru.nsu.fit.tsukanov.Tree iterator that uses DFS.
+     * Tree iterator that uses DFS.
      */
     public class TreeIterDFS implements Iterator<T> {
 
@@ -505,9 +516,11 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Check for next element.
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
          *
-         * @return true if it has next element
+         * @return {@code true} if the iteration has more elements
          */
         @Override
         public boolean hasNext() {
@@ -526,10 +539,10 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Return next object.
+         * Returns the next element in the iteration.
          *
-         * @return Next object
-         * @throws IllegalStateException if there is no element
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
          */
         @Override
         public T next() throws IllegalStateException {
@@ -538,10 +551,10 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Return next node according to DFS algorithm, change some data in nodes.
+         * Returns the next node in the iteration according to DFS algorithm.
          *
-         * @return next Node.
-         * @throws IllegalStateException if there is no element
+         * @return the next node in the iteration
+         * @throws NoSuchElementException if the iteration has no more nodes
          */
         public Node<T> nextN() throws IllegalStateException {
             if (!hasNext()) {
@@ -556,7 +569,6 @@ public class Tree<T> implements Collection<T> {
 
         /**
          * Remove current node from tree.
-         *
          * @throws IllegalStateException if current node is root
          */
         @Override
