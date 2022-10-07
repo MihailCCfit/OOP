@@ -1,11 +1,8 @@
 package ru.nsu.fit.tsukanov;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * ru.nsu.fit.tsukanov.TreeTest testing.
@@ -32,7 +29,7 @@ public class TreeTest {
     }
 
     @SuppressWarnings({"unchecked"})
-    public ArrayList<Integer>[] getRandomArrayLists() {
+    private ArrayList<Integer>[] getRandomArrayLists() {
         ArrayList<Integer>[] arrayLists = new ArrayList[25];
         Random random = new Random();
         for (int i = 0; i < arrayLists.length; i++) {
@@ -70,6 +67,8 @@ public class TreeTest {
                     tree.add(arrayList.get(0));
                     arrForCheck.add(arrayList.get(0));
                     break;
+                default:
+
             }
             Assertions.assertEquals(tree.containsAll(arrayList),
                     arrForCheck.containsAll(arrayList));

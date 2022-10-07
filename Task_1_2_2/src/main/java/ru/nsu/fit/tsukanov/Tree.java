@@ -569,6 +569,7 @@ public class Tree<T> implements Collection<T> {
 
         /**
          * Remove current node from tree.
+         *
          * @throws IllegalStateException if current node is root
          */
         @Override
