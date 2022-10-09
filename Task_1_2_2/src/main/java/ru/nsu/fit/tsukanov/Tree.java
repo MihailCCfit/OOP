@@ -87,6 +87,7 @@ public class Tree<T> implements Collection<T> {
 
         /**
          * Return object that placed in this node.
+         *
          * @return object of this node.
          */
         public T getObject() {
@@ -95,6 +96,7 @@ public class Tree<T> implements Collection<T> {
 
         /**
          * Set object in this node.
+         *
          * @param object that's placed in the node.
          */
 
@@ -104,6 +106,7 @@ public class Tree<T> implements Collection<T> {
 
         /**
          * Return children of this node.
+         *
          * @return child nodes list
          */
         public ArrayList<Node<T>> getChildren() {
@@ -112,6 +115,7 @@ public class Tree<T> implements Collection<T> {
 
         /**
          * Get the upper (father) node.
+         *
          * @return parent node.
          */
         public Node<T> getFather() {

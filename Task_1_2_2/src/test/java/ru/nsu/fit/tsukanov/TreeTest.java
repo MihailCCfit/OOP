@@ -1,8 +1,9 @@
 package ru.nsu.fit.tsukanov;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
 import java.util.*;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * ru.nsu.fit.tsukanov.TreeTest testing.
