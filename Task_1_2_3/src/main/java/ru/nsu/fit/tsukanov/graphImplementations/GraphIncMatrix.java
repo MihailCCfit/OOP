@@ -3,9 +3,25 @@ package ru.nsu.fit.tsukanov.graphImplementations;
 import ru.nsu.fit.tsukanov.basicGraph.EdgeDefault;
 import ru.nsu.fit.tsukanov.basicGraph.Graph;
 
-import java.util.Set;
+import java.util.*;
 
-public class GraphIncMatrix<V,E> implements Graph<V,E> {
+public class GraphIncMatrix<V extends Comparable, E> implements Graph<V, E> {
+    private enum Direction{
+        NO, FROM, TO
+    }
+    Stack<Integer> indexesStackV;
+    Stack<Integer> indexesStackE;
+    TreeMap<V, Integer> vIntegerTreeMap;
+    HashMap<EdgeDefault<V,E>, Integer> eIntegerHashMap;
+    ArrayList<ArrayList<Direction>> matrix;
+    public GraphIncMatrix(){
+        indexesStackV = new Stack<>();
+        indexesStackE = new Stack<>();
+        vIntegerTreeMap = new TreeMap<>();
+        eIntegerHashMap = new HashMap<>();
+        matrix = new ArrayList<>();
+    }
+
     /**
      * Return all edges, that connects two vertices.
      * Edges is directed from sourceVertex to targetVertex.
@@ -16,7 +32,17 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
-        return Graph.super.getAllEdges(sourceVertex, targetVertex);
+        if (!vIntegerTreeMap.containsKey(sourceVertex)
+                || !vIntegerTreeMap.containsKey(targetVertex)){
+            return null;
+        }
+        Set<EdgeDefault<V, E>> set = new HashSet<>();
+        for (EdgeDefault<V, E> edge : eIntegerHashMap.keySet()) {
+            if (edge.getEdgeSource() == sourceVertex && edge.getEdgeTarget() == targetVertex){
+                set.add(edge);
+            }
+        }
+        return set;
     }
 
     /**
@@ -29,18 +55,16 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex) {
+        if (!vIntegerTreeMap.containsKey(sourceVertex)
+                || !vIntegerTreeMap.containsKey(targetVertex)){
+            return null;
+        }
+        for (EdgeDefault<V, E> edge : eIntegerHashMap.keySet()) {
+            if (edge.getEdgeSource() == sourceVertex && edge.getEdgeTarget() == targetVertex){
+                return edge;
+            }
+        }
         return null;
-    }
-
-    /**
-     * Retuturn Edge according to element
-     *
-     * @param e element, that maybe corresponded to some edge
-     * @return Edge according to e
-     */
-    @Override
-    public EdgeDefault<V, E> getEdge(E e) {
-        return Graph.super.getEdge(e);
     }
 
     /**
@@ -54,7 +78,7 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E object) {
-        return null;
+        return addEdge(sourceVertex, targetVertex, object, EdgeDefault.DEFAULT_WEIGHT);
     }
 
     /**
@@ -65,7 +89,8 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public boolean addEdge(EdgeDefault<V, E> e) {
-        return false;
+        EdgeDefault<V, E> edge = addEdge(e.getEdgeSource(), e.getEdgeTarget(),e.getObject(), e.getWeight());
+        return edge!=null;
     }
 
     /**
@@ -79,7 +104,31 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E e, double weight) {
-        return null;
+        EdgeDefault<V,E> newEdge = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
+        if (eIntegerHashMap.containsKey(newEdge)){
+            return null;
+        }
+        if (!vIntegerTreeMap.containsKey(sourceVertex)
+                || !vIntegerTreeMap.containsKey(targetVertex)){
+            return null;
+        }
+        if (indexesStackE.isEmpty()) {
+            indexesStackE.push(eIntegerHashMap.size());
+        }
+        int eIndex = indexesStackE.pop();
+        eIntegerHashMap.put(newEdge,eIndex);
+        int vIndex1 = vIntegerTreeMap.get(sourceVertex);
+        int vIndex2 = vIntegerTreeMap.get(targetVertex);
+        if (eIndex>= matrix.size()){
+            ArrayList<Direction> newColumn = new ArrayList<>();
+            for (int i = 0; i < matrix.size(); i++) {
+                newColumn.add(Direction.NO);
+            }
+            matrix.add(newColumn);
+        }
+        matrix.get(eIndex).set(vIndex1, Direction.FROM);
+        matrix.get(eIndex).set(vIndex2, Direction.TO);
+        return newEdge;
     }
 
     /**
@@ -91,7 +140,20 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public boolean addVertex(V v) {
-        return false;
+        if (vIntegerTreeMap.containsKey(v)) return false;
+        boolean flag =false;
+        if (indexesStackV.isEmpty()) {
+            indexesStackV.push(vIntegerTreeMap.size());
+            flag = true;
+        }
+        int vIndex = indexesStackV.pop();
+        vIntegerTreeMap.put(v,vIndex);
+        if (flag){
+            for (ArrayList<ru.nsu.fit.tsukanov.graphImplementations.GraphIncMatrix.Direction> directions : matrix) {
+                directions.add(Direction.NO);
+            }
+        }
+        return true;
     }
 
     /**
@@ -103,6 +165,11 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public boolean containsEdge(V sourceVertex, V targetVertex) {
+        for (EdgeDefault<V, E> edge : eIntegerHashMap.keySet()) {
+            if (edge.getEdgeSource() == sourceVertex && edge.getEdgeTarget() == targetVertex){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -114,7 +181,7 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
-        return false;
+        return eIntegerHashMap.containsKey(e);
     }
 
     /**
@@ -125,7 +192,7 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public boolean containsVertex(V v) {
-        return false;
+        return vIntegerTreeMap.containsKey(v);
     }
 
     /**
@@ -135,7 +202,7 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> edgeSet() {
-        return null;
+        return eIntegerHashMap.keySet();
     }
 
     /**
@@ -146,7 +213,16 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> incomingEdgesOf(V vertex) {
-        return null;
+        if (!vIntegerTreeMap.containsKey(vertex)) return null;
+        Set<EdgeDefault<V, E>> set = new HashSet<>();
+        int vIndex = vIntegerTreeMap.get(vertex);
+        for (EdgeDefault<V, E> edge : eIntegerHashMap.keySet()) {
+            int eIndex = eIntegerHashMap.get(edge);
+            if (matrix.get(eIndex).get(vIndex)==Direction.TO){
+                set.add(edge);
+            }
+        }
+        return set;
     }
 
     /**
@@ -157,7 +233,16 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> outgoingEdgesOf(V vertex) {
-        return null;
+        if (!vIntegerTreeMap.containsKey(vertex)) return null;
+        Set<EdgeDefault<V, E>> set = new HashSet<>();
+        int vIndex = vIntegerTreeMap.get(vertex);
+        for (EdgeDefault<V, E> edge : eIntegerHashMap.keySet()) {
+            int eIndex = eIntegerHashMap.get(edge);
+            if (matrix.get(eIndex).get(vIndex)==Direction.FROM){
+                set.add(edge);
+            }
+        }
+        return set;
     }
 
     /**
@@ -169,6 +254,7 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public EdgeDefault<V, E> removeEdge(V sourceVertex, V targetVertex) {
+        EdgeDefault<V, E> edge = getEdge(sourceVertex, targetVertex);
         return null;
     }
 
@@ -180,7 +266,13 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public boolean removeEdge(EdgeDefault<V, E> e) {
-        return false;
+        if (!eIntegerHashMap.containsKey(e)) return false;
+        int eIndex = eIntegerHashMap.get(e);
+        for (ru.nsu.fit.tsukanov.graphImplementations.GraphIncMatrix.Direction direction : matrix.get(eIndex)) {
+            direction = Direction.NO;
+        }
+        indexesStackE.push(eIndex);
+        return true;
     }
 
     /**
@@ -191,6 +283,11 @@ public class GraphIncMatrix<V,E> implements Graph<V,E> {
      */
     @Override
     public boolean removeVertex(V v) {
+        if (!vIntegerTreeMap.containsKey(v)) return false;
+        int vIndex = vIntegerTreeMap.get(v);
+        for (ArrayList<ru.nsu.fit.tsukanov.graphImplementations.GraphIncMatrix.Direction> directions : matrix) {
+            directions.remove(vIndex); //
+        }
         return false;
     }
 
