@@ -1,5 +1,7 @@
 package ru.nsu.fit.tsukanov.basicGraph;
 
+import java.util.Objects;
+
 public class EdgeDefault<V,E> {
     public V getSourceVertex() {
         return sourceVertex;
@@ -65,4 +67,21 @@ public class EdgeDefault<V,E> {
         return targetVertex;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj.getClass() == getClass()){
+            EdgeDefault<?, ?> temp = (EdgeDefault<?, ?>) obj;
+            return temp.sourceVertex.equals(sourceVertex)
+                    && temp.targetVertex.equals(this.targetVertex)
+                    && ((temp.object==null && this.object==null)
+                            || Objects.equals(temp.object, this.object));
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sourceVertex, targetVertex,  object);
+    }
 }

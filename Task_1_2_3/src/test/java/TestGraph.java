@@ -4,10 +4,38 @@ import ru.nsu.fit.tsukanov.FindPath.Dijkstra;
 import ru.nsu.fit.tsukanov.basicGraph.EdgeDefault;
 import ru.nsu.fit.tsukanov.basicGraph.Graph;
 import ru.nsu.fit.tsukanov.graphImplementations.GraphAdjMatrix;
+import GraphTest.ExampleTest;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class TestGraph {
+
+    public static void txtGraph(Graph<String, String> graph) throws IOException {
+        FileReader fileReader = new FileReader("matrix.txt");
+        //BufferedReader reader = new BufferedReader(fileReader);
+
+        //Scanner scanner = new Scanner(reader);
+        //System.out.println(scanner.next());
+        /*for (int i = 0; i < size; i++) {
+            graph.addVertex(scanner.next());
+        }
+        System.out.println(graph.vertexSet());*/
+    }
+//    @Test
+    void snd(){
+        Graph<String, String> graph = new GraphAdjMatrix<>();
+        try {
+            txtGraph(graph);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     void fst(){
         Graph<String, String> graph = new GraphAdjMatrix<>();
@@ -24,6 +52,7 @@ public class TestGraph {
         System.out.println(dijkstra.getDistant("C"));
         Assertions.assertTrue(graph.containsEdge("A","B"));
         Assertions.assertTrue(graph.containsEdge(ed1));
+
         graph.removeEdge("A","B");
         dijkstra.reuse();
         System.out.println(dijkstra.getPathV("C"));
@@ -41,7 +70,6 @@ public class TestGraph {
         Assertions.assertTrue(graph.addVertex("B"));
         EdgeDefault<String,String> edge = new EdgeDefault<>("C", "B","Hello", 3);
         Assertions.assertTrue(graph.addEdge(edge));
-
-        Assertions.assertTrue(graph.removeAllVertices(List.of("A","C")));
+        Assertions.assertTrue(graph.removeAllVertices(List.of("A","C")));/**/
     }
 }
