@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.tsukanov.FindPath","l":"Dijkstra"},{"p":"ru.nsu.fit.tsukanov.basicGraph","l":"EdgeDefault"},{"p":"ru.nsu.fit.tsukanov.basicGraph","l":"Graph"},{"p":"ru.nsu.fit.tsukanov.graphImplementations","l":"GraphAdjMatrix"},{"p":"ru.nsu.fit.tsukanov.graphImplementations","l":"GraphIncMatrix"}]
