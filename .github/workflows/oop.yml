@@ -26,6 +26,7 @@ jobs:
       - name: Execute Gradle build
         run: ./gradlew ${{ github.event.pull_request.title }}:build
 
+
       - name: Generate Jacoco report
         run: ./gradlew ${{ github.event.pull_request.title }}:jacocoTestReport
 
