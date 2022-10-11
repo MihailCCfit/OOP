@@ -1,12 +1,13 @@
+package ru.nsu.fit.tsukanov.GraphTest;
+
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import ru.nsu.fit.tsukanov.FindPath.Dijkstra;
-import ru.nsu.fit.tsukanov.basicGraph.EdgeDefault;
-import ru.nsu.fit.tsukanov.basicGraph.Graph;
+import ru.nsu.fit.tsukanov.alg.pathfinder.Dijkstra;
+import ru.nsu.fit.tsukanov.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.core.Graph;
+import ru.nsu.fit.tsukanov.graphImplementations.GraphAdjMatrix;
 import ru.nsu.fit.tsukanov.graphImplementations.*;
-
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.stream.Stream;
 public class TestGraph {
 
     public static void txtGraph(Graph<String, String> graph) throws IOException {
-        FileReader fileReader = new FileReader("matrix.txt");
+        FileReader fileReader = new FileReader("ru/nsu/fit/tsukanov/GraphTest/matrix.txt");
         //BufferedReader reader = new BufferedReader(fileReader);
 
         //Scanner scanner = new Scanner(reader);
@@ -36,7 +37,8 @@ public class TestGraph {
             throw new RuntimeException(e);
         }
     }
-    private static Stream<Graph> graphStream(){
+
+    private static Stream<Graph> graphStream() {
         return Stream.of(new GraphIncMatrix(), new GraphAdjMatrix<>());
     }
 

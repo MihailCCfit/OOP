@@ -1,7 +1,7 @@
 package ru.nsu.fit.tsukanov.graphImplementations;
 
-import ru.nsu.fit.tsukanov.basicGraph.EdgeDefault;
-import ru.nsu.fit.tsukanov.basicGraph.Graph;
+import ru.nsu.fit.tsukanov.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.core.Graph;
 
 import java.util.*;
 
@@ -137,7 +137,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
 
 
         int eIndex = indexesStackE.pop();
-        columns.set(eIndex,newEdge);
+        columns.set(eIndex, newEdge);
         eIntegerHashMap.put(newEdge, eIndex);
         int vIndex1 = vIntegerTreeMap.get(sourceVertex);
         int vIndex2 = vIntegerTreeMap.get(targetVertex);

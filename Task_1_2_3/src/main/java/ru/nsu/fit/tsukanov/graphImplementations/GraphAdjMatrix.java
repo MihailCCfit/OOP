@@ -1,7 +1,7 @@
 package ru.nsu.fit.tsukanov.graphImplementations;
 
-import ru.nsu.fit.tsukanov.basicGraph.EdgeDefault;
-import ru.nsu.fit.tsukanov.basicGraph.Graph;
+import ru.nsu.fit.tsukanov.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.core.Graph;
 
 import java.util.*;
 
@@ -11,7 +11,6 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     private final ArrayList<ArrayList<ArrayList<EdgeDefault<V, E>>>> matrix;
 
     public GraphAdjMatrix() {
-
         this.indexesStack = new Stack<>();
         this.vIntegerTreeMap = new TreeMap<>();
         this.matrix = new ArrayList<>();
@@ -23,29 +22,59 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return matrix.get(i).get(k);
     }
 
+    /**
+     * Return all edges, that connects two vertices.
+     * Edges is directed from sourceVertex to targetVertex.
+     *
+     * @param sourceVertex start vertex
+     * @param targetVertex end vertex
+     * @return set of all edges, that connects vertices
+     */
     @Override
     public Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
         return new HashSet<>(getListEdges(sourceVertex, targetVertex));
     }
 
+    /**
+     * Return edge, that connects two vertices.
+     * Edge is directed from sourceVertex to targetVertex.
+     *
+     * @param sourceVertex start vertex
+     * @param targetVertex end vertex
+     * @return edge connects vertices
+     */
     @Override
     public EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex) {
-        if (sourceVertex == null || targetVertex == null) return null;
+        if (sourceVertex == null || targetVertex == null) {
+            return null;
+        }
         ArrayList<EdgeDefault<V, E>> l = getListEdges(sourceVertex, targetVertex);
-        if (l.isEmpty()) return null;
+        if (l.isEmpty()) {
+            return null;
+        }
         return getListEdges(sourceVertex, targetVertex).get(0);
     }
 
+    /**
+     * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
+     * Edge has an object.
+     *
+     * @param sourceVertex is start vertex for edge
+     * @param targetVertex is end vertex for edge
+     * @param object       is object that will be placed into edge
+     * @return new Edge
+     */
     @Override
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E object) {
-        if (!(vIntegerTreeMap.containsKey(sourceVertex) && vIntegerTreeMap.containsKey(targetVertex))) {
-            return null;
-        }
-        EdgeDefault<V, E> edge = new EdgeDefault<>(sourceVertex, targetVertex, object);
-        getListEdges(sourceVertex, targetVertex).add(edge);
-        return edge;
+        return addEdge(sourceVertex, targetVertex, object, EdgeDefault.DEFAULT_WEIGHT);
     }
 
+    /**
+     * Add specify edge, if there is no such edge.
+     *
+     * @param e is edge that will be added to graph
+     * @return true, if there are no equal Edge.
+     */
     @Override
     public boolean addEdge(EdgeDefault<V, E> e) {
         if (!(vIntegerTreeMap.containsKey(e.getSourceVertex())
@@ -55,6 +84,16 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return getListEdges(e.getSourceVertex(), e.getTargetVertex()).add(e);
     }
 
+
+    /**
+     * Create Edge with specify vertices, weight and object.
+     *
+     * @param sourceVertex is start vertex for edge
+     * @param targetVertex is end vertex for edge
+     * @param e            is object that will be placed into edge
+     * @param weight       is weight that will be placed into edge
+     * @return edge
+     */
     @Override
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E e, double weight) {
         EdgeDefault<V, E> edgeDefault = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
@@ -62,12 +101,21 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return edgeDefault;
     }
 
+    /**
+     * Add vertex to graph, if there is no such vertex.
+     * If it isn't, then return false.
+     *
+     * @param v is vertex value, or vertex object.
+     * @return true, if vertex has been added.
+     */
     @Override
     public boolean addVertex(V v) {
         if (indexesStack.isEmpty()) {
             indexesStack.push(vIntegerTreeMap.size());
         }
-        if (vIntegerTreeMap.containsKey(v)) return false;
+        if (vIntegerTreeMap.containsKey(v)) {
+            return false;
+        }
         Integer index = indexesStack.pop();
         vIntegerTreeMap.put(v, index);
 
@@ -85,21 +133,45 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return true;
     }
 
+    /**
+     * Check for existing edge between two vertices.
+     *
+     * @param sourceVertex is start vertex for some edge
+     * @param targetVertex is end vertex for some edge
+     * @return true, if there is edge from source to target.
+     */
     @Override
     public boolean containsEdge(V sourceVertex, V targetVertex) {
         return !getListEdges(sourceVertex, targetVertex).isEmpty();
     }
 
+    /**
+     * Check for exising edge in the graph.
+     *
+     * @param e is edge for checking
+     * @return true, if the graph contains specify edge
+     */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
         return containsEdge(e.getSourceVertex(), e.getTargetVertex());
     }
 
+    /**
+     * Check for exising vertex in the graph.
+     *
+     * @param v is vertex object
+     * @return true, if the graph contains specify vertex.
+     */
     @Override
     public boolean containsVertex(V v) {
         return vIntegerTreeMap.containsKey(v);
     }
 
+    /**
+     * Return set of all edges from graph.
+     *
+     * @return set of all edges from this graph.
+     */
     @Override
     public Set<EdgeDefault<V, E>> edgeSet() {
         Set<EdgeDefault<V, E>> edgeSet = new HashSet<>();
@@ -109,6 +181,12 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return edgeSet;
     }
 
+    /**
+     * Return set of all incoming edges to specify vertex.
+     *
+     * @param vertex is vertex
+     * @return set of all incoming edges to specify vertex.
+     */
     @Override
     public Set<EdgeDefault<V, E>> incomingEdgesOf(V vertex) {
         int index = vIntegerTreeMap.get(vertex);
@@ -119,6 +197,12 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return edgeDefaultSet;
     }
 
+    /**
+     * Return set of all incoming edges to specify vertex.
+     *
+     * @param vertex is vertex
+     * @return set of all incoming edges to specify vertex.
+     */
     @Override
     public Set<EdgeDefault<V, E>> outgoingEdgesOf(V vertex) {
         int index = vIntegerTreeMap.get(vertex);
@@ -140,15 +224,28 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public EdgeDefault<V, E> removeEdge(V sourceVertex, V targetVertex) {
-        if (sourceVertex == null || targetVertex == null) return null;
-        if (!vIntegerTreeMap.containsKey(sourceVertex) || !vIntegerTreeMap.containsKey(targetVertex)) return null;
+        if (sourceVertex == null || targetVertex == null) {
+            return null;
+        }
+        if (!vIntegerTreeMap.containsKey(sourceVertex) || !vIntegerTreeMap.containsKey(targetVertex)) {
+            return null;
+        }
         EdgeDefault<V, E> edge = getEdge(sourceVertex, targetVertex);
         return removeEdge(edge) ? edge : null;
     }
 
+    /**
+     * Remove specify edge from graph. And check for graph changes.
+     *
+     * @param e is edge
+     * @return true, if there was removing edge from graph.
+     */
+
     @Override
     public boolean removeEdge(EdgeDefault<V, E> e) {
-        if (e == null) return false;
+        if (e == null) {
+            return false;
+        }
         if (!(vIntegerTreeMap.containsKey(e.getSourceVertex())
                 && vIntegerTreeMap.containsKey(e.getTargetVertex()))) {
             return false;
@@ -158,9 +255,17 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return matrix.get(i).get(k).remove(e);
     }
 
+    /**
+     * Remove specify vertex from graph. And check for graph changes.
+     *
+     * @param v is vertex object
+     * @return true, if there was removing vertex from graph.
+     */
     @Override
     public boolean removeVertex(V v) {
-        if (!vIntegerTreeMap.containsKey(v)) return false;
+        if (!vIntegerTreeMap.containsKey(v)) {
+            return false;
+        }
         int index = vIntegerTreeMap.get(v);
         ArrayList<ArrayList<EdgeDefault<V, E>>> arrayLists = matrix.get(index);
         for (ArrayList<EdgeDefault<V, E>> list : arrayLists) {
@@ -174,6 +279,11 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return true;
     }
 
+    /**
+     * Return set of all vertices from graph.
+     *
+     * @return set of all vertices from this graph
+     */
     @Override
     public Set<V> vertexSet() {
         return vIntegerTreeMap.keySet();

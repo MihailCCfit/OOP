@@ -1,4 +1,4 @@
-package ru.nsu.fit.tsukanov.basicGraph;
+package ru.nsu.fit.tsukanov.core;
 
 import java.util.Objects;
 
@@ -25,7 +25,7 @@ public class EdgeDefault<V, E> {
 
     private final V targetVertex;
     private double weight;
-    public static final double  DEFAULT_WEIGHT = 1.0;
+    public static final double DEFAULT_WEIGHT = 1.0;
 
     public E getObject() {
         return object;

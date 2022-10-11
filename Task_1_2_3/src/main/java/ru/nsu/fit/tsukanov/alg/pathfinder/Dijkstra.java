@@ -1,10 +1,13 @@
-package ru.nsu.fit.tsukanov.FindPath;
+package ru.nsu.fit.tsukanov.alg.pathfinder;
 
 
-import ru.nsu.fit.tsukanov.basicGraph.EdgeDefault;
-import ru.nsu.fit.tsukanov.basicGraph.Graph;
+import ru.nsu.fit.tsukanov.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.core.Graph;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 public class Dijkstra<V extends Comparable<V>, E> {
     private V startVert;

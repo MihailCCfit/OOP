@@ -1,4 +1,4 @@
-package ru.nsu.fit.tsukanov.basicGraph;
+package ru.nsu.fit.tsukanov.core;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,6 +12,7 @@ import java.util.Set;
  * @see EdgeDefault
  */
 public interface Graph<V, E> {
+
     /**
      * Return all edges, that connects two vertices.
      * Edges is directed from sourceVertex to targetVertex.
@@ -55,7 +56,7 @@ public interface Graph<V, E> {
      * @return edge, that connects vertices in direction from sourceVertex to targetVertex
      */
     default EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex) {
-        return addEdge(sourceVertex, targetVertex, (E) null);
+        return addEdge(sourceVertex, targetVertex, null);
     }
 
     /**
@@ -188,7 +189,9 @@ public interface Graph<V, E> {
      */
 
     default boolean removeAllEdges(Collection<? extends EdgeDefault<V, E>> edges) {
-        if (edges==null) return false;
+        if (edges == null) {
+            return false;
+        }
         boolean flag = false;
         for (EdgeDefault<V, E> edge : edges) {
             flag |= removeEdge(edge);
@@ -204,6 +207,9 @@ public interface Graph<V, E> {
      * @return true, if there is some changes in graph.
      */
     default boolean removeAllVertices(Collection<? extends V> vertices) {
+        if (vertices == null) {
+            return false;
+        }
         boolean flag = false;
         for (V vertex : vertices) {
             flag |= removeVertex(vertex);
