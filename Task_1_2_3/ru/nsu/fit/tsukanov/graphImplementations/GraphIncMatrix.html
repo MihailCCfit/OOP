@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -115,7 +115,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.fit.tsukanov.graphImplementations</a></div>
-<h2 title="Class GraphIncMatrix" class="title">Class GraphIncMatrix&lt;V extends java.lang.Comparable,&#8203;E&gt;</h2>
+<h2 title="Class GraphIncMatrix" class="title">Class GraphIncMatrix&lt;V extends java.lang.Comparable&lt;V&gt;,&#8203;E&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -134,7 +134,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;V,&#8203;E&gt;</code></dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">GraphIncMatrix&lt;V extends java.lang.Comparable,&#8203;E&gt;</span>
+<pre>public class <span class="typeNameLabel">GraphIncMatrix&lt;V extends java.lang.Comparable&lt;V&gt;,&#8203;E&gt;</span>
 extends java.lang.Object
 implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;V,&#8203;E&gt;</pre>
 </li>
@@ -293,6 +293,11 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 </td>
 </tr>
 <tr id="i15" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vertexSet()">vertexSet</a></span>()</code></th>
 <td class="colLast">
@@ -305,7 +310,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.ru.nsu.fit.tsukanov.basicGraph.Graph">
@@ -349,6 +354,19 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="toString()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toString</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
 <a id="getAllEdges(java.lang.Comparable,java.lang.Comparable)">
 <!--   -->
 </a><a id="getAllEdges(V,V)">
@@ -363,7 +381,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
  Edges is directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#getAllEdges(V,V)">getAllEdges</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#getAllEdges(V,V)">getAllEdges</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - start vertex</dd>
 <dd><code>targetVertex</code> - end vertex</dd>
@@ -386,7 +404,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
  Edge is directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#getEdge(V,V)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#getEdge(V,V)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - start vertex</dd>
 <dd><code>targetVertex</code> - end vertex</dd>
@@ -410,7 +428,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
  Edge has an object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#addEdge(V,V,E)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#addEdge(V,V,E)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for edge</dd>
 <dd><code>targetVertex</code> - is end vertex for edge</dd>
@@ -430,7 +448,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Add specify edge, if there is no such edge.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#addEdge(ru.nsu.fit.tsukanov.basicGraph.EdgeDefault)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#addEdge(ru.nsu.fit.tsukanov.basicGraph.EdgeDefault)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - is edge that will be added to graph</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -453,7 +471,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Create Edge with specify vertices, weight and object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#addEdge(V,V,E,double)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#addEdge(V,V,E,double)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for edge</dd>
 <dd><code>targetVertex</code> - is end vertex for edge</dd>
@@ -477,7 +495,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
  If it isn't, then return false.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#addVertex(V)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#addVertex(V)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>v</code> - is vertex value, or vertex object.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -498,7 +516,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Check for existing edge between two vertices.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#containsEdge(V,V)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#containsEdge(V,V)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for some edge</dd>
 <dd><code>targetVertex</code> - is end vertex for some edge</dd>
@@ -517,7 +535,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Check for exising edge in the graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#containsEdge(ru.nsu.fit.tsukanov.basicGraph.EdgeDefault)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#containsEdge(ru.nsu.fit.tsukanov.basicGraph.EdgeDefault)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - is edge for checking</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -537,7 +555,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Check for exising vertex in the graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#containsVertex(V)">containsVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#containsVertex(V)">containsVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>v</code> - is vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -555,7 +573,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Return set of all edges from graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#edgeSet()">edgeSet</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#edgeSet()">edgeSet</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>set of all edges from this graph.</dd>
 </dl>
@@ -573,7 +591,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#incomingEdgesOf(V)">incomingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#incomingEdgesOf(V)">incomingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vertex</code> - is vertex</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -593,7 +611,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#outgoingEdgesOf(V)">outgoingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#outgoingEdgesOf(V)">outgoingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vertex</code> - is vertex</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -614,7 +632,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Remove edge with null object from graph between two specify vertices.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#removeEdge(V,V)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#removeEdge(V,V)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is source vertex maybe for some edge.</dd>
 <dd><code>targetVertex</code> - is target vertex maybe for some edge.</dd>
@@ -633,7 +651,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Remove specify edge from graph. And check for graph changes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#removeEdge(ru.nsu.fit.tsukanov.basicGraph.EdgeDefault)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#removeEdge(ru.nsu.fit.tsukanov.basicGraph.EdgeDefault)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - is edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -653,7 +671,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Remove specify vertex from graph. And check for graph changes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#removeVertex(V)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#removeVertex(V)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>v</code> - is vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -671,7 +689,7 @@ implements <a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsu
 <div class="block">Return set of all vertices from graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../basicGraph/Graph.html#vertexSet()">vertexSet</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../basicGraph/Graph.html#vertexSet()">vertexSet</a></code>&nbsp;in interface&nbsp;<code><a href="../basicGraph/Graph.html" title="interface in ru.nsu.fit.tsukanov.basicGraph">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a> extends java.lang.Comparable&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>set of all vertices from this graph</dd>
 </dl>
