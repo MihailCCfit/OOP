@@ -1,13 +1,17 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import ru.nsu.fit.tsukanov.FindPath.Dijkstra;
 import ru.nsu.fit.tsukanov.basicGraph.EdgeDefault;
 import ru.nsu.fit.tsukanov.basicGraph.Graph;
-import ru.nsu.fit.tsukanov.graphImplementations.GraphAdjMatrix;
+import ru.nsu.fit.tsukanov.graphImplementations.*;
+
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class TestGraph {
 
@@ -32,16 +36,25 @@ public class TestGraph {
             throw new RuntimeException(e);
         }
     }
+    private static Stream<Graph> graphStream(){
+        return Stream.of(new GraphIncMatrix(), new GraphAdjMatrix<>());
+    }
 
-    @Test
-    void fst() {
-        Graph<String, String> graph = new GraphAdjMatrix<>();
+    @ParameterizedTest
+    @MethodSource("graphStream")
+    void fst(Graph<String, String> graph) {
+
+        //Graph<String, String> graph = new GraphIncMatrix<String, String>();
         graph.addVertex("A");
         graph.addVertex("B");
         var ed1 = graph.addEdge("A", "B", 5.0);
         graph.addVertex("C");
+        System.out.println(graph);
+
         var ed2 = graph.addEdge("A", "C", 10.0);
         var ed3 = graph.addEdge("B", "C", 4.0);
+        System.out.println(graph);
+
         System.out.println(graph.getEdge("B", "A"));
         Dijkstra<String, String> dijkstra = new Dijkstra<>(graph, "A");
         System.out.println(dijkstra.getPathV("C"));

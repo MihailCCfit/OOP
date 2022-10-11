@@ -6,11 +6,12 @@ import ru.nsu.fit.tsukanov.basicGraph.Graph;
 import java.util.*;
 
 public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
-    Stack<Integer> indexesStack;
-    TreeMap<V, Integer> vIntegerTreeMap;
-    ArrayList<ArrayList<ArrayList<EdgeDefault<V, E>>>> matrix;
+    private final Stack<Integer> indexesStack;
+    private final TreeMap<V, Integer> vIntegerTreeMap;
+    private final ArrayList<ArrayList<ArrayList<EdgeDefault<V, E>>>> matrix;
 
     public GraphAdjMatrix() {
+
         this.indexesStack = new Stack<>();
         this.vIntegerTreeMap = new TreeMap<>();
         this.matrix = new ArrayList<>();

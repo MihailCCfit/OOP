@@ -188,6 +188,7 @@ public interface Graph<V, E> {
      */
 
     default boolean removeAllEdges(Collection<? extends EdgeDefault<V, E>> edges) {
+        if (edges==null) return false;
         boolean flag = false;
         for (EdgeDefault<V, E> edge : edges) {
             flag |= removeEdge(edge);
