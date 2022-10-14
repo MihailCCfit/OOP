@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":18,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":18,"i11":18,"i12":6,"i13":6,"i14":18,"i15":18,"i16":6,"i17":18,"i18":18,"i19":6,"i20":6,"i21":6,"i22":18,"i23":18,"i24":6};
+var data = {"i0":6,"i1":18,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":18,"i14":18,"i15":6,"i16":18,"i17":18,"i18":6,"i19":6,"i20":6,"i21":18,"i22":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -237,7 +237,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code>default java.util.Set&lt;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&gt;</code></td>
+<td class="colFirst"><code>java.util.Set&lt;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllEdges(V,V)">getAllEdges</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
            <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</code></th>
 <td class="colLast">
@@ -245,13 +245,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code>default <a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(E)">getEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;e)</code></th>
-<td class="colLast">
-<div class="block">Retuturn Edge according to element</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(V,V)">getEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
        <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</code></th>
@@ -259,35 +252,35 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Return edge, that connects two vertices.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#incomingEdgesOf(V)">incomingEdgesOf</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>default int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#inDegreeOf(V)">inDegreeOf</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">inDegree of specify vertex.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>default int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#outDegreeOf(V)">outDegreeOf</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">outDegreeOf of specify vertex.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#outgoingEdgesOf(V)">outgoingEdgesOf</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>default boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAllEdges(java.util.Collection)">removeAllEdges</a></span>&#8203;(java.util.Collection&lt;? extends <a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&gt;&nbsp;edges)</code></th>
 <td class="colLast">
@@ -295,7 +288,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  specified collection.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>default boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAllVertices(java.util.Collection)">removeAllVertices</a></span>&#8203;(java.util.Collection&lt;? extends <a href="Graph.html" title="type parameter in Graph">V</a>&gt;&nbsp;vertices)</code></th>
 <td class="colLast">
@@ -303,14 +296,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  specified collection.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(ru.nsu.fit.tsukanov.core.EdgeDefault)">removeEdge</a></span>&#8203;(<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;e)</code></th>
 <td class="colLast">
 <div class="block">Remove specify edge from graph.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code><a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(V,V)">removeEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
           <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</code></th>
@@ -318,22 +311,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Remove edge with null object from graph between two specify vertices.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(V)">removeVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;v)</code></th>
 <td class="colLast">
 <div class="block">Remove specify vertex from graph.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
-<td class="colFirst"><code>default void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeWeight(ru.nsu.fit.tsukanov.core.EdgeDefault,double)">setEdgeWeight</a></span>&#8203;(<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;e,
-             double&nbsp;weight)</code></th>
-<td class="colLast">
-<div class="block">Set edge weight to specify weight.</div>
-</td>
-</tr>
-<tr id="i23" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>default void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEdgeWeight(V,V,double)">setEdgeWeight</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
              <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex,
@@ -342,7 +327,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Find edge between two specify vertices.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="Graph.html" title="type parameter in Graph">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vertexSet()">vertexSet</a></span>()</code></th>
 <td class="colLast">
@@ -374,8 +359,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllEdges</h4>
-<pre class="methodSignature">default&nbsp;java.util.Set&lt;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&gt;&nbsp;getAllEdges&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
-                                                          <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</pre>
+<pre class="methodSignature">java.util.Set&lt;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&gt;&nbsp;getAllEdges&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
+                                                  <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</pre>
 <div class="block">Return all edges, that connects two vertices.
  Edges is directed from sourceVertex to targetVertex.</div>
 <dl>
@@ -405,24 +390,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code>targetVertex</code> - end vertex</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>edge connects vertices</dd>
-</dl>
-</li>
-</ul>
-<a id="getEdge(java.lang.Object)">
-<!--   -->
-</a><a id="getEdge(E)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getEdge</h4>
-<pre class="methodSignature">default&nbsp;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;getEdge&#8203;(<a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;e)</pre>
-<div class="block">Retuturn Edge according to element</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>e</code> - element, that maybe corresponded to some edge</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Edge according to e</dd>
 </dl>
 </li>
 </ul>
@@ -790,22 +757,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>set of all vertices from this graph</dd>
-</dl>
-</li>
-</ul>
-<a id="setEdgeWeight(ru.nsu.fit.tsukanov.core.EdgeDefault,double)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setEdgeWeight</h4>
-<pre class="methodSignature">default&nbsp;void&nbsp;setEdgeWeight&#8203;(<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;e,
-                           double&nbsp;weight)</pre>
-<div class="block">Set edge weight to specify weight.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>e</code> - is edge</dd>
-<dd><code>weight</code> - is new weight for specify edge</dd>
 </dl>
 </li>
 </ul>
