@@ -24,29 +24,35 @@ public class Dijkstra<V extends Comparable<V>, E> {
         pathMap = new TreeMap<>();
         reuse();
     }
+    public void reuse(V start){
+        if (start==null){
+            throw new NullPointerException();
+        }
+        if (!graph.containsVertex(start)){
+            throw new IllegalArgumentException("No such vertex in graph");
+        }
+        heap.clear();
+        marksTree.clear();
+        pathMap.clear();
+        startVert = start;
+        heap.add(startVert);
+        marksTree.put(startVert, 0.0);
+        alg();
+    }
+    public void reuse(){
+        reuse(startVert);
+    }
 
     private void relax(EdgeDefault<V,E> edge){
         V start = edge.getEdgeSource();
         V end = edge.getEdgeTarget();
-        if (!marksTree.containsKey(start)) {
-            throw new IllegalArgumentException("Dijkstra is wrong");
-        }
         double res = marksTree.get(start)+ edge.getWeight();
-        if(!marksTree.containsKey(end)){
+        if(!marksTree.containsKey(end) || res<marksTree.get(end)){
             marksTree.put(end, res);
             pathMap.put(end, edge);
             heap.add(end);
         }
-        else {
-            if (res<marksTree.get(end)){ //Обновить надо
-                heap.remove(end);
-                marksTree.put(end, res);
-                pathMap.put(end,edge);
-                heap.add(end);
-            }
-        }
     }
-
     private void alg(){
         while (!heap.isEmpty()){
             V curr = heap.poll();
@@ -56,11 +62,16 @@ public class Dijkstra<V extends Comparable<V>, E> {
         }
     }
 
+
+
     public double getDistant(V v){
         return marksTree.getOrDefault(v, Double.POSITIVE_INFINITY);
     }
 
     public List<V> getPathV(V v){
+        if (v==null){
+            throw new NullPointerException();
+        }
         if (!pathMap.containsKey(v)){
             System.out.println(v+"|HE");
             return null;
@@ -88,22 +99,11 @@ public class Dijkstra<V extends Comparable<V>, E> {
         return list;
     }
     public boolean hasPath(V v){
+        if (v==null) {
+            return false;
+        }
         return pathMap.containsKey(v);
     }
-    public void reuse(V start){
-        heap.clear();
-        marksTree.clear();
-        pathMap.clear();
-        startVert = start;
-
-        heap.add(startVert);
-        marksTree.put(startVert, 0.0);
-        alg();
-    }
-    public void reuse(){
-        reuse(startVert);
-    }
-
 
 
 }

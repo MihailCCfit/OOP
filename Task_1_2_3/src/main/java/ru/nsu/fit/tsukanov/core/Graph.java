@@ -1,7 +1,6 @@
 package ru.nsu.fit.tsukanov.core;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -21,11 +20,7 @@ public interface Graph<V, E> {
      * @param targetVertex end vertex
      * @return set of all edges, that connects vertices
      */
-    default Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
-        Set<EdgeDefault<V, E>> edgeDefaults = new HashSet<>();
-        edgeDefaults.add(getEdge(sourceVertex, targetVertex));
-        return edgeDefaults;
-    }
+    Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex);
 
     /**
      * Return edge, that connects two vertices.
@@ -36,16 +31,6 @@ public interface Graph<V, E> {
      * @return edge connects vertices
      */
     EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex);
-
-    /**
-     * Retuturn Edge according to element
-     *
-     * @param e element, that maybe corresponded to some edge
-     * @return Edge according to e
-     */
-    default EdgeDefault<V, E> getEdge(E e) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
 
     /**
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
@@ -169,7 +154,11 @@ public interface Graph<V, E> {
      * @return outDegreeOf of specify vertex. If graph doesn't contain vertex return -1;
      */
     default int outDegreeOf(V vertex) {
-        return outgoingEdgesOf(vertex).size();
+        var outSet = outgoingEdgesOf(vertex);
+        if (outSet==null){
+            return -1;
+        }
+        return outSet.size();
     }
 
     /**
@@ -251,16 +240,6 @@ public interface Graph<V, E> {
     Set<V> vertexSet();
 
     /**
-     * Set edge weight to specify weight.
-     *
-     * @param e      is edge
-     * @param weight is new weight for specify edge
-     */
-    default void setEdgeWeight(EdgeDefault<V, E> e, double weight) {
-        e.setWeight(weight);
-    }
-
-    /**
      * Find edge between two specify vertices.
      * Set the edge weight to specify weight.
      *
@@ -269,7 +248,9 @@ public interface Graph<V, E> {
      * @param weight       is new weight
      */
     default void setEdgeWeight(V sourceVertex, V targetVertex, double weight) {
-        getEdge(sourceVertex, targetVertex).setWeight(weight);
+        var edge = getEdge(sourceVertex, targetVertex);
+        if (edge!=null){
+            edge.setWeight(weight);
+        }
     }
-
 }

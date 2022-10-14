@@ -9,15 +9,14 @@ import ru.nsu.fit.tsukanov.core.Graph;
 import ru.nsu.fit.tsukanov.graphImplementations.GraphAdjMatrix;
 import ru.nsu.fit.tsukanov.graphImplementations.*;
 
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.util.List;
 import java.util.stream.Stream;
 
 public class TestGraph {
 
-    public static void txtGraph(Graph<String, String> graph) throws IOException {
-        FileReader fileReader = new FileReader("ru/nsu/fit/tsukanov/GraphTest/matrix.txt");
+    //public static void txtGraph(Graph<String, String> graph) throws IOException {
+        //FileReader fileReader = new FileReader("ru/nsu/fit/tsukanov/GraphTest/matrix.txt");
         //BufferedReader reader = new BufferedReader(fileReader);
 
         //Scanner scanner = new Scanner(reader);
@@ -26,9 +25,9 @@ public class TestGraph {
             graph.addVertex(scanner.next());
         }
         System.out.println(graph.vertexSet());*/
-    }
+    //}
 
-    //    @Test
+    /*    @Test
     void snd() {
         Graph<String, String> graph = new GraphAdjMatrix<>();
         try {
@@ -36,7 +35,7 @@ public class TestGraph {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     private static Stream<Graph> graphStream() {
         return Stream.of(new GraphIncMatrix(), new GraphAdjMatrix<>());
@@ -67,6 +66,7 @@ public class TestGraph {
 
         graph.removeEdge("A", "B");
         dijkstra.reuse();
+        Assertions.assertTrue(dijkstra.hasPath("C"));
         System.out.println(dijkstra.getPathV("C"));
         System.out.println(dijkstra.getPathE("C"));
         System.out.println(dijkstra.getDistant("C"));
@@ -83,5 +83,41 @@ public class TestGraph {
         EdgeDefault<String, String> edge = new EdgeDefault<>("C", "B", "Hello", 3);
         Assertions.assertTrue(graph.addEdge(edge));
         Assertions.assertTrue(graph.removeAllVertices(List.of("A", "C")));/**/
+    }
+    @ParameterizedTest
+    @MethodSource("graphStream")
+    void testNulls(Graph<Integer, String> graph){
+        EdgeDefault<Integer, String> edge = new EdgeDefault<>(0,1,"01",5);
+        EdgeDefault<Integer,String> edgeNull = new EdgeDefault<>(null,null,null,0);
+        Assertions.assertNull(graph.getEdge(0,1));
+        Assertions.assertNull(graph.getEdge(null,1));
+        Assertions.assertNull(graph.addEdge(0,1));
+        Assertions.assertNull(graph.addEdge(null,1));
+        Assertions.assertNull(graph.addEdge(null,null));
+        Assertions.assertFalse(graph.addEdge(edgeNull));
+        Assertions.assertFalse(graph.addEdge(null));
+        Assertions.assertFalse(graph.containsVertex(0));
+        Assertions.assertFalse(graph.containsVertex(null));
+        Assertions.assertFalse(graph.containsEdge(null));
+        Assertions.assertFalse(graph.containsEdge(edge));
+        Assertions.assertNull(graph.getAllEdges(0,1));
+        Assertions.assertNull(graph.getAllEdges(null,1));
+        Assertions.assertNull(graph.getAllEdges(null,null));
+        Assertions.assertNull(graph.outgoingEdgesOf(0));
+        Assertions.assertNull(graph.outgoingEdgesOf(null));
+        Assertions.assertNull(graph.incomingEdgesOf(null));
+        Assertions.assertTrue(graph.edgeSet().isEmpty());
+        Assertions.assertEquals(graph.inDegreeOf(0), -1);
+        Assertions.assertEquals(graph.outDegreeOf(0), -1);
+        Assertions.assertFalse(graph.removeAllEdges(null));
+        Assertions.assertFalse(graph.removeAllVertices(null));
+        Assertions.assertNull(graph.removeEdge(0, 0));
+        Assertions.assertNull(graph.removeEdge(null, null));
+        graph.setEdgeWeight(null,null,0);
+        graph.setEdgeWeight(-1,-1,0);
+        //Dijkstra<Integer, String> dijkstra = new Dijkstra<>(graph, null);
+        //Assertions.assertThrows(NullPointerException.class,
+        //        (Executable) dijkstra.getPathV(null));
+        //Для существующего ребра сделать
     }
 }
