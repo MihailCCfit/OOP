@@ -165,6 +165,9 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean addVertex(V v) {
+        if (v==null){
+            return false;
+        }
         if (containsVertex(v)) return false;
         boolean flag = false;
         if (indexesStackV.isEmpty()) {
@@ -202,7 +205,13 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
-        if (e==null)return false;
+        if (e==null){
+            return false;
+        }
+        if (e.getSourceVertex()==null
+                ||e.getTargetVertex()==null){
+            return false;
+        }
         return eIntegerHashMap.containsKey(e);
     }
 
@@ -214,7 +223,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean containsVertex(V v) {
-        if (v==null){
+        if (v == null){
             return  false;
         }
         return vIntegerTreeMap.containsKey(v);
@@ -279,6 +288,9 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public EdgeDefault<V, E> removeEdge(V sourceVertex, V targetVertex) {
+        if (sourceVertex==null || targetVertex==null){
+            return null;
+        }
         EdgeDefault<V, E> edge = getEdge(sourceVertex, targetVertex);
         if (edge==null) {
             return null;
@@ -295,7 +307,11 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean removeEdge(EdgeDefault<V, E> e) {
+        if (e==null){
+            return false;
+        }
         if (!containsEdge(e)) return false;
+
         int eIndex = eIntegerHashMap.get(e);
         Collections.fill(matrix.get(eIndex), Direction.NO);
         indexesStackE.push(eIndex);

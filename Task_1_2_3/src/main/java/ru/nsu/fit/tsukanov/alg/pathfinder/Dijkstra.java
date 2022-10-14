@@ -31,10 +31,10 @@ public class Dijkstra<V extends Comparable<V>, E> {
         if (!graph.containsVertex(start)){
             throw new IllegalArgumentException("No such vertex in graph");
         }
+        this.startVert=start;
         heap.clear();
         marksTree.clear();
         pathMap.clear();
-        startVert = start;
         heap.add(startVert);
         marksTree.put(startVert, 0.0);
         alg();
@@ -65,6 +65,9 @@ public class Dijkstra<V extends Comparable<V>, E> {
 
 
     public double getDistant(V v){
+        if (v==null){
+            throw new NullPointerException("Null vertex");
+        }
         return marksTree.getOrDefault(v, Double.POSITIVE_INFINITY);
     }
 
@@ -86,6 +89,9 @@ public class Dijkstra<V extends Comparable<V>, E> {
         return list;
     }
     public List<EdgeDefault<V,E>> getPathE(V v){
+        if (v==null){
+            return null;
+        }
         if (!pathMap.containsKey(v)){
             return null;
         }

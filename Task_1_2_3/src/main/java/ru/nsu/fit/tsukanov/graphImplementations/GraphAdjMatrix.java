@@ -287,7 +287,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean removeVertex(V v) {
-        if (!vIntegerTreeMap.containsKey(v)) {
+        if (!containsVertex(v)) {
             return false;
         }
         int index = vIntegerTreeMap.get(v);

@@ -155,7 +155,7 @@ public interface Graph<V, E> {
      */
     default int outDegreeOf(V vertex) {
         var outSet = outgoingEdgesOf(vertex);
-        if (outSet==null){
+        if (outSet == null) {
             return -1;
         }
         return outSet.size();
@@ -249,8 +249,9 @@ public interface Graph<V, E> {
      */
     default void setEdgeWeight(V sourceVertex, V targetVertex, double weight) {
         var edge = getEdge(sourceVertex, targetVertex);
-        if (edge!=null){
+        if (edge != null) {
             edge.setWeight(weight);
         }
     }
+
 }
