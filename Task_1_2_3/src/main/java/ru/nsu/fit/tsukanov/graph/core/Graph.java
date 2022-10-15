@@ -1,4 +1,4 @@
-package ru.nsu.fit.tsukanov.core;
+package ru.nsu.fit.tsukanov.graph.core;
 
 import java.util.Collection;
 import java.util.Set;
@@ -135,7 +135,9 @@ public interface Graph<V, E> {
      * @return inDegree of specify vertex. If graph doesn't contain vertex return -1;
      */
     default int inDegreeOf(V vertex) {
-        if (!containsVertex(vertex)) return -1;
+        if (!containsVertex(vertex)) {
+            return -1;
+        }
         return incomingEdgesOf(vertex).size();
     }
 

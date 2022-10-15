@@ -1,18 +1,45 @@
-package ru.nsu.fit.tsukanov.graphImplementations;
-
-import ru.nsu.fit.tsukanov.core.EdgeDefault;
-import ru.nsu.fit.tsukanov.core.Graph;
-
+package ru.nsu.fit.tsukanov.graph.implementations;
 import java.util.*;
+import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.graph.core.Graph;
 
+
+/**
+ * Oriented weighted graph. There is class for edge.
+ * It uses adjacency matrix for method implementation.
+ * Big-O notations:
+ * Get:
+ * V->V O(log V)
+ * V->* O(V+ev)
+ * *->* O(V^2 + E)
+ * Contains:
+ * V O(log n) - because there is vertex treemap
+ * E O(log n ) - because edge contains source and target vertex
+ * Add/Remove:
+ * V O(N)
+ * E O(log V + ev)
+ * Memory:
+ * O(N^2+E)
+ * ev - vertex's edges
+ * So it's good for static, but bad for dynamic.
+ *
+ * @param <V> object, that will be vertex.
+ * @param <E> object, that contained in Edge.
+ * @see EdgeDefault
+ */
 public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     private final Stack<Integer> indexesStack;
-    private final TreeMap<V, Integer> vIntegerTreeMap;
+    private final TreeMap<V, Integer> vertexMap;
     private final ArrayList<ArrayList<ArrayList<EdgeDefault<V, E>>>> matrix;
 
+    /**
+     * Creates stack for indexing,
+     * map for mapping V object to integer
+     * and adjacency matrix
+     */
     public GraphAdjMatrix() {
         this.indexesStack = new Stack<>();
-        this.vIntegerTreeMap = new TreeMap<>();
+        this.vertexMap = new TreeMap<>();
         this.matrix = new ArrayList<>();
     }
 
@@ -21,8 +48,8 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
                 || !containsVertex(targetVertex)) {
             return null;
         }
-        int i = vIntegerTreeMap.get(sourceVertex);
-        int k = vIntegerTreeMap.get(targetVertex);
+        int i = vertexMap.get(sourceVertex);
+        int k = vertexMap.get(targetVertex);
         return matrix.get(i).get(k);
     }
 
@@ -37,7 +64,9 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     @Override
     public Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
         var list = getListEdges(sourceVertex, targetVertex);
-        if (list == null) return null;
+        if (list == null) {
+            return null;
+        }
         return new HashSet<>(list);
     }
 
@@ -55,7 +84,9 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
             return null;
         }
         ArrayList<EdgeDefault<V, E>> l = getListEdges(sourceVertex, targetVertex);
-        if (l == null) return null;
+        if (l == null) {
+            return null;
+        }
         if (l.isEmpty()) {
             return null;
         }
@@ -91,7 +122,9 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
             return false;
         }
         var list = getListEdges(e.getSourceVertex(), e.getTargetVertex());
-        if (list == null) return false;
+        if (list == null) {
+            return false;
+        }
         return list.add(e);
     }
 
@@ -109,7 +142,9 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E e, double weight) {
         EdgeDefault<V, E> edgeDefault = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
         var list = getListEdges(sourceVertex, targetVertex);
-        if (list == null) return null;
+        if (list == null) {
+            return null;
+        }
         list.add(edgeDefault);
         return edgeDefault;
     }
@@ -123,15 +158,17 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean addVertex(V v) {
-        if (v == null) return false;
+        if (v == null) {
+            return false;
+        }
         if (indexesStack.isEmpty()) {
-            indexesStack.push(vIntegerTreeMap.size());
+            indexesStack.push(vertexMap.size());
         }
         if (containsVertex(v)) {
             return false;
         }
         Integer index = indexesStack.pop();
-        vIntegerTreeMap.put(v, index);
+        vertexMap.put(v, index);
         if (index >= matrix.size()) {
             int newSize = matrix.size() + 1;
             ArrayList<ArrayList<EdgeDefault<V, E>>> newCol = new ArrayList<>();
@@ -170,7 +207,9 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
-        if (e == null) return false;
+        if (e == null) {
+            return false;
+        }
         return containsEdge(e.getSourceVertex(), e.getTargetVertex());
     }
 
@@ -185,7 +224,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (v == null) {
             return false;
         }
-        return vIntegerTreeMap.containsKey(v);
+        return vertexMap.containsKey(v);
     }
 
     /**
@@ -196,7 +235,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     @Override
     public Set<EdgeDefault<V, E>> edgeSet() {
         Set<EdgeDefault<V, E>> edgeSet = new HashSet<>();
-        for (V v : vIntegerTreeMap.keySet()) {
+        for (V v : vertexMap.keySet()) {
             edgeSet.addAll(outgoingEdgesOf(v));
         }
         return edgeSet;
@@ -213,7 +252,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (!containsVertex(vertex)) {
             return null;
         }
-        int index = vIntegerTreeMap.get(vertex);
+        int index = vertexMap.get(vertex);
         Set<EdgeDefault<V, E>> edgeDefaultSet = new HashSet<>();
         for (ArrayList<ArrayList<EdgeDefault<V, E>>> list : matrix) {
             edgeDefaultSet.addAll(list.get(index));
@@ -232,7 +271,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (!containsVertex(vertex)) {
             return null;
         }
-        int index = vIntegerTreeMap.get(vertex);
+        int index = vertexMap.get(vertex);
         ArrayList<ArrayList<EdgeDefault<V, E>>> arrayLists = matrix.get(index);
         Set<EdgeDefault<V, E>> edgeDefaultSet = new HashSet<>();
         for (ArrayList<EdgeDefault<V, E>> arrayList : arrayLists) {
@@ -277,8 +316,8 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
                 && containsVertex(e.getTargetVertex()))) {
             return false;
         }
-        int i = vIntegerTreeMap.get(e.getEdgeSource());
-        int k = vIntegerTreeMap.get(e.getTargetVertex());
+        int i = vertexMap.get(e.getEdgeSource());
+        int k = vertexMap.get(e.getTargetVertex());
         return matrix.get(i).get(k).remove(e);
     }
 
@@ -293,7 +332,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (!containsVertex(v)) {
             return false;
         }
-        int index = vIntegerTreeMap.get(v);
+        int index = vertexMap.get(v);
         ArrayList<ArrayList<EdgeDefault<V, E>>> arrayLists = matrix.get(index);
         for (ArrayList<EdgeDefault<V, E>> list : arrayLists) {
             list.clear();
@@ -301,7 +340,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         for (ArrayList<ArrayList<EdgeDefault<V, E>>> lists : matrix) {
             lists.get(index).clear();
         }
-        vIntegerTreeMap.remove(v);
+        vertexMap.remove(v);
         indexesStack.push(index);
         return true;
     }
@@ -313,6 +352,6 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<V> vertexSet() {
-        return vIntegerTreeMap.keySet();
+        return vertexMap.keySet();
     }
 }

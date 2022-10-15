@@ -1,14 +1,19 @@
-package ru.nsu.fit.tsukanov.alg.pathfinder;
-
-
-import ru.nsu.fit.tsukanov.core.EdgeDefault;
-import ru.nsu.fit.tsukanov.core.Graph;
+package ru.nsu.fit.tsukanov.graph.alg.pathfinder;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
+import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.graph.core.Graph;
 
+/**
+ * Dijkstra algorithm.
+ * Works with:
+ * O (E*log V)
+ * @param <V> vertex object
+ * @param <E> edge object
+ */
 public class Dijkstra<V extends Comparable<V>, E> {
     private V startVert;
     private final TreeMap<V, Double> marksTree;
@@ -17,15 +22,25 @@ public class Dijkstra<V extends Comparable<V>, E> {
 
     private final Graph<V, E> graph;
 
+    /**
+     * Initialize maps, heap and start alg.
+     * @param graph the graph where will be finding paths and distances
+     * @param startVert the start vertex, from which will calculates distance
+     */
     public Dijkstra(Graph<V, E> graph, V startVert) {
         this.startVert = startVert;
         this.marksTree = new TreeMap<>();
-        this.heap = new PriorityQueue<>((v1, v2) -> (marksTree.get(v1).compareTo(marksTree.get(v2))));
+        this.heap = new PriorityQueue<>((v1, v2) ->
+                (marksTree.get(v1).compareTo(marksTree.get(v2))));
         this.graph = graph;
         pathMap = new TreeMap<>();
         reuse();
     }
 
+    /**
+     * Use Dijkstra alg for finding path.
+     * @param start the starting vertex
+     */
     public void reuse(V start) {
         if (start == null) {
             throw new NullPointerException();
@@ -42,6 +57,10 @@ public class Dijkstra<V extends Comparable<V>, E> {
         alg();
     }
 
+    /**
+     * Reuse Dijkstra algorithm.
+     * It's useful, if there are some modifications in the graph.
+     */
     public void reuse() {
         reuse(startVert);
     }
@@ -66,14 +85,24 @@ public class Dijkstra<V extends Comparable<V>, E> {
         }
     }
 
-
+    /**
+     * Return distance from start vertex to specify.
+     * @param v is vertex object
+     * @throws NullPointerException if argument is null
+     * @return distance from start vertex to specify
+     */
     public double getDistant(V v) {
         if (v == null) {
             throw new NullPointerException("Null vertex");
         }
         return marksTree.getOrDefault(v, Double.POSITIVE_INFINITY);
     }
-
+    /**
+     * Return vertex path from start vertex to specify.
+     * @param v is vertex object
+     * @throws NullPointerException if argument is null
+     * @return vertex path from start vertex to specify
+     */
     public List<V> getPathV(V v) {
         if (v == null) {
             throw new NullPointerException();
@@ -91,10 +120,15 @@ public class Dijkstra<V extends Comparable<V>, E> {
         }
         return list;
     }
-
+    /**
+     * Return edge path from start vertex to specify.
+     * @param v is vertex object
+     * @throws NullPointerException if argument is null
+     * @return edge path from start vertex to specify
+     */
     public List<EdgeDefault<V, E>> getPathE(V v) {
         if (v == null) {
-            return null;
+            throw new NullPointerException();
         }
         if (!pathMap.containsKey(v)) {
             return null;
@@ -109,9 +143,14 @@ public class Dijkstra<V extends Comparable<V>, E> {
         return list;
     }
 
+    /**
+     * Check existing path from start vertex to specify.
+     * @param v the vertex object
+     * @return true, if path exist to specify vertex.
+     */
     public boolean hasPath(V v) {
         if (v == null) {
-            return false;
+            throw new NullPointerException();
         }
         return pathMap.containsKey(v);
     }

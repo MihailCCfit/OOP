@@ -1,16 +1,41 @@
-package ru.nsu.fit.tsukanov.graphImplementations;
-
-import ru.nsu.fit.tsukanov.core.EdgeDefault;
-import ru.nsu.fit.tsukanov.core.Graph;
+package ru.nsu.fit.tsukanov.graph.implementations;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeMap;
+import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.graph.core.Graph;
 
+/**
+ * Oriented weighted graph. There is class for edge and vertex.
+ * It uses incident matrix for method implementation.
+ * Big-O notations:
+ * Get:
+ * V->V O(ev)
+ * V->* O(ev)
+ * *->* O(E)
+ * Contains:
+ * V O(log n) - because there is treemap
+ * E O(ev)
+ * Add/Remove:
+ * V O(ev + log V)
+ * E O(ev + log V)
+ * Memory:
+ * O(N+E)
+ * ev - vertex's edges
+ * Good dynamic structure.
+ *
+ * @param <V> object, that will be vertex.
+ * @param <E> object, that contained in Edge.
+ * @see EdgeDefault
+ */
 public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
 
     TreeMap<V, Vertex<V, E>> vertexMap;
 
+    /**
+     * creates treeMap
+     */
     public GraphIncList() {
         vertexMap = new TreeMap<>();
     }
@@ -99,10 +124,10 @@ public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
                 || !containsVertex(target)) {
             return false;
         }
-        Vertex<V, E> vSource = vertexMap.get(source);
-        Vertex<V, E> vTarget = vertexMap.get(target);
-        vSource.outEdge.add(e);
-        return vTarget.inEdge.add(e);
+        Vertex<V, E> sourceV = vertexMap.get(source);
+        Vertex<V, E> targetV = vertexMap.get(target);
+        sourceV.outEdge.add(e);
+        return targetV.inEdge.add(e);
     }
 
     /**

@@ -1,20 +1,23 @@
 package ru.nsu.fit.tsukanov.GraphTest;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import ru.nsu.fit.tsukanov.alg.pathfinder.Dijkstra;
-import ru.nsu.fit.tsukanov.core.EdgeDefault;
-import ru.nsu.fit.tsukanov.core.Graph;
-import ru.nsu.fit.tsukanov.graphImplementations.GraphAdjMatrix;
-import ru.nsu.fit.tsukanov.graphImplementations.GraphIncList;
-import ru.nsu.fit.tsukanov.graphImplementations.GraphIncMatrix;
+import ru.nsu.fit.tsukanov.graph.alg.pathfinder.Dijkstra;
+import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.graph.core.Graph;
+import ru.nsu.fit.tsukanov.graph.implementations.GraphAdjMatrix;
+import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
+import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
 
+/**
+ * Testing different graph for interface methods
+ */
 public class TestGraph {
     /*
     public static void txtGraph(Graph<String, String> graph) throws IOException {
@@ -42,34 +45,33 @@ public class TestGraph {
 
     private static Stream<Graph> graphStream() {
         return Stream.of(new GraphIncMatrix(),
-                new GraphAdjMatrix<>()
-                , new GraphIncList()
+                new GraphAdjMatrix<>(),
+                new GraphIncList()
         );
     }
 
     @ParameterizedTest
     @MethodSource("graphStream")
     void graphTest1(Graph<String, String> graph) {
-
         //Graph<String, String> graph = new GraphIncMatrix<String, String>();
         graph.addVertex("A");
         graph.addVertex("B");
-        var ed1 = graph.addEdge("A", "B", 5.0);
         graph.addVertex("C");
-        System.out.println(graph);
-
+        var ed1 = graph.addEdge("A", "B", 5.0);
         var ed2 = graph.addEdge("A", "C", 10.0);
         var ed3 = graph.addEdge("B", "C", 4.0);
-        System.out.println(graph);
-
-        System.out.println(graph.getEdge("B", "A"));
+        Assertions.assertTrue(graph.containsEdge(ed1));
+        Assertions.assertTrue(graph.containsEdge(ed2));
+        Assertions.assertTrue(graph.containsEdge(ed3));
+        Assertions.assertNull(graph.getEdge("B", "A"));
         Dijkstra<String, String> dijkstra = new Dijkstra<>(graph, "A");
-        System.out.println(dijkstra.getPathV("C"));
+        Assertions.assertTrue(dijkstra.getPathV("C").containsAll(
+                List.of("A", "B", "C"))
+        );
         System.out.println(dijkstra.getPathE("C"));
         System.out.println(dijkstra.getDistant("C"));
         Assertions.assertTrue(graph.containsEdge("A", "B"));
         Assertions.assertTrue(graph.containsEdge(ed1));
-
         graph.removeEdge("A", "B");
         dijkstra.reuse();
         Assertions.assertTrue(dijkstra.hasPath("C"));
@@ -93,15 +95,8 @@ public class TestGraph {
         graph.setEdgeWeight("C", "B", 5);
         Assertions.assertEquals(edge.getWeight(), 5);
         Assertions.assertNull(graph.removeEdge("A", "D"));
-        Assertions.assertTrue(graph.removeAllVertices(List.of("A", "C")));/**/
+        Assertions.assertTrue(graph.removeAllVertices(List.of("A", "C")));
 
-    }
-
-    private static Stream<EdgeDefault> edgeNullStream() {
-        return Stream.of(new EdgeDefault<Integer, String>(0, 0),
-                new EdgeDefault<Integer, String>(null, 0),
-                new EdgeDefault<Integer, String>(0, null),
-                new EdgeDefault<Integer, String>(null, null));
     }
 
     @ParameterizedTest
@@ -205,7 +200,7 @@ public class TestGraph {
         //Assertions.assertThrows(IllegalArgumentException.class,
         //        () -> dijkstra.getDistant(777));
         Assertions.assertNull(dijkstra.getPathE(4));
-        Assertions.assertNull(dijkstra.getPathE(null));
+        Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathE(null));
         /**/
 
     }

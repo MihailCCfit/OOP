@@ -1,7 +1,14 @@
-package ru.nsu.fit.tsukanov.core;
+package ru.nsu.fit.tsukanov.graph.core;
 
 import java.util.Objects;
 
+/**
+ * Edge class, which is used for graph.
+ * It has object, weight, source and target vertex
+ *
+ * @param <V> object in source and target vertex
+ * @param <E> object in the edge
+ */
 public class EdgeDefault<V, E> {
     public V getSourceVertex() {
         return sourceVertex;
@@ -15,12 +22,12 @@ public class EdgeDefault<V, E> {
 
     @Override
     public String toString() {
-        return "EdgeDefault{" +
-                "sourceVertex=" + sourceVertex +
-                ", targetVertex=" + targetVertex +
-                ", weight=" + weight +
-                ", object=" + object +
-                '}';
+        return "EdgeDefault{"
+                + "sourceVertex=" + sourceVertex
+                + ", targetVertex=" + targetVertex
+                + ", weight=" + weight
+                + ", object=" + object
+                + '}';
     }
 
     private final V targetVertex;
@@ -45,6 +52,13 @@ public class EdgeDefault<V, E> {
         this(start, end, object, DEFAULT_WEIGHT);
     }
 
+    /**
+     * Creates edge with specify vertecies, object and weight
+     * @param start is source vertex
+     * @param end is target vertex
+     * @param object is object that is placed into edge
+     * @param weight is double-value weight of edge
+     */
     public EdgeDefault(V start, V end, E object, double weight) {
         this.sourceVertex = start;
         this.targetVertex = end;
@@ -71,7 +85,9 @@ public class EdgeDefault<V, E> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) return false;
+        if (obj == null) {
+            return false;
+        }
         if (obj.getClass() == getClass()) {
             EdgeDefault<?, ?> temp = (EdgeDefault<?, ?>) obj;
             return temp.sourceVertex.equals(sourceVertex)

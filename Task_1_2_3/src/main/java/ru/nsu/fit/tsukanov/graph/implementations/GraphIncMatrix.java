@@ -1,17 +1,40 @@
-package ru.nsu.fit.tsukanov.graphImplementations;
-
-import ru.nsu.fit.tsukanov.core.EdgeDefault;
-import ru.nsu.fit.tsukanov.core.Graph;
+package ru.nsu.fit.tsukanov.graph.implementations;
 
 import java.util.*;
+import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
+import ru.nsu.fit.tsukanov.graph.core.Graph;
 
+
+/**
+ * Oriented weighted graph. There is class for edge.
+ * It uses incident matrix for method implementation.
+ * Big-O notations:
+ * Get:
+ * V->V O(E)
+ * V->* O(E)
+ * *->* O(E)
+ * Contains:
+ * V O(log V) - because there is treemap
+ * E O(1) - because there is hashmap
+ * Add/Remove:
+ * V O(E)
+ * E O(N)
+ * Memory:
+ * O(N*E)
+ * ev - vertex's edges
+ * Not bad.
+ *
+ * @param <V> object, that will be vertex.
+ * @param <E> object, that contained in Edge.
+ * @see EdgeDefault
+ */
 public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     @Override
     public String toString() {
-        return "GraphIncMatrix{" +
-                "columns=" + columns +
-                "\nmatrix=" + matrix +
-                '}';
+        return "GraphIncMatrix{"
+                + "columns=" + columns
+                + "\nmatrix=" + matrix
+                + '}';
     }
 
     private enum Direction {
@@ -20,16 +43,19 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
 
     private final Stack<Integer> indexesStackV;
     private final Stack<Integer> indexesStackE;
-    private final TreeMap<V, Integer> vIntegerTreeMap;
-    private final HashMap<EdgeDefault<V, E>, Integer> eIntegerHashMap;
+    private final TreeMap<V, Integer> vertexMap;
+    private final HashMap<EdgeDefault<V, E>, Integer> edgeMap;
     private final ArrayList<EdgeDefault<V, E>> columns;
     private final ArrayList<ArrayList<Direction>> matrix;
 
+    /**
+     * Creates maps, stack for indexing, and matrix
+     */
     public GraphIncMatrix() {
         indexesStackV = new Stack<>();
         indexesStackE = new Stack<>();
-        vIntegerTreeMap = new TreeMap<>();
-        eIntegerHashMap = new HashMap<>();
+        vertexMap = new TreeMap<>();
+        edgeMap = new HashMap<>();
         matrix = new ArrayList<>();
         columns = new ArrayList<>();
     }
@@ -49,8 +75,8 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
             return null;
         }
         Set<EdgeDefault<V, E>> set = new HashSet<>();
-        int ind1 = vIntegerTreeMap.get(sourceVertex);
-        int ind2 = vIntegerTreeMap.get(targetVertex);
+        int ind1 = vertexMap.get(sourceVertex);
+        int ind2 = vertexMap.get(targetVertex);
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).get(ind1) == Direction.FROM
                     && matrix.get(i).get(ind2) == Direction.TO) {
@@ -74,8 +100,8 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
                 || !containsVertex(targetVertex)) {
             return null;
         }
-        int ind1 = vIntegerTreeMap.get(sourceVertex);
-        int ind2 = vIntegerTreeMap.get(targetVertex);
+        int ind1 = vertexMap.get(sourceVertex);
+        int ind2 = vertexMap.get(targetVertex);
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).get(ind1) == Direction.FROM
                     && matrix.get(i).get(ind2) == Direction.TO) {
@@ -106,24 +132,24 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
             return false;
         }
         if (indexesStackE.isEmpty()) {
-            indexesStackE.push(eIntegerHashMap.size());
+            indexesStackE.push(edgeMap.size());
             columns.add(e);
         }
-        int eIndex = indexesStackE.pop();
-        columns.set(eIndex, e);
-        eIntegerHashMap.put(e, eIndex);
-        int vIndex1 = vIntegerTreeMap.get(sourceVertex);
-        int vIndex2 = vIntegerTreeMap.get(targetVertex);
+        int edgeIndex = indexesStackE.pop();
+        columns.set(edgeIndex, e);
+        edgeMap.put(e, edgeIndex);
+        int vertIndex1 = vertexMap.get(sourceVertex);
+        int vertIndex2 = vertexMap.get(targetVertex);
 
-        if (eIndex >= matrix.size()) {
+        if (edgeIndex >= matrix.size()) {
             ArrayList<Direction> newColumn = new ArrayList<>();
-            for (int i = 0; i < vIntegerTreeMap.size(); i++) {
+            for (int i = 0; i < vertexMap.size(); i++) {
                 newColumn.add(Direction.NO);
             }
             matrix.add(newColumn);
         }
-        matrix.get(eIndex).set(vIndex1, Direction.FROM);
-        matrix.get(eIndex).set(vIndex2, Direction.TO);
+        matrix.get(edgeIndex).set(vertIndex1, Direction.FROM);
+        matrix.get(edgeIndex).set(vertIndex2, Direction.TO);
 
         return true;
     }
@@ -170,14 +196,16 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (v == null) {
             return false;
         }
-        if (containsVertex(v)) return false;
+        if (containsVertex(v)) {
+            return false;
+        }
         boolean flag = false;
         if (indexesStackV.isEmpty()) {
-            indexesStackV.push(vIntegerTreeMap.size());
+            indexesStackV.push(vertexMap.size());
             flag = true;
         }
         int vIndex = indexesStackV.pop();
-        vIntegerTreeMap.put(v, vIndex);
+        vertexMap.put(v, vIndex);
         if (flag) {
             for (ArrayList<GraphIncMatrix.Direction> directions : matrix) {
                 directions.add(Direction.NO);
@@ -214,7 +242,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
                 || e.getTargetVertex() == null) {
             return false;
         }
-        return eIntegerHashMap.containsKey(e);
+        return edgeMap.containsKey(e);
     }
 
     /**
@@ -228,7 +256,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (v == null) {
             return false;
         }
-        return vIntegerTreeMap.containsKey(v);
+        return vertexMap.containsKey(v);
     }
 
     /**
@@ -238,7 +266,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> edgeSet() {
-        return eIntegerHashMap.keySet();
+        return edgeMap.keySet();
     }
 
     /**
@@ -249,11 +277,13 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> incomingEdgesOf(V vertex) {
-        if (!containsVertex(vertex)) return null;
+        if (!containsVertex(vertex)) {
+            return null;
+        }
         Set<EdgeDefault<V, E>> set = new HashSet<>();
-        int vIndex = vIntegerTreeMap.get(vertex);
+        int vertIndex = vertexMap.get(vertex);
         for (int i = 0; i < matrix.size(); i++) {
-            if (matrix.get(i).get(vIndex) == Direction.TO) {
+            if (matrix.get(i).get(vertIndex) == Direction.TO) {
                 set.add(columns.get(i));
             }
         }
@@ -272,9 +302,9 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
             return null;
         }
         Set<EdgeDefault<V, E>> set = new HashSet<>();
-        int vIndex = vIntegerTreeMap.get(vertex);
+        int vertIndex = vertexMap.get(vertex);
         for (int i = 0; i < matrix.size(); i++) {
-            if (matrix.get(i).get(vIndex) == Direction.FROM) {
+            if (matrix.get(i).get(vertIndex) == Direction.FROM) {
                 set.add(columns.get(i));
             }
         }
@@ -312,13 +342,15 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (e == null) {
             return false;
         }
-        if (!containsEdge(e)) return false;
+        if (!containsEdge(e)) {
+            return false;
+        }
 
-        int eIndex = eIntegerHashMap.get(e);
-        Collections.fill(matrix.get(eIndex), Direction.NO);
-        indexesStackE.push(eIndex);
-        columns.set(eIndex, null);
-        eIntegerHashMap.remove(e);
+        int edgeIndex = edgeMap.get(e);
+        Collections.fill(matrix.get(edgeIndex), Direction.NO);
+        indexesStackE.push(edgeIndex);
+        columns.set(edgeIndex, null);
+        edgeMap.remove(e);
         return true;
     }
 
@@ -333,11 +365,11 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (!containsVertex(v)) {
             return false;
         }
-        int vIndex = vIntegerTreeMap.get(v);
+        int vertIndex = vertexMap.get(v);
         removeAllEdges(outgoingEdgesOf(v));
         removeAllEdges(incomingEdgesOf(v));
-        indexesStackV.push(vIndex);
-        vIntegerTreeMap.remove(v);
+        indexesStackV.push(vertIndex);
+        vertexMap.remove(v);
         return true;
     }
 
@@ -348,6 +380,6 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<V> vertexSet() {
-        return vIntegerTreeMap.keySet();
+        return vertexMap.keySet();
     }
 }
