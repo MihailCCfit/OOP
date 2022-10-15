@@ -1,4 +1,5 @@
 package ru.nsu.fit.tsukanov.graph.implementations;
+
 import java.util.*;
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
@@ -35,7 +36,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     /**
      * Creates stack for indexing,
      * map for mapping V object to integer
-     * and adjacency matrix
+     * and adjacency matrix.
      */
     public GraphAdjMatrix() {
         this.indexesStack = new Stack<>();

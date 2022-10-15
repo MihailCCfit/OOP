@@ -34,7 +34,7 @@ public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
     TreeMap<V, Vertex<V, E>> vertexMap;
 
     /**
-     * creates treeMap
+     * creates treeMap.
      */
     public GraphIncList() {
         vertexMap = new TreeMap<>();

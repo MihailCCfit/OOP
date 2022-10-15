@@ -53,7 +53,8 @@ public class EdgeDefault<V, E> {
     }
 
     /**
-     * Creates edge with specify vertecies, object and weight
+     * Creates edge with specify vertices, object and weight.
+     *
      * @param start is source vertex
      * @param end is target vertex
      * @param object is object that is placed into edge

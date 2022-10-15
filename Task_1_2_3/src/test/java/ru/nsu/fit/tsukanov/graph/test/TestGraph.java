@@ -1,4 +1,4 @@
-package ru.nsu.fit.tsukanov.GraphTest;
+package ru.nsu.fit.tsukanov.graph.test;
 
 import java.util.List;
 import java.util.Set;
@@ -16,7 +16,7 @@ import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
 
 
 /**
- * Testing different graph for interface methods
+ * Testing different graph for interface methods.
  */
 public class TestGraph {
     /*

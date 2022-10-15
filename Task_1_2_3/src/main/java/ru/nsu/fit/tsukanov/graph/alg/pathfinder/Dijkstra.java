@@ -11,6 +11,7 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * Dijkstra algorithm.
  * Works with:
  * O (E*log V)
+ *
  * @param <V> vertex object
  * @param <E> edge object
  */
@@ -24,6 +25,7 @@ public class Dijkstra<V extends Comparable<V>, E> {
 
     /**
      * Initialize maps, heap and start alg.
+     *
      * @param graph the graph where will be finding paths and distances
      * @param startVert the start vertex, from which will calculates distance
      */
@@ -39,6 +41,7 @@ public class Dijkstra<V extends Comparable<V>, E> {
 
     /**
      * Use Dijkstra alg for finding path.
+     *
      * @param start the starting vertex
      */
     public void reuse(V start) {
@@ -87,9 +90,10 @@ public class Dijkstra<V extends Comparable<V>, E> {
 
     /**
      * Return distance from start vertex to specify.
+     *
      * @param v is vertex object
-     * @throws NullPointerException if argument is null
      * @return distance from start vertex to specify
+     * @throws NullPointerException if argument is null
      */
     public double getDistant(V v) {
         if (v == null) {
@@ -97,11 +101,13 @@ public class Dijkstra<V extends Comparable<V>, E> {
         }
         return marksTree.getOrDefault(v, Double.POSITIVE_INFINITY);
     }
+
     /**
      * Return vertex path from start vertex to specify.
+     *
      * @param v is vertex object
-     * @throws NullPointerException if argument is null
      * @return vertex path from start vertex to specify
+     * @throws NullPointerException if argument is null
      */
     public List<V> getPathV(V v) {
         if (v == null) {
@@ -120,11 +126,13 @@ public class Dijkstra<V extends Comparable<V>, E> {
         }
         return list;
     }
+
     /**
      * Return edge path from start vertex to specify.
+     *
      * @param v is vertex object
-     * @throws NullPointerException if argument is null
      * @return edge path from start vertex to specify
+     * @throws NullPointerException if argument is null
      */
     public List<EdgeDefault<V, E>> getPathE(V v) {
         if (v == null) {
@@ -145,6 +153,7 @@ public class Dijkstra<V extends Comparable<V>, E> {
 
     /**
      * Check existing path from start vertex to specify.
+     *
      * @param v the vertex object
      * @return true, if path exist to specify vertex.
      */

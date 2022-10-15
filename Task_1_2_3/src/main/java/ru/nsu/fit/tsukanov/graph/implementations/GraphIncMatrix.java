@@ -49,7 +49,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     private final ArrayList<ArrayList<Direction>> matrix;
 
     /**
-     * Creates maps, stack for indexing, and matrix
+     * Creates maps, stack for indexing, and matrix.
      */
     public GraphIncMatrix() {
         indexesStackV = new Stack<>();
@@ -204,8 +204,8 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
             indexesStackV.push(vertexMap.size());
             flag = true;
         }
-        int vIndex = indexesStackV.pop();
-        vertexMap.put(v, vIndex);
+        int vertIndex = indexesStackV.pop();
+        vertexMap.put(v, vertIndex);
         if (flag) {
             for (ArrayList<GraphIncMatrix.Direction> directions : matrix) {
                 directions.add(Direction.NO);
