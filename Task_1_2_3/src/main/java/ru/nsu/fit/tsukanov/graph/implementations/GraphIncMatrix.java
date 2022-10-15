@@ -10,9 +10,9 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * It uses incident matrix for method implementation.
  * Big-O notations:
  * Get:
- * V->V O(E)
- * V->* O(E)
- * *->* O(E)
+ * V-V O(E)
+ * V-* O(E)
+ * *-* O(E)
  * Contains:
  * V O(log V) - because there is treemap
  * E O(1) - because there is hashmap

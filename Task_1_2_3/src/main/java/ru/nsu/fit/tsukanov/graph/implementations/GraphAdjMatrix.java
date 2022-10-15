@@ -9,9 +9,9 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * It uses adjacency matrix for method implementation.
  * Big-O notations:
  * Get:
- * V->V O(log V)
- * V->* O(V+ev)
- * *->* O(V^2 + E)
+ * V-V O(log V)
+ * V-* O(V+ev)
+ * *-* O(V^2 + E)
  * Contains:
  * V O(log n) - because there is vertex treemap
  * E O(log n ) - because edge contains source and target vertex
