@@ -35,7 +35,7 @@ public class TestGraph {
     }
     */
 
-    @Test
+    //@Test
     void snd() {
         try {
             FileReader fileReader = new FileReader("ru/nsu/fit/tsukanov/graph/test/matrix.txt");
