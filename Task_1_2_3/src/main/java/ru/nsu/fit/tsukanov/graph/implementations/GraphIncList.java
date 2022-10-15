@@ -308,10 +308,10 @@ public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
 
         vertex.inEdge.stream()
                 .map(EdgeDefault::getTargetVertex)
-                .peek((v2) -> removeEdge(v, v2));
+                .map((v2) -> removeEdge(v, v2));
         vertex.outEdge.stream()
                 .map(EdgeDefault::getTargetVertex)
-                .peek((v2) -> removeEdge(v, v2));
+                .map((v2) -> removeEdge(v, v2));
         vertexMap.remove(v);
         return true;
     }

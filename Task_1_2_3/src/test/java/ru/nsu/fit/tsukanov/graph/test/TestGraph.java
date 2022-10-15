@@ -1,5 +1,7 @@
 package ru.nsu.fit.tsukanov.graph.test;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -33,15 +35,14 @@ public class TestGraph {
     }
     */
 
-    /*    @Test
+    @Test
     void snd() {
-        Graph<String, String> graph = new GraphAdjMatrix<>();
         try {
-            txtGraph(graph);
-        } catch (IOException e) {
+            FileReader fileReader = new FileReader("ru/nsu/fit/tsukanov/graph/test/matrix.txt");
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 
     private static Stream<Graph> graphStream() {
         return Stream.of(new GraphIncMatrix(),
@@ -53,7 +54,6 @@ public class TestGraph {
     @ParameterizedTest
     @MethodSource("graphStream")
     void graphTest1(Graph<String, String> graph) {
-        //Graph<String, String> graph = new GraphIncMatrix<String, String>();
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("C");
@@ -176,7 +176,6 @@ public class TestGraph {
         var edge010 = graph.addEdge(0, 10, "010", 8);
         System.out.println(graph.incomingEdgesOf(10));
         Assertions.assertEquals(graph.outgoingEdgesOf(0), Set.of(edge05, edge010));
-
         Assertions.assertEquals(graph.incomingEdgesOf(5), Set.of(edge05));
         Assertions.assertEquals(graph.incomingEdgesOf(10), Set.of(edge010));
         Assertions.assertEquals(graph.outDegreeOf(0), 2);
@@ -201,7 +200,8 @@ public class TestGraph {
         //        () -> dijkstra.getDistant(777));
         Assertions.assertNull(dijkstra.getPathE(4));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathE(null));
-        /**/
-
+        Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathV(null));
+        Assertions.assertThrows(NullPointerException.class, () -> dijkstra.hasPath(null));
+        Assertions.assertNull(graph.removeEdge(0,0));
     }
 }
