@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.nsu.fit.tsukanov.alg.pathfinder"},{"l":"ru.nsu.fit.tsukanov.core"},{"l":"ru.nsu.fit.tsukanov.graphImplementations"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.nsu.fit.tsukanov.graph.alg.pathfinder"},{"l":"ru.nsu.fit.tsukanov.graph.core"},{"l":"ru.nsu.fit.tsukanov.graph.implementations"}]
