@@ -8,6 +8,7 @@ import ru.nsu.fit.tsukanov.alg.pathfinder.Dijkstra;
 import ru.nsu.fit.tsukanov.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.core.Graph;
 import ru.nsu.fit.tsukanov.graphImplementations.GraphAdjMatrix;
+import ru.nsu.fit.tsukanov.graphImplementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graphImplementations.GraphIncMatrix;
 
 import java.util.List;
@@ -40,12 +41,15 @@ public class TestGraph {
     }*/
 
     private static Stream<Graph> graphStream() {
-        return Stream.of(new GraphIncMatrix(), new GraphAdjMatrix<>());
+        return Stream.of(new GraphIncMatrix(),
+                new GraphAdjMatrix<>()
+                , new GraphIncList()
+        );
     }
 
     @ParameterizedTest
     @MethodSource("graphStream")
-    void fst(Graph<String, String> graph) {
+    void graphTest1(Graph<String, String> graph) {
 
         //Graph<String, String> graph = new GraphIncMatrix<String, String>();
         graph.addVertex("A");
@@ -81,10 +85,23 @@ public class TestGraph {
         Assertions.assertTrue(graph.vertexSet().containsAll(List.of("A", "B", "C")));
         Assertions.assertFalse(graph.addVertex("A"));
         Assertions.assertTrue(graph.removeVertex("B"));
+        Assertions.assertFalse(graph.removeVertex("B"));
         Assertions.assertTrue(graph.addVertex("B"));
         EdgeDefault<String, String> edge = new EdgeDefault<>("C", "B", "Hello", 3);
         Assertions.assertTrue(graph.addEdge(edge));
+        Assertions.assertFalse(graph.addEdge(edge));
+        graph.setEdgeWeight("C", "B", 5);
+        Assertions.assertEquals(edge.getWeight(), 5);
+        Assertions.assertNull(graph.removeEdge("A", "D"));
         Assertions.assertTrue(graph.removeAllVertices(List.of("A", "C")));/**/
+
+    }
+
+    private static Stream<EdgeDefault> edgeNullStream() {
+        return Stream.of(new EdgeDefault<Integer, String>(0, 0),
+                new EdgeDefault<Integer, String>(null, 0),
+                new EdgeDefault<Integer, String>(0, null),
+                new EdgeDefault<Integer, String>(null, null));
     }
 
     @ParameterizedTest
@@ -126,57 +143,61 @@ public class TestGraph {
                 () -> new Dijkstra<>(graph, null));
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Dijkstra<>(graph, 0));
+        Assertions.assertFalse(graph.addVertex(null));
         //Для существующего ребра сделать
     }
+
     @Test
-    void edgeTest(){
-        EdgeDefault<Integer, String > edgeDefault = new EdgeDefault<>(0,0);
-        EdgeDefault<Integer, String> edgeDefault2 = new EdgeDefault<>(0,1,"Hello");
-        EdgeDefault<Integer, String> edgeDefault3 = new EdgeDefault<>(0,1,"Hello", 666);
-        EdgeDefault<Integer, String> edgeDefault4 = new EdgeDefault<>(0,0,"Hello", 666);
-        EdgeDefault<Integer, String> edgeDefault5 = new EdgeDefault<>(1,0,"Hello", 666);
+    void edgeTest() {
+        EdgeDefault<Integer, String> edgeDefault = new EdgeDefault<>(0, 0);
+        EdgeDefault<Integer, String> edgeDefault2 = new EdgeDefault<>(0, 1, "Hello");
+        EdgeDefault<Integer, String> edgeDefault3 = new EdgeDefault<>(0, 1, "Hello", 666);
+        EdgeDefault<Integer, String> edgeDefault4 = new EdgeDefault<>(0, 0, "Hello", 666);
+        EdgeDefault<Integer, String> edgeDefault5 = new EdgeDefault<>(1, 0, "Hello", 666);
         Assertions.assertFalse(edgeDefault.equals("HI"));
         Assertions.assertFalse(edgeDefault.equals(null));
         Assertions.assertEquals(edgeDefault2, edgeDefault3);
-        Assertions.assertNotEquals(edgeDefault,edgeDefault2);
-        Assertions.assertNotEquals(edgeDefault,edgeDefault3);
-        Assertions.assertNotEquals(edgeDefault,edgeDefault4);
-        Assertions.assertNotEquals(edgeDefault,edgeDefault5);
+        Assertions.assertNotEquals(edgeDefault, edgeDefault2);
+        Assertions.assertNotEquals(edgeDefault, edgeDefault3);
+        Assertions.assertNotEquals(edgeDefault, edgeDefault4);
+        Assertions.assertNotEquals(edgeDefault, edgeDefault5);
         double l = edgeDefault2.getWeight();
         edgeDefault3.setWeight(l);
         Assertions.assertEquals(edgeDefault2.getWeight(),
                 edgeDefault3.getWeight());
         edgeDefault.setObject(edgeDefault2.getObject());
-        Assertions.assertNotEquals(edgeDefault2,edgeDefault);
-        Assertions.assertEquals(edgeDefault4,edgeDefault);
+        Assertions.assertNotEquals(edgeDefault2, edgeDefault);
+        Assertions.assertEquals(edgeDefault4, edgeDefault);
     }
 
     @ParameterizedTest
     @MethodSource("graphStream")
-    void edgeAndVertexTests(Graph<Integer, String> graph){
+    void edgeAndVertexTests(Graph<Integer, String> graph) {
         graph.addVertex(0);
         graph.addVertex(5);
         graph.addVertex(10);
         graph.addVertex(-1);
-        var edge05 = graph.addEdge(0,5,"05",6);
-        var edge010 = graph.addEdge(0,10,"010",8);
-        Assertions.assertEquals(graph.outgoingEdgesOf(0), Set.of(edge05,edge010));
+        var edge05 = graph.addEdge(0, 5, "05", 6);
+        var edge010 = graph.addEdge(0, 10, "010", 8);
+        System.out.println(graph.incomingEdgesOf(10));
+        Assertions.assertEquals(graph.outgoingEdgesOf(0), Set.of(edge05, edge010));
+
         Assertions.assertEquals(graph.incomingEdgesOf(5), Set.of(edge05));
         Assertions.assertEquals(graph.incomingEdgesOf(10), Set.of(edge010));
         Assertions.assertEquals(graph.outDegreeOf(0), 2);
         Assertions.assertEquals(graph.inDegreeOf(0), 0);
         Assertions.assertEquals(graph.inDegreeOf(5), 1);
         Assertions.assertEquals(graph.inDegreeOf(10), 1);
-        var edge052 = graph.addEdge(0,5,"052",5);
-        Assertions.assertEquals(graph.getAllEdges(0,5),
+        var edge052 = graph.addEdge(0, 5, "052", 5);
+        Assertions.assertEquals(graph.getAllEdges(0, 5),
                 Set.of(edge05, edge052));
-        graph.addEdge(0,-1,"0-1",10);
-        graph.addEdge(5,-1,"5-1",5);
-        graph.addEdge(10,-1,"10-1",1);
+        graph.addEdge(0, -1, "0-1", 10);
+        graph.addEdge(5, -1, "5-1", 5);
+        graph.addEdge(10, -1, "10-1", 1);
         graph.addVertex(666);
         Dijkstra<Integer, String> dijkstra = new Dijkstra<>(graph, 0);
         Assertions.assertFalse(dijkstra.hasPath(666));
-        Assertions.assertEquals(dijkstra.getDistant(-1),9);
+        Assertions.assertEquals(dijkstra.getDistant(-1), 9);
         Assertions.assertEquals(dijkstra.getDistant(666),
                 Double.POSITIVE_INFINITY);
         Assertions.assertThrows(NullPointerException.class,
@@ -185,5 +206,7 @@ public class TestGraph {
         //        () -> dijkstra.getDistant(777));
         Assertions.assertNull(dijkstra.getPathE(4));
         Assertions.assertNull(dijkstra.getPathE(null));
+        /**/
+
     }
 }

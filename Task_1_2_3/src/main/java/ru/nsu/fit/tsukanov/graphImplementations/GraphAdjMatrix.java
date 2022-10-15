@@ -84,7 +84,10 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean addEdge(EdgeDefault<V, E> e) {
-        if (e==null){
+        if (e == null) {
+            return false;
+        }
+        if (containsEdge(e)) {
             return false;
         }
         var list = getListEdges(e.getSourceVertex(), e.getTargetVertex());
@@ -106,7 +109,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E e, double weight) {
         EdgeDefault<V, E> edgeDefault = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
         var list = getListEdges(sourceVertex, targetVertex);
-        if (list==null) return null;
+        if (list == null) return null;
         list.add(edgeDefault);
         return edgeDefault;
     }
@@ -120,7 +123,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean addVertex(V v) {
-        if (v==null)return false;
+        if (v == null) return false;
         if (indexesStack.isEmpty()) {
             indexesStack.push(vIntegerTreeMap.size());
         }
@@ -153,7 +156,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     @Override
     public boolean containsEdge(V sourceVertex, V targetVertex) {
         var list = getListEdges(sourceVertex, targetVertex);
-        if (list==null){
+        if (list == null) {
             return false;
         }
         return !list.isEmpty();
@@ -167,7 +170,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
-        if (e==null) return false;
+        if (e == null) return false;
         return containsEdge(e.getSourceVertex(), e.getTargetVertex());
     }
 
@@ -179,7 +182,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean containsVertex(V v) {
-        if(v==null){
+        if (v == null) {
             return false;
         }
         return vIntegerTreeMap.containsKey(v);

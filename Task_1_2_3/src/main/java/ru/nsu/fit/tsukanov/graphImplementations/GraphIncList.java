@@ -3,35 +3,16 @@ package ru.nsu.fit.tsukanov.graphImplementations;
 import ru.nsu.fit.tsukanov.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.core.Graph;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeMap;
 
-public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
-    @Override
-    public String toString() {
-        return "GraphIncMatrix{" +
-                "columns=" + columns +
-                "\nmatrix=" + matrix +
-                '}';
-    }
+public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
 
-    private enum Direction {
-        NO, FROM, TO
-    }
+    TreeMap<V, Vertex<V, E>> vertexMap;
 
-    private final Stack<Integer> indexesStackV;
-    private final Stack<Integer> indexesStackE;
-    private final TreeMap<V, Integer> vIntegerTreeMap;
-    private final HashMap<EdgeDefault<V, E>, Integer> eIntegerHashMap;
-    private final ArrayList<EdgeDefault<V, E>> columns;
-    private final ArrayList<ArrayList<Direction>> matrix;
-
-    public GraphIncMatrix() {
-        indexesStackV = new Stack<>();
-        indexesStackE = new Stack<>();
-        vIntegerTreeMap = new TreeMap<>();
-        eIntegerHashMap = new HashMap<>();
-        matrix = new ArrayList<>();
-        columns = new ArrayList<>();
+    public GraphIncList() {
+        vertexMap = new TreeMap<>();
     }
 
     /**
@@ -44,20 +25,22 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
+        if (sourceVertex == null
+                || targetVertex == null) {
+            return null;
+        }
         if (!containsVertex(sourceVertex)
                 || !containsVertex(targetVertex)) {
             return null;
         }
-        Set<EdgeDefault<V, E>> set = new HashSet<>();
-        int ind1 = vIntegerTreeMap.get(sourceVertex);
-        int ind2 = vIntegerTreeMap.get(targetVertex);
-        for (int i = 0; i < matrix.size(); i++) {
-            if (matrix.get(i).get(ind1) == Direction.FROM
-                    && matrix.get(i).get(ind2) == Direction.TO) {
-                set.add(columns.get(i));
+        Set<EdgeDefault<V, E>> edgeSet = new HashSet<>();
+        for (EdgeDefault<V, E> edge : getVertex(sourceVertex).outEdge) {
+            if (edge.getEdgeTarget() == targetVertex) {
+                edgeSet.add(edge);
             }
         }
-        return set;
+
+        return edgeSet;
     }
 
     /**
@@ -74,58 +57,12 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
                 || !containsVertex(targetVertex)) {
             return null;
         }
-        int ind1 = vIntegerTreeMap.get(sourceVertex);
-        int ind2 = vIntegerTreeMap.get(targetVertex);
-        for (int i = 0; i < matrix.size(); i++) {
-            if (matrix.get(i).get(ind1) == Direction.FROM
-                    && matrix.get(i).get(ind2) == Direction.TO) {
-                return columns.get(i);
+        for (EdgeDefault<V, E> edge : getVertex(sourceVertex).outEdge) {
+            if (edge.getEdgeTarget() == targetVertex) {
+                return edge;
             }
         }
         return null;
-    }
-
-    /**
-     * Add specify edge, if there is no such edge.
-     *
-     * @param e is edge that will be added to graph
-     * @return true, if there are no equal Edge.
-     */
-    @Override
-    public boolean addEdge(EdgeDefault<V, E> e) {
-        if (e == null) {
-            return false;
-        }
-        if (containsEdge(e)) {
-            return false;
-        }
-        V sourceVertex = e.getSourceVertex();
-        V targetVertex = e.getTargetVertex();
-        if (!containsVertex(sourceVertex)
-                || !containsVertex(targetVertex)) {
-            return false;
-        }
-        if (indexesStackE.isEmpty()) {
-            indexesStackE.push(eIntegerHashMap.size());
-            columns.add(e);
-        }
-        int eIndex = indexesStackE.pop();
-        columns.set(eIndex, e);
-        eIntegerHashMap.put(e, eIndex);
-        int vIndex1 = vIntegerTreeMap.get(sourceVertex);
-        int vIndex2 = vIntegerTreeMap.get(targetVertex);
-
-        if (eIndex >= matrix.size()) {
-            ArrayList<Direction> newColumn = new ArrayList<>();
-            for (int i = 0; i < vIntegerTreeMap.size(); i++) {
-                newColumn.add(Direction.NO);
-            }
-            matrix.add(newColumn);
-        }
-        matrix.get(eIndex).set(vIndex1, Direction.FROM);
-        matrix.get(eIndex).set(vIndex2, Direction.TO);
-
-        return true;
     }
 
     /**
@@ -142,6 +79,31 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         return addEdge(sourceVertex, targetVertex, object, EdgeDefault.DEFAULT_WEIGHT);
     }
 
+    /**
+     * Add specify edge, if there is no such edge.
+     *
+     * @param e is edge that will be added to graph
+     * @return true, if there are no equal Edge.
+     */
+    @Override
+    public boolean addEdge(EdgeDefault<V, E> e) {
+        if (e == null) {
+            return false;
+        }
+        if (containsEdge(e)) {
+            return false;
+        }
+        V source = e.getSourceVertex();
+        V target = e.getTargetVertex();
+        if (!containsVertex(source)
+                || !containsVertex(target)) {
+            return false;
+        }
+        Vertex<V, E> vSource = vertexMap.get(source);
+        Vertex<V, E> vTarget = vertexMap.get(target);
+        vSource.outEdge.add(e);
+        return vTarget.inEdge.add(e);
+    }
 
     /**
      * Create Edge with specify vertices, weight and object.
@@ -154,8 +116,8 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E e, double weight) {
-        EdgeDefault<V, E> newEdge = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
-        return addEdge(newEdge) ? newEdge : null;
+        EdgeDefault<V, E> edge = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
+        return addEdge(edge) ? edge : null;
     }
 
     /**
@@ -170,19 +132,11 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (v == null) {
             return false;
         }
-        if (containsVertex(v)) return false;
-        boolean flag = false;
-        if (indexesStackV.isEmpty()) {
-            indexesStackV.push(vIntegerTreeMap.size());
-            flag = true;
+        if (containsVertex(v)) {
+            return false;
         }
-        int vIndex = indexesStackV.pop();
-        vIntegerTreeMap.put(v, vIndex);
-        if (flag) {
-            for (ArrayList<GraphIncMatrix.Direction> directions : matrix) {
-                directions.add(Direction.NO);
-            }
-        }
+        Vertex<V, E> vertex = new Vertex<>(v);
+        vertexMap.put(v, vertex);
         return true;
     }
 
@@ -195,7 +149,6 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean containsEdge(V sourceVertex, V targetVertex) {
-
         return getEdge(sourceVertex, targetVertex) != null;
     }
 
@@ -210,11 +163,13 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (e == null) {
             return false;
         }
-        if (e.getSourceVertex() == null
-                || e.getTargetVertex() == null) {
+        V source = e.getSourceVertex();
+        V target = e.getTargetVertex();
+        if (!containsVertex(source)
+                || !containsVertex(target)) {
             return false;
         }
-        return eIntegerHashMap.containsKey(e);
+        return getVertex(source).outEdge.contains(e);
     }
 
     /**
@@ -228,7 +183,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (v == null) {
             return false;
         }
-        return vIntegerTreeMap.containsKey(v);
+        return vertexMap.containsKey(v);
     }
 
     /**
@@ -238,7 +193,11 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> edgeSet() {
-        return eIntegerHashMap.keySet();
+        Set<EdgeDefault<V, E>> edgeSet = new HashSet<>();
+        for (V v : vertexSet()) {
+            edgeSet.addAll(getVertex(v).outEdge);
+        }
+        return edgeSet;
     }
 
     /**
@@ -249,15 +208,10 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> incomingEdgesOf(V vertex) {
-        if (!containsVertex(vertex)) return null;
-        Set<EdgeDefault<V, E>> set = new HashSet<>();
-        int vIndex = vIntegerTreeMap.get(vertex);
-        for (int i = 0; i < matrix.size(); i++) {
-            if (matrix.get(i).get(vIndex) == Direction.TO) {
-                set.add(columns.get(i));
-            }
+        if (!containsVertex(vertex)) {
+            return null;
         }
-        return set;
+        return Set.copyOf(getVertex(vertex).inEdge);
     }
 
     /**
@@ -271,14 +225,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (!containsVertex(vertex)) {
             return null;
         }
-        Set<EdgeDefault<V, E>> set = new HashSet<>();
-        int vIndex = vIntegerTreeMap.get(vertex);
-        for (int i = 0; i < matrix.size(); i++) {
-            if (matrix.get(i).get(vIndex) == Direction.FROM) {
-                set.add(columns.get(i));
-            }
-        }
-        return set;
+        return Set.copyOf(getVertex(vertex).outEdge);
     }
 
     /**
@@ -290,15 +237,12 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public EdgeDefault<V, E> removeEdge(V sourceVertex, V targetVertex) {
-        if (sourceVertex == null || targetVertex == null) {
+        if (!containsVertex(sourceVertex)
+                || !containsVertex(targetVertex)) {
             return null;
         }
         EdgeDefault<V, E> edge = getEdge(sourceVertex, targetVertex);
-        if (edge == null) {
-            return null;
-        }
-        removeEdge(edge);
-        return edge;
+        return removeEdge(edge) ? edge : null;
     }
 
     /**
@@ -312,14 +256,13 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (e == null) {
             return false;
         }
-        if (!containsEdge(e)) return false;
-
-        int eIndex = eIntegerHashMap.get(e);
-        Collections.fill(matrix.get(eIndex), Direction.NO);
-        indexesStackE.push(eIndex);
-        columns.set(eIndex, null);
-        eIntegerHashMap.remove(e);
-        return true;
+        if (!containsEdge(e)) {
+            return false;
+        }
+        V source = e.getEdgeSource();
+        V target = e.getTargetVertex();
+        getVertex(source).outEdge.remove(e);
+        return getVertex(target).inEdge.remove(e);
     }
 
     /**
@@ -330,14 +273,21 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public boolean removeVertex(V v) {
+        if (v == null) {
+            return false;
+        }
         if (!containsVertex(v)) {
             return false;
         }
-        int vIndex = vIntegerTreeMap.get(v);
-        removeAllEdges(outgoingEdgesOf(v));
-        removeAllEdges(incomingEdgesOf(v));
-        indexesStackV.push(vIndex);
-        vIntegerTreeMap.remove(v);
+        Vertex<V, E> vertex = getVertex(v);
+
+        vertex.inEdge.stream()
+                .map(EdgeDefault::getTargetVertex)
+                .peek((v2) -> removeEdge(v, v2));
+        vertex.outEdge.stream()
+                .map(EdgeDefault::getTargetVertex)
+                .peek((v2) -> removeEdge(v, v2));
+        vertexMap.remove(v);
         return true;
     }
 
@@ -348,6 +298,10 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     @Override
     public Set<V> vertexSet() {
-        return vIntegerTreeMap.keySet();
+        return vertexMap.keySet();
+    }
+
+    private Vertex<V, E> getVertex(V vo) {
+        return vertexMap.get(vo);
     }
 }
