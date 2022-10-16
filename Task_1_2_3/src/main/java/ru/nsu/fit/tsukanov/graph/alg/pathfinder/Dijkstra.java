@@ -114,7 +114,6 @@ public class Dijkstra<V extends Comparable<V>, E> {
             throw new NullPointerException();
         }
         if (!pathMap.containsKey(v)) {
-            System.out.println(v + "|HE");
             return null;
         }
         LinkedList<V> list = new LinkedList<>();
@@ -163,6 +162,5 @@ public class Dijkstra<V extends Comparable<V>, E> {
         }
         return pathMap.containsKey(v);
     }
-
 
 }

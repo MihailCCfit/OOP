@@ -1,8 +1,8 @@
 package ru.nsu.fit.tsukanov.graph.test;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
@@ -34,22 +34,56 @@ public class TestGraph {
         System.out.println(graph.vertexSet());
     }
     */
-
-    //@Test
-    void snd() {
-        try {
-            FileReader fileReader = new FileReader("ru/nsu/fit/tsukanov/graph/test/matrix.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static Stream<Graph> graphStream() {
         return Stream.of(new GraphIncMatrix(),
                 new GraphAdjMatrix<>(),
                 new GraphIncList()
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("graphStream")
+    void snd(Graph<String, String> graph) {
+        String txt = """
+                7
+                A B C D E F G
+                C
+                - 5 - 12 - - 25
+                5 - - 8 - - -
+                - - - 2 4 5 10
+                12 8 2 - - - -
+                - - 4 - - - 5
+                - - 5 - - - 5
+                25 - 10 - 5 5 -
+                """;
+        Scanner scanner = new Scanner(txt);
+        int n = scanner.nextInt();
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            arrayList.add(scanner.next());
+            graph.addVertex(arrayList.get(i));
+        }
+        String startVertex = scanner.next();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                String dist = scanner.next();
+                if (!dist.equals("-")) {
+                    graph.addEdge(arrayList.get(i), arrayList.get(j), "" + i + j, Integer.parseInt(dist));
+                }
+            }
+        }
+        Dijkstra<String, String> alg = new Dijkstra<>(graph, startVertex);
+        ArrayList<String> arrCopy = new ArrayList<>(arrayList);
+        arrCopy.sort((x, y) -> Double.compare(alg.getDistant(x), alg.getDistant(y)));
+        String string = "";
+        for (String s : arrCopy) {
+            string += String.format("%s(%s) ", s, alg.getDistant(s));
+        }
+        Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ", string);
+
+
+    }
+
 
     @ParameterizedTest
     @MethodSource("graphStream")
@@ -68,18 +102,16 @@ public class TestGraph {
         Assertions.assertTrue(dijkstra.getPathV("C").containsAll(
                 List.of("A", "B", "C"))
         );
-        System.out.println(dijkstra.getPathE("C"));
-        System.out.println(dijkstra.getDistant("C"));
+        Assertions.assertTrue(dijkstra.getPathE("C").containsAll(
+                List.of(ed1, ed3)
+        ));
+        Assertions.assertEquals(9, dijkstra.getDistant("C"));
         Assertions.assertTrue(graph.containsEdge("A", "B"));
         Assertions.assertTrue(graph.containsEdge(ed1));
         graph.removeEdge("A", "B");
         dijkstra.reuse();
         Assertions.assertTrue(dijkstra.hasPath("C"));
-        System.out.println(dijkstra.getPathV("C"));
-        System.out.println(dijkstra.getPathE("C"));
-        System.out.println(dijkstra.getDistant("C"));
-        System.out.println(dijkstra.getPathV("B"));
-        System.out.println(dijkstra.getDistant("B"));
+        Assertions.assertEquals(Double.POSITIVE_INFINITY, dijkstra.getDistant("B"));
         Assertions.assertFalse(graph.containsEdge("A", "B"));
         Assertions.assertFalse(graph.containsEdge(ed1));
         Assertions.assertNull(graph.getEdge("A", "B"));
@@ -174,7 +206,6 @@ public class TestGraph {
         graph.addVertex(-1);
         var edge05 = graph.addEdge(0, 5, "05", 6);
         var edge010 = graph.addEdge(0, 10, "010", 8);
-        System.out.println(graph.incomingEdgesOf(10));
         Assertions.assertEquals(graph.outgoingEdgesOf(0), Set.of(edge05, edge010));
         Assertions.assertEquals(graph.incomingEdgesOf(5), Set.of(edge05));
         Assertions.assertEquals(graph.incomingEdgesOf(10), Set.of(edge010));
@@ -182,6 +213,7 @@ public class TestGraph {
         Assertions.assertEquals(graph.inDegreeOf(0), 0);
         Assertions.assertEquals(graph.inDegreeOf(5), 1);
         Assertions.assertEquals(graph.inDegreeOf(10), 1);
+        Assertions.assertFalse(edge05.toString().isBlank());
         var edge052 = graph.addEdge(0, 5, "052", 5);
         Assertions.assertEquals(graph.getAllEdges(0, 5),
                 Set.of(edge05, edge052));
@@ -199,9 +231,10 @@ public class TestGraph {
         //Assertions.assertThrows(IllegalArgumentException.class,
         //        () -> dijkstra.getDistant(777));
         Assertions.assertNull(dijkstra.getPathE(4));
+        Assertions.assertNull(dijkstra.getPathV(4));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathE(null));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathV(null));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.hasPath(null));
-        Assertions.assertNull(graph.removeEdge(0,0));
+        Assertions.assertNull(graph.removeEdge(0, 0));
     }
 }
