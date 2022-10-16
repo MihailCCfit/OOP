@@ -44,18 +44,16 @@ public class TestGraph {
     @ParameterizedTest
     @MethodSource("graphStream")
     void snd(Graph<String, String> graph) {
-        String txt = """
-                7
-                A B C D E F G
-                C
-                - 5 - 12 - - 25
-                5 - - 8 - - -
-                - - - 2 4 5 10
-                12 8 2 - - - -
-                - - 4 - - - 5
-                - - 5 - - - 5
-                25 - 10 - 5 5 -
-                """;
+        String txt = "7\n"
+                     + "A B C D E F G\n"
+                     + "C\n"
+                     + "- 5 - 12 - - 25\n"
+                     + "5 - - 8 - - -\n"
+                     + "- - - 2 4 5 10\n"
+                     + "12 8 2 - - - -\n"
+                     + "- - 4 - - - 5\n"
+                     + "- - 5 - - - 5\n"
+                     + "25 - 10 - 5 5 -\n";
         Scanner scanner = new Scanner(txt);
         int n = scanner.nextInt();
         ArrayList<String> arrayList = new ArrayList<>();
