@@ -1,31 +1,32 @@
 package ru.nsu.fit.tsukanov;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.function.Predicate;
 
 /**
  * Tree is collection. User can add new Nodes to root, or to other Nodes.
  * It's easy to create branches, this structure is fragile.
+ * Root is used for DFS and BFD iterations,
+ * it's simplify these algorithm implementations.
+ * But use root as object place is bad, because there are problems
+ * with nodes swapping, iterations, removes and other.
  *
  * @param <T> for objects in Tree.
  */
 public class Tree<T> implements Collection<T> {
+    private long modifications = 0;
     private final Node<T> root;
 
     /**
      * Node class for Tree. Node has many nodes and
-     * has one father node. There are object values in
+     * has one father node. There are object in
      * each node.
      *
      * @param <T> that is given from tree
      */
     public static class Node<T> {
-        private int cur = -1;
         private final ArrayList<Node<T>> children;
-        private Node<T> father;
+        private Node<T> parent;
         private T object;
 
         /**
@@ -33,7 +34,7 @@ public class Tree<T> implements Collection<T> {
          *
          * @param obj object that will be place into node
          */
-        Node(T obj) {
+        private Node(T obj) {
             setObject(obj);
             children = new ArrayList<>();
         }
@@ -44,9 +45,9 @@ public class Tree<T> implements Collection<T> {
          * @param node that exist.
          * @return new node.
          */
-        Node<T> add(Node<T> node) {
+        private Node<T> add(Node<T> node) {
             getChildren().add(node);
-            node.father = this;
+            node.parent = this;
             return node;
         }
 
@@ -56,7 +57,7 @@ public class Tree<T> implements Collection<T> {
          * @param obj that will be saved in tree node.
          * @return new node with object.
          */
-        Node<T> add(T obj) {
+        private Node<T> add(T obj) {
             Node<T> node = new Node<>(obj);
             return this.add(node);
         }
@@ -69,8 +70,6 @@ public class Tree<T> implements Collection<T> {
         @Override
         public String toString() {
             return "Node{"
-                    + "cur="
-                    + cur
                     + "[" + getObject()
                     + "], children="
                     + getChildren()
@@ -80,8 +79,8 @@ public class Tree<T> implements Collection<T> {
         /**
          * Remove this node from parent node.
          */
-        void remove() {
-            var father = this.getFather();
+        private void remove() {
+            var father = this.getParent();
             father.getChildren().remove(this);
         }
 
@@ -114,12 +113,12 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Get the upper (father) node.
+         * Get the upper (parent) node.
          *
          * @return parent node.
          */
-        public Node<T> getFather() {
-            return father;
+        public Node<T> getParent() {
+            return parent;
         }
     }
 
@@ -128,7 +127,7 @@ public class Tree<T> implements Collection<T> {
      */
     public Tree() {
         root = new Node<>(null);
-        root.father = null;
+        root.parent = null;
     }
 
     /**
@@ -139,7 +138,7 @@ public class Tree<T> implements Collection<T> {
     public Tree(T obj) {
         root = new Node<>(null);
         root.add(obj);
-        root.father = null;
+        root.parent = null;
     }
 
     /**
@@ -174,14 +173,7 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public boolean contains(Object o) {
-        TreeIterBFS iterBFS = this.iteratorBFS();
-        while (iterBFS.hasNext()) {
-            var obj = iterBFS.next();
-            if (o.equals(obj)) {
-                return true;
-            }
-        }
-        return false;
+        return stream().anyMatch((x) -> x.equals(o));
     }
 
     /**
@@ -191,11 +183,11 @@ public class Tree<T> implements Collection<T> {
      * @param o object for filter
      * @return ArrayList of nodes.
      */
-    public ArrayList<Node<T>> contain(Object o) {
+    public ArrayList<Node<T>> findNodes(Object o) {
         ArrayList<Node<T>> nodeArrayList = new ArrayList<>();
         TreeIterBFS iterBFS = this.iteratorBFS();
         while (iterBFS.hasNext()) {
-            var node = iterBFS.nextN();
+            var node = iterBFS.nextNode();
             if (node.getObject().equals(o)) {
                 nodeArrayList.add(node);
             }
@@ -209,11 +201,11 @@ public class Tree<T> implements Collection<T> {
      * @param predicate for choosing nodes
      * @return ArrayList with objects
      */
-    public ArrayList<Node<T>> contain(Predicate<Node<T>> predicate) {
+    public ArrayList<Node<T>> findNodes(Predicate<Node<T>> predicate) {
         ArrayList<Node<T>> nodeArrayList = new ArrayList<>();
         TreeIterBFS iterBFS = this.iteratorBFS();
         while (iterBFS.hasNext()) {
-            var node = iterBFS.nextN();
+            var node = iterBFS.nextNode();
             if (predicate.test(node)) {
                 nodeArrayList.add(node);
             }
@@ -240,6 +232,7 @@ public class Tree<T> implements Collection<T> {
     @SuppressWarnings({"unchecked"})
     @Override
     public boolean add(Object o) {
+        modifications++;
         root.add((T) o);
         return true;
     }
@@ -252,7 +245,8 @@ public class Tree<T> implements Collection<T> {
      * @return new created node.
      * @throws IllegalArgumentException if node is null pointr
      */
-    public Node<T> add(Node<T> node, T o) throws IllegalArgumentException {
+    public Node<T> addNode(Node<T> node, T o) throws IllegalArgumentException {
+        modifications++;
         if (node == null) {
             throw new IllegalArgumentException("Null pointer");
         }
@@ -265,28 +259,30 @@ public class Tree<T> implements Collection<T> {
      * @param o object
      * @return node with specify object.
      */
-    public Node<T> addN(T o) {
+    public Node<T> addNode(T o) {
+        modifications++;
         return root.add(o);
     }
 
     /**
-     * remove node and his subtrees from tree according to specify object.
+     * Removes node and its subtrees from tree according to specified object.
      *
      * @param o element to be removed from this collection, if present
      * @return true if tree has changes
      */
     @Override
     public boolean remove(Object o) {
+        modifications++;
         TreeIterDFS iterator = iteratorDFS();
-        boolean rem = false;
+        boolean remember = false;
         while (iterator.hasNext()) {
-            Node<T> node = iterator.nextN();
-            if (node.getObject().equals(o)) {
+            T nodeObject = iterator.next();
+            if (nodeObject.equals(o)) {
                 iterator.remove();
-                rem = true;
+                remember = true;
             }
         }
-        return rem;
+        return remember;
     }
 
     /**
@@ -298,6 +294,7 @@ public class Tree<T> implements Collection<T> {
     @SuppressWarnings({"unchecked"})
     @Override
     public boolean addAll(Collection c) {
+        modifications++;
         for (Object o : c) {
             root.add((T) o);
         }
@@ -309,8 +306,11 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public void clear() {
-        for (T t : this) {
-            remove(t);
+        TreeIterDFS iterator = iteratorDFS();
+        while (iterator.hasNext()) {
+            iterator.nextNode();
+            iterator.remove();
+
         }
     }
 
@@ -330,9 +330,10 @@ public class Tree<T> implements Collection<T> {
         boolean flag = false;
         var iter = this.iteratorDFS();
         while (iter.hasNext()) {
-            Node<T> node = iter.nextN();
+            Node<T> node = iter.nextNode();
             if (!c.contains(node.getObject())) {
                 iter.remove();
+                flag = true;
             }
         }
         return flag;
@@ -350,8 +351,13 @@ public class Tree<T> implements Collection<T> {
             throw new IllegalArgumentException("Null pointer");
         }
         boolean flag = false;
-        for (Object o : c) {
-            flag = this.remove(o) || flag;
+        var iter = this.iteratorDFS();
+        while (iter.hasNext()) {
+            Node<T> node = iter.nextNode();
+            if (c.contains(node.getObject())) {
+                iter.remove();
+                flag = true;
+            }
         }
         return flag;
     }
@@ -367,12 +373,7 @@ public class Tree<T> implements Collection<T> {
         if (c == null) {
             throw new IllegalArgumentException("Null pointer");
         }
-        for (Object o : c) {
-            if (!contains(o)) {
-                return false;
-            }
-        }
-        return true;
+        return c.stream().allMatch(this::contains);
     }
 
     /**
@@ -382,12 +383,7 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public Object[] toArray() {
-        Object[] arr = new Object[size()];
-        int i = 0;
-        for (T t : this) {
-            arr[i++] = t;
-        }
-        return arr;
+        return this.stream().toArray();
     }
 
     /**
@@ -437,12 +433,15 @@ public class Tree<T> implements Collection<T> {
      */
     public class TreeIterBFS implements Iterator<T> {
 
-        private final ArrayList<Node<T>> nodeList;
+        private final List<Node<T>> nodeList;
+
+        private final long rememberedModifications;
 
         /**
          * Create Stack for BFS iterations.
          */
         public TreeIterBFS() {
+            rememberedModifications = modifications;
             nodeList = new ArrayList<>();
             nodeList.add(root);
         }
@@ -456,6 +455,9 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public boolean hasNext() {
+            if (modifications != rememberedModifications) {
+                throw new ConcurrentModificationException("BFS concurrentModification");
+            }
             return (nodeList.size() > 0) && ((nodeList.size() > 1)
                     || (!nodeList.get(0).getChildren().isEmpty()));
         }
@@ -468,7 +470,7 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public T next() throws IllegalStateException {
-            return nextN().getObject();
+            return nextNode().getObject();
         }
 
         /**
@@ -477,7 +479,7 @@ public class Tree<T> implements Collection<T> {
          * @return the next Node in the iteration
          * @throws NoSuchElementException if the iteration has no more Nodes
          */
-        public Node<T> nextN() throws IllegalStateException {
+        public Node<T> nextNode() throws IllegalStateException {
             if (!hasNext()) {
                 throw new IllegalStateException("There is no element");
             }
@@ -503,17 +505,21 @@ public class Tree<T> implements Collection<T> {
     public class TreeIterDFS implements Iterator<T> {
 
         Node<T> currentNode;
+        HashMap<Node<T>, Integer> hashMap;
+
+        private final long rememberedModifications;
 
         /**
          * Firstly cleans nodes to unchecked state.
          */
         TreeIterDFS() {
-
-            Tree.this.root.cur = 0;
+            rememberedModifications = modifications;
+            hashMap = new HashMap<>();
+            hashMap.put(Tree.this.root, 0);
             var it = Tree.this.iteratorBFS();
             while (it.hasNext()) {
-                var tmp = it.nextN();
-                tmp.cur = 0;
+                var tmp = it.nextNode();
+                hashMap.put(tmp, 0);
             }
             currentNode = Tree.this.root;
 
@@ -532,11 +538,14 @@ public class Tree<T> implements Collection<T> {
         }
 
         private boolean peek(Node<T> node) {
-            while (node.cur >= node.getChildren().size()) {
+            if (modifications != rememberedModifications) {
+                throw new ConcurrentModificationException("DFS concurrentModification");
+            }
+            while (hashMap.get(node) >= node.getChildren().size()) {
                 if (node == Tree.this.root) {
                     return false;
                 }
-                node = node.getFather();
+                node = node.getParent();
             }
             return true;
 
@@ -550,7 +559,7 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public T next() throws IllegalStateException {
-            return nextN().getObject();
+            return nextNode().getObject();
 
         }
 
@@ -560,14 +569,17 @@ public class Tree<T> implements Collection<T> {
          * @return the next node in the iteration
          * @throws NoSuchElementException if the iteration has no more nodes
          */
-        public Node<T> nextN() throws IllegalStateException {
+        public Node<T> nextNode() throws IllegalStateException, ConcurrentModificationException {
+
             if (!hasNext()) {
                 throw new IllegalStateException("There is no element");
             }
-            while (currentNode.cur >= currentNode.getChildren().size()) {
-                currentNode = currentNode.getFather();
+            while (hashMap.get(currentNode) >= currentNode.getChildren().size()) {
+                currentNode = currentNode.getParent();
             }
-            currentNode = currentNode.getChildren().get(currentNode.cur++);
+            var next = currentNode.getChildren().get(hashMap.get(currentNode));
+            hashMap.put(currentNode, hashMap.get(currentNode) + 1);
+            currentNode = next;
             return currentNode;
         }
 
@@ -577,13 +589,16 @@ public class Tree<T> implements Collection<T> {
          * @throws IllegalStateException if current node is root
          */
         @Override
-        public void remove() throws IllegalStateException {
-            var father = currentNode.getFather();
+        public void remove() throws IllegalStateException, ConcurrentModificationException {
+            if (modifications != rememberedModifications) {
+                throw new ConcurrentModificationException("DFS remove");
+            }
+            var father = currentNode.getParent();
             if (father == null) {
                 throw new IllegalStateException("Current node is root");
             }
-            if (father.getChildren().indexOf(currentNode) < father.cur) {
-                --father.cur;
+            if (father.getChildren().indexOf(currentNode) < hashMap.get(father)) {
+                hashMap.put(father, hashMap.get(father) - 1);
             }
             father.getChildren().remove(currentNode);
             currentNode = father;

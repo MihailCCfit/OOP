@@ -1,12 +1,17 @@
 package ru.nsu.fit.tsukanov;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.Random;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
+
 /**
- * ru.nsu.fit.tsukanov.TreeTest testing.
+ * TreeTest testing.
  * Testing ordering, sorting, adding, removing and throwing exceptions.
  */
 public class TreeTest {
@@ -14,10 +19,10 @@ public class TreeTest {
     public void exampleTest() {
         Tree<String> tree = new Tree<>();
         tree.add("A");
-        Tree.Node<String> node = tree.addN("B");
-        tree.add(node, "AB");
-        node.add("BB");
-        var s = tree.contain((nod) -> nod.getChildren()
+        Tree.Node<String> node = tree.addNode("B");
+        tree.addNode(node, "AB");
+        tree.addNode(node, "BB");
+        var s = tree.findNodes((nod) -> nod.getChildren()
                         .isEmpty())
                 .stream()
                 .map(Tree.Node::getObject)
@@ -83,16 +88,25 @@ public class TreeTest {
         return fst.containsAll(snd) && snd.containsAll(fst);
     }
 
+    private void concurentHelper(Tree tree) {
+        for (Object t : tree) {
+            tree.remove(t);
+        }
+    }
+
     @Test
     public void testSomething() {
         Tree<Integer> tree = new Tree<>(1);
-        Assertions.assertFalse(tree.contain(1).isEmpty());
-        Assertions.assertTrue(tree.contain(2).isEmpty());
+        Assertions.assertFalse(tree.findNodes(1).isEmpty());
+        Assertions.assertTrue(tree.findNodes(2).isEmpty());
         tree.clear();
-        Assertions.assertTrue(tree.contain(1).isEmpty());
-        Tree.Node<Integer> node = tree.addN(5);
-        node.add(6);
-        node.remove();
+        Assertions.assertTrue(tree.findNodes(1).isEmpty());
+        Tree.Node<Integer> node = tree.addNode(5);
+        tree.addNode(node, 6);
+        System.out.println(tree);
+        Assertions.assertThrows(ConcurrentModificationException.class,
+                () -> concurentHelper(tree));
+        tree.remove(node.getObject());
         Assertions.assertTrue(tree.isEmpty());
         Assertions.assertFalse(tree.toString().isBlank());
         tree.add(4);
@@ -125,7 +139,7 @@ public class TreeTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.retainAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.removeAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.containsAll(null));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> tree.add(null, 5.0));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> tree.addNode(null, 5.0));
         var iter = tree.iteratorDFS();
         iter.next();
         iter.remove();
