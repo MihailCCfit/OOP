@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -78,7 +79,7 @@ public class TestGraph {
             string += String.format("%s(%s) ", s, alg.getDistant(s));
         }
         Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ", string);
-        Assertions.assertEquals(arrCopy.stream().toList(), List.of("C", "D", "E", "F", "G", "B", "A"));
+        Assertions.assertEquals(arrCopy.stream().collect(Collectors.toList()), List.of("C", "D", "E", "F", "G", "B", "A"));
 
     }
 
