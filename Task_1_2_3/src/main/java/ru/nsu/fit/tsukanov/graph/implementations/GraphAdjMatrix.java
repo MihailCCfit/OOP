@@ -1,8 +1,9 @@
 package ru.nsu.fit.tsukanov.graph.implementations;
 
-import java.util.*;
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
+
+import java.util.*;
 
 
 /**
@@ -10,15 +11,15 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * It uses adjacency matrix for method implementation.
  * Big-O notations:
  * Get:
- * V-V O(log V)
+ * V-V O(1+ev)
  * V-* O(V+ev)
  * *-* O(V^2 + E)
  * Contains:
- * V O(log n) - because there is vertex treemap
- * E O(log n ) - because edge contains source and target vertex
+ * V O(1) - because there is vertex hashmap
+ * E O(1) - because edge contains source and target vertex
  * Add/Remove:
  * V O(N)
- * E O(log V + ev)
+ * E O(ev)
  * Memory:
  * O(N^2+E)
  * ev - vertex's edges
@@ -28,9 +29,9 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @param <E> object, that contained in Edge.
  * @see EdgeDefault
  */
-public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
+public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     private final Stack<Integer> indexesStack;
-    private final TreeMap<V, Integer> vertexMap;
+    private final HashMap<V, Integer> vertexMap;
     private final ArrayList<ArrayList<ArrayList<EdgeDefault<V, E>>>> matrix;
 
     /**
@@ -40,7 +41,7 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
      */
     public GraphAdjMatrix() {
         this.indexesStack = new Stack<>();
-        this.vertexMap = new TreeMap<>();
+        this.vertexMap = new HashMap<>();
         this.matrix = new ArrayList<>();
     }
 
@@ -211,7 +212,14 @@ public class GraphAdjMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
         if (e == null) {
             return false;
         }
-        return containsEdge(e.getSourceVertex(), e.getTargetVertex());
+        if (!containsVertex(e.getEdgeSource())
+                || !containsVertex(e.getTargetVertex())) {
+            return false;
+        }
+
+        return matrix.get(vertexMap.get(e.getEdgeSource()))
+                .get(vertexMap.get(e.getEdgeTarget()))
+                .contains(e);
     }
 
     /**

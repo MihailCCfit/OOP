@@ -1,8 +1,8 @@
 package ru.nsu.fit.tsukanov.graph.implementations;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeMap;
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
 
@@ -11,15 +11,15 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * It uses incident matrix for method implementation.
  * Big-O notations:
  * Get:
- * V-V O(ev)
+ * V-V O(1+ev)
  * V-* O(ev)
  * *-* O(E)
  * Contains:
- * V O(log n) - because there is treemap
+ * V O(1) - because there is treemap
  * E O(ev)
  * Add/Remove:
- * V O(ev + log V)
- * E O(ev + log V)
+ * V O(ev)
+ * E O(ev)
  * Memory:
  * O(N+E)
  * ev - vertex's edges
@@ -29,15 +29,15 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @param <E> object, that contained in Edge.
  * @see EdgeDefault
  */
-public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
+public class GraphIncList<V, E> implements Graph<V, E> {
 
-    TreeMap<V, Vertex<V, E>> vertexMap;
+    HashMap<V, Vertex<V, E>> vertexMap;
 
     /**
      * creates treeMap.
      */
     public GraphIncList() {
-        vertexMap = new TreeMap<>();
+        vertexMap = new HashMap<>();
     }
 
     /**
@@ -160,7 +160,7 @@ public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
         if (containsVertex(v)) {
             return false;
         }
-        Vertex<V, E> vertex = new Vertex<>(v);
+        Vertex<V, E> vertex = new Vertex<>();
         vertexMap.put(v, vertex);
         return true;
     }
@@ -306,12 +306,21 @@ public class GraphIncList<V extends Comparable<V>, E> implements Graph<V, E> {
         }
         Vertex<V, E> vertex = getVertex(v);
 
-        vertex.inEdge.stream()
-                .map(EdgeDefault::getTargetVertex)
-                .map((v2) -> removeEdge(v, v2));
-        vertex.outEdge.stream()
-                .map(EdgeDefault::getTargetVertex)
-                .map((v2) -> removeEdge(v, v2));
+        for (EdgeDefault<V, E> inEdges : vertex.inEdge) {
+            var Vert = vertexMap.get(inEdges.getSourceVertex());
+            if (Vert != null) {
+                Vert.outEdge.remove(inEdges);
+            }
+        }
+        for (EdgeDefault<V, E> outEdge : vertex.outEdge) {
+            var Vert = vertexMap.get(outEdge.getTargetVertex());
+            if (Vert != null) {
+                Vert.outEdge.remove(outEdge);
+            }
+        }
+
+        vertex.outEdge = null;
+        vertex.inEdge = null;
         vertexMap.remove(v);
         return true;
     }

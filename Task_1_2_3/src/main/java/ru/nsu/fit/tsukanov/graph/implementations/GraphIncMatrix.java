@@ -14,7 +14,7 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * V-* O(E)
  * *-* O(E)
  * Contains:
- * V O(log V) - because there is treemap
+ * V O(1) - because there is hashmap
  * E O(1) - because there is hashmap
  * Add/Remove:
  * V O(E)
@@ -28,7 +28,7 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @param <E> object, that contained in Edge.
  * @see EdgeDefault
  */
-public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
+public class GraphIncMatrix<V, E> implements Graph<V, E> {
     @Override
     public String toString() {
         return "GraphIncMatrix{"
@@ -43,7 +43,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
 
     private final Stack<Integer> indexesStackV;
     private final Stack<Integer> indexesStackE;
-    private final TreeMap<V, Integer> vertexMap;
+    private final HashMap<V, Integer> vertexMap;
     private final HashMap<EdgeDefault<V, E>, Integer> edgeMap;
     private final ArrayList<EdgeDefault<V, E>> columns;
     private final ArrayList<ArrayList<Direction>> matrix;
@@ -54,7 +54,7 @@ public class GraphIncMatrix<V extends Comparable<V>, E> implements Graph<V, E> {
     public GraphIncMatrix() {
         indexesStackV = new Stack<>();
         indexesStackE = new Stack<>();
-        vertexMap = new TreeMap<>();
+        vertexMap = new HashMap<>();
         edgeMap = new HashMap<>();
         matrix = new ArrayList<>();
         columns = new ArrayList<>();

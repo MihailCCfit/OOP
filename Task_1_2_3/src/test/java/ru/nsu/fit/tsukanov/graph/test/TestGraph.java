@@ -17,6 +17,7 @@ import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
 
 
+
 /**
  * Testing different graph for interface methods.
  */
@@ -45,15 +46,15 @@ public class TestGraph {
     @MethodSource("graphStream")
     void snd(Graph<String, String> graph) {
         String txt = "7\n"
-                     + "A B C D E F G\n"
-                     + "C\n"
-                     + "- 5 - 12 - - 25\n"
-                     + "5 - - 8 - - -\n"
-                     + "- - - 2 4 5 10\n"
-                     + "12 8 2 - - - -\n"
-                     + "- - 4 - - - 5\n"
-                     + "- - 5 - - - 5\n"
-                     + "25 - 10 - 5 5 -\n";
+                + "A B C D E F G\n"
+                + "C\n"
+                + "- 5 - 12 - - 25\n"
+                + "5 - - 8 - - -\n"
+                + "- - - 2 4 5 10\n"
+                + "12 8 2 - - - -\n"
+                + "- - 4 - - - 5\n"
+                + "- - 5 - - - 5\n"
+                + "25 - 10 - 5 5 -\n";
         Scanner scanner = new Scanner(txt);
         int n = scanner.nextInt();
         ArrayList<String> arrayList = new ArrayList<>();
@@ -71,14 +72,13 @@ public class TestGraph {
             }
         }
         Dijkstra<String, String> alg = new Dijkstra<>(graph, startVertex);
-        ArrayList<String> arrCopy = new ArrayList<>(arrayList);
-        arrCopy.sort((x, y) -> Double.compare(alg.getDistant(x), alg.getDistant(y)));
+        ArrayList<String> arrCopy = alg.getOrdering();
         String string = "";
         for (String s : arrCopy) {
             string += String.format("%s(%s) ", s, alg.getDistant(s));
         }
         Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ", string);
-
+        Assertions.assertEquals(arrCopy.stream().toList(), List.of("C", "D", "E", "F", "G", "B", "A"));
 
     }
 
@@ -169,6 +169,7 @@ public class TestGraph {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Dijkstra<>(graph, 0));
         Assertions.assertFalse(graph.addVertex(null));
+        Assertions.assertNotEquals(2, edge);
         //Для существующего ребра сделать
     }
 
@@ -197,7 +198,7 @@ public class TestGraph {
 
     @ParameterizedTest
     @MethodSource("graphStream")
-    void edgeAndVertexTests(Graph<Integer, String> graph) {
+    void testDijkstraAndIncEdges(Graph<Integer, String> graph) {
         graph.addVertex(0);
         graph.addVertex(5);
         graph.addVertex(10);
@@ -226,13 +227,46 @@ public class TestGraph {
                 Double.POSITIVE_INFINITY);
         Assertions.assertThrows(NullPointerException.class,
                 () -> dijkstra.getDistant(null));
-        //Assertions.assertThrows(IllegalArgumentException.class,
-        //        () -> dijkstra.getDistant(777));
         Assertions.assertNull(dijkstra.getPathE(4));
         Assertions.assertNull(dijkstra.getPathV(4));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathE(null));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathV(null));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.hasPath(null));
         Assertions.assertNull(graph.removeEdge(0, 0));
+    }
+
+    @ParameterizedTest
+    @MethodSource("graphStream")
+    void testAdds(Graph<Integer, String> graph) {
+        EdgeDefault<Integer, String> edge1 = new EdgeDefault<>(0, 1, "01");
+        Assertions.assertTrue(graph.addVertex(0));
+        Assertions.assertTrue(graph.containsVertex(0));
+        Assertions.assertFalse(graph.addEdge(edge1));
+        Assertions.assertFalse(graph.addVertex(0));
+        Assertions.assertTrue(graph.addVertex(1));
+        Assertions.assertTrue(graph.addEdge(edge1));
+        Assertions.assertTrue(graph.containsEdge(edge1));
+    }
+
+    @ParameterizedTest
+    @MethodSource("graphStream")
+    void testRemoves(Graph<Integer, String> graph) {
+        graph.addVertex(0);
+        graph.addVertex(1);
+        EdgeDefault<Integer, String> edge0 = graph.addEdge(0, 1, "Cool Edge");
+        EdgeDefault<Integer, String> edgeNot = new EdgeDefault<>(0, 1);
+        Assertions.assertFalse(graph.containsEdge(edgeNot));
+        Assertions.assertTrue(graph.containsEdge(edge0));
+        Assertions.assertFalse(graph.removeEdge(edgeNot));
+        Assertions.assertTrue(graph.removeEdge(edge0));
+        graph.addEdge(edge0);
+        Assertions.assertFalse(graph.removeVertex(2));
+        Assertions.assertTrue(graph.removeVertex(1));
+        Assertions.assertFalse(graph.removeEdge(edge0));
+        Assertions.assertNull(graph.getEdge(0, 1));
+        Assertions.assertNull(graph.getAllEdges(0, 1));
+        Assertions.assertTrue(graph.removeVertex(0));
+        Assertions.assertFalse(graph.containsEdge(0, 1));
+
     }
 }

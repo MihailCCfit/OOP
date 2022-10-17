@@ -1,9 +1,7 @@
 package ru.nsu.fit.tsukanov.graph.alg.pathfinder;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.TreeMap;
+import java.util.*;
+
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
 
@@ -161,6 +159,12 @@ public class Dijkstra<V extends Comparable<V>, E> {
             throw new NullPointerException();
         }
         return pathMap.containsKey(v);
+    }
+
+    public ArrayList<V> getOrdering(){
+        ArrayList<V> arrayList = new ArrayList<>(marksTree.keySet());
+        arrayList.sort((x,y) -> Double.compare(getDistant(x), getDistant(y)));
+        return arrayList;
     }
 
 }

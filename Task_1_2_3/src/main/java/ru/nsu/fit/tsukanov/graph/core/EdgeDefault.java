@@ -20,6 +20,11 @@ public class EdgeDefault<V, E> {
         return targetVertex;
     }
 
+    /**
+     * Return string representation of edge.
+     * sourceVertex + targetVertex + weight + object.
+     * @return string representation of edge
+     */
     @Override
     public String toString() {
         return "EdgeDefault{"
@@ -32,6 +37,9 @@ public class EdgeDefault<V, E> {
 
     private final V targetVertex;
     private double weight;
+    /**
+     * Default weight for edges.
+     */
     public static final double DEFAULT_WEIGHT = 1.0;
 
     public E getObject() {
@@ -84,13 +92,19 @@ public class EdgeDefault<V, E> {
         return targetVertex;
     }
 
+    /**
+     * Compares for equality of edges.
+     * Check for
+     * @param obj edge that will be compared with this edge.
+     * @return true, if objects are equal
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
         }
-        if (obj.getClass() == getClass()) {
-            EdgeDefault<?, ?> temp = (EdgeDefault<?, ?>) obj;
+
+        if (obj instanceof EdgeDefault<?, ?> temp) {
             return temp.sourceVertex.equals(sourceVertex)
                     && temp.targetVertex.equals(this.targetVertex)
                     && ((temp.object == null && this.object == null)
