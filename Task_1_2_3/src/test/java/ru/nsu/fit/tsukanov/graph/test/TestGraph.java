@@ -68,7 +68,8 @@ public class TestGraph {
             for (int j = 0; j < n; j++) {
                 String dist = scanner.next();
                 if (!dist.equals("-")) {
-                    graph.addEdge(arrayList.get(i), arrayList.get(j), "" + i + j, Integer.parseInt(dist));
+                    graph.addEdge(arrayList.get(i), arrayList.get(j),
+                            "" + i + j, Integer.parseInt(dist));
                 }
             }
         }
@@ -78,8 +79,10 @@ public class TestGraph {
         for (String s : arrCopy) {
             string += String.format("%s(%s) ", s, alg.getDistant(s));
         }
-        Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ", string);
-        Assertions.assertEquals(arrCopy.stream().collect(Collectors.toList()), List.of("C", "D", "E", "F", "G", "B", "A"));
+        Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ",
+                string);
+        Assertions.assertEquals(arrCopy.stream().collect(Collectors.toList()),
+                List.of("C", "D", "E", "F", "G", "B", "A"));
 
     }
 

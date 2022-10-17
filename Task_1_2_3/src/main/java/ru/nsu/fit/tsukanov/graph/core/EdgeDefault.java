@@ -23,6 +23,7 @@ public class EdgeDefault<V, E> {
     /**
      * Return string representation of edge.
      * sourceVertex + targetVertex + weight + object.
+     *
      * @return string representation of edge
      */
     @Override
@@ -63,8 +64,8 @@ public class EdgeDefault<V, E> {
     /**
      * Creates edge with specify vertices, object and weight.
      *
-     * @param start is source vertex
-     * @param end is target vertex
+     * @param start  is source vertex
+     * @param end    is target vertex
      * @param object is object that is placed into edge
      * @param weight is double-value weight of edge
      */
@@ -95,6 +96,7 @@ public class EdgeDefault<V, E> {
     /**
      * Compares for equality of edges.
      * Check for
+     *
      * @param obj edge that will be compared with this edge.
      * @return true, if objects are equal
      */
@@ -104,7 +106,7 @@ public class EdgeDefault<V, E> {
             return false;
         }
 
-        if (obj instanceof EdgeDefault<?,?>) {
+        if (obj instanceof EdgeDefault<?, ?>) {
             EdgeDefault<?, ?> temp = (EdgeDefault<?, ?>) obj;
             return temp.sourceVertex.equals(sourceVertex)
                     && temp.targetVertex.equals(this.targetVertex)

@@ -307,15 +307,15 @@ public class GraphIncList<V, E> implements Graph<V, E> {
         Vertex<V, E> vertex = getVertex(v);
 
         for (EdgeDefault<V, E> inEdges : vertex.inEdge) {
-            var Vert = vertexMap.get(inEdges.getSourceVertex());
-            if (Vert != null) {
-                Vert.outEdge.remove(inEdges);
+            var vert = vertexMap.get(inEdges.getSourceVertex());
+            if (vert != null) {
+                vert.outEdge.remove(inEdges);
             }
         }
         for (EdgeDefault<V, E> outEdge : vertex.outEdge) {
-            var Vert = vertexMap.get(outEdge.getTargetVertex());
-            if (Vert != null) {
-                Vert.outEdge.remove(outEdge);
+            var vert = vertexMap.get(outEdge.getTargetVertex());
+            if (vert != null) {
+                vert.outEdge.remove(outEdge);
             }
         }
 

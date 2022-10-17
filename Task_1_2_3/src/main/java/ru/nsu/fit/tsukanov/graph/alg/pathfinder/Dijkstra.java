@@ -1,9 +1,9 @@
 package ru.nsu.fit.tsukanov.graph.alg.pathfinder;
 
-import java.util.*;
-
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
+
+import java.util.*;
 
 /**
  * Dijkstra algorithm.
@@ -24,7 +24,7 @@ public class Dijkstra<V extends Comparable<V>, E> {
     /**
      * Initialize maps, heap and start alg.
      *
-     * @param graph the graph where will be finding paths and distances
+     * @param graph     the graph where will be finding paths and distances
      * @param startVert the start vertex, from which will calculates distance
      */
     public Dijkstra(Graph<V, E> graph, V startVert) {
@@ -161,9 +161,15 @@ public class Dijkstra<V extends Comparable<V>, E> {
         return pathMap.containsKey(v);
     }
 
-    public ArrayList<V> getOrdering(){
+    /**
+     * Ordering vertices according to their distance from start vertex.
+     * And return ArrayList of ordered vertices.
+     *
+     * @return ordered ArrayList according to distance
+     */
+    public ArrayList<V> getOrdering() {
         ArrayList<V> arrayList = new ArrayList<>(marksTree.keySet());
-        arrayList.sort((x,y) -> Double.compare(getDistant(x), getDistant(y)));
+        arrayList.sort((x, y) -> Double.compare(getDistant(x), getDistant(y)));
         return arrayList;
     }
 

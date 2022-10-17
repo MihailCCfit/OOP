@@ -1,9 +1,9 @@
 package ru.nsu.fit.tsukanov.graph.implementations;
 
+import java.util.*;
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
 
-import java.util.*;
 
 
 /**
