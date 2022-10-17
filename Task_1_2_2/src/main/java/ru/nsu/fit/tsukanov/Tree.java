@@ -77,14 +77,6 @@ public class Tree<T> implements Collection<T> {
         }
 
         /**
-         * Remove this node from parent node.
-         */
-        private void remove() {
-            var father = this.getParent();
-            father.getChildren().remove(this);
-        }
-
-        /**
          * Return object that placed in this node.
          *
          * @return object of this node.
@@ -286,7 +278,7 @@ public class Tree<T> implements Collection<T> {
     }
 
     /**
-     * ru.nsu.fit.tsukanov.Tree will always add
+     * Tree will always add
      *
      * @param c collection containing elements to be added to this collection
      * @return true
@@ -368,6 +360,7 @@ public class Tree<T> implements Collection<T> {
      * @param c collection containing elements to be removed from this collection
      * @return true, if there is some removing.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public boolean containsAll(Collection c) {
         if (c == null) {
