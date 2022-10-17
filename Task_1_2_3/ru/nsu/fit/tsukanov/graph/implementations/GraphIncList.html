@@ -115,7 +115,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.fit.tsukanov.graph.implementations</a></div>
-<h2 title="Class GraphIncList" class="title">Class GraphIncList&lt;V extends java.lang.Comparable&lt;V&gt;,&#8203;E&gt;</h2>
+<h2 title="Class GraphIncList" class="title">Class GraphIncList&lt;V,&#8203;E&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -139,22 +139,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd><code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;V,&#8203;E&gt;</code></dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">GraphIncList&lt;V extends java.lang.Comparable&lt;V&gt;,&#8203;E&gt;</span>
+<pre>public class <span class="typeNameLabel">GraphIncList&lt;V,&#8203;E&gt;</span>
 extends java.lang.Object
 implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;V,&#8203;E&gt;</pre>
 <div class="block">Oriented weighted graph. There is class for edge and vertex.
  It uses incident matrix for method implementation.
  Big-O notations:
  Get:
- V-V O(ev)
+ V-V O(1+ev)
  V-* O(ev)
  *-* O(E)
  Contains:
- V O(log n) - because there is treemap
+ V O(1) - because there is treemap
  E O(ev)
  Add/Remove:
- V O(ev + log V)
- E O(ev + log V)
+ V O(ev)
+ E O(ev)
  Memory:
  O(N+E)
  ev - vertex's edges
@@ -378,7 +378,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getAllEdges(java.lang.Comparable,java.lang.Comparable)">
+<a id="getAllEdges(java.lang.Object,java.lang.Object)">
 <!--   -->
 </a><a id="getAllEdges(V,V)">
 <!--   -->
@@ -392,7 +392,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
  Edges is directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#getAllEdges(V,V)">getAllEdges</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#getAllEdges(V,V)">getAllEdges</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - start vertex</dd>
 <dd><code>targetVertex</code> - end vertex</dd>
@@ -401,7 +401,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="getEdge(java.lang.Comparable,java.lang.Comparable)">
+<a id="getEdge(java.lang.Object,java.lang.Object)">
 <!--   -->
 </a><a id="getEdge(V,V)">
 <!--   -->
@@ -415,7 +415,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
  Edge is directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#getEdge(V,V)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#getEdge(V,V)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - start vertex</dd>
 <dd><code>targetVertex</code> - end vertex</dd>
@@ -424,7 +424,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="addEdge(java.lang.Comparable,java.lang.Comparable,java.lang.Object)">
+<a id="addEdge(java.lang.Object,java.lang.Object,java.lang.Object)">
 <!--   -->
 </a><a id="addEdge(V,V,E)">
 <!--   -->
@@ -439,7 +439,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
  Edge has an object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#addEdge(V,V,E)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#addEdge(V,V,E)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for edge</dd>
 <dd><code>targetVertex</code> - is end vertex for edge</dd>
@@ -459,7 +459,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Add specify edge, if there is no such edge.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#addEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#addEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - is edge that will be added to graph</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -467,7 +467,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="addEdge(java.lang.Comparable,java.lang.Comparable,java.lang.Object,double)">
+<a id="addEdge(java.lang.Object,java.lang.Object,java.lang.Object,double)">
 <!--   -->
 </a><a id="addEdge(V,V,E,double)">
 <!--   -->
@@ -482,7 +482,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Create Edge with specify vertices, weight and object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#addEdge(V,V,E,double)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#addEdge(V,V,E,double)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for edge</dd>
 <dd><code>targetVertex</code> - is end vertex for edge</dd>
@@ -493,7 +493,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="addVertex(java.lang.Comparable)">
+<a id="addVertex(java.lang.Object)">
 <!--   -->
 </a><a id="addVertex(V)">
 <!--   -->
@@ -506,7 +506,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
  If it isn't, then return false.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#addVertex(V)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#addVertex(V)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>v</code> - is vertex value, or vertex object.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -514,7 +514,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="containsEdge(java.lang.Comparable,java.lang.Comparable)">
+<a id="containsEdge(java.lang.Object,java.lang.Object)">
 <!--   -->
 </a><a id="containsEdge(V,V)">
 <!--   -->
@@ -527,7 +527,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Check for existing edge between two vertices.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#containsEdge(V,V)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#containsEdge(V,V)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for some edge</dd>
 <dd><code>targetVertex</code> - is end vertex for some edge</dd>
@@ -546,7 +546,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Check for exising edge in the graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#containsEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#containsEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - is edge for checking</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -554,7 +554,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="containsVertex(java.lang.Comparable)">
+<a id="containsVertex(java.lang.Object)">
 <!--   -->
 </a><a id="containsVertex(V)">
 <!--   -->
@@ -566,7 +566,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Check for exising vertex in the graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#containsVertex(V)">containsVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#containsVertex(V)">containsVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>v</code> - is vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -584,13 +584,13 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Return set of all edges from graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#edgeSet()">edgeSet</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#edgeSet()">edgeSet</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>set of all edges from this graph.</dd>
 </dl>
 </li>
 </ul>
-<a id="incomingEdgesOf(java.lang.Comparable)">
+<a id="incomingEdgesOf(java.lang.Object)">
 <!--   -->
 </a><a id="incomingEdgesOf(V)">
 <!--   -->
@@ -602,7 +602,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#incomingEdgesOf(V)">incomingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#incomingEdgesOf(V)">incomingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vertex</code> - is vertex</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -610,7 +610,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="outgoingEdgesOf(java.lang.Comparable)">
+<a id="outgoingEdgesOf(java.lang.Object)">
 <!--   -->
 </a><a id="outgoingEdgesOf(V)">
 <!--   -->
@@ -622,7 +622,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#outgoingEdgesOf(V)">outgoingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#outgoingEdgesOf(V)">outgoingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vertex</code> - is vertex</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -630,7 +630,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="removeEdge(java.lang.Comparable,java.lang.Comparable)">
+<a id="removeEdge(java.lang.Object,java.lang.Object)">
 <!--   -->
 </a><a id="removeEdge(V,V)">
 <!--   -->
@@ -643,7 +643,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Remove edge with null object from graph between two specify vertices.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#removeEdge(V,V)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#removeEdge(V,V)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is source vertex maybe for some edge.</dd>
 <dd><code>targetVertex</code> - is target vertex maybe for some edge.</dd>
@@ -662,7 +662,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Remove specify edge from graph. And check for graph changes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#removeEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#removeEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - is edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -670,7 +670,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="removeVertex(java.lang.Comparable)">
+<a id="removeVertex(java.lang.Object)">
 <!--   -->
 </a><a id="removeVertex(V)">
 <!--   -->
@@ -682,7 +682,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Remove specify vertex from graph. And check for graph changes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#removeVertex(V)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#removeVertex(V)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>v</code> - is vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -700,7 +700,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Return set of all vertices from graph.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#vertexSet()">vertexSet</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a> extends java.lang.Comparable&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>&gt;,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#vertexSet()">vertexSet</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncList.html" title="type parameter in GraphIncList">V</a>,&#8203;<a href="GraphIncList.html" title="type parameter in GraphIncList">E</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>set of all vertices from this graph</dd>
 </dl>

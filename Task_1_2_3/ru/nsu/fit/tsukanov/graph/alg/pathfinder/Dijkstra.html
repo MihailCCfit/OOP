@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -192,34 +192,39 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.util.ArrayList&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOrdering()">getOrdering</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>,&#8203;<a href="Dijkstra.html" title="type parameter in Dijkstra">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPathE(V)">getPathE</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</code></th>
 <td class="colLast">
 <div class="block">Return edge path from start vertex to specify.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPathV(V)">getPathV</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</code></th>
 <td class="colLast">
 <div class="block">Return vertex path from start vertex to specify.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasPath(V)">hasPath</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</code></th>
 <td class="colLast">
 <div class="block">Check existing path from start vertex to specify.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reuse()">reuse</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Reuse Dijkstra algorithm.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reuse(V)">reuse</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;start)</code></th>
 <td class="colLast">
@@ -370,7 +375,7 @@ extends java.lang.Object</pre>
 </a><a id="hasPath(V)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>hasPath</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;hasPath&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</pre>
@@ -381,6 +386,15 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if path exist to specify vertex.</dd>
 </dl>
+</li>
+</ul>
+<a id="getOrdering()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getOrdering</h4>
+<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&gt;&nbsp;getOrdering()</pre>
 </li>
 </ul>
 </li>
