@@ -104,7 +104,8 @@ public class EdgeDefault<V, E> {
             return false;
         }
 
-        if (obj instanceof EdgeDefault<?, ?> temp) {
+        if (obj instanceof EdgeDefault<?,?>) {
+            EdgeDefault<?, ?> temp = (EdgeDefault<?, ?>) obj;
             return temp.sourceVertex.equals(sourceVertex)
                     && temp.targetVertex.equals(this.targetVertex)
                     && ((temp.object == null && this.object == null)
