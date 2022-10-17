@@ -177,7 +177,7 @@ implements java.util.Iterator&lt;T&gt;</pre>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextN()">nextN</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nextNode()">nextNode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the next node in the iteration according to DFS algorithm.</div>
 </td>
@@ -258,14 +258,15 @@ implements java.util.Iterator&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="nextN()">
+<a id="nextNode()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>nextN</h4>
-<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;nextN()
-                   throws java.lang.IllegalStateException</pre>
+<h4>nextNode</h4>
+<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;nextNode()
+                      throws java.lang.IllegalStateException,
+                             java.util.ConcurrentModificationException</pre>
 <div class="block">Returns the next node in the iteration according to DFS algorithm.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -273,6 +274,7 @@ implements java.util.Iterator&lt;T&gt;</pre>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.util.NoSuchElementException</code> - if the iteration has no more nodes</dd>
 <dd><code>java.lang.IllegalStateException</code></dd>
+<dd><code>java.util.ConcurrentModificationException</code></dd>
 </dl>
 </li>
 </ul>
@@ -283,13 +285,15 @@ implements java.util.Iterator&lt;T&gt;</pre>
 <li class="blockList">
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;remove()
-            throws java.lang.IllegalStateException</pre>
+            throws java.lang.IllegalStateException,
+                   java.util.ConcurrentModificationException</pre>
 <div class="block">Remove current node from tree.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>remove</code>&nbsp;in interface&nbsp;<code>java.util.Iterator&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.IllegalStateException</code> - if current node is root</dd>
+<dd><code>java.util.ConcurrentModificationException</code></dd>
 </dl>
 </li>
 </ul>

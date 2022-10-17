@@ -141,7 +141,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 extends java.lang.Object
 implements java.util.Collection&lt;T&gt;</pre>
 <div class="block">Tree is collection. User can add new Nodes to root, or to other Nodes.
- It's easy to create branches, this structure is fragile.</div>
+ It's easy to create branches, this structure is fragile.
+ Root is used for DFS and BFD iterations,
+ it's simplify these algorithm implementations.
+ But use root as object place is bad, because there are problems
+ with nodes swapping, iterations, removes and other.</div>
 </li>
 </ul>
 </div>
@@ -238,23 +242,23 @@ implements java.util.Collection&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(ru.nsu.fit.tsukanov.Tree.Node,T)">add</a></span>&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
-   <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
-<td class="colLast">
-<div class="block">Create new node with specify object and put it into specify node.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAll(java.util.Collection)">addAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">ru.nsu.fit.tsukanov.Tree will always add</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addNode(ru.nsu.fit.tsukanov.Tree.Node,T)">addNode</a></span>&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
+       <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
+<td class="colLast">
+<div class="block">Create new node with specify object and put it into specify node.</div>
+</td>
+</tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addN(T)">addN</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addNode(T)">addNode</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Create node and put object into node.</div>
 </td>
@@ -267,32 +271,32 @@ implements java.util.Collection&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#contain(java.lang.Object)">contain</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
-<td class="colLast">
-<div class="block">Similar to filter(object.equals),
- but return nodes rather than objects.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#contain(java.util.function.Predicate)">contain</a></span>&#8203;(java.util.function.Predicate&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;predicate)</code></th>
-<td class="colLast">
-<div class="block">Return all nodes, that have true test by predicate.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#contains(java.lang.Object)">contains</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Check tree for containing specify element.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#containsAll(java.util.Collection)">containsAll</a></span>&#8203;(java.util.Collection&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Remove from tree all nodes with object that's not contained in collection.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findNodes(java.lang.Object)">findNodes</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
+<td class="colLast">
+<div class="block">Similar to filter(object.equals),
+ but return nodes rather than objects.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findNodes(java.util.function.Predicate)">findNodes</a></span>&#8203;(java.util.function.Predicate&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;predicate)</code></th>
+<td class="colLast">
+<div class="block">Return all nodes, that have true test by predicate.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -327,7 +331,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
-<div class="block">remove node and his subtrees from tree according to specify object.</div>
+<div class="block">Removes node and its subtrees from tree according to specified object.</div>
 </td>
 </tr>
 <tr id="i14" class="altColor">
@@ -497,13 +501,13 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="contain(java.lang.Object)">
+<a id="findNodes(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>contain</h4>
-<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;contain&#8203;(java.lang.Object&nbsp;o)</pre>
+<h4>findNodes</h4>
+<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;findNodes&#8203;(java.lang.Object&nbsp;o)</pre>
 <div class="block">Similar to filter(object.equals),
  but return nodes rather than objects.</div>
 <dl>
@@ -514,13 +518,13 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="contain(java.util.function.Predicate)">
+<a id="findNodes(java.util.function.Predicate)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>contain</h4>
-<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;contain&#8203;(java.util.function.Predicate&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;predicate)</pre>
+<h4>findNodes</h4>
+<pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;findNodes&#8203;(java.util.function.Predicate&lt;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&gt;&nbsp;predicate)</pre>
 <div class="block">Return all nodes, that have true test by predicate.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -566,17 +570,17 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="add(ru.nsu.fit.tsukanov.Tree.Node,java.lang.Object)">
+<a id="addNode(ru.nsu.fit.tsukanov.Tree.Node,java.lang.Object)">
 <!--   -->
-</a><a id="add(ru.nsu.fit.tsukanov.Tree.Node,T)">
+</a><a id="addNode(ru.nsu.fit.tsukanov.Tree.Node,T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>add</h4>
-<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;add&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
-                        <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)
-                 throws java.lang.IllegalArgumentException</pre>
+<h4>addNode</h4>
+<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addNode&#8203;(<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;node,
+                            <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)
+                     throws java.lang.IllegalArgumentException</pre>
 <div class="block">Create new node with specify object and put it into specify node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -589,15 +593,15 @@ implements java.util.Collection&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
-<a id="addN(java.lang.Object)">
+<a id="addNode(java.lang.Object)">
 <!--   -->
-</a><a id="addN(T)">
+</a><a id="addNode(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addN</h4>
-<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addN&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
+<h4>addNode</h4>
+<pre class="methodSignature">public&nbsp;<a href="Tree.Node.html" title="class in ru.nsu.fit.tsukanov">Tree.Node</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addNode&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;o)</pre>
 <div class="block">Create node and put object into node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -614,7 +618,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <li class="blockList">
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;remove&#8203;(java.lang.Object&nbsp;o)</pre>
-<div class="block">remove node and his subtrees from tree according to specify object.</div>
+<div class="block">Removes node and its subtrees from tree according to specified object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>remove</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
