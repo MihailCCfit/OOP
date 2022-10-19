@@ -1,5 +1,6 @@
 package ru.nsu.fit.tsukanov.graph.test;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphAdjMatrix;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
-
 
 
 /**
@@ -115,19 +115,31 @@ public class TestGraph {
         Assertions.assertTrue(graph.containsEdge(ed3));
         Assertions.assertNull(graph.getEdge("B", "A"));
         Dijkstra<String, String> dijkstra = new Dijkstra<>(graph, "A");
+        BellmanFord<String, String> bellmanFord = new BellmanFord<>(graph, "A");
         Assertions.assertTrue(dijkstra.getPathV("C").containsAll(
                 List.of("A", "B", "C"))
         );
         Assertions.assertTrue(dijkstra.getPathE("C").containsAll(
                 List.of(ed1, ed3)
         ));
+        Assertions.assertTrue(bellmanFord.getPathV("C").containsAll(
+                List.of("A", "B", "C"))
+        );
+        Assertions.assertTrue(bellmanFord.getPathE("C").containsAll(
+                List.of(ed1, ed3)
+        ));
         Assertions.assertEquals(9, dijkstra.getDistant("C"));
+        Assertions.assertEquals(9, bellmanFord.getDistant("C"));
         Assertions.assertTrue(graph.containsEdge("A", "B"));
         Assertions.assertTrue(graph.containsEdge(ed1));
         graph.removeEdge("A", "B");
         dijkstra.reuse();
+        bellmanFord.reuse();
         Assertions.assertTrue(dijkstra.hasPath("C"));
+        Assertions.assertTrue(bellmanFord.hasPath("C"));
         Assertions.assertEquals(Double.POSITIVE_INFINITY, dijkstra.getDistant("B"));
+        System.out.println(bellmanFord.getPathE("B"));
+        Assertions.assertEquals(Double.POSITIVE_INFINITY, bellmanFord.getDistant("B"));
         Assertions.assertFalse(graph.containsEdge("A", "B"));
         Assertions.assertFalse(graph.containsEdge(ed1));
         Assertions.assertNull(graph.getEdge("A", "B"));
@@ -190,6 +202,10 @@ public class TestGraph {
                 () -> new Dijkstra<>(graph, null));
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new Dijkstra<>(graph, 0));
+        Assertions.assertThrows(NullPointerException.class,
+                () -> new BellmanFord<>(graph, null));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new BellmanFord<>(graph, 0));
         Assertions.assertFalse(graph.addVertex(null));
         Assertions.assertNotEquals(2, edge);
         //Для существующего ребра сделать

@@ -5,6 +5,7 @@ import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
 
 
+
 /**
  * Bellman-Ford algorithm.
  * Works with:
