@@ -19,6 +19,7 @@ import ru.nsu.fit.tsukanov.graph.implementations.GraphAdjMatrix;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
 
+
 /**
  * Testing different graph for interface methods.
  */
@@ -32,6 +33,7 @@ public class TestGraph {
 
     /**
      * Testing example from task.
+     *
      * @param graph different graphs
      * @throws FileNotFoundException just for fun
      */
@@ -82,6 +84,7 @@ public class TestGraph {
 
     /**
      * Testing many methods with normal vertices and edges.
+     *
      * @param graph - is different graph implementation.
      */
     @ParameterizedTest
@@ -131,6 +134,7 @@ public class TestGraph {
 
     /**
      * Testing null vertices, null edges, null value of object, and other situations.
+     *
      * @param graph - is different graph implementation.
      */
     @ParameterizedTest
@@ -205,6 +209,7 @@ public class TestGraph {
 
     /**
      * Testing Dijkstra, and some methods, which are used in algorithm.
+     *
      * @param graph - is different graph implementation.
      */
     @ParameterizedTest
@@ -248,6 +253,7 @@ public class TestGraph {
 
     /**
      * Common tests for adds.
+     *
      * @param graph - is different graph implementation.
      */
     @ParameterizedTest
@@ -265,6 +271,7 @@ public class TestGraph {
 
     /**
      * Test removing vertices and edges from the graph.
+     *
      * @param graph - is different graph implementation.
      */
     @ParameterizedTest
