@@ -21,6 +21,7 @@ import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
 
 
+
 /**
  * Testing different graph for interface methods.
  */
