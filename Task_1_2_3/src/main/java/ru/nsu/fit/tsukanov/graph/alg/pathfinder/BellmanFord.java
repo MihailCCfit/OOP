@@ -6,39 +6,35 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
 
 
 /**
- * Dijkstra algorithm.
+ * Bellman-Ford algorithm.
  * Works with:
- * O (E*log V)
+ * O (E*V)
  *
  * @param <V> vertex object
  * @param <E> edge object
  */
-public class Dijkstra<V, E> {
+public class BellmanFord<V, E> {
     private V startVert;
-    private final HashMap<V, Double> marksTree;
+    private final HashMap<V, Double> marksMap;
     private final HashMap<V, EdgeDefault<V, E>> pathMap;
-    private final PriorityQueue<V> heap;
-
     private final Graph<V, E> graph;
 
     /**
-     * Initialize maps, heap and start alg.
+     * Initialize maps and start alg.
      *
      * @param graph     the graph where will be finding paths and distances
      * @param startVert the start vertex, from which will calculates distance
      */
-    public Dijkstra(Graph<V, E> graph, V startVert) {
+    public BellmanFord(Graph<V, E> graph, V startVert) {
         this.startVert = startVert;
-        this.marksTree = new HashMap<>();
-        this.heap = new PriorityQueue<>((v1, v2) ->
-                (marksTree.get(v1).compareTo(marksTree.get(v2))));
+        this.marksMap = new HashMap<>();
         this.graph = graph;
         pathMap = new HashMap<>();
         reuse();
     }
 
     /**
-     * Use Dijkstra alg for finding path.
+     * Use Bellman alg for finding path.
      *
      * @param start the starting vertex
      */
@@ -50,16 +46,14 @@ public class Dijkstra<V, E> {
             throw new IllegalArgumentException("No such vertex in graph");
         }
         this.startVert = start;
-        heap.clear();
-        marksTree.clear();
+        marksMap.clear();
         pathMap.clear();
-        heap.add(startVert);
-        marksTree.put(startVert, 0.0);
+        marksMap.put(startVert, 0.0);
         alg();
     }
 
     /**
-     * Reuse Dijkstra algorithm.
+     * Reuse Bellman algorithm.
      * It's useful, if there are some modifications in the graph.
      */
     public void reuse() {
@@ -69,18 +63,19 @@ public class Dijkstra<V, E> {
     private void relax(EdgeDefault<V, E> edge) {
         V start = edge.getEdgeSource();
         V end = edge.getEdgeTarget();
-        double res = marksTree.get(start) + edge.getWeight();
-        if (!marksTree.containsKey(end) || res < marksTree.get(end)) {
-            marksTree.put(end, res);
-            pathMap.put(end, edge);
-            heap.add(end);
+        if (marksMap.containsKey(start)) {
+            double res = marksMap.get(start) + edge.getWeight();
+            if (!marksMap.containsKey(end) || res < marksMap.get(end)) {
+                marksMap.put(end, res);
+                pathMap.put(end, edge);
+            }
         }
     }
 
     private void alg() {
-        while (!heap.isEmpty()) {
-            V curr = heap.poll();
-            for (EdgeDefault<V, E> edge : graph.outgoingEdgesOf(curr)) {
+        Set<EdgeDefault<V, E>> edgeSet = graph.edgeSet();
+        for (int i = 0; i < graph.vertexSet().size() - 1; i++) {
+            for (EdgeDefault<V, E> edge : edgeSet) {
                 relax(edge);
             }
         }
@@ -97,7 +92,7 @@ public class Dijkstra<V, E> {
         if (v == null) {
             throw new NullPointerException("Null vertex");
         }
-        return marksTree.getOrDefault(v, Double.POSITIVE_INFINITY);
+        return marksMap.getOrDefault(v, Double.POSITIVE_INFINITY);
     }
 
     /**
@@ -168,9 +163,8 @@ public class Dijkstra<V, E> {
      * @return ordered ArrayList according to distance
      */
     public ArrayList<V> getOrdering() {
-        ArrayList<V> arrayList = new ArrayList<>(marksTree.keySet());
+        ArrayList<V> arrayList = new ArrayList<>(marksMap.keySet());
         arrayList.sort((x, y) -> Double.compare(getDistant(x), getDistant(y)));
         return arrayList;
     }
-
 }

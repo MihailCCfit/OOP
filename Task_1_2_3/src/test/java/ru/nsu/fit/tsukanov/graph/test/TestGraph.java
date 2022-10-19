@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.nsu.fit.tsukanov.graph.alg.pathfinder.BellmanFord;
 import ru.nsu.fit.tsukanov.graph.alg.pathfinder.Dijkstra;
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
@@ -72,6 +73,7 @@ public class TestGraph {
         Dijkstra<String, String> alg = new Dijkstra<>(graph, startVertex);
         ArrayList<String> arrCopy = alg.getOrdering();
         String string = "";
+
         for (String s : arrCopy) {
             string += String.format("%s(%s) ", s, alg.getDistant(s));
         }
@@ -80,6 +82,17 @@ public class TestGraph {
         Assertions.assertEquals(arrCopy.stream().collect(Collectors.toList()),
                 List.of("C", "D", "E", "F", "G", "B", "A"));
 
+        BellmanFord<String, String> alg2 = new BellmanFord<>(graph, startVertex);
+        arrCopy = alg2.getOrdering();
+        string = "";
+
+        for (String s : arrCopy) {
+            string += String.format("%s(%s) ", s, alg2.getDistant(s));
+        }
+        Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ",
+                string);
+        Assertions.assertEquals(arrCopy.stream().collect(Collectors.toList()),
+                List.of("C", "D", "E", "F", "G", "B", "A"));
     }
 
     /**
@@ -208,13 +221,13 @@ public class TestGraph {
     }
 
     /**
-     * Testing Dijkstra, and some methods, which are used in algorithm.
+     * Testing Dijkstra and Bellman, and some methods, which are used in algorithm.
      *
      * @param graph - is different graph implementation.
      */
     @ParameterizedTest
     @MethodSource("graphStream")
-    void testDijkstraAndIncEdges(Graph<Integer, String> graph) {
+    void testPathFindersAndIncEdges(Graph<Integer, String> graph) {
         graph.addVertex(0);
         graph.addVertex(5);
         graph.addVertex(10);
@@ -248,6 +261,20 @@ public class TestGraph {
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathE(null));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathV(null));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.hasPath(null));
+        Assertions.assertNull(graph.removeEdge(0, 0));
+
+        BellmanFord<Integer, String> bellman = new BellmanFord<>(graph, 0);
+        Assertions.assertFalse(bellman.hasPath(666));
+        Assertions.assertEquals(bellman.getDistant(-1), 9);
+        Assertions.assertEquals(bellman.getDistant(666),
+                Double.POSITIVE_INFINITY);
+        Assertions.assertThrows(NullPointerException.class,
+                () -> bellman.getDistant(null));
+        Assertions.assertNull(bellman.getPathE(4));
+        Assertions.assertNull(bellman.getPathV(4));
+        Assertions.assertThrows(NullPointerException.class, () -> bellman.getPathE(null));
+        Assertions.assertThrows(NullPointerException.class, () -> bellman.getPathV(null));
+        Assertions.assertThrows(NullPointerException.class, () -> bellman.hasPath(null));
         Assertions.assertNull(graph.removeEdge(0, 0));
     }
 
