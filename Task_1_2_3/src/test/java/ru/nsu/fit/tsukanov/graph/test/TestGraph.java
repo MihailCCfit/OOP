@@ -1,5 +1,7 @@
 package ru.nsu.fit.tsukanov.graph.test;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,25 +19,10 @@ import ru.nsu.fit.tsukanov.graph.implementations.GraphAdjMatrix;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
 
-
-
 /**
  * Testing different graph for interface methods.
  */
 public class TestGraph {
-    /*
-    public static void txtGraph(Graph<String, String> graph) throws IOException {
-    FileReader fileReader = new FileReader("ru/nsu/fit/tsukanov/GraphTest/matrix.txt");
-    BufferedReader reader = new BufferedReader(fileReader);
-
-    Scanner scanner = new Scanner(reader);
-    System.out.println(scanner.next());
-        /*for (int i = 0; i < size; i++) {
-            graph.addVertex(scanner.next());
-        }
-        System.out.println(graph.vertexSet());
-    }
-    */
     private static Stream<Graph> graphStream() {
         return Stream.of(new GraphIncMatrix(),
                 new GraphAdjMatrix<>(),
@@ -43,27 +30,33 @@ public class TestGraph {
         );
     }
 
+    /**
+     * Testing example from task.
+     * @param graph different graphs
+     * @throws FileNotFoundException just for fun
+     */
     @ParameterizedTest
     @MethodSource("graphStream")
-    void snd(Graph<String, String> graph) {
+    void snd(Graph<String, String> graph) throws FileNotFoundException {
         String txt = "7\n"
                 + "A B C D E F G\n"
-                + "C\n"
                 + "- 5 - 12 - - 25\n"
                 + "5 - - 8 - - -\n"
                 + "- - - 2 4 5 10\n"
                 + "12 8 2 - - - -\n"
                 + "- - 4 - - - 5\n"
                 + "- - 5 - - - 5\n"
-                + "25 - 10 - 5 5 -\n";
-        Scanner scanner = new Scanner(txt);
+                + "25 - 10 - 5 5 -\n"
+                + "C\n";
+        FileReader fileReader = new FileReader("src/test/resources/matrix.txt");
+        Scanner scanner = new Scanner(fileReader);
+        //Scanner scanner = new Scanner(txt);
         int n = scanner.nextInt();
         ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             arrayList.add(scanner.next());
             graph.addVertex(arrayList.get(i));
         }
-        String startVertex = scanner.next();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 String dist = scanner.next();
@@ -73,6 +66,7 @@ public class TestGraph {
                 }
             }
         }
+        String startVertex = scanner.next();
         Dijkstra<String, String> alg = new Dijkstra<>(graph, startVertex);
         ArrayList<String> arrCopy = alg.getOrdering();
         String string = "";
@@ -86,7 +80,10 @@ public class TestGraph {
 
     }
 
-
+    /**
+     * Testing many methods with normal vertices and edges.
+     * @param graph - is different graph implementation.
+     */
     @ParameterizedTest
     @MethodSource("graphStream")
     void graphTest1(Graph<String, String> graph) {
@@ -130,9 +127,12 @@ public class TestGraph {
         Assertions.assertEquals(edge.getWeight(), 5);
         Assertions.assertNull(graph.removeEdge("A", "D"));
         Assertions.assertTrue(graph.removeAllVertices(List.of("A", "C")));
-
     }
 
+    /**
+     * Testing null vertices, null edges, null value of object, and other situations.
+     * @param graph - is different graph implementation.
+     */
     @ParameterizedTest
     @MethodSource("graphStream")
     void testNulls(Graph<Integer, String> graph) {
@@ -177,6 +177,9 @@ public class TestGraph {
         //Для существующего ребра сделать
     }
 
+    /**
+     * Testing edge class.
+     */
     @Test
     void edgeTest() {
         EdgeDefault<Integer, String> edgeDefault = new EdgeDefault<>(0, 0);
@@ -200,6 +203,10 @@ public class TestGraph {
         Assertions.assertEquals(edgeDefault4, edgeDefault);
     }
 
+    /**
+     * Testing Dijkstra, and some methods, which are used in algorithm.
+     * @param graph - is different graph implementation.
+     */
     @ParameterizedTest
     @MethodSource("graphStream")
     void testDijkstraAndIncEdges(Graph<Integer, String> graph) {
@@ -239,6 +246,10 @@ public class TestGraph {
         Assertions.assertNull(graph.removeEdge(0, 0));
     }
 
+    /**
+     * Common tests for adds.
+     * @param graph - is different graph implementation.
+     */
     @ParameterizedTest
     @MethodSource("graphStream")
     void testAdds(Graph<Integer, String> graph) {
@@ -252,6 +263,10 @@ public class TestGraph {
         Assertions.assertTrue(graph.containsEdge(edge1));
     }
 
+    /**
+     * Test removing vertices and edges from the graph.
+     * @param graph - is different graph implementation.
+     */
     @ParameterizedTest
     @MethodSource("graphStream")
     void testRemoves(Graph<Integer, String> graph) {
