@@ -137,6 +137,7 @@ public class EdgeDefault<V, E> {
     }
 
     /**
+     * Return hashCode depends on source, target, object.
      * @return hashCode depends on source, target, object.
      */
     @Override
