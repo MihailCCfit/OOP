@@ -400,7 +400,7 @@ public class Tree<T> implements Collection<T> {
      */
     @Override
     public String toString() {
-        return "ru.nsu.fit.tsukanov.Tree: size=" + size() + "root:" + root;
+        return "Tree: size=" + size() + "root:" + root;
     }
 
     /**
@@ -426,7 +426,7 @@ public class Tree<T> implements Collection<T> {
      */
     public class TreeIterBFS implements Iterator<T> {
 
-        private final List<Node<T>> nodeList;
+        private final Deque<Node<T>> nodeList;
 
         private final long rememberedModifications;
 
@@ -435,8 +435,11 @@ public class Tree<T> implements Collection<T> {
          */
         public TreeIterBFS() {
             rememberedModifications = modifications;
-            nodeList = new ArrayList<>();
-            nodeList.add(root);
+            nodeList = new ArrayDeque<>();
+            if (root.getChildren().size() > 0) {
+                nodeList.addAll(root.getChildren());
+            }
+
         }
 
         /**
@@ -451,8 +454,7 @@ public class Tree<T> implements Collection<T> {
             if (modifications != rememberedModifications) {
                 throw new ConcurrentModificationException("BFS concurrentModification");
             }
-            return (nodeList.size() > 0) && ((nodeList.size() > 1)
-                    || (!nodeList.get(0).getChildren().isEmpty()));
+            return (nodeList.size() > 0);
         }
 
         /**
@@ -476,9 +478,9 @@ public class Tree<T> implements Collection<T> {
             if (!hasNext()) {
                 throw new IllegalStateException("There is no element");
             }
-            Node<T> node = nodeList.remove(0);
+            Node<T> node = nodeList.removeFirst();
             nodeList.addAll(node.getChildren());
-            return nodeList.get(0);
+            return node;
         }
 
         /**
@@ -498,21 +500,22 @@ public class Tree<T> implements Collection<T> {
     public class TreeIterDFS implements Iterator<T> {
 
         Node<T> currentNode;
-        HashMap<Node<T>, Integer> hashMap;
+        HashMap<Node<T>, Integer> nodesState;
 
-        private final long rememberedModifications;
+        private long rememberedModifications;
+        private boolean flagRemove = false;
 
         /**
          * Firstly cleans nodes to unchecked state.
          */
         TreeIterDFS() {
             rememberedModifications = modifications;
-            hashMap = new HashMap<>();
-            hashMap.put(Tree.this.root, 0);
+            nodesState = new HashMap<>();
+            nodesState.put(Tree.this.root, 0);
             var it = Tree.this.iteratorBFS();
             while (it.hasNext()) {
                 var tmp = it.nextNode();
-                hashMap.put(tmp, 0);
+                nodesState.put(tmp, 0);
             }
             currentNode = Tree.this.root;
 
@@ -534,7 +537,7 @@ public class Tree<T> implements Collection<T> {
             if (modifications != rememberedModifications) {
                 throw new ConcurrentModificationException("DFS concurrentModification");
             }
-            while (hashMap.get(node) >= node.getChildren().size()) {
+            while (nodesState.get(node) >= node.getChildren().size()) {
                 if (node == Tree.this.root) {
                     return false;
                 }
@@ -567,12 +570,13 @@ public class Tree<T> implements Collection<T> {
             if (!hasNext()) {
                 throw new IllegalStateException("There is no element");
             }
-            while (hashMap.get(currentNode) >= currentNode.getChildren().size()) {
+            while (nodesState.get(currentNode) >= currentNode.getChildren().size()) {
                 currentNode = currentNode.getParent();
             }
-            var next = currentNode.getChildren().get(hashMap.get(currentNode));
-            hashMap.put(currentNode, hashMap.get(currentNode) + 1);
+            var next = currentNode.getChildren().get(nodesState.get(currentNode));
+            nodesState.put(currentNode, nodesState.get(currentNode) + 1);
             currentNode = next;
+            flagRemove = false;
             return currentNode;
         }
 
@@ -586,15 +590,19 @@ public class Tree<T> implements Collection<T> {
             if (modifications != rememberedModifications) {
                 throw new ConcurrentModificationException("DFS remove");
             }
-            var father = currentNode.getParent();
-            if (father == null) {
-                throw new IllegalStateException("Current node is root");
+            if (flagRemove) {
+                throw new IllegalStateException("There is twice remove");
             }
-            if (father.getChildren().indexOf(currentNode) < hashMap.get(father)) {
-                hashMap.put(father, hashMap.get(father) - 1);
+            var parent = currentNode.getParent();
+            if (parent.getChildren().indexOf(currentNode) < nodesState.get(parent)) {
+                nodesState.put(parent, nodesState.get(parent) - 1);
             }
-            father.getChildren().remove(currentNode);
-            currentNode = father;
+            flagRemove = true;
+            parent.getChildren().remove(currentNode);
+            rememberedModifications++;
+            modifications++;
+            currentNode = parent;
+
         }
     }
 }

@@ -1,9 +1,6 @@
 package ru.nsu.fit.tsukanov;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -95,6 +92,18 @@ public class TreeTest {
     }
 
     @Test
+    private void twiceRemoveIterator() {
+        Tree<Integer> tree = new Tree<>();
+        tree.addAll(List.of(0, 1, 2, 3, 4, 5));
+        Tree.TreeIterDFS treeIterDFS = tree.iteratorDFS();
+        while (treeIterDFS.hasNext()) {
+            treeIterDFS.next();
+            treeIterDFS.remove();
+            Assertions.assertThrows(IllegalStateException.class, () -> treeIterDFS.remove());
+        }
+    }
+
+    @Test
     public void testSomething() {
         Tree<Integer> tree = new Tree<>(1);
         Assertions.assertFalse(tree.findNodes(1).isEmpty());
@@ -125,6 +134,7 @@ public class TreeTest {
         stringTree.add("B");
         stringTree.add("B");
         Tree<String>.TreeIterDFS itDfs = stringTree.iteratorDFS();
+        tree.toArray(new Object[1]);
         while (itDfs.hasNext()) {
             if (itDfs.next().equals("C")) {
                 stringTree.remove("A");
@@ -140,13 +150,25 @@ public class TreeTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.removeAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.containsAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> tree.addNode(null, 5.0));
-        var iter = tree.iteratorDFS();
+        Tree.TreeIterDFS iter = tree.iteratorDFS();
         iter.next();
         iter.remove();
         Assertions.assertThrows(IllegalStateException.class, iter::next);
         Assertions.assertThrows(IllegalStateException.class, iter::remove);
-        var iterB = tree.iteratorBFS();
-        Assertions.assertThrows(IllegalStateException.class, iterB::next);
+        Tree<Integer> tree1 = new Tree<>();
+        tree1.addAll(List.of(1, 2, 3, 4));
+        iter = tree1.iteratorDFS();
+        tree1.addNode(iter.nextNode(), 1);
+        Assertions.assertThrows(ConcurrentModificationException.class, iter::remove);
+        var itBFS = tree1.iteratorBFS();
+        itBFS.next();
+        tree1.add(1);
+        Assertions.assertThrows(ConcurrentModificationException.class, itBFS::hasNext);
+        Assertions.assertThrows(ConcurrentModificationException.class, itBFS::next);
+        tree1.clear();
+        itBFS = tree1.iteratorBFS();
+        Assertions.assertThrows(IllegalStateException.class, itBFS::next);
+
     }
 
 }
