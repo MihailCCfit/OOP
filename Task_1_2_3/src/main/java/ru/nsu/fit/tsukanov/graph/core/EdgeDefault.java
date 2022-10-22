@@ -92,23 +92,38 @@ public class EdgeDefault<V, E> {
         this.object = object;
     }
 
+    /**
+     * Return source vertex of this edge.
+     *
+     * @return source vertex of this edge
+     */
     public V getSourceVertex() {
         return sourceVertex;
     }
 
+    /**
+     * Return target vertex of this edge.
+     *
+     * @return target vertex of this edge
+     */
     public V getTargetVertex() {
         return targetVertex;
     }
 
     /**
-     * Return edge weight.
+     * Return the edge weight.
      *
-     * @return edge weight
+     * @return the edge weight
      */
     public double getWeight() {
         return weight;
     }
 
+    /**
+     * Set the edge weight.
+     *
+     * @param weight that will be saved in the edge.
+     */
     public void setWeight(double weight) {
         this.weight = weight;
     }
@@ -138,6 +153,7 @@ public class EdgeDefault<V, E> {
 
     /**
      * Return hashCode depends on source, target, object.
+     *
      * @return hashCode depends on source, target, object.
      */
     @Override

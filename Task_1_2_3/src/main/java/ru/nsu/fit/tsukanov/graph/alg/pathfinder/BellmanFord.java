@@ -13,6 +13,7 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  *
  * @param <V> vertex object
  * @param <E> edge object
+ * @see Graph
  */
 public class BellmanFord<V, E> {
     private V startVert;

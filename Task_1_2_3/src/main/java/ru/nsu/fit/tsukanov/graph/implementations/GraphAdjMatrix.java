@@ -28,6 +28,7 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @param <V> object, that will be vertex.
  * @param <E> object, that contained in Edge.
  * @see EdgeDefault
+ * @see Graph
  */
 public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     private final Stack<Integer> indexesStack;

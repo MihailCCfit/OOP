@@ -9,6 +9,10 @@ import java.util.Set;
  * @param <V> object, that will be vertex.
  * @param <E> object, that contained in Edge.
  * @see EdgeDefault
+ * Implementations:
+ * @see ru.nsu.fit.tsukanov.graph.implementations.GraphAdjMatrix
+ * @see ru.nsu.fit.tsukanov.graph.implementations.GraphIncList
+ * @see ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix
  */
 public interface Graph<V, E> {
 
