@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -186,13 +186,17 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(V,V)">EdgeDefault</a></span>&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
            <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates edge with specify vertices, null object and default weight.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(V,V,E)">EdgeDefault</a></span>&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
            <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end,
            <a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates edge with specify vertices, object and default weight.</div>
+</td>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(V,V,E,double)">EdgeDefault</a></span>&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
@@ -229,51 +233,47 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeSource()">getEdgeSource</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgeTarget()">getEdgeTarget</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getObject()">getObject</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns object that placed in the edge.</div>
+</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSourceVertex()">getSourceVertex</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTargetVertex()">getTargetVertex</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWeight()">getWeight</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return edge weight.</div>
+</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setObject(E)">setObject</a></span>&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Sets the object in edge.</div>
+</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWeight(double)">setWeight</a></span>&#8203;(double&nbsp;weight)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -338,6 +338,12 @@ extends java.lang.Object</pre>
 <h4>EdgeDefault</h4>
 <pre>public&nbsp;EdgeDefault&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end)</pre>
+<div class="block">Creates edge with specify vertices, null object and default weight.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>start</code> - is source vertex</dd>
+<dd><code>end</code> - is target vertex</dd>
+</dl>
 </li>
 </ul>
 <a id="&lt;init&gt;(java.lang.Object,java.lang.Object,java.lang.Object)">
@@ -351,6 +357,13 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;EdgeDefault&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end,
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object)</pre>
+<div class="block">Creates edge with specify vertices, object and default weight.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>start</code> - is source vertex</dd>
+<dd><code>end</code> - is target vertex</dd>
+<dd><code>object</code> - is object that is placed into edge</dd>
+</dl>
 </li>
 </ul>
 <a id="&lt;init&gt;(java.lang.Object,java.lang.Object,java.lang.Object,double)">
@@ -385,24 +398,6 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getSourceVertex()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getSourceVertex</h4>
-<pre class="methodSignature">public&nbsp;<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;getSourceVertex()</pre>
-</li>
-</ul>
-<a id="getTargetVertex()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTargetVertex</h4>
-<pre class="methodSignature">public&nbsp;<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;getTargetVertex()</pre>
-</li>
-</ul>
 <a id="toString()">
 <!--   -->
 </a>
@@ -427,6 +422,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getObject</h4>
 <pre class="methodSignature">public&nbsp;<a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;getObject()</pre>
+<div class="block">Returns object that placed in the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>object that placed in the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="setObject(java.lang.Object)">
@@ -438,6 +438,29 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setObject</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setObject&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object)</pre>
+<div class="block">Sets the object in edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>object</code> - that will be placed into this edge.</dd>
+</dl>
+</li>
+</ul>
+<a id="getSourceVertex()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSourceVertex</h4>
+<pre class="methodSignature">public&nbsp;<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;getSourceVertex()</pre>
+</li>
+</ul>
+<a id="getTargetVertex()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTargetVertex</h4>
+<pre class="methodSignature">public&nbsp;<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;getTargetVertex()</pre>
 </li>
 </ul>
 <a id="getWeight()">
@@ -447,6 +470,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getWeight</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getWeight()</pre>
+<div class="block">Return edge weight.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>edge weight</dd>
+</dl>
 </li>
 </ul>
 <a id="setWeight(double)">
@@ -458,24 +486,6 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;setWeight&#8203;(double&nbsp;weight)</pre>
 </li>
 </ul>
-<a id="getEdgeSource()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getEdgeSource</h4>
-<pre class="methodSignature">public&nbsp;<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;getEdgeSource()</pre>
-</li>
-</ul>
-<a id="getEdgeTarget()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getEdgeTarget</h4>
-<pre class="methodSignature">public&nbsp;<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;getEdgeTarget()</pre>
-</li>
-</ul>
 <a id="equals(java.lang.Object)">
 <!--   -->
 </a>
@@ -484,7 +494,7 @@ extends java.lang.Object</pre>
 <h4>equals</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;obj)</pre>
 <div class="block">Compares for equality of edges.
- Check for</div>
+ Check source and target vertices, object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
@@ -505,6 +515,8 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>hashCode depends on source, target, object.</dd>
 </dl>
 </li>
 </ul>
