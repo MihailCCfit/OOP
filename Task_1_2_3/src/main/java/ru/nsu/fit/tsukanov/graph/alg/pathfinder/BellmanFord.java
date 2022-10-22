@@ -62,8 +62,8 @@ public class BellmanFord<V, E> {
     }
 
     private void relax(EdgeDefault<V, E> edge) {
-        V start = edge.getEdgeSource();
-        V end = edge.getEdgeTarget();
+        V start = edge.getSourceVertex();
+        V end = edge.getTargetVertex();
         if (marksMap.containsKey(start)) {
             double res = marksMap.get(start) + edge.getWeight();
             if (!marksMap.containsKey(end) || res < marksMap.get(end)) {
@@ -114,7 +114,7 @@ public class BellmanFord<V, E> {
         V curr = v;
         list.add(v);
         while (curr != startVert) {
-            curr = pathMap.get(curr).getEdgeSource();
+            curr = pathMap.get(curr).getSourceVertex();
             list.add(0, curr);
         }
         return list;
@@ -139,7 +139,7 @@ public class BellmanFord<V, E> {
 
         while (curr != startVert) {
             list.add(0, pathMap.get(curr));
-            curr = pathMap.get(curr).getEdgeSource();
+            curr = pathMap.get(curr).getSourceVertex();
         }
         return list;
     }

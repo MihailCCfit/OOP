@@ -67,8 +67,8 @@ public class Dijkstra<V, E> {
     }
 
     private void relax(EdgeDefault<V, E> edge) {
-        V start = edge.getEdgeSource();
-        V end = edge.getEdgeTarget();
+        V start = edge.getSourceVertex();
+        V end = edge.getTargetVertex();
         double res = marksTree.get(start) + edge.getWeight();
         if (!marksTree.containsKey(end) || res < marksTree.get(end)) {
             marksTree.put(end, res);
@@ -118,7 +118,7 @@ public class Dijkstra<V, E> {
         V curr = v;
         list.add(v);
         while (curr != startVert) {
-            curr = pathMap.get(curr).getEdgeSource();
+            curr = pathMap.get(curr).getSourceVertex();
             list.add(0, curr);
         }
         return list;
@@ -143,7 +143,7 @@ public class Dijkstra<V, E> {
 
         while (curr != startVert) {
             list.add(0, pathMap.get(curr));
-            curr = pathMap.get(curr).getEdgeSource();
+            curr = pathMap.get(curr).getSourceVertex();
         }
         return list;
     }

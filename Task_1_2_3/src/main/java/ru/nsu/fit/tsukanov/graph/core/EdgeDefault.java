@@ -10,15 +10,7 @@ import java.util.Objects;
  * @param <E> object in the edge
  */
 public class EdgeDefault<V, E> {
-    public V getSourceVertex() {
-        return sourceVertex;
-    }
-
     private final V sourceVertex;
-
-    public V getTargetVertex() {
-        return targetVertex;
-    }
 
     /**
      * Return string representation of edge.
@@ -38,25 +30,49 @@ public class EdgeDefault<V, E> {
 
     private final V targetVertex;
     private double weight;
+
     /**
      * Default weight for edges.
      */
     public static final double DEFAULT_WEIGHT = 1.0;
 
+    private E object;
+
+    /**
+     * Returns object that placed in the edge.
+     *
+     * @return object that placed in the edge.
+     */
     public E getObject() {
         return object;
     }
 
+    /**
+     * Sets the object in edge.
+     *
+     * @param object that will be placed into this edge.
+     */
     public void setObject(E object) {
         this.object = object;
     }
 
-    private E object;
-
+    /**
+     * Creates edge with specify vertices, null object and default weight.
+     *
+     * @param start is source vertex
+     * @param end   is target vertex
+     */
     public EdgeDefault(V start, V end) {
         this(start, end, null, DEFAULT_WEIGHT);
     }
 
+    /**
+     * Creates edge with specify vertices, object and default weight.
+     *
+     * @param start  is source vertex
+     * @param end    is target vertex
+     * @param object is object that is placed into edge
+     */
     public EdgeDefault(V start, V end, E object) {
         this(start, end, object, DEFAULT_WEIGHT);
     }
@@ -76,7 +92,19 @@ public class EdgeDefault<V, E> {
         this.object = object;
     }
 
+    public V getSourceVertex() {
+        return sourceVertex;
+    }
 
+    public V getTargetVertex() {
+        return targetVertex;
+    }
+
+    /**
+     * Return edge weight.
+     *
+     * @return edge weight
+     */
     public double getWeight() {
         return weight;
     }
@@ -85,17 +113,9 @@ public class EdgeDefault<V, E> {
         this.weight = weight;
     }
 
-    public V getEdgeSource() {
-        return sourceVertex;
-    }
-
-    public V getEdgeTarget() {
-        return targetVertex;
-    }
-
     /**
      * Compares for equality of edges.
-     * Check for
+     * Check source and target vertices, object.
      *
      * @param obj edge that will be compared with this edge.
      * @return true, if objects are equal
@@ -116,6 +136,9 @@ public class EdgeDefault<V, E> {
         return false;
     }
 
+    /**
+     * @return hashCode depends on source, target, object.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(sourceVertex, targetVertex, object);

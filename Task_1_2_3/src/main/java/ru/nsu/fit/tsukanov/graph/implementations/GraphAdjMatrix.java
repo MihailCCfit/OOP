@@ -212,13 +212,13 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
         if (e == null) {
             return false;
         }
-        if (!containsVertex(e.getEdgeSource())
+        if (!containsVertex(e.getSourceVertex())
                 || !containsVertex(e.getTargetVertex())) {
             return false;
         }
 
-        return matrix.get(vertexMap.get(e.getEdgeSource()))
-                .get(vertexMap.get(e.getEdgeTarget()))
+        return matrix.get(vertexMap.get(e.getSourceVertex()))
+                .get(vertexMap.get(e.getTargetVertex()))
                 .contains(e);
     }
 
@@ -325,7 +325,7 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
                 && containsVertex(e.getTargetVertex()))) {
             return false;
         }
-        int i = vertexMap.get(e.getEdgeSource());
+        int i = vertexMap.get(e.getSourceVertex());
         int k = vertexMap.get(e.getTargetVertex());
         return matrix.get(i).get(k).remove(e);
     }

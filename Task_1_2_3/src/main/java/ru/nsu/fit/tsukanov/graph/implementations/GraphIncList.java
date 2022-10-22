@@ -60,7 +60,7 @@ public class GraphIncList<V, E> implements Graph<V, E> {
         }
         Set<EdgeDefault<V, E>> edgeSet = new HashSet<>();
         for (EdgeDefault<V, E> edge : getVertex(sourceVertex).outEdge) {
-            if (edge.getEdgeTarget() == targetVertex) {
+            if (edge.getTargetVertex() == targetVertex) {
                 edgeSet.add(edge);
             }
         }
@@ -83,7 +83,7 @@ public class GraphIncList<V, E> implements Graph<V, E> {
             return null;
         }
         for (EdgeDefault<V, E> edge : getVertex(sourceVertex).outEdge) {
-            if (edge.getEdgeTarget() == targetVertex) {
+            if (edge.getTargetVertex() == targetVertex) {
                 return edge;
             }
         }
@@ -284,7 +284,7 @@ public class GraphIncList<V, E> implements Graph<V, E> {
         if (!containsEdge(e)) {
             return false;
         }
-        V source = e.getEdgeSource();
+        V source = e.getSourceVertex();
         V target = e.getTargetVertex();
         getVertex(source).outEdge.remove(e);
         return getVertex(target).inEdge.remove(e);
