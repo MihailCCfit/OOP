@@ -141,7 +141,9 @@ implements <a href="../Finder.html" title="interface in substrings">Finder</a></
  If n - size of text, m - size of pattern, then
 
  <p>- preprocessing phase in O(m) time and space complexity;
+
  <p>- searching phase in O(n) time complexity;
+
  <p>- performs 3/2n text character comparisons in the worst case.
 
  <p>It uses table of shifts <code>helpArray</code>.
@@ -345,8 +347,10 @@ implements <a href="../Finder.html" title="interface in substrings">Finder</a></
 <h4>nextChar</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;nextChar&#8203;(char&nbsp;symbol)</pre>
 <div class="block">Get next symbol, analyze this, changes the internal state of finder.
- If there is occurrences of pattern in text, then position of this will be saved in the answerArray.
- This function is used for others algorithm, and user can use this for other text representation
+ If there is occurrences of pattern in text,
+ then position of this will be saved in the answerArray.
+ This function is used for others algorithm,
+ and user can use this for other text getters
  (pipes, sockets, buffer and etc).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
