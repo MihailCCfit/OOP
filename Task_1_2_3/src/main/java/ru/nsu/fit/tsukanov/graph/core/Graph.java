@@ -27,7 +27,7 @@ public interface Graph<V, E> {
     Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex);
 
     /**
-     * Return edge, that connects two vertices.
+     * Return edge, that connects two vertices and has null object.
      * Edge is directed from sourceVertex to targetVertex.
      *
      * @param sourceVertex start vertex
@@ -52,6 +52,7 @@ public interface Graph<V, E> {
     /**
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
      * Edge has null as edge object.
+     * If the edge already exists and the weight does not change, then return null. Otherwise, returns true.
      *
      * @param sourceVertex is start vertex for edge
      * @param targetVertex is end vertex for edge
@@ -64,6 +65,7 @@ public interface Graph<V, E> {
     /**
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
      * Edge has an object.
+     * If the edge already exists and the weight does not change, then return null. Otherwise, returns true.
      *
      * @param sourceVertex is start vertex for edge
      * @param targetVertex is end vertex for edge
@@ -74,14 +76,16 @@ public interface Graph<V, E> {
 
     /**
      * Add specify edge, if there is no such edge.
+     * If the edge already exists and the weight does not change, then return false. Otherwise, returns true.
      *
      * @param e is edge that will be added to graph
-     * @return true, if there are no equal Edge.
+     * @return true, if there are no equal Edge with equal weights.
      */
     boolean addEdge(EdgeDefault<V, E> e);
 
     /**
      * Create Edge with specify vertices, weight and object.
+     * If the edge already exists and the weight does not change, then return null. Otherwise, returns true.
      *
      * @param sourceVertex is start vertex for edge
      * @param targetVertex is end vertex for edge
