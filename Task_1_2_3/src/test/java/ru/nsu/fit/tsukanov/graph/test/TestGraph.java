@@ -93,7 +93,7 @@ public class TestGraph {
         }
         Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ",
                 string);
-        Assertions.assertEquals(arrCopy.stream().collect(Collectors.toList()),
+        Assertions.assertEquals(new ArrayList<>(arrCopy),
                 List.of("C", "D", "E", "F", "G", "B", "A"));
     }
 
