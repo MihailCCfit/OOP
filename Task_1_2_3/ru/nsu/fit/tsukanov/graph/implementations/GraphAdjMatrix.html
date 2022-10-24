@@ -281,10 +281,11 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(V,V)">getEdge</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
-       <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(V,V,E)">getEdge</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
+       <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex,
+       <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&nbsp;obj)</code></th>
 <td class="colLast">
-<div class="block">Return edge, that connects two vertices.</div>
+<div class="block">Return edge, that connects two vertices and has specified object.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -343,7 +344,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;ru.nsu.fit.tsukanov.graph.core.<a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a></h3>
-<code><a href="../core/Graph.html#addEdge(V,V)">addEdge</a>, <a href="../core/Graph.html#addEdge(V,V,double)">addEdge</a>, <a href="../core/Graph.html#inDegreeOf(V)">inDegreeOf</a>, <a href="../core/Graph.html#outDegreeOf(V)">outDegreeOf</a>, <a href="../core/Graph.html#removeAllEdges(java.util.Collection)">removeAllEdges</a>, <a href="../core/Graph.html#removeAllVertices(java.util.Collection)">removeAllVertices</a>, <a href="../core/Graph.html#setEdgeWeight(V,V,double)">setEdgeWeight</a></code></li>
+<code><a href="../core/Graph.html#addEdge(V,V)">addEdge</a>, <a href="../core/Graph.html#addEdge(V,V,double)">addEdge</a>, <a href="../core/Graph.html#getEdge(V,V)">getEdge</a>, <a href="../core/Graph.html#inDegreeOf(V)">inDegreeOf</a>, <a href="../core/Graph.html#outDegreeOf(V)">outDegreeOf</a>, <a href="../core/Graph.html#removeAllEdges(java.util.Collection)">removeAllEdges</a>, <a href="../core/Graph.html#removeAllVertices(java.util.Collection)">removeAllVertices</a>, <a href="../core/Graph.html#setEdgeWeight(V,V,double)">setEdgeWeight</a></code></li>
 </ul>
 </li>
 </ul>
@@ -406,24 +407,26 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </dl>
 </li>
 </ul>
-<a id="getEdge(java.lang.Object,java.lang.Object)">
+<a id="getEdge(java.lang.Object,java.lang.Object,java.lang.Object)">
 <!--   -->
-</a><a id="getEdge(V,V)">
+</a><a id="getEdge(V,V,E)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getEdge</h4>
 <pre class="methodSignature">public&nbsp;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&nbsp;getEdge&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
-                                      <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</pre>
-<div class="block">Return edge, that connects two vertices.
+                                      <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex,
+                                      <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&nbsp;obj)</pre>
+<div class="block">Return edge, that connects two vertices and has specified object.
  Edge is directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#getEdge(V,V)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#getEdge(V,V,E)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - start vertex</dd>
 <dd><code>targetVertex</code> - end vertex</dd>
+<dd><code>obj</code> - object in edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>edge connects vertices</dd>
 </dl>

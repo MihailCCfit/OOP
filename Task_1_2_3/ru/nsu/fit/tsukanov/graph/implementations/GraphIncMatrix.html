@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -286,27 +286,36 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(V,V,E)">getEdge</a></span>&#8203;(<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;sourceVertex,
+       <a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;targetVertex,
+       <a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&nbsp;obj)</code></th>
+<td class="colLast">
+<div class="block">Return edge, that connects two vertices and has specified object.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#incomingEdgesOf(V)">incomingEdgesOf</a></span>&#8203;(<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#outgoingEdgesOf(V)">outgoingEdgesOf</a></span>&#8203;(<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Return set of all incoming edges to specify vertex.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">removeEdge</a></span>&#8203;(<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;&nbsp;e)</code></th>
 <td class="colLast">
 <div class="block">Remove specify edge from graph.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(V,V)">removeEdge</a></span>&#8203;(<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;sourceVertex,
           <a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;targetVertex)</code></th>
@@ -314,19 +323,19 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Remove edge with null object from graph between two specify vertices.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(V)">removeVertex</a></span>&#8203;(<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;v)</code></th>
 <td class="colLast">
 <div class="block">Remove specify vertex from graph.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vertexSet()">vertexSet</a></span>()</code></th>
 <td class="colLast">
@@ -438,6 +447,31 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - start vertex</dd>
 <dd><code>targetVertex</code> - end vertex</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>edge connects vertices</dd>
+</dl>
+</li>
+</ul>
+<a id="getEdge(java.lang.Object,java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="getEdge(V,V,E)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEdge</h4>
+<pre class="methodSignature">public&nbsp;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;&nbsp;getEdge&#8203;(<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;sourceVertex,
+                                      <a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>&nbsp;targetVertex,
+                                      <a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&nbsp;obj)</pre>
+<div class="block">Return edge, that connects two vertices and has specified object.
+ Edge is directed from sourceVertex to targetVertex.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../core/Graph.html#getEdge(V,V,E)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">V</a>,&#8203;<a href="GraphIncMatrix.html" title="type parameter in GraphIncMatrix">E</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sourceVertex</code> - start vertex</dd>
+<dd><code>targetVertex</code> - end vertex</dd>
+<dd><code>obj</code> - object in edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>edge connects vertices</dd>
 </dl>
