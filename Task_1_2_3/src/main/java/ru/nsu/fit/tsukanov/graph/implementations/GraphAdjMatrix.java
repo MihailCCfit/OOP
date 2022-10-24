@@ -74,15 +74,16 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Return edge, that connects two vertices.
+     * Return edge, that connects two vertices and has specified object.
      * Edge is directed from sourceVertex to targetVertex.
      *
      * @param sourceVertex start vertex
      * @param targetVertex end vertex
+     * @param obj          object in edge
      * @return edge connects vertices
      */
     @Override
-    public EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex) {
+    public EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex, E obj) {
         if (sourceVertex == null || targetVertex == null) {
             return null;
         }
@@ -93,7 +94,13 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
         if (l.isEmpty()) {
             return null;
         }
-        return l.get(0);
+        var pat = new EdgeDefault<>(sourceVertex, targetVertex, obj);
+        for (EdgeDefault<V, E> edge : l) {
+            if (edge.equals(pat)) {
+                return edge;
+            }
+        }
+        return null;
     }
 
     /**
@@ -121,13 +128,19 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
         if (e == null) {
             return false;
         }
-        if (containsEdge(e)) {
-            return false;
-        }
         var list = getListEdges(e.getSourceVertex(), e.getTargetVertex());
         if (list == null) {
             return false;
         }
+
+        for (EdgeDefault<V, E> edge : list) {
+            if (edge.equals(e)) {
+                boolean answer = edge.getWeight() != e.getWeight();
+                edge.setWeight(e.getWeight());
+                return answer;
+            }
+        }
+
         return list.add(e);
     }
 
@@ -143,13 +156,9 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
      */
     @Override
     public EdgeDefault<V, E> addEdge(V sourceVertex, V targetVertex, E e, double weight) {
-        EdgeDefault<V, E> edgeDefault = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
-        var list = getListEdges(sourceVertex, targetVertex);
-        if (list == null) {
-            return null;
-        }
-        list.add(edgeDefault);
-        return edgeDefault;
+        EdgeDefault<V, E> edge = new EdgeDefault<>(sourceVertex, targetVertex, e, weight);
+
+        return addEdge(edge) ? edge : null;
     }
 
     /**

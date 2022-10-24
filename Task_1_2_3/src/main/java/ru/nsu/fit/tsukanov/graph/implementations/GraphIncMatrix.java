@@ -5,6 +5,7 @@ import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
 
 
+
 /**
  * Oriented weighted graph. There is class for edge.
  * It uses incident matrix for method implementation.
@@ -97,6 +98,20 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
      */
     @Override
     public EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex) {
+        return getEdge(sourceVertex, targetVertex, null);
+    }
+
+    /**
+     * Return edge, that connects two vertices and has specified object.
+     * Edge is directed from sourceVertex to targetVertex.
+     *
+     * @param sourceVertex start vertex
+     * @param targetVertex end vertex
+     * @param obj          object in edge
+     * @return edge connects vertices
+     */
+    @Override
+    public EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex, E obj) {
         if (!containsVertex(sourceVertex)
                 || !containsVertex(targetVertex)) {
             return null;
@@ -105,7 +120,9 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
         int ind2 = vertexMap.get(targetVertex);
         for (int i = 0; i < matrix.size(); i++) {
             if (matrix.get(i).get(ind1) == Direction.FROM
-                    && matrix.get(i).get(ind2) == Direction.TO) {
+                    && matrix.get(i).get(ind2) == Direction.TO
+                    && Objects.equals(columns.get(i).getObject(), obj)) {
+
                 return columns.get(i);
             }
         }
@@ -124,7 +141,10 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
             return false;
         }
         if (containsEdge(e)) {
-            return false;
+            var tmp = columns.get(edgeMap.get(e));
+            boolean ans = tmp.getWeight() != e.getWeight();
+            tmp.setWeight(e.getWeight());
+            return ans;
         }
         V sourceVertex = e.getSourceVertex();
         V targetVertex = e.getTargetVertex();

@@ -145,8 +145,7 @@ public class EdgeDefault<V, E> {
             EdgeDefault<?, ?> temp = (EdgeDefault<?, ?>) obj;
             return temp.sourceVertex.equals(sourceVertex)
                     && temp.targetVertex.equals(this.targetVertex)
-                    && ((temp.object == null && this.object == null)
-                    || Objects.equals(temp.object, this.object));
+                    && Objects.equals(temp.object, this.object);
         }
         return false;
     }

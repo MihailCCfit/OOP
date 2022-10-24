@@ -22,6 +22,7 @@ import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
 
 
+
 /**
  * Testing different graph for interface methods.
  */
@@ -149,13 +150,19 @@ public class TestGraph {
         Assertions.assertTrue(graph.removeVertex("B"));
         Assertions.assertFalse(graph.removeVertex("B"));
         Assertions.assertTrue(graph.addVertex("B"));
-        EdgeDefault<String, String> edge = new EdgeDefault<>("C", "B", "Hello", 3);
+        EdgeDefault<String, String> edge = new EdgeDefault<>("C", "B", null, 3);
+        Assertions.assertTrue(graph.addEdge(edge));
+        edge = new EdgeDefault<>("C", "B", null, 5);
         Assertions.assertTrue(graph.addEdge(edge));
         Assertions.assertFalse(graph.addEdge(edge));
+        Assertions.assertEquals(edge.getWeight(), 5);
         graph.setEdgeWeight("C", "B", 5);
+        edge.setObject("123");
+        Assertions.assertNull(graph.getEdge(edge.getSourceVertex(), edge.getTargetVertex(), "edge.getObject()"));
         Assertions.assertEquals(edge.getWeight(), 5);
         Assertions.assertNull(graph.removeEdge("A", "D"));
         Assertions.assertTrue(graph.removeAllVertices(List.of("A", "C")));
+
     }
 
     /**

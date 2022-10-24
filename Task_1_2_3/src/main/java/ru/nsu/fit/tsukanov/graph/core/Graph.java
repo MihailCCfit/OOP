@@ -34,7 +34,20 @@ public interface Graph<V, E> {
      * @param targetVertex end vertex
      * @return edge connects vertices
      */
-    EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex);
+    default EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex) {
+        return getEdge(sourceVertex, targetVertex, null);
+    }
+
+    /**
+     * Return edge, that connects two vertices and has specified object.
+     * Edge is directed from sourceVertex to targetVertex.
+     *
+     * @param sourceVertex start vertex
+     * @param targetVertex end vertex
+     * @param obj          object in edge
+     * @return edge connects vertices
+     */
+    EdgeDefault<V, E> getEdge(V sourceVertex, V targetVertex, E obj);
 
     /**
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
