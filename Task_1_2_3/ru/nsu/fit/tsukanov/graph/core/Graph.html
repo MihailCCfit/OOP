@@ -252,7 +252,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(V,V)">getEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
        <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</code></th>
 <td class="colLast">
-<div class="block">Return edge, that connects two vertices.</div>
+<div class="block">Return edge, that connects two vertices and has null object.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
@@ -394,7 +394,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h4>getEdge</h4>
 <pre class="methodSignature">default&nbsp;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;getEdge&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
                                        <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</pre>
-<div class="block">Return edge, that connects two vertices.
+<div class="block">Return edge, that connects two vertices and has null object.
  Edge is directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -439,7 +439,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre class="methodSignature">default&nbsp;<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;addEdge&#8203;(<a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;sourceVertex,
                                        <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex)</pre>
 <div class="block">Add edge, that connects vertices in direction from sourceVertex to targetVertex.
- Edge has null as edge object.</div>
+ Edge has null as edge object.
+ If the edge already exists and the weight does not change, then return null. Otherwise, returns true.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for edge</dd>
@@ -461,7 +462,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
                                <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex,
                                <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;object)</pre>
 <div class="block">Add edge, that connects vertices in direction from sourceVertex to targetVertex.
- Edge has an object.</div>
+ Edge has an object.
+ If the edge already exists and the weight does not change, then return null. Otherwise, returns true.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for edge</dd>
@@ -479,12 +481,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>addEdge</h4>
 <pre class="methodSignature">boolean&nbsp;addEdge&#8203;(<a href="EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Graph.html" title="type parameter in Graph">V</a>,&#8203;<a href="Graph.html" title="type parameter in Graph">E</a>&gt;&nbsp;e)</pre>
-<div class="block">Add specify edge, if there is no such edge.</div>
+<div class="block">Add specify edge, if there is no such edge.
+ If the edge already exists and the weight does not change, then return false. Otherwise, returns true.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - is edge that will be added to graph</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true, if there are no equal Edge.</dd>
+<dd>true, if there are no equal Edge with equal weights.</dd>
 </dl>
 </li>
 </ul>
@@ -500,7 +503,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
                                <a href="Graph.html" title="type parameter in Graph">V</a>&nbsp;targetVertex,
                                <a href="Graph.html" title="type parameter in Graph">E</a>&nbsp;e,
                                double&nbsp;weight)</pre>
-<div class="block">Create Edge with specify vertices, weight and object.</div>
+<div class="block">Create Edge with specify vertices, weight and object.
+ If the edge already exists and the weight does not change, then return null. Otherwise, returns true.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - is start vertex for edge</dd>
