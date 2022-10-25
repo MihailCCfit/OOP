@@ -137,7 +137,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Dijkstra&lt;V,&#8203;E&gt;</span>
 extends java.lang.Object</pre>
-<div class="block">Dijkstra algorithm.
+<div class="block">Dijkstra algorithm for graph without negative weights.
+ If there is negative weight, then it throw exception.
  Works with:
  O (E*log V)</div>
 <dl>
@@ -298,7 +299,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>reuse</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;reuse&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;start)</pre>
-<div class="block">Use Dijkstra alg for finding path.</div>
+<div class="block">Use Dijkstra alg for finding path.
+ Throw exceptions if graph doesn't contain vertex</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>start</code> - the starting vertex</dd>
