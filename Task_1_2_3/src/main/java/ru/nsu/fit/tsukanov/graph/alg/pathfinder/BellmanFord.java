@@ -62,7 +62,7 @@ public class BellmanFord<V, E> {
         reuse(startVert);
     }
 
-    private void relax(EdgeDefault<V, E> edge) {
+    private boolean relax(EdgeDefault<V, E> edge) {
         V start = edge.getSourceVertex();
         V end = edge.getTargetVertex();
         if (marksMap.containsKey(start)) {
@@ -70,15 +70,27 @@ public class BellmanFord<V, E> {
             if (!marksMap.containsKey(end) || res < marksMap.get(end)) {
                 marksMap.put(end, res);
                 pathMap.put(end, edge);
+                return true;
             }
         }
+        return false;
     }
 
     private void alg() {
         Set<EdgeDefault<V, E>> edgeSet = graph.edgeSet();
+        boolean isRelaxed;
         for (int i = 0; i < graph.vertexSet().size() - 1; i++) {
+            isRelaxed = false;
             for (EdgeDefault<V, E> edge : edgeSet) {
-                relax(edge);
+                isRelaxed = relax(edge) || isRelaxed;
+            }
+            if (!isRelaxed) {
+                break;
+            }
+        }
+        for (EdgeDefault<V, E> edge : edgeSet) {
+            if (relax(edge)) {
+                throw new IllegalStateException("There is negative cycle");
             }
         }
     }

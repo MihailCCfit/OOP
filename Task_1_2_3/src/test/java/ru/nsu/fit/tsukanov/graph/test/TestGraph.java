@@ -1,6 +1,5 @@
 package ru.nsu.fit.tsukanov.graph.test;
 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -116,6 +115,7 @@ public class TestGraph {
         Assertions.assertTrue(graph.containsEdge(ed3));
         Assertions.assertNull(graph.getEdge("B", "A"));
         Dijkstra<String, String> dijkstra = new Dijkstra<>(graph, "A");
+
         BellmanFord<String, String> bellmanFord = new BellmanFord<>(graph, "A");
         Assertions.assertTrue(dijkstra.getPathV("C").containsAll(
                 List.of("A", "B", "C"))
@@ -345,5 +345,16 @@ public class TestGraph {
         Assertions.assertTrue(graph.removeVertex(0));
         Assertions.assertFalse(graph.containsEdge(0, 1));
 
+    }
+
+    @ParameterizedTest
+    @MethodSource("graphStream")
+    void negativeWeightTest(Graph<Integer, String> graph) {
+        graph.addVertex(0);
+        graph.addVertex(1);
+        graph.addEdge(0, 1, -5.0);
+        graph.addEdge(1, 0, -5.0);
+        Assertions.assertThrows(IllegalStateException.class, () -> new Dijkstra<>(graph, 0));
+        Assertions.assertThrows(IllegalStateException.class, () -> new BellmanFord<>(graph, 0));
     }
 }

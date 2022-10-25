@@ -5,8 +5,10 @@ import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
 
 
+
 /**
- * Dijkstra algorithm.
+ * Dijkstra algorithm for graph without negative weights.
+ * If there is negative weight, then it throw exception.
  * Works with:
  * O (E*log V)
  *
@@ -40,6 +42,7 @@ public class Dijkstra<V, E> {
 
     /**
      * Use Dijkstra alg for finding path.
+     * Throw exceptions if graph doesn't contain vertex
      *
      * @param start the starting vertex
      */
@@ -50,6 +53,12 @@ public class Dijkstra<V, E> {
         if (!graph.containsVertex(start)) {
             throw new IllegalArgumentException("No such vertex in graph");
         }
+        for (EdgeDefault<V, E> edg : graph.edgeSet()) {
+            if (edg.getWeight() < 0) {
+                throw new IllegalStateException("There is negative edge weight");
+            }
+        }
+
         this.startVert = start;
         heap.clear();
         marksTree.clear();
