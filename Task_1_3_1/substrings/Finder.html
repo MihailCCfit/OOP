@@ -201,13 +201,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>findPatternInText</h4>
-<pre class="methodSignature">default&nbsp;java.util.ArrayList&lt;java.lang.Integer&gt;&nbsp;findPatternInText&#8203;(java.io.InputStream&nbsp;file)</pre>
+<pre class="methodSignature">default&nbsp;java.util.ArrayList&lt;java.lang.Integer&gt;&nbsp;findPatternInText&#8203;(java.io.InputStream&nbsp;file)
+                                                          throws java.io.IOException</pre>
 <div class="block">Find all pattern occurrences in specify file.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>file</code> - the file in which patterns occurrences will be searched</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>arrayList with positions of pattern in file.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code> - when there are IO exception</dd>
 </dl>
 </li>
 </ul>

@@ -137,6 +137,24 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">FinderAK</span>
 extends java.lang.Object
 implements <a href="../Finder.html" title="interface in substrings">Finder</a></pre>
+<div class="block">Its dynamic implementation of <i>Aho–Korasick algorithm</i>.
+ If n - size of text, m - size of pattern, then
+
+ <p>- preprocessing phase in O(m) time and space complexity;
+
+ <p>- searching phase in O(n) time complexity;
+
+ <p>It uses map of transitions in each State (<code>Vertex</code> of Automata).
+ So its finite automata.
+ Find occurs of pattern string in the text.
+ It must be dynamic. So finding algorithm should work character by character.
+ It allows to not save text in memory (RAM).</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="FinderAC.html#nextChar(char)"><code>FinderAC.nextChar(char)</code></a>, 
+<a href="FinderAC.html#setPattern(java.lang.String)"><code>FinderAC.setPattern(String)</code></a>, 
+<a href="../Finder.html" title="interface in substrings"><code>Finder</code></a></dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -273,7 +291,6 @@ implements <a href="../Finder.html" title="interface in substrings">Finder</a></
 <li class="blockList">
 <h4>nextChar</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;nextChar&#8203;(char&nbsp;symbol)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../Finder.html#nextChar(char)">Finder</a></code></span></div>
 <div class="block">Get next symbol, analyze this, changes the internal state of finder.
  If there is occurrences of pattern in text,
  then position of this will be saved in the answerArray.
