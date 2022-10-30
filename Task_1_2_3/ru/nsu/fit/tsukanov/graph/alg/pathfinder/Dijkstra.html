@@ -166,7 +166,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(ru.nsu.fit.tsukanov.graph.core.Graph,V)">Dijkstra</a></span>&#8203;(<a href="../../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>,&#8203;<a href="Dijkstra.html" title="type parameter in Dijkstra">E</a>&gt;&nbsp;graph,
-        <a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;startVert)</code></th>
+        <a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;startVertex)</code></th>
 <td class="colLast">
 <div class="block">Initialize maps, heap and start alg.</div>
 </td>
@@ -197,22 +197,22 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="../../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>,&#8203;<a href="Dijkstra.html" title="type parameter in Dijkstra">E</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdgesPath(V)">getEdgesPath</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</code></th>
+<td class="colLast">
+<div class="block">Return edge path from start vertex to specify.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOrdering()">getOrdering</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Ordering vertices according to their distance from start vertex.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="../../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>,&#8203;<a href="Dijkstra.html" title="type parameter in Dijkstra">E</a>&gt;&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPathE(V)">getPathE</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</code></th>
-<td class="colLast">
-<div class="block">Return edge path from start vertex to specify.</div>
-</td>
-</tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPathV(V)">getPathV</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVerticesPath(V)">getVerticesPath</a></span>&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</code></th>
 <td class="colLast">
 <div class="block">Return vertex path from start vertex to specify.</div>
 </td>
@@ -271,12 +271,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Dijkstra</h4>
 <pre>public&nbsp;Dijkstra&#8203;(<a href="../../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>,&#8203;<a href="Dijkstra.html" title="type parameter in Dijkstra">E</a>&gt;&nbsp;graph,
-                <a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;startVert)</pre>
+                <a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;startVertex)</pre>
 <div class="block">Initialize maps, heap and start alg.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>graph</code> - the graph where will be finding paths and distances</dd>
-<dd><code>startVert</code> - the start vertex, from which will calculates distance</dd>
+<dd><code>startVertex</code> - the start vertex, from which will calculates distance</dd>
 </dl>
 </li>
 </ul>
@@ -330,7 +330,7 @@ extends java.lang.Object</pre>
 <div class="block">Return distance from start vertex to specify.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>v</code> - is vertex object</dd>
+<dd><code>v</code> - the vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>distance from start vertex to specify</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -338,19 +338,19 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getPathV(java.lang.Object)">
+<a id="getVerticesPath(java.lang.Object)">
 <!--   -->
-</a><a id="getPathV(V)">
+</a><a id="getVerticesPath(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getPathV</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&gt;&nbsp;getPathV&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</pre>
+<h4>getVerticesPath</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&gt;&nbsp;getVerticesPath&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</pre>
 <div class="block">Return vertex path from start vertex to specify.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>v</code> - is vertex object</dd>
+<dd><code>v</code> - the vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>vertex path from start vertex to specify</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -358,19 +358,19 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getPathE(java.lang.Object)">
+<a id="getEdgesPath(java.lang.Object)">
 <!--   -->
-</a><a id="getPathE(V)">
+</a><a id="getEdgesPath(V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getPathE</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>,&#8203;<a href="Dijkstra.html" title="type parameter in Dijkstra">E</a>&gt;&gt;&nbsp;getPathE&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</pre>
+<h4>getEdgesPath</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>,&#8203;<a href="Dijkstra.html" title="type parameter in Dijkstra">E</a>&gt;&gt;&nbsp;getEdgesPath&#8203;(<a href="Dijkstra.html" title="type parameter in Dijkstra">V</a>&nbsp;v)</pre>
 <div class="block">Return edge path from start vertex to specify.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>v</code> - is vertex object</dd>
+<dd><code>v</code> - the vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>edge path from start vertex to specify</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
