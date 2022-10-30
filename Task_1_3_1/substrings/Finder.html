@@ -151,14 +151,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>default java.util.ArrayList&lt;java.lang.Integer&gt;</code></td>
+<td class="colFirst"><code>default java.util.List&lt;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findPatternInText(java.io.InputStream)">findPatternInText</a></span>&#8203;(java.io.InputStream&nbsp;file)</code></th>
 <td class="colLast">
-<div class="block">Find all pattern occurrences in specify file.</div>
+<div class="block">Find all pattern occurrences in specified file.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;java.lang.Integer&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAnswer()">getAnswer</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Return arrayList with position of pattern occurrences in the text.</div>
@@ -201,9 +201,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>findPatternInText</h4>
-<pre class="methodSignature">default&nbsp;java.util.ArrayList&lt;java.lang.Integer&gt;&nbsp;findPatternInText&#8203;(java.io.InputStream&nbsp;file)
-                                                          throws java.io.IOException</pre>
-<div class="block">Find all pattern occurrences in specify file.</div>
+<pre class="methodSignature">default&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;findPatternInText&#8203;(java.io.InputStream&nbsp;file)
+                                                     throws java.io.IOException</pre>
+<div class="block">Find all pattern occurrences in specified file.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>file</code> - the file in which patterns occurrences will be searched</dd>
@@ -222,7 +222,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h4>setPattern</h4>
 <pre class="methodSignature">void&nbsp;setPattern&#8203;(java.lang.String&nbsp;pattern)</pre>
 <div class="block">Clear previous state of support structures.
- Set pattern into this finder, set some parameters and support things in specify way.</div>
+ Set pattern into this finder, set some parameters and support things in specified way.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>pattern</code> - the string, occurrences  of which will be searched in the text.</dd>
@@ -254,7 +254,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getAnswer</h4>
-<pre class="methodSignature">java.util.ArrayList&lt;java.lang.Integer&gt;&nbsp;getAnswer()</pre>
+<pre class="methodSignature">java.util.List&lt;java.lang.Integer&gt;&nbsp;getAnswer()</pre>
 <div class="block">Return arrayList with position of pattern occurrences in the text.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
