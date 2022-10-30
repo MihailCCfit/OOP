@@ -2,9 +2,11 @@ package ru.nsu.fit.tsukanov.graph.implementations;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import ru.nsu.fit.tsukanov.graph.core.EdgeDefault;
 import ru.nsu.fit.tsukanov.graph.core.Graph;
+
 
 
 /**
@@ -34,7 +36,7 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  */
 public class GraphIncList<V, E> implements Graph<V, E> {
 
-    HashMap<V, Vertex<V, E>> vertexMap;
+    private final Map<V, Vertex<V, E>> vertexMap;
 
     /**
      * creates treeMap.
@@ -52,7 +54,7 @@ public class GraphIncList<V, E> implements Graph<V, E> {
      * @return set of all edges, that connects vertices
      */
     @Override
-    public Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
+    public Set<EdgeDefault<V, E>> getEdges(V sourceVertex, V targetVertex) {
         if (sourceVertex == null
                 || targetVertex == null) {
             return null;
@@ -100,9 +102,9 @@ public class GraphIncList<V, E> implements Graph<V, E> {
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
      * Edge has an object.
      *
-     * @param sourceVertex is start vertex for edge
-     * @param targetVertex is end vertex for edge
-     * @param object       is object that will be placed into edge
+     * @param sourceVertex the start vertex for edge
+     * @param targetVertex the end vertex for edge
+     * @param object       the object that will be placed into edge
      * @return new Edge
      */
     @Override
@@ -111,9 +113,9 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Add specify edge, if there is no such edge.
+     * Add specified edge, if there is no such edge.
      *
-     * @param e is edge that will be added to graph
+     * @param e the edge that will be added to graph
      * @return true, if there are no equal Edge.
      */
     @Override
@@ -140,12 +142,12 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Create Edge with specify vertices, weight and object.
+     * Create Edge with specified vertices, weight and object.
      *
-     * @param sourceVertex is start vertex for edge
-     * @param targetVertex is end vertex for edge
-     * @param e            is object that will be placed into edge
-     * @param weight       is weight that will be placed into edge
+     * @param sourceVertex the start vertex for edge
+     * @param targetVertex the end vertex for edge
+     * @param e            the object that will be placed into edge
+     * @param weight       the weight that will be placed into edge
      * @return edge
      */
     @Override
@@ -158,7 +160,7 @@ public class GraphIncList<V, E> implements Graph<V, E> {
      * Add vertex to graph, if there is no such vertex.
      * If it isn't, then return false.
      *
-     * @param v is vertex value, or vertex object.
+     * @param v the vertex value, or vertex object.
      * @return true, if vertex has been added.
      */
     @Override
@@ -177,8 +179,8 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     /**
      * Check for existing edge between two vertices.
      *
-     * @param sourceVertex is start vertex for some edge
-     * @param targetVertex is end vertex for some edge
+     * @param sourceVertex the start vertex for some edge
+     * @param targetVertex the end vertex for some edge
      * @return true, if there is edge from source to target.
      */
     @Override
@@ -189,8 +191,8 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     /**
      * Check for exising edge in the graph.
      *
-     * @param e is edge for checking
-     * @return true, if the graph contains specify edge
+     * @param e the edge for checking
+     * @return true, if the graph contains specified edge
      */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
@@ -209,8 +211,8 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     /**
      * Check for exising vertex in the graph.
      *
-     * @param v is vertex object
-     * @return true, if the graph contains specify vertex.
+     * @param v the vertex object
+     * @return true, if the graph contains specified vertex.
      */
     @Override
     public boolean containsVertex(V v) {
@@ -235,10 +237,10 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Return set of all incoming edges to specify vertex.
+     * Return set of all incoming edges to specified vertex.
      *
-     * @param vertex is vertex
-     * @return set of all incoming edges to specify vertex.
+     * @param vertex the vertex
+     * @return set of all incoming edges to specified vertex.
      */
     @Override
     public Set<EdgeDefault<V, E>> incomingEdgesOf(V vertex) {
@@ -249,10 +251,10 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Return set of all incoming edges to specify vertex.
+     * Return set of all incoming edges to specified vertex.
      *
-     * @param vertex is vertex
-     * @return set of all incoming edges to specify vertex.
+     * @param vertex the vertex
+     * @return set of all incoming edges to specified vertex.
      */
     @Override
     public Set<EdgeDefault<V, E>> outgoingEdgesOf(V vertex) {
@@ -263,10 +265,10 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove edge with null object from graph between two specify vertices.
+     * Remove edge with null object from graph between two specified vertices.
      *
-     * @param sourceVertex is source vertex maybe for some edge.
-     * @param targetVertex is target vertex maybe for some edge.
+     * @param sourceVertex the source vertex maybe for some edge.
+     * @param targetVertex the target vertex maybe for some edge.
      * @return removed edge.
      */
     @Override
@@ -280,9 +282,9 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove specify edge from graph. And check for graph changes.
+     * Remove specified edge from graph. And check for graph changes.
      *
-     * @param e is edge
+     * @param e the edge
      * @return true, if there was removing edge from graph.
      */
     @Override
@@ -300,9 +302,9 @@ public class GraphIncList<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove specify vertex from graph. And check for graph changes.
+     * Remove specified vertex from graph. And check for graph changes.
      *
-     * @param v is vertex object
+     * @param v the vertex object
      * @return true, if there was removing vertex from graph.
      */
     @Override

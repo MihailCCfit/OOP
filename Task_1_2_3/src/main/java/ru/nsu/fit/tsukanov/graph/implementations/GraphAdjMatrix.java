@@ -31,9 +31,9 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @see Graph
  */
 public class GraphAdjMatrix<V, E> implements Graph<V, E> {
-    private final Stack<Integer> indexesStack;
-    private final HashMap<V, Integer> vertexMap;
-    private final ArrayList<ArrayList<ArrayList<EdgeDefault<V, E>>>> matrix;
+    private final Deque<Integer> indexesStack;
+    private final Map<V, Integer> vertexMap;
+    private final List<List<List<EdgeDefault<V, E>>>> matrix;
 
     /**
      * Creates stack for indexing,
@@ -41,12 +41,12 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
      * and adjacency matrix.
      */
     public GraphAdjMatrix() {
-        this.indexesStack = new Stack<>();
+        this.indexesStack = new ArrayDeque<>();
         this.vertexMap = new HashMap<>();
         this.matrix = new ArrayList<>();
     }
 
-    private ArrayList<EdgeDefault<V, E>> getListEdges(V sourceVertex, V targetVertex) {
+    private List<EdgeDefault<V, E>> getListEdges(V sourceVertex, V targetVertex) {
         if (!containsVertex(sourceVertex)
                 || !containsVertex(targetVertex)) {
             return null;
@@ -58,14 +58,14 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
 
     /**
      * Return all edges, that connects two vertices.
-     * Edges is directed from sourceVertex to targetVertex.
+     * Edges the directed from sourceVertex to targetVertex.
      *
      * @param sourceVertex start vertex
      * @param targetVertex end vertex
      * @return set of all edges, that connects vertices
      */
     @Override
-    public Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
+    public Set<EdgeDefault<V, E>> getEdges(V sourceVertex, V targetVertex) {
         var list = getListEdges(sourceVertex, targetVertex);
         if (list == null) {
             return null;
@@ -75,7 +75,7 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
 
     /**
      * Return edge, that connects two vertices and has specified object.
-     * Edge is directed from sourceVertex to targetVertex.
+     * Edge the directed from sourceVertex to targetVertex.
      *
      * @param sourceVertex start vertex
      * @param targetVertex end vertex
@@ -87,7 +87,7 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
         if (sourceVertex == null || targetVertex == null) {
             return null;
         }
-        ArrayList<EdgeDefault<V, E>> l = getListEdges(sourceVertex, targetVertex);
+        List<EdgeDefault<V, E>> l = getListEdges(sourceVertex, targetVertex);
         if (l == null) {
             return null;
         }
@@ -107,9 +107,9 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
      * Edge has an object.
      *
-     * @param sourceVertex is start vertex for edge
-     * @param targetVertex is end vertex for edge
-     * @param object       is object that will be placed into edge
+     * @param sourceVertex the start vertex for edge
+     * @param targetVertex the end vertex for edge
+     * @param object       the object that will be placed into edge
      * @return new Edge
      */
     @Override
@@ -118,9 +118,9 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Add specify edge, if there is no such edge.
+     * Add specified edge, if there is no such edge.
      *
-     * @param e is edge that will be added to graph
+     * @param e the edge that will be added to graph
      * @return true, if there are no equal Edge.
      */
     @Override
@@ -146,12 +146,12 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
 
 
     /**
-     * Create Edge with specify vertices, weight and object.
+     * Create Edge with specified vertices, weight and object.
      *
-     * @param sourceVertex is start vertex for edge
-     * @param targetVertex is end vertex for edge
-     * @param e            is object that will be placed into edge
-     * @param weight       is weight that will be placed into edge
+     * @param sourceVertex the start vertex for edge
+     * @param targetVertex the end vertex for edge
+     * @param e            the object that will be placed into edge
+     * @param weight       the weight that will be placed into edge
      * @return edge
      */
     @Override
@@ -165,7 +165,7 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
      * Add vertex to graph, if there is no such vertex.
      * If it isn't, then return false.
      *
-     * @param v is vertex value, or vertex object.
+     * @param v the vertex value, or vertex object.
      * @return true, if vertex has been added.
      */
     @Override
@@ -183,7 +183,7 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
         vertexMap.put(v, index);
         if (index >= matrix.size()) {
             int newSize = matrix.size() + 1;
-            ArrayList<ArrayList<EdgeDefault<V, E>>> newCol = new ArrayList<>();
+            List<List<EdgeDefault<V, E>>> newCol = new ArrayList<>();
             for (int i = 0; i < newSize; i++) {
                 newCol.add(new ArrayList<>());
             }
@@ -198,8 +198,8 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     /**
      * Check for existing edge between two vertices.
      *
-     * @param sourceVertex is start vertex for some edge
-     * @param targetVertex is end vertex for some edge
+     * @param sourceVertex the start vertex for some edge
+     * @param targetVertex the end vertex for some edge
      * @return true, if there is edge from source to target.
      */
     @Override
@@ -214,8 +214,8 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     /**
      * Check for exising edge in the graph.
      *
-     * @param e is edge for checking
-     * @return true, if the graph contains specify edge
+     * @param e the edge for checking
+     * @return true, if the graph contains specified edge
      */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
@@ -235,8 +235,8 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     /**
      * Check for exising vertex in the graph.
      *
-     * @param v is vertex object
-     * @return true, if the graph contains specify vertex.
+     * @param v the vertex object
+     * @return true, if the graph contains specified vertex.
      */
     @Override
     public boolean containsVertex(V v) {
@@ -261,10 +261,10 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Return set of all incoming edges to specify vertex.
+     * Return set of all incoming edges to specified vertex.
      *
-     * @param vertex is vertex
-     * @return set of all incoming edges to specify vertex.
+     * @param vertex the vertex
+     * @return set of all incoming edges to specified vertex.
      */
     @Override
     public Set<EdgeDefault<V, E>> incomingEdgesOf(V vertex) {
@@ -273,17 +273,17 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
         }
         int index = vertexMap.get(vertex);
         Set<EdgeDefault<V, E>> edgeDefaultSet = new HashSet<>();
-        for (ArrayList<ArrayList<EdgeDefault<V, E>>> list : matrix) {
+        for (List<List<EdgeDefault<V, E>>> list : matrix) {
             edgeDefaultSet.addAll(list.get(index));
         }
         return edgeDefaultSet;
     }
 
     /**
-     * Return set of all incoming edges to specify vertex.
+     * Return set of all incoming edges to specified vertex.
      *
-     * @param vertex is vertex
-     * @return set of all incoming edges to specify vertex.
+     * @param vertex the vertex
+     * @return set of all incoming edges to specified vertex.
      */
     @Override
     public Set<EdgeDefault<V, E>> outgoingEdgesOf(V vertex) {
@@ -291,9 +291,9 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
             return null;
         }
         int index = vertexMap.get(vertex);
-        ArrayList<ArrayList<EdgeDefault<V, E>>> arrayLists = matrix.get(index);
+        List<List<EdgeDefault<V, E>>> arrayLists = matrix.get(index);
         Set<EdgeDefault<V, E>> edgeDefaultSet = new HashSet<>();
-        for (ArrayList<EdgeDefault<V, E>> arrayList : arrayLists) {
+        for (List<EdgeDefault<V, E>> arrayList : arrayLists) {
             edgeDefaultSet.addAll(arrayList);
         }
 
@@ -301,10 +301,10 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove edge with null object from graph between two specify vertices.
+     * Remove edge with null object from graph between two specified vertices.
      *
-     * @param sourceVertex is source vertex maybe for some edge.
-     * @param targetVertex is target vertex maybe for some edge.
+     * @param sourceVertex the source vertex maybe for some edge.
+     * @param targetVertex the target vertex maybe for some edge.
      * @return removed edge.
      */
     @Override
@@ -320,9 +320,9 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove specify edge from graph. And check for graph changes.
+     * Remove specified edge from graph. And check for graph changes.
      *
-     * @param e is edge
+     * @param e the edge
      * @return true, if there was removing edge from graph.
      */
 
@@ -341,9 +341,9 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove specify vertex from graph. And check for graph changes.
+     * Remove specified vertex from graph. And check for graph changes.
      *
-     * @param v is vertex object
+     * @param v the vertex object
      * @return true, if there was removing vertex from graph.
      */
     @Override
@@ -352,11 +352,11 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
             return false;
         }
         int index = vertexMap.get(v);
-        ArrayList<ArrayList<EdgeDefault<V, E>>> arrayLists = matrix.get(index);
-        for (ArrayList<EdgeDefault<V, E>> list : arrayLists) {
+        List<List<EdgeDefault<V, E>>> arrayLists = matrix.get(index);
+        for (List<EdgeDefault<V, E>> list : arrayLists) {
             list.clear();
         }
-        for (ArrayList<ArrayList<EdgeDefault<V, E>>> lists : matrix) {
+        for (List<List<EdgeDefault<V, E>>> lists : matrix) {
             lists.get(index).clear();
         }
         vertexMap.remove(v);

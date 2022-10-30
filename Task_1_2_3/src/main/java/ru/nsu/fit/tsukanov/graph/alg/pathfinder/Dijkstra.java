@@ -18,8 +18,8 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  */
 public class Dijkstra<V, E> {
     private V startVert;
-    private final HashMap<V, Double> marksTree;
-    private final HashMap<V, EdgeDefault<V, E>> pathMap;
+    private final Map<V, Double> marksTree;
+    private final Map<V, EdgeDefault<V, E>> pathMap;
     private final PriorityQueue<V> heap;
 
     private final Graph<V, E> graph;

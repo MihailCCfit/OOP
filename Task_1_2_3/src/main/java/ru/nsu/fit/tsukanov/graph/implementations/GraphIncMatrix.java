@@ -31,31 +31,23 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @see Graph
  */
 public class GraphIncMatrix<V, E> implements Graph<V, E> {
-    @Override
-    public String toString() {
-        return "GraphIncMatrix{"
-                + "columns=" + columns
-                + "\nmatrix=" + matrix
-                + '}';
-    }
+    private final Deque<Integer> indexesStackV;
+    private final Deque<Integer> indexesStackE;
+    private final Map<V, Integer> vertexMap;
+    private final Map<EdgeDefault<V, E>, Integer> edgeMap;
+    private final List<EdgeDefault<V, E>> columns;
+    private final List<List<Direction>> matrix;
 
     private enum Direction {
         NO, FROM, TO
     }
 
-    private final Stack<Integer> indexesStackV;
-    private final Stack<Integer> indexesStackE;
-    private final HashMap<V, Integer> vertexMap;
-    private final HashMap<EdgeDefault<V, E>, Integer> edgeMap;
-    private final ArrayList<EdgeDefault<V, E>> columns;
-    private final ArrayList<ArrayList<Direction>> matrix;
-
     /**
      * Creates maps, stack for indexing, and matrix.
      */
     public GraphIncMatrix() {
-        indexesStackV = new Stack<>();
-        indexesStackE = new Stack<>();
+        indexesStackV = new ArrayDeque<>();
+        indexesStackE = new ArrayDeque<>();
         vertexMap = new HashMap<>();
         edgeMap = new HashMap<>();
         matrix = new ArrayList<>();
@@ -71,7 +63,7 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
      * @return set of all edges, that connects vertices
      */
     @Override
-    public Set<EdgeDefault<V, E>> getAllEdges(V sourceVertex, V targetVertex) {
+    public Set<EdgeDefault<V, E>> getEdges(V sourceVertex, V targetVertex) {
         if (!containsVertex(sourceVertex)
                 || !containsVertex(targetVertex)) {
             return null;
@@ -122,7 +114,6 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
             if (matrix.get(i).get(ind1) == Direction.FROM
                     && matrix.get(i).get(ind2) == Direction.TO
                     && Objects.equals(columns.get(i).getObject(), obj)) {
-
                 return columns.get(i);
             }
         }
@@ -130,9 +121,9 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Add specify edge, if there is no such edge.
+     * Add specified edge, if there is no such edge.
      *
-     * @param e is edge that will be added to graph
+     * @param e the edge that will be added to graph
      * @return true, if there are no equal Edge.
      */
     @Override
@@ -163,7 +154,7 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
         int vertIndex2 = vertexMap.get(targetVertex);
 
         if (edgeIndex >= matrix.size()) {
-            ArrayList<Direction> newColumn = new ArrayList<>();
+            List<Direction> newColumn = new ArrayList<>();
             for (int i = 0; i < vertexMap.size(); i++) {
                 newColumn.add(Direction.NO);
             }
@@ -179,9 +170,9 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
      * Edge has an object.
      *
-     * @param sourceVertex is start vertex for edge
-     * @param targetVertex is end vertex for edge
-     * @param object       is object that will be placed into edge
+     * @param sourceVertex the start vertex for edge
+     * @param targetVertex the end vertex for edge
+     * @param object       the object that will be placed into edge
      * @return new Edge
      */
     @Override
@@ -191,12 +182,12 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
 
 
     /**
-     * Create Edge with specify vertices, weight and object.
+     * Create Edge with specified vertices, weight and object.
      *
-     * @param sourceVertex is start vertex for edge
-     * @param targetVertex is end vertex for edge
-     * @param e            is object that will be placed into edge
-     * @param weight       is weight that will be placed into edge
+     * @param sourceVertex the start vertex for edge
+     * @param targetVertex the end vertex for edge
+     * @param e            the object that will be placed into edge
+     * @param weight       the weight that will be placed into edge
      * @return edge
      */
     @Override
@@ -209,7 +200,7 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
      * Add vertex to graph, if there is no such vertex.
      * If it isn't, then return false.
      *
-     * @param v is vertex value, or vertex object.
+     * @param v the vertex value, or vertex object.
      * @return true, if vertex has been added.
      */
     @Override
@@ -228,7 +219,7 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
         int vertIndex = indexesStackV.pop();
         vertexMap.put(v, vertIndex);
         if (flag) {
-            for (ArrayList<GraphIncMatrix.Direction> directions : matrix) {
+            for (List<GraphIncMatrix.Direction> directions : matrix) {
                 directions.add(Direction.NO);
             }
         }
@@ -238,8 +229,8 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     /**
      * Check for existing edge between two vertices.
      *
-     * @param sourceVertex is start vertex for some edge
-     * @param targetVertex is end vertex for some edge
+     * @param sourceVertex the start vertex for some edge
+     * @param targetVertex the end vertex for some edge
      * @return true, if there is edge from source to target.
      */
     @Override
@@ -251,8 +242,8 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     /**
      * Check for exising edge in the graph.
      *
-     * @param e is edge for checking
-     * @return true, if the graph contains specify edge
+     * @param e the edge for checking
+     * @return true, if the graph contains specified edge
      */
     @Override
     public boolean containsEdge(EdgeDefault<V, E> e) {
@@ -269,8 +260,8 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     /**
      * Check for exising vertex in the graph.
      *
-     * @param v is vertex object
-     * @return true, if the graph contains specify vertex.
+     * @param v the vertex object
+     * @return true, if the graph contains specified vertex.
      */
     @Override
     public boolean containsVertex(V v) {
@@ -291,10 +282,10 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Return set of all incoming edges to specify vertex.
+     * Return set of all incoming edges to specified vertex.
      *
-     * @param vertex is vertex
-     * @return set of all incoming edges to specify vertex.
+     * @param vertex the vertex
+     * @return set of all incoming edges to specified vertex.
      */
     @Override
     public Set<EdgeDefault<V, E>> incomingEdgesOf(V vertex) {
@@ -312,10 +303,10 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Return set of all incoming edges to specify vertex.
+     * Return set of all incoming edges to specified vertex.
      *
-     * @param vertex is vertex
-     * @return set of all incoming edges to specify vertex.
+     * @param vertex the vertex
+     * @return set of all incoming edges to specified vertex.
      */
     @Override
     public Set<EdgeDefault<V, E>> outgoingEdgesOf(V vertex) {
@@ -333,10 +324,10 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove edge with null object from graph between two specify vertices.
+     * Remove edge with null object from graph between two specified vertices.
      *
-     * @param sourceVertex is source vertex maybe for some edge.
-     * @param targetVertex is target vertex maybe for some edge.
+     * @param sourceVertex the source vertex maybe for some edge.
+     * @param targetVertex the target vertex maybe for some edge.
      * @return removed edge.
      */
     @Override
@@ -353,9 +344,9 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove specify edge from graph. And check for graph changes.
+     * Remove specified edge from graph. And check for graph changes.
      *
-     * @param e is edge
+     * @param e the edge
      * @return true, if there was removing edge from graph.
      */
     @Override
@@ -376,9 +367,9 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     }
 
     /**
-     * Remove specify vertex from graph. And check for graph changes.
+     * Remove specified vertex from graph. And check for graph changes.
      *
-     * @param v is vertex object
+     * @param v the vertex object
      * @return true, if there was removing vertex from graph.
      */
     @Override
@@ -402,5 +393,13 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
     @Override
     public Set<V> vertexSet() {
         return vertexMap.keySet();
+    }
+
+    @Override
+    public String toString() {
+        return "GraphIncMatrix{"
+                + "columns=" + columns
+                + "\nmatrix=" + matrix
+                + '}';
     }
 }

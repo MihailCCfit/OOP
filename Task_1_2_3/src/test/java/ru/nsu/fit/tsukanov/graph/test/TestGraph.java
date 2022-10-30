@@ -186,10 +186,10 @@ public class TestGraph {
         Assertions.assertFalse(graph.containsVertex(null));
         Assertions.assertFalse(graph.containsEdge(null));
         Assertions.assertFalse(graph.containsEdge(edge));
-        Assertions.assertNull(graph.getAllEdges(0, 1));
-        Assertions.assertNull(graph.getAllEdges(null, 1));
-        Assertions.assertNull(graph.getAllEdges(0, null));
-        Assertions.assertNull(graph.getAllEdges(null, null));
+        Assertions.assertNull(graph.getEdges(0, 1));
+        Assertions.assertNull(graph.getEdges(null, 1));
+        Assertions.assertNull(graph.getEdges(0, null));
+        Assertions.assertNull(graph.getEdges(null, null));
         Assertions.assertNull(graph.outgoingEdgesOf(0));
         Assertions.assertNull(graph.outgoingEdgesOf(null));
         Assertions.assertNull(graph.incomingEdgesOf(null));
@@ -267,7 +267,7 @@ public class TestGraph {
         Assertions.assertEquals(graph.inDegreeOf(10), 1);
         Assertions.assertFalse(edge05.toString().isBlank());
         var edge052 = graph.addEdge(0, 5, "052", 5);
-        Assertions.assertEquals(graph.getAllEdges(0, 5),
+        Assertions.assertEquals(graph.getEdges(0, 5),
                 Set.of(edge05, edge052));
         graph.addEdge(0, -1, "0-1", 10);
         graph.addEdge(5, -1, "5-1", 5);
@@ -341,10 +341,17 @@ public class TestGraph {
         Assertions.assertTrue(graph.removeVertex(1));
         Assertions.assertFalse(graph.removeEdge(edge0));
         Assertions.assertNull(graph.getEdge(0, 1));
-        Assertions.assertNull(graph.getAllEdges(0, 1));
+        Assertions.assertNull(graph.getEdges(0, 1));
         Assertions.assertTrue(graph.removeVertex(0));
         Assertions.assertFalse(graph.containsEdge(0, 1));
-
+        graph.addVertex(5);
+        graph.addVertex(6);
+        Assertions.assertFalse(graph.removeEdges(5,6));
+        graph.addEdge(5,6, "Why");
+        graph.addEdge(5,6, "Because");
+        Assertions.assertTrue(graph.removeEdges(5,6));
+        Assertions.assertTrue(graph.getEdges(5,6)::isEmpty);
+        Assertions.assertFalse(graph.removeEdges(5,10));
     }
 
     @ParameterizedTest

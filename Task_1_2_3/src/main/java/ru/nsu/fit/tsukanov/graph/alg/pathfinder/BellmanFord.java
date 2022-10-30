@@ -17,8 +17,8 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  */
 public class BellmanFord<V, E> {
     private V startVert;
-    private final HashMap<V, Double> marksMap;
-    private final HashMap<V, EdgeDefault<V, E>> pathMap;
+    private final Map<V, Double> marksMap;
+    private final Map<V, EdgeDefault<V, E>> pathMap;
     private final Graph<V, E> graph;
 
     /**
