@@ -72,7 +72,7 @@ public class TestGraph {
         }
         String startVertex = scanner.next();
         Dijkstra<String, String> alg = new Dijkstra<>(graph, startVertex);
-        ArrayList<String> arrCopy = alg.getOrdering();
+        List<String> arrCopy = alg.getOrdering();
         String string = "";
 
         for (String s : arrCopy) {
@@ -117,16 +117,16 @@ public class TestGraph {
         Dijkstra<String, String> dijkstra = new Dijkstra<>(graph, "A");
 
         BellmanFord<String, String> bellmanFord = new BellmanFord<>(graph, "A");
-        Assertions.assertTrue(dijkstra.getPathV("C").containsAll(
+        Assertions.assertTrue(dijkstra.getVerticesPath("C").containsAll(
                 List.of("A", "B", "C"))
         );
-        Assertions.assertTrue(dijkstra.getPathE("C").containsAll(
+        Assertions.assertTrue(dijkstra.getEdgesPath("C").containsAll(
                 List.of(ed1, ed3)
         ));
-        Assertions.assertTrue(bellmanFord.getPathV("C").containsAll(
+        Assertions.assertTrue(bellmanFord.getVerticesPath("C").containsAll(
                 List.of("A", "B", "C"))
         );
-        Assertions.assertTrue(bellmanFord.getPathE("C").containsAll(
+        Assertions.assertTrue(bellmanFord.getEdgesPath("C").containsAll(
                 List.of(ed1, ed3)
         ));
         Assertions.assertEquals(9, dijkstra.getDistant("C"));
@@ -139,7 +139,7 @@ public class TestGraph {
         Assertions.assertTrue(dijkstra.hasPath("C"));
         Assertions.assertTrue(bellmanFord.hasPath("C"));
         Assertions.assertEquals(Double.POSITIVE_INFINITY, dijkstra.getDistant("B"));
-        System.out.println(bellmanFord.getPathE("B"));
+        System.out.println(bellmanFord.getEdgesPath("B"));
         Assertions.assertEquals(Double.POSITIVE_INFINITY, bellmanFord.getDistant("B"));
         Assertions.assertFalse(graph.containsEdge("A", "B"));
         Assertions.assertFalse(graph.containsEdge(ed1));
@@ -280,10 +280,10 @@ public class TestGraph {
                 Double.POSITIVE_INFINITY);
         Assertions.assertThrows(NullPointerException.class,
                 () -> dijkstra.getDistant(null));
-        Assertions.assertNull(dijkstra.getPathE(4));
-        Assertions.assertNull(dijkstra.getPathV(4));
-        Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathE(null));
-        Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getPathV(null));
+        Assertions.assertNull(dijkstra.getEdgesPath(4));
+        Assertions.assertNull(dijkstra.getVerticesPath(4));
+        Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getEdgesPath(null));
+        Assertions.assertThrows(NullPointerException.class, () -> dijkstra.getVerticesPath(null));
         Assertions.assertThrows(NullPointerException.class, () -> dijkstra.hasPath(null));
         Assertions.assertNull(graph.removeEdge(0, 0));
 
@@ -294,10 +294,10 @@ public class TestGraph {
                 Double.POSITIVE_INFINITY);
         Assertions.assertThrows(NullPointerException.class,
                 () -> bellman.getDistant(null));
-        Assertions.assertNull(bellman.getPathE(4));
-        Assertions.assertNull(bellman.getPathV(4));
-        Assertions.assertThrows(NullPointerException.class, () -> bellman.getPathE(null));
-        Assertions.assertThrows(NullPointerException.class, () -> bellman.getPathV(null));
+        Assertions.assertNull(bellman.getEdgesPath(4));
+        Assertions.assertNull(bellman.getVerticesPath(4));
+        Assertions.assertThrows(NullPointerException.class, () -> bellman.getEdgesPath(null));
+        Assertions.assertThrows(NullPointerException.class, () -> bellman.getVerticesPath(null));
         Assertions.assertThrows(NullPointerException.class, () -> bellman.hasPath(null));
         Assertions.assertNull(graph.removeEdge(0, 0));
     }

@@ -17,24 +17,24 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @see Graph
  */
 public class Dijkstra<V, E> {
-    private V startVert;
-    private final Map<V, Double> marksTree;
+    private V startVertex;
+    private final Map<V, Double> marksMap;
     private final Map<V, EdgeDefault<V, E>> pathMap;
-    private final PriorityQueue<V> heap;
+    private final PriorityQueue<V> minDistanceHeap;
 
     private final Graph<V, E> graph;
 
     /**
      * Initialize maps, heap and start alg.
      *
-     * @param graph     the graph where will be finding paths and distances
-     * @param startVert the start vertex, from which will calculates distance
+     * @param graph       the graph where will be finding paths and distances
+     * @param startVertex the start vertex, from which will calculates distance
      */
-    public Dijkstra(Graph<V, E> graph, V startVert) {
-        this.startVert = startVert;
-        this.marksTree = new HashMap<>();
-        this.heap = new PriorityQueue<>((v1, v2) ->
-                (marksTree.get(v1).compareTo(marksTree.get(v2))));
+    public Dijkstra(Graph<V, E> graph, V startVertex) {
+        this.startVertex = startVertex;
+        this.marksMap = new HashMap<>();
+        this.minDistanceHeap = new PriorityQueue<>((v1, v2) ->
+                (marksMap.get(v1).compareTo(marksMap.get(v2))));
         this.graph = graph;
         pathMap = new HashMap<>();
         reuse();
@@ -59,12 +59,12 @@ public class Dijkstra<V, E> {
             }
         }
 
-        this.startVert = start;
-        heap.clear();
-        marksTree.clear();
+        this.startVertex = start;
+        minDistanceHeap.clear();
+        marksMap.clear();
         pathMap.clear();
-        heap.add(startVert);
-        marksTree.put(startVert, 0.0);
+        minDistanceHeap.add(startVertex);
+        marksMap.put(startVertex, 0.0);
         alg();
     }
 
@@ -73,23 +73,27 @@ public class Dijkstra<V, E> {
      * It's useful, if there are some modifications in the graph.
      */
     public void reuse() {
-        reuse(startVert);
+        reuse(startVertex);
     }
 
     private void relax(EdgeDefault<V, E> edge) {
         V start = edge.getSourceVertex();
         V end = edge.getTargetVertex();
-        double res = marksTree.get(start) + edge.getWeight();
-        if (!marksTree.containsKey(end) || res < marksTree.get(end)) {
-            marksTree.put(end, res);
+        double res = marksMap.get(start) + edge.getWeight();
+        if (!marksMap.containsKey(end)) {
+            marksMap.put(end, res);
             pathMap.put(end, edge);
-            heap.add(end);
+            minDistanceHeap.add(end);
+        }
+        if (res < marksMap.get(end)) {
+            marksMap.put(end, res);
+            pathMap.put(end, edge);
         }
     }
 
     private void alg() {
-        while (!heap.isEmpty()) {
-            V curr = heap.poll();
+        while (!minDistanceHeap.isEmpty()) {
+            V curr = minDistanceHeap.poll();
             for (EdgeDefault<V, E> edge : graph.outgoingEdgesOf(curr)) {
                 relax(edge);
             }
@@ -99,7 +103,7 @@ public class Dijkstra<V, E> {
     /**
      * Return distance from start vertex to specify.
      *
-     * @param v is vertex object
+     * @param v the vertex object
      * @return distance from start vertex to specify
      * @throws NullPointerException if argument is null
      */
@@ -107,17 +111,17 @@ public class Dijkstra<V, E> {
         if (v == null) {
             throw new NullPointerException("Null vertex");
         }
-        return marksTree.getOrDefault(v, Double.POSITIVE_INFINITY);
+        return marksMap.getOrDefault(v, Double.POSITIVE_INFINITY);
     }
 
     /**
      * Return vertex path from start vertex to specify.
      *
-     * @param v is vertex object
+     * @param v the vertex object
      * @return vertex path from start vertex to specify
      * @throws NullPointerException if argument is null
      */
-    public List<V> getPathV(V v) {
+    public List<V> getVerticesPath(V v) {
         if (v == null) {
             throw new NullPointerException();
         }
@@ -127,7 +131,7 @@ public class Dijkstra<V, E> {
         LinkedList<V> list = new LinkedList<>();
         V curr = v;
         list.add(v);
-        while (curr != startVert) {
+        while (curr != startVertex) {
             curr = pathMap.get(curr).getSourceVertex();
             list.add(0, curr);
         }
@@ -137,11 +141,11 @@ public class Dijkstra<V, E> {
     /**
      * Return edge path from start vertex to specify.
      *
-     * @param v is vertex object
+     * @param v the vertex object
      * @return edge path from start vertex to specify
      * @throws NullPointerException if argument is null
      */
-    public List<EdgeDefault<V, E>> getPathE(V v) {
+    public List<EdgeDefault<V, E>> getEdgesPath(V v) {
         if (v == null) {
             throw new NullPointerException();
         }
@@ -151,7 +155,7 @@ public class Dijkstra<V, E> {
         LinkedList<EdgeDefault<V, E>> list = new LinkedList<>();
         V curr = v;
 
-        while (curr != startVert) {
+        while (curr != startVertex) {
             list.add(0, pathMap.get(curr));
             curr = pathMap.get(curr).getSourceVertex();
         }
@@ -178,7 +182,7 @@ public class Dijkstra<V, E> {
      * @return ordered ArrayList according to distance
      */
     public ArrayList<V> getOrdering() {
-        ArrayList<V> arrayList = new ArrayList<>(marksTree.keySet());
+        ArrayList<V> arrayList = new ArrayList<>(marksMap.keySet());
         arrayList.sort((x, y) -> Double.compare(getDistant(x), getDistant(y)));
         return arrayList;
     }
