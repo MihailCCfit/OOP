@@ -213,7 +213,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">addEdge</a></span>&#8203;(<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&nbsp;e)</code></th>
 <td class="colLast">
-<div class="block">Add specify edge, if there is no such edge.</div>
+<div class="block">Add specified edge, if there is no such edge.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -232,7 +232,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
        <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&nbsp;e,
        double&nbsp;weight)</code></th>
 <td class="colLast">
-<div class="block">Create Edge with specify vertices, weight and object.</div>
+<div class="block">Create Edge with specified vertices, weight and object.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -272,14 +272,6 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 </td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAllEdges(V,V)">getAllEdges</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
-           <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</code></th>
-<td class="colLast">
-<div class="block">Return all edges, that connects two vertices.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdge(V,V,E)">getEdge</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
        <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex,
@@ -288,25 +280,33 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <div class="block">Return edge, that connects two vertices and has specified object.</div>
 </td>
 </tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges(V,V)">getEdges</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
+        <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</code></th>
+<td class="colLast">
+<div class="block">Return all edges, that connects two vertices.</div>
+</td>
+</tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#incomingEdgesOf(V)">incomingEdgesOf</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
-<div class="block">Return set of all incoming edges to specify vertex.</div>
+<div class="block">Return set of all incoming edges to specified vertex.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#outgoingEdgesOf(V)">outgoingEdgesOf</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;vertex)</code></th>
 <td class="colLast">
-<div class="block">Return set of all incoming edges to specify vertex.</div>
+<div class="block">Return set of all incoming edges to specified vertex.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">removeEdge</a></span>&#8203;(<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&nbsp;e)</code></th>
 <td class="colLast">
-<div class="block">Remove specify edge from graph.</div>
+<div class="block">Remove specified edge from graph.</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
@@ -314,14 +314,14 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(V,V)">removeEdge</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
           <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</code></th>
 <td class="colLast">
-<div class="block">Remove edge with null object from graph between two specify vertices.</div>
+<div class="block">Remove edge with null object from graph between two specified vertices.</div>
 </td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(V)">removeVertex</a></span>&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;v)</code></th>
 <td class="colLast">
-<div class="block">Remove specify vertex from graph.</div>
+<div class="block">Remove specified vertex from graph.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
@@ -344,7 +344,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;ru.nsu.fit.tsukanov.graph.core.<a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a></h3>
-<code><a href="../core/Graph.html#addEdge(V,V)">addEdge</a>, <a href="../core/Graph.html#addEdge(V,V,double)">addEdge</a>, <a href="../core/Graph.html#getEdge(V,V)">getEdge</a>, <a href="../core/Graph.html#inDegreeOf(V)">inDegreeOf</a>, <a href="../core/Graph.html#outDegreeOf(V)">outDegreeOf</a>, <a href="../core/Graph.html#removeAllEdges(java.util.Collection)">removeAllEdges</a>, <a href="../core/Graph.html#removeAllVertices(java.util.Collection)">removeAllVertices</a>, <a href="../core/Graph.html#setEdgeWeight(V,V,double)">setEdgeWeight</a></code></li>
+<code><a href="../core/Graph.html#addEdge(V,V)">addEdge</a>, <a href="../core/Graph.html#addEdge(V,V,double)">addEdge</a>, <a href="../core/Graph.html#getEdge(V,V)">getEdge</a>, <a href="../core/Graph.html#inDegreeOf(V)">inDegreeOf</a>, <a href="../core/Graph.html#outDegreeOf(V)">outDegreeOf</a>, <a href="../core/Graph.html#removeAllEdges(java.util.Collection)">removeAllEdges</a>, <a href="../core/Graph.html#removeAllVertices(java.util.Collection)">removeAllVertices</a>, <a href="../core/Graph.html#removeEdges(V,V)">removeEdges</a>, <a href="../core/Graph.html#setEdgeWeight(V,V,double)">setEdgeWeight</a></code></li>
 </ul>
 </li>
 </ul>
@@ -384,21 +384,21 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getAllEdges(java.lang.Object,java.lang.Object)">
+<a id="getEdges(java.lang.Object,java.lang.Object)">
 <!--   -->
-</a><a id="getAllEdges(V,V)">
+</a><a id="getEdges(V,V)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAllEdges</h4>
-<pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;&nbsp;getAllEdges&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
-                                                         <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</pre>
+<h4>getEdges</h4>
+<pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;&nbsp;getEdges&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
+                                                      <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</pre>
 <div class="block">Return all edges, that connects two vertices.
- Edges is directed from sourceVertex to targetVertex.</div>
+ Edges the directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../core/Graph.html#getAllEdges(V,V)">getAllEdges</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
+<dd><code><a href="../core/Graph.html#getEdges(V,V)">getEdges</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sourceVertex</code> - start vertex</dd>
 <dd><code>targetVertex</code> - end vertex</dd>
@@ -419,7 +419,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
                                       <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex,
                                       <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&nbsp;obj)</pre>
 <div class="block">Return edge, that connects two vertices and has specified object.
- Edge is directed from sourceVertex to targetVertex.</div>
+ Edge the directed from sourceVertex to targetVertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#getEdge(V,V,E)">getEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
@@ -449,9 +449,9 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#addEdge(V,V,E)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sourceVertex</code> - is start vertex for edge</dd>
-<dd><code>targetVertex</code> - is end vertex for edge</dd>
-<dd><code>object</code> - is object that will be placed into edge</dd>
+<dd><code>sourceVertex</code> - the start vertex for edge</dd>
+<dd><code>targetVertex</code> - the end vertex for edge</dd>
+<dd><code>object</code> - the object that will be placed into edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>new Edge</dd>
 </dl>
@@ -464,12 +464,12 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <li class="blockList">
 <h4>addEdge</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;addEdge&#8203;(<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&nbsp;e)</pre>
-<div class="block">Add specify edge, if there is no such edge.</div>
+<div class="block">Add specified edge, if there is no such edge.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#addEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>e</code> - is edge that will be added to graph</dd>
+<dd><code>e</code> - the edge that will be added to graph</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if there are no equal Edge.</dd>
 </dl>
@@ -487,15 +487,15 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
                                       <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex,
                                       <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&nbsp;e,
                                       double&nbsp;weight)</pre>
-<div class="block">Create Edge with specify vertices, weight and object.</div>
+<div class="block">Create Edge with specified vertices, weight and object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#addEdge(V,V,E,double)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sourceVertex</code> - is start vertex for edge</dd>
-<dd><code>targetVertex</code> - is end vertex for edge</dd>
-<dd><code>e</code> - is object that will be placed into edge</dd>
-<dd><code>weight</code> - is weight that will be placed into edge</dd>
+<dd><code>sourceVertex</code> - the start vertex for edge</dd>
+<dd><code>targetVertex</code> - the end vertex for edge</dd>
+<dd><code>e</code> - the object that will be placed into edge</dd>
+<dd><code>weight</code> - the weight that will be placed into edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>edge</dd>
 </dl>
@@ -516,7 +516,7 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#addVertex(V)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>v</code> - is vertex value, or vertex object.</dd>
+<dd><code>v</code> - the vertex value, or vertex object.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if vertex has been added.</dd>
 </dl>
@@ -537,8 +537,8 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#containsEdge(V,V)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sourceVertex</code> - is start vertex for some edge</dd>
-<dd><code>targetVertex</code> - is end vertex for some edge</dd>
+<dd><code>sourceVertex</code> - the start vertex for some edge</dd>
+<dd><code>targetVertex</code> - the end vertex for some edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if there is edge from source to target.</dd>
 </dl>
@@ -556,9 +556,9 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#containsEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">containsEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>e</code> - is edge for checking</dd>
+<dd><code>e</code> - the edge for checking</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true, if the graph contains specify edge</dd>
+<dd>true, if the graph contains specified edge</dd>
 </dl>
 </li>
 </ul>
@@ -576,9 +576,9 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#containsVertex(V)">containsVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>v</code> - is vertex object</dd>
+<dd><code>v</code> - the vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true, if the graph contains specify vertex.</dd>
+<dd>true, if the graph contains specified vertex.</dd>
 </dl>
 </li>
 </ul>
@@ -607,14 +607,14 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <li class="blockList">
 <h4>incomingEdgesOf</h4>
 <pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;&nbsp;incomingEdgesOf&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;vertex)</pre>
-<div class="block">Return set of all incoming edges to specify vertex.</div>
+<div class="block">Return set of all incoming edges to specified vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#incomingEdgesOf(V)">incomingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vertex</code> - is vertex</dd>
+<dd><code>vertex</code> - the vertex</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>set of all incoming edges to specify vertex.</dd>
+<dd>set of all incoming edges to specified vertex.</dd>
 </dl>
 </li>
 </ul>
@@ -627,14 +627,14 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <li class="blockList">
 <h4>outgoingEdgesOf</h4>
 <pre class="methodSignature">public&nbsp;java.util.Set&lt;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&gt;&nbsp;outgoingEdgesOf&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;vertex)</pre>
-<div class="block">Return set of all incoming edges to specify vertex.</div>
+<div class="block">Return set of all incoming edges to specified vertex.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#outgoingEdgesOf(V)">outgoingEdgesOf</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vertex</code> - is vertex</dd>
+<dd><code>vertex</code> - the vertex</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>set of all incoming edges to specify vertex.</dd>
+<dd>set of all incoming edges to specified vertex.</dd>
 </dl>
 </li>
 </ul>
@@ -648,13 +648,13 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <h4>removeEdge</h4>
 <pre class="methodSignature">public&nbsp;<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&nbsp;removeEdge&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;sourceVertex,
                                          <a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;targetVertex)</pre>
-<div class="block">Remove edge with null object from graph between two specify vertices.</div>
+<div class="block">Remove edge with null object from graph between two specified vertices.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#removeEdge(V,V)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sourceVertex</code> - is source vertex maybe for some edge.</dd>
-<dd><code>targetVertex</code> - is target vertex maybe for some edge.</dd>
+<dd><code>sourceVertex</code> - the source vertex maybe for some edge.</dd>
+<dd><code>targetVertex</code> - the target vertex maybe for some edge.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>removed edge.</dd>
 </dl>
@@ -667,12 +667,12 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <li class="blockList">
 <h4>removeEdge</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;removeEdge&#8203;(<a href="../core/EdgeDefault.html" title="class in ru.nsu.fit.tsukanov.graph.core">EdgeDefault</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;&nbsp;e)</pre>
-<div class="block">Remove specify edge from graph. And check for graph changes.</div>
+<div class="block">Remove specified edge from graph. And check for graph changes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#removeEdge(ru.nsu.fit.tsukanov.graph.core.EdgeDefault)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>e</code> - is edge</dd>
+<dd><code>e</code> - the edge</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if there was removing edge from graph.</dd>
 </dl>
@@ -687,12 +687,12 @@ implements <a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.
 <li class="blockList">
 <h4>removeVertex</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;removeVertex&#8203;(<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>&nbsp;v)</pre>
-<div class="block">Remove specify vertex from graph. And check for graph changes.</div>
+<div class="block">Remove specified vertex from graph. And check for graph changes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../core/Graph.html#removeVertex(V)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../core/Graph.html" title="interface in ru.nsu.fit.tsukanov.graph.core">Graph</a>&lt;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">V</a>,&#8203;<a href="GraphAdjMatrix.html" title="type parameter in GraphAdjMatrix">E</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>v</code> - is vertex object</dd>
+<dd><code>v</code> - the vertex object</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if there was removing vertex from graph.</dd>
 </dl>

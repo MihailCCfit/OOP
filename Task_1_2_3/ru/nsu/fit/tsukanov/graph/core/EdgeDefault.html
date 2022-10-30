@@ -187,7 +187,7 @@ extends java.lang.Object</pre>
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(V,V)">EdgeDefault</a></span>&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
            <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end)</code></th>
 <td class="colLast">
-<div class="block">Creates edge with specify vertices, null object and default weight.</div>
+<div class="block">Creates edge with specified vertices, null object and default weight.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -195,7 +195,7 @@ extends java.lang.Object</pre>
            <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end,
            <a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object)</code></th>
 <td class="colLast">
-<div class="block">Creates edge with specify vertices, object and default weight.</div>
+<div class="block">Creates edge with specified vertices, object and default weight.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -204,7 +204,7 @@ extends java.lang.Object</pre>
            <a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object,
            double&nbsp;weight)</code></th>
 <td class="colLast">
-<div class="block">Creates edge with specify vertices, object and weight.</div>
+<div class="block">Creates edge with specified vertices, object and weight.</div>
 </td>
 </tr>
 </table>
@@ -227,7 +227,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Compares for equality of edges.</div>
 </td>
@@ -346,7 +346,7 @@ extends java.lang.Object</pre>
 <h4>EdgeDefault</h4>
 <pre>public&nbsp;EdgeDefault&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end)</pre>
-<div class="block">Creates edge with specify vertices, null object and default weight.</div>
+<div class="block">Creates edge with specified vertices, null object and default weight.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>start</code> - is source vertex</dd>
@@ -365,7 +365,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;EdgeDefault&#8203;(<a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;start,
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end,
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object)</pre>
-<div class="block">Creates edge with specify vertices, object and default weight.</div>
+<div class="block">Creates edge with specified vertices, object and default weight.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>start</code> - is source vertex</dd>
@@ -386,7 +386,7 @@ extends java.lang.Object</pre>
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">V</a>&nbsp;end,
                    <a href="EdgeDefault.html" title="type parameter in EdgeDefault">E</a>&nbsp;object,
                    double&nbsp;weight)</pre>
-<div class="block">Creates edge with specify vertices, object and weight.</div>
+<div class="block">Creates edge with specified vertices, object and weight.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>start</code> - is source vertex</dd>
@@ -406,23 +406,6 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="toString()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>toString</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
-<div class="block">Return string representation of edge.
- sourceVertex + targetVertex + weight + object.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>string representation of edge</dd>
-</dl>
-</li>
-</ul>
 <a id="getObject()">
 <!--   -->
 </a>
@@ -515,14 +498,14 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;obj)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;o)</pre>
 <div class="block">Compares for equality of edges.
  Check source and target vertices, object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>obj</code> - edge that will be compared with this edge.</dd>
+<dd><code>o</code> - edge that will be compared with this edge.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if objects are equal</dd>
 </dl>
@@ -531,7 +514,7 @@ extends java.lang.Object</pre>
 <a id="hashCode()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
@@ -541,6 +524,23 @@ extends java.lang.Object</pre>
 <dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>hashCode depends on source, target, object.</dd>
+</dl>
+</li>
+</ul>
+<a id="toString()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>toString</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<div class="block">Return string representation of edge.
+ sourceVertex + targetVertex + weight + object.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>string representation of edge</dd>
 </dl>
 </li>
 </ul>
