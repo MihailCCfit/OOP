@@ -121,7 +121,8 @@ public class TestGraph {
         Assertions.assertEquals(edge.getWeight(), 5);
         graph.setEdgeWeight("C", "B", 5);
         edge.setObject("123");
-        Assertions.assertNull(graph.getEdge(edge.getSourceVertex(), edge.getTargetVertex(), "edge.getObject()"));
+        Assertions.assertNull(graph.getEdge(edge.getSourceVertex(),
+                edge.getTargetVertex(), edge.getObject()));
         Assertions.assertEquals(edge.getWeight(), 5);
         Assertions.assertNull(graph.removeEdge("A", "D"));
         Assertions.assertTrue(graph.removeAllVertices(List.of("A", "C")));

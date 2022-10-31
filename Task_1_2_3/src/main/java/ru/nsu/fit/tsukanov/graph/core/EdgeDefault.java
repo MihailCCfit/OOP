@@ -121,8 +121,12 @@ public class EdgeDefault<V, E> {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         EdgeDefault<?, ?> that = (EdgeDefault<?, ?>) o;
         return Objects.equals(sourceVertex, that.sourceVertex)
                 && Objects.equals(targetVertex, that.targetVertex)

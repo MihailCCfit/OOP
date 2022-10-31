@@ -10,15 +10,22 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
 
 
 
+/**
+ * Parse file and add vertices to graph.
+ *
+ * @see GraphParser#parseAdjacencyMatrix(File, Graph)
+ * @see GraphParser#parseList(File, Graph)
+ */
 public abstract class GraphParser {
     /**
-     * Parsing from file adjacency matrix
+     * Parsing from file adjacency matrix.
      *
      * @param file  the file from that will take vertices and edges
      * @param graph the graph in which vertices and edges will be placed
      * @throws FileNotFoundException if there is no file
      */
-    public static void parseAdjacencyMatrix(File file, Graph<String, ?> graph) throws FileNotFoundException {
+    public static void parseAdjacencyMatrix(File file, Graph<String, ?> graph)
+            throws FileNotFoundException {
         InputStreamReader reader = new FileReader(file);
         Scanner scanner = new Scanner(reader);
         String columns = scanner.nextLine();

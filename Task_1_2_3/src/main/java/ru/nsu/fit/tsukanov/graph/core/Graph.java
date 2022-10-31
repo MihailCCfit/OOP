@@ -52,7 +52,8 @@ public interface Graph<V, E> {
     /**
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
      * Edge has null as edge object.
-     * If the edge already exists and the weight does not change, then return null. Otherwise, returns true.
+     * If the edge already exists and the weight does not change, then return null.
+     * Otherwise, returns true.
      *
      * @param sourceVertex the start vertex for edge
      * @param targetVertex the end vertex for edge
@@ -65,7 +66,8 @@ public interface Graph<V, E> {
     /**
      * Add edge, that connects vertices in direction from sourceVertex to targetVertex.
      * Edge has an object.
-     * If the edge already exists and the weight does not change, then return null. Otherwise, returns true.
+     * If the edge already exists and the weight does not change, then return null.
+     * Otherwise, returns true.
      *
      * @param sourceVertex the start vertex for edge
      * @param targetVertex the end vertex for edge
@@ -76,7 +78,8 @@ public interface Graph<V, E> {
 
     /**
      * Add specified edge, if there is no such edge.
-     * If the edge already exists and the weight does not change, then return false. Otherwise, returns true.
+     * If the edge already exists and the weight does not change, then return false.
+     * Otherwise, returns true.
      *
      * @param e the edge that will be added to graph
      * @return true, if there are no equal Edge with equal weights.
@@ -85,7 +88,8 @@ public interface Graph<V, E> {
 
     /**
      * Create Edge with specified vertices, weight and object.
-     * If the edge already exists and the weight does not change, then return null. Otherwise, returns true.
+     * If the edge already exists and the weight does not change, then return null.
+     * Otherwise, returns true.
      *
      * @param sourceVertex the start vertex for edge
      * @param targetVertex the end vertex for edge
@@ -245,9 +249,9 @@ public interface Graph<V, E> {
      * @param targetVertex the target vertex maybe for some edge.
      * @return true, if there is some changes in graph.
      */
-    default boolean removeEdges(V sourceVertex, V targetVertex){
+    default boolean removeEdges(V sourceVertex, V targetVertex) {
         Set<EdgeDefault<V, E>> edges = getEdges(sourceVertex, targetVertex);
-        if (edges==null){
+        if (edges == null) {
             return false;
         }
         boolean flag = false;

@@ -376,10 +376,10 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
 
     @Override
     public String toString() {
-        return "GraphAdjMatrix{" +
-                "indexesStack=" + indexesStack +
-                ", vertexMap=" + vertexMap +
-                ", matrix=" + matrix +
-                '}';
+        return "GraphAdjMatrix{"
+                + "indexesStack=" + indexesStack
+                + ", vertexMap=" + vertexMap
+                + ", matrix=" + matrix
+                + '}';
     }
 }
