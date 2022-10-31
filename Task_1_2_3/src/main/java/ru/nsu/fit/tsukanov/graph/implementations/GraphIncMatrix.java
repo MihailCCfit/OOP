@@ -31,8 +31,8 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
  * @see Graph
  */
 public class GraphIncMatrix<V, E> implements Graph<V, E> {
-    private final Deque<Integer> indexesStackV;
-    private final Deque<Integer> indexesStackE;
+    private final Stack<Integer> indexesStackV;
+    private final Stack<Integer> indexesStackE;
     private final Map<V, Integer> vertexMap;
     private final Map<EdgeDefault<V, E>, Integer> edgeMap;
     private final List<EdgeDefault<V, E>> columns;
@@ -46,8 +46,8 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
      * Creates maps, stack for indexing, and matrix.
      */
     public GraphIncMatrix() {
-        indexesStackV = new ArrayDeque<>();
-        indexesStackE = new ArrayDeque<>();
+        indexesStackV = new Stack<>();
+        indexesStackE = new Stack<>();
         vertexMap = new HashMap<>();
         edgeMap = new HashMap<>();
         matrix = new ArrayList<>();
@@ -278,7 +278,7 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
      */
     @Override
     public Set<EdgeDefault<V, E>> edgeSet() {
-        return edgeMap.keySet();
+        return new HashSet<>(edgeMap.keySet());
     }
 
     /**
@@ -392,12 +392,13 @@ public class GraphIncMatrix<V, E> implements Graph<V, E> {
      */
     @Override
     public Set<V> vertexSet() {
-        return vertexMap.keySet();
+        return new HashSet<>(vertexMap.keySet());
     }
 
     @Override
     public String toString() {
         return "GraphIncMatrix{"
+                + "stack" + indexesStackE
                 + "columns=" + columns
                 + "\nmatrix=" + matrix
                 + '}';

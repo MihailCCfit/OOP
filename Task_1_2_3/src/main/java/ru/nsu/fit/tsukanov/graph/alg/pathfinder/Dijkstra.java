@@ -53,11 +53,6 @@ public class Dijkstra<V, E> {
         if (!graph.containsVertex(start)) {
             throw new IllegalArgumentException("No such vertex in graph");
         }
-        for (EdgeDefault<V, E> edg : graph.edgeSet()) {
-            if (edg.getWeight() < 0) {
-                throw new IllegalStateException("There is negative edge weight");
-            }
-        }
 
         this.startVertex = start;
         minDistanceHeap.clear();
@@ -95,6 +90,9 @@ public class Dijkstra<V, E> {
         while (!minDistanceHeap.isEmpty()) {
             V curr = minDistanceHeap.poll();
             for (EdgeDefault<V, E> edge : graph.outgoingEdgesOf(curr)) {
+                if (edge.getWeight() < 0) {
+                    throw new IllegalStateException("There is negative edge weight");
+                }
                 relax(edge);
             }
         }
@@ -181,8 +179,8 @@ public class Dijkstra<V, E> {
      *
      * @return ordered ArrayList according to distance
      */
-    public ArrayList<V> getOrdering() {
-        ArrayList<V> arrayList = new ArrayList<>(marksMap.keySet());
+    public List<V> getOrdering() {
+        List<V> arrayList = new ArrayList<>(marksMap.keySet());
         arrayList.sort((x, y) -> Double.compare(getDistant(x), getDistant(y)));
         return arrayList;
     }

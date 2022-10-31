@@ -1,12 +1,10 @@
 package ru.nsu.fit.tsukanov.graph.test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,6 +17,7 @@ import ru.nsu.fit.tsukanov.graph.core.Graph;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphAdjMatrix;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncList;
 import ru.nsu.fit.tsukanov.graph.implementations.GraphIncMatrix;
+import ru.nsu.fit.tsukanov.graph.parser.GraphParser;
 
 
 
@@ -41,59 +40,24 @@ public class TestGraph {
      */
     @ParameterizedTest
     @MethodSource("graphStream")
-    void snd(Graph<String, String> graph) throws FileNotFoundException {
-        String txt = "7\n"
-                + "A B C D E F G\n"
-                + "- 5 - 12 - - 25\n"
-                + "5 - - 8 - - -\n"
-                + "- - - 2 4 5 10\n"
-                + "12 8 2 - - - -\n"
-                + "- - 4 - - - 5\n"
-                + "- - 5 - - - 5\n"
-                + "25 - 10 - 5 5 -\n"
-                + "C\n";
-        FileReader fileReader = new FileReader("src/test/resources/matrix.txt");
-        Scanner scanner = new Scanner(fileReader);
-        //Scanner scanner = new Scanner(txt);
-        int n = scanner.nextInt();
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            arrayList.add(scanner.next());
-            graph.addVertex(arrayList.get(i));
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                String dist = scanner.next();
-                if (!dist.equals("-")) {
-                    graph.addEdge(arrayList.get(i), arrayList.get(j),
-                            "" + i + j, Integer.parseInt(dist));
-                }
-            }
-        }
-        String startVertex = scanner.next();
-        Dijkstra<String, String> alg = new Dijkstra<>(graph, startVertex);
-        List<String> arrCopy = alg.getOrdering();
-        String string = "";
-
-        for (String s : arrCopy) {
-            string += String.format("%s(%s) ", s, alg.getDistant(s));
-        }
-        Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ",
-                string);
-        Assertions.assertEquals(arrCopy.stream().collect(Collectors.toList()),
+    void parserTest(Graph<String, String> graph) throws FileNotFoundException {
+        File file = new File("src/test/resources/matrix.txt");
+        GraphParser.parseAdjacencyMatrix(file, graph);
+        Dijkstra<String, String> alg = new Dijkstra<>(graph, "C");
+        Assertions.assertEquals(new ArrayList<>(alg.getOrdering()),
                 List.of("C", "D", "E", "F", "G", "B", "A"));
-
-        BellmanFord<String, String> alg2 = new BellmanFord<>(graph, startVertex);
-        arrCopy = alg2.getOrdering();
-        string = "";
-
-        for (String s : arrCopy) {
-            string += String.format("%s(%s) ", s, alg2.getDistant(s));
-        }
-        Assertions.assertEquals("C(0.0) D(2.0) E(4.0) F(5.0) G(9.0) B(10.0) A(14.0) ",
-                string);
-        Assertions.assertEquals(new ArrayList<>(arrCopy),
+        BellmanFord<String, String> alg2 = new BellmanFord<>(graph, "C");
+        Assertions.assertEquals(new ArrayList<>(alg2.getOrdering()),
                 List.of("C", "D", "E", "F", "G", "B", "A"));
+        var sett = graph.vertexSet();
+        System.out.println(graph);
+        graph.removeAllVertices(sett);
+        file = new File("src/test/resources/list.txt");
+        GraphParser.parseList(file, graph);
+        alg.reuse("A");
+        Assertions.assertEquals(alg.getDistant("D"), 6);
+        alg2.reuse("A");
+        Assertions.assertEquals(alg2.getDistant("D"), 6);
     }
 
     /**
@@ -139,7 +103,6 @@ public class TestGraph {
         Assertions.assertTrue(dijkstra.hasPath("C"));
         Assertions.assertTrue(bellmanFord.hasPath("C"));
         Assertions.assertEquals(Double.POSITIVE_INFINITY, dijkstra.getDistant("B"));
-        System.out.println(bellmanFord.getEdgesPath("B"));
         Assertions.assertEquals(Double.POSITIVE_INFINITY, bellmanFord.getDistant("B"));
         Assertions.assertFalse(graph.containsEdge("A", "B"));
         Assertions.assertFalse(graph.containsEdge(ed1));
@@ -346,12 +309,12 @@ public class TestGraph {
         Assertions.assertFalse(graph.containsEdge(0, 1));
         graph.addVertex(5);
         graph.addVertex(6);
-        Assertions.assertFalse(graph.removeEdges(5,6));
-        graph.addEdge(5,6, "Why");
-        graph.addEdge(5,6, "Because");
-        Assertions.assertTrue(graph.removeEdges(5,6));
-        Assertions.assertTrue(graph.getEdges(5,6)::isEmpty);
-        Assertions.assertFalse(graph.removeEdges(5,10));
+        Assertions.assertFalse(graph.removeEdges(5, 6));
+        graph.addEdge(5, 6, "Why");
+        graph.addEdge(5, 6, "Because");
+        Assertions.assertTrue(graph.removeEdges(5, 6));
+        Assertions.assertTrue(graph.getEdges(5, 6)::isEmpty);
+        Assertions.assertFalse(graph.removeEdges(5, 10));
     }
 
     @ParameterizedTest
@@ -364,4 +327,5 @@ public class TestGraph {
         Assertions.assertThrows(IllegalStateException.class, () -> new Dijkstra<>(graph, 0));
         Assertions.assertThrows(IllegalStateException.class, () -> new BellmanFord<>(graph, 0));
     }
+
 }

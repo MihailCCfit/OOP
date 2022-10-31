@@ -371,6 +371,15 @@ public class GraphAdjMatrix<V, E> implements Graph<V, E> {
      */
     @Override
     public Set<V> vertexSet() {
-        return vertexMap.keySet();
+        return new HashSet<>(vertexMap.keySet());
+    }
+
+    @Override
+    public String toString() {
+        return "GraphAdjMatrix{" +
+                "indexesStack=" + indexesStack +
+                ", vertexMap=" + vertexMap +
+                ", matrix=" + matrix +
+                '}';
     }
 }

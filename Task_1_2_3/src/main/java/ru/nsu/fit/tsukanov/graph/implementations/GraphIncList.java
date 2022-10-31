@@ -141,6 +141,7 @@ public class GraphIncList<V, E> implements Graph<V, E> {
         return targetV.inEdge.add(e);
     }
 
+
     /**
      * Create Edge with specified vertices, weight and object.
      *
@@ -343,10 +344,17 @@ public class GraphIncList<V, E> implements Graph<V, E> {
      */
     @Override
     public Set<V> vertexSet() {
-        return vertexMap.keySet();
+        return new HashSet<>(vertexMap.keySet());
     }
 
     private Vertex<V, E> getVertex(V vo) {
         return vertexMap.get(vo);
+    }
+
+    @Override
+    public String toString() {
+        return "GraphIncList{" +
+                "vertexMap=" + vertexMap +
+                '}';
     }
 }
