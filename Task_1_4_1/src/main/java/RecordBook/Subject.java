@@ -1,6 +1,9 @@
 package RecordBook;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Subject {
     private final String subjectName;
@@ -17,15 +20,15 @@ public class Subject {
         this.subjectName = subjectName;
         this.certificationDate = certificationDate;
         this.attestationForm = attestationForm;
-        if (teachers != null){
+        if (teachers != null) {
             this.teachers = new TreeSet<>(teachers);
-        }
-        else{
+        } else {
             this.teachers = new TreeSet<>();
         }
         this.mark = mark;
     }
-    public Subject(String subjectName, Collection<String> competencies, String attestationForm){
+
+    public Subject(String subjectName, Collection<String> competencies, String attestationForm) {
         this(subjectName, competencies, "", attestationForm, null, 0);
     }
 
@@ -56,20 +59,32 @@ public class Subject {
     public void setTeachers(Collection<String> teachers) {
         this.teachers = new TreeSet<>(teachers);
     }
-    public boolean addTeacher(String newTeacher){
-        if (teachers.contains(newTeacher)){
+
+    public boolean addTeacher(String newTeacher) {
+        if (teachers.contains(newTeacher)) {
             return false;
         }
         teachers.add(newTeacher);
         return true;
     }
 
-    public int getMark() {
+    int _getMark() {
         return mark;
+    }
+    public String getMark(){
+        String markString;
+        if (mark==0 || mark == 1) {
+            markString = mark==1? "Passed" : "Not Passed";
+        } else if (mark<2 || mark>5){
+            markString = "-";
+        }   else{
+            markString = ""+mark;
+        }
+        return markString;
     }
 
     public void setMark(int mark) {
-        if (mark<2 || mark>5){
+        if (mark < 2 || mark > 5) {
             throw new IllegalArgumentException("mark should be between 2 and 5");
         }
         this.mark = mark;
@@ -77,15 +92,25 @@ public class Subject {
 
     @Override
     public String toString() {
+        String markString;
+        if (mark==0 || mark == 1) {
+            markString = mark==1? "Passed" : "Not Passed";
+        } else if (mark<2 || mark>5){
+            markString = "-";
+        }   else{
+            markString = ""+mark;
+        }
+
         return "Subject (" +
-                subjectName+
+                subjectName +
                 ")\n competencies: " + competencies +
-                "\n certificationDate: " + certificationDate  +
-                "\n attestationForm: " + attestationForm  +
+                "\n certificationDate: " + (certificationDate.isEmpty()? "-" : certificationDate) +
+                "\n attestationForm: " + attestationForm +
                 "\n teachers: " + teachers +
-                "\n mark " + mark;
+                "\n mark " + markString;
     }
-    public String shortResult(){
+
+    public String shortResult() {
         return "" + subjectName + ": " + mark + "";
     }
 }
