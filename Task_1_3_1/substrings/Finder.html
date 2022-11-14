@@ -123,7 +123,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="algorithms/FinderAC.html" title="class in substrings.algorithms">FinderAC</a></code>, <code><a href="algorithms/FinderAK.html" title="class in substrings.algorithms">FinderAK</a></code></dd>
+<dd><code><a href="algorithms/AhoKorasickFinder.html" title="class in substrings.algorithms">AhoKorasickFinder</a></code>, <code><a href="algorithms/ApostolicoCrochemoreFinder.html" title="class in substrings.algorithms">ApostolicoCrochemoreFinder</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">Finder</span></pre>
@@ -152,9 +152,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findPatternInText(java.io.InputStream)">findPatternInText</a></span>&#8203;(java.io.InputStream&nbsp;file)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findPatternInText(java.io.InputStream)">findPatternInText</a></span>&#8203;(java.io.InputStream&nbsp;inputStream)</code></th>
 <td class="colLast">
-<div class="block">Find all pattern occurrences in specified file.</div>
+<div class="block">Find all pattern occurrences in specified inputStream.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -201,14 +201,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>findPatternInText</h4>
-<pre class="methodSignature">default&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;findPatternInText&#8203;(java.io.InputStream&nbsp;file)
+<pre class="methodSignature">default&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;findPatternInText&#8203;(java.io.InputStream&nbsp;inputStream)
                                                      throws java.io.IOException</pre>
-<div class="block">Find all pattern occurrences in specified file.</div>
+<div class="block">Find all pattern occurrences in specified inputStream.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>file</code> - the file in which patterns occurrences will be searched</dd>
+<dd><code>inputStream</code> - the inputStream in which patterns occurrences will be searched</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>arrayList with positions of pattern in file.</dd>
+<dd>arrayList with positions of pattern in inputStream.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - when there are IO exception</dd>
 </dl>
