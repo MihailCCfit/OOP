@@ -70,9 +70,7 @@ public class Subject {
     public String getMarkString() {
         String markString;
         if (mark == 0 || mark == 1) {
-            markString = mark == 1 ? "Passed" : "Not Passed";
-        } else if (mark < 2 || mark > 5) {
-            markString = "-";
+            markString = mark == 1 ? "Passed" : "Failed";
         } else {
             markString = "" + mark;
         }
@@ -80,7 +78,7 @@ public class Subject {
     }
 
     public void setMark(int mark) {
-        if (mark < 2 || mark > 5) {
+        if (mark < 0 || mark > 5) {
             throw new IllegalArgumentException("mark should be between 2 and 5");
         }
         this.mark = mark;
