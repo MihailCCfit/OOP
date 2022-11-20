@@ -1,5 +1,5 @@
 {
-  "id": "123456",
+  "id": 123456,
   "Student": {
     "surname": "Tsukanov",
     "name": "Mikhail",
