@@ -102,12 +102,12 @@ public class Subject {
                 subjectName +
                 ")\n competencies: " + competencies +
                 "\n certificationDate: " + (certificationDate.isEmpty()? "-" : certificationDate) +
-                "\n attestationForm: " + attestationForm +
-                "\n teachers: " + teachers +
-                "\n mark " + markString;
+                "\n attestationForm: " + attestationForm
+                + "\n teachers: " + teachers
+                + "\n mark " + markString;
     }
 
     public String shortResult() {
-        return "" + subjectName + ": " + mark + "";
+        return "" + subjectName + ": " + getMark() + "";
     }
 }

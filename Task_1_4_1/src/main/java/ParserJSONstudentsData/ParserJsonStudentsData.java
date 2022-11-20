@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParserJsonStudentsData {
-    public RecordBook recordBookParse(JSONObject specificRecordBook) {
+    public static RecordBook recordBookParse(JSONObject specificRecordBook) {
         long id = (Long) specificRecordBook.get("id");
+
+
         Student student = studentParse((JSONObject) specificRecordBook.get("Student"));
         List<Semester> semesters = new ArrayList<>();
         JSONArray semestersArray = (JSONArray) specificRecordBook.get("Semesters");
@@ -22,7 +24,7 @@ public class ParserJsonStudentsData {
         return new RecordBook(student, semesters, id);
     }
 
-    public Student studentParse(JSONObject specificPerson) {
+    public static Student studentParse(JSONObject specificPerson) {
         String surname = (String) specificPerson.get("surname");
         String name = (String) specificPerson.get("name");
         String department = (String) specificPerson.get("department");
@@ -31,7 +33,7 @@ public class ParserJsonStudentsData {
         return new Student(surname, name, department, group, email);
     }
 
-    public Semester semesterParse(JSONObject specificSemester) {
+    public static Semester semesterParse(JSONObject specificSemester) {
         long number = (long) specificSemester.get("number");
         ArrayList<Subject> subjects = new ArrayList<>();
         JSONArray subjectsArray = (JSONArray) specificSemester.get("subjects");
@@ -41,7 +43,7 @@ public class ParserJsonStudentsData {
         return new Semester(subjects, number);
     }
 
-    public Subject subjectParse(JSONObject specificSubject) {
+    public static Subject subjectParse(JSONObject specificSubject) {
         String mark = (String) specificSubject.get("Mark");
         String subjectName = (String) specificSubject.get("Subject");
         List<String> competencies = new ArrayList<>();
