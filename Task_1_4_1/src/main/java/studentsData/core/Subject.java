@@ -1,42 +1,39 @@
-package RecordBook;
+package studentsData.core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Subject {
     private final String subjectName;
-    private final ArrayList<String> competencies;
+    private final List<String> competencies;
     private String certificationDate;
     private final String attestationForm;
-    private Set<String> teachers;
-    private int mark;
+    private List<String> teachers;
+    private long mark;
 
     public Subject(String subjectName, Collection<String> competencies,
                    String certificationDate, String attestationForm,
-                   Collection<String> teachers, int mark) {
+                   Collection<String> teachers, long mark) {
         this.competencies = new ArrayList<>(competencies);
         this.subjectName = subjectName;
         this.certificationDate = certificationDate;
         this.attestationForm = attestationForm;
         if (teachers != null) {
-            this.teachers = new TreeSet<>(teachers);
+            this.teachers = new ArrayList<>(teachers);
         } else {
-            this.teachers = new TreeSet<>();
+            this.teachers = new ArrayList<>();
         }
         this.mark = mark;
     }
 
     public Subject(String subjectName, Collection<String> competencies, String attestationForm) {
-        this(subjectName, competencies, "", attestationForm, null, 0);
+        this(subjectName, competencies, "", attestationForm, null, 1);
     }
 
     public String getSubjectName() {
         return subjectName;
     }
 
-    public ArrayList<String> getCompetencies() {
+    public List<String> getCompetencies() {
         return competencies;
     }
 
@@ -52,12 +49,12 @@ public class Subject {
         return attestationForm;
     }
 
-    public Set<String> getTeachers() {
+    public List<String> getTeachers() {
         return teachers;
     }
 
     public void setTeachers(Collection<String> teachers) {
-        this.teachers = new TreeSet<>(teachers);
+        this.teachers = new ArrayList<>(teachers);
     }
 
     public boolean addTeacher(String newTeacher) {
@@ -68,7 +65,7 @@ public class Subject {
         return true;
     }
 
-    int _getMark() {
+    long _getMark() {
         return mark;
     }
     public String getMark(){
@@ -78,7 +75,7 @@ public class Subject {
         } else if (mark<2 || mark>5){
             markString = "-";
         }   else{
-            markString = ""+mark;
+            markString = "" + mark;
         }
         return markString;
     }
