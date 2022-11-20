@@ -22,7 +22,8 @@ public class Semester {
     public long getNumber() {
         return number;
     }
-    public String shortInfo(){
+
+    public String shortInfo() {
         String ans = "";
         for (Subject subject : subjects) {
             ans += subject.shortResult() + "\n";
@@ -31,14 +32,14 @@ public class Semester {
                 + ") subjects:\n" + ans;
     }
 
-    public List<Long> getMarks(){
+    public List<Long> getMarks() {
         List<Long> marks = new ArrayList<>();
         for (Subject subject : subjects) {
-            long mark = subject._getMark();
-            if (mark==0){
+            long mark = subject.getMarkRaw();
+            if (mark == 0) {
                 throw new IllegalStateException("LOX, FAILED EXAM");
             }
-            if (mark!=1){
+            if (mark != 1) {
                 marks.add(mark);
             }
         }
