@@ -78,6 +78,7 @@ public class TesterRecordBook {
         Assertions.assertEquals(someSubj.getMarkString(), "Passed");
         someSubj.setMark(0);
         Assertions.assertEquals(someSubj.getMarkString(), "Failed");
+        Assertions.assertTrue(recordBook.hasRedDiploma());
         someSubj.setMark(3);
         Assertions.assertEquals(someSubj.getMarkString(), "3");
         recordBook.getSemesters().clear();
