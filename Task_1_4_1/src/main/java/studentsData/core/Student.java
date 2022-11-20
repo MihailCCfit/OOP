@@ -34,7 +34,7 @@ public final class Student {
         return group;
     }
 
-    public String mail() {
+    public String email() {
         return email;
     }
 
@@ -64,11 +64,11 @@ public final class Student {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (Student) obj;
-        return Objects.equals(this.surname, that.surname) &&
-                Objects.equals(this.name, that.name) &&
-                Objects.equals(this.department, that.department) &&
-                this.group == that.group &&
-                Objects.equals(this.email, that.email);
+        return Objects.equals(surname(), that.surname) &&
+                Objects.equals(this.name(), that.name) &&
+                Objects.equals(this.department(), that.department) &&
+                this.group() == that.group &&
+                Objects.equals(this.email(), that.email);
     }
 
     @Override

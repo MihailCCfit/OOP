@@ -1,6 +1,8 @@
 package studentsData.core;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class Subject {
     private final String subjectName;
@@ -23,10 +25,6 @@ public class Subject {
             this.teachers = new ArrayList<>();
         }
         this.mark = mark;
-    }
-
-    public Subject(String subjectName, Collection<String> competencies, String attestationForm) {
-        this(subjectName, competencies, "", attestationForm, null, 1);
     }
 
     public String getSubjectName() {
@@ -65,16 +63,17 @@ public class Subject {
         return true;
     }
 
-    long _getMark() {
+    long getMarkRaw() {
         return mark;
     }
-    public String getMark(){
+
+    public String getMarkString() {
         String markString;
-        if (mark==0 || mark == 1) {
-            markString = mark==1? "Passed" : "Not Passed";
-        } else if (mark<2 || mark>5){
+        if (mark == 0 || mark == 1) {
+            markString = mark == 1 ? "Passed" : "Not Passed";
+        } else if (mark < 2 || mark > 5) {
             markString = "-";
-        }   else{
+        } else {
             markString = "" + mark;
         }
         return markString;
@@ -90,24 +89,25 @@ public class Subject {
     @Override
     public String toString() {
         String markString;
-        if (mark==0 || mark == 1) {
-            markString = mark==1? "Passed" : "Not Passed";
-        } else if (mark<2 || mark>5){
+        if (mark == 0 || mark == 1) {
+            markString = mark == 1 ? "Passed" : "Not Passed";
+        } else if (mark < 2 || mark > 5) {
             markString = "-";
-        }   else{
-            markString = ""+mark;
+        } else {
+            markString = "" + mark;
         }
 
         return "Subject (" +
-                subjectName +
-                ")\n competencies: " + competencies +
-                "\n certificationDate: " + (certificationDate.isEmpty()? "-" : certificationDate) +
-                "\n attestationForm: " + attestationForm
-                + "\n teachers: " + teachers
+                getSubjectName()
+                + ")\n competencies: " + getCompetencies()
+                + "\n certificationDate: " + (certificationDate.isEmpty() ?
+                "-" : getCertificationDate())
+                + "\n attestationForm: " + getAttestationForm()
+                + "\n teachers: " + getTeachers()
                 + "\n mark " + markString;
     }
 
     public String shortResult() {
-        return "" + subjectName + ": " + getMark() + "";
+        return "" + subjectName + ": " + getMarkString() + "";
     }
 }
