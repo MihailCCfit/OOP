@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ParserJSONstudentsData","l":"ParserJsonStudentsData"},{"p":"studentsData.core","l":"RecordBook"},{"p":"studentsData.core","l":"Semester"},{"p":"studentsData.core","l":"Student"},{"p":"studentsData.core","l":"Subject"}]
