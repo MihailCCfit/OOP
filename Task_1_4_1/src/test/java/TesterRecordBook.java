@@ -1,4 +1,9 @@
 import ParserJSONstudentsData.ParserJsonStudentsData;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -8,10 +13,6 @@ import studentsData.core.RecordBook;
 import studentsData.core.Student;
 import studentsData.core.Subject;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
 
 public class TesterRecordBook {
     @Test
@@ -34,11 +35,19 @@ public class TesterRecordBook {
         Student me = new Student("Tsukanov", "Mikhail",
                 "FIT", 21214, "m.tsukanov@g.nsu.ru");
         Assertions.assertEquals(me, recordBook.getStudent());
-        me.setDepartment("CCFIT");
+        Assertions.assertEquals(me.hashCode(), recordBook.getStudent().hashCode());
+
         me.setEmail("ru.ru");
+        Assertions.assertNotEquals(me, recordBook.getStudent());
         me.setGroup(3228);
-        me.setSurname("Abo");
+        Assertions.assertNotEquals(me, recordBook.getStudent());
+        me.setDepartment("CCFIT");
+        Assertions.assertNotEquals(me, recordBook.getStudent());
         me.setName("Ba");
+        Assertions.assertNotEquals(me, recordBook.getStudent());
+        me.setSurname("Abo");
+        Assertions.assertNotEquals(me, recordBook.getStudent());
+        Assertions.assertEquals(me, me);
         Assertions.assertEquals(me.toString(),
                 "Student[surname=Abo, name=Ba, " +
                         "department=CCFIT, group=3228, mail=ru.ru]");
@@ -61,5 +70,17 @@ public class TesterRecordBook {
         Assertions.assertFalse(recordBook.getId() < 0);
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> recordBook.setId(-4));
+        recordBook.setId(777);
+        Assertions.assertEquals(recordBook.getId(), 777);
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> someSubj.setMark(-5));
+        someSubj.setMark(1);
+        Assertions.assertEquals(someSubj.getMarkString(), "Passed");
+        someSubj.setMark(0);
+        Assertions.assertEquals(someSubj.getMarkString(), "Failed");
+        someSubj.setMark(3);
+        Assertions.assertEquals(someSubj.getMarkString(), "3");
+        recordBook.getSemesters().clear();
+        Assertions.assertEquals(recordBook.getAverage(), 0);
     }
 }
