@@ -1,14 +1,14 @@
-package ParserJSONstudentsData;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import studentsData.core.RecordBook;
-import studentsData.core.Semester;
-import studentsData.core.Student;
-import studentsData.core.Subject;
+package ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
+import ru.nsu.fit.tsukanov.recordBook.core.Semester;
+import ru.nsu.fit.tsukanov.recordBook.core.Student;
+import ru.nsu.fit.tsukanov.recordBook.core.Subject;
+
 
 public class ParserJsonStudentsData {
     public static RecordBook recordBookParse(JSONObject specificRecordBook) {

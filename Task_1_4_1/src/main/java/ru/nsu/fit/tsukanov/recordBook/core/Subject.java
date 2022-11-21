@@ -1,9 +1,12 @@
-package studentsData.core;
+package ru.nsu.fit.tsukanov.recordBook.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Class for collecting data about subject in the recordBook of one person.
+ */
 public class Subject {
     private final String subjectName;
     private final List<String> competencies;
@@ -12,6 +15,17 @@ public class Subject {
     private List<String> teachers;
     private long mark;
 
+    /**
+     * Construct subject.
+     * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
+     *
+     * @param subjectName       the name of subject
+     * @param competencies      the competencies
+     * @param certificationDate the date when person passed or got mark.
+     * @param attestationForm   the form of passing the subjects
+     * @param teachers          the persons who taught owner of this
+     * @param mark              the specific mark
+     */
     public Subject(String subjectName, Collection<String> competencies,
                    String certificationDate, String attestationForm,
                    Collection<String> teachers, long mark) {
@@ -55,6 +69,12 @@ public class Subject {
         this.teachers = new ArrayList<>(teachers);
     }
 
+    /**
+     * Add teacher into the subject's list of teachers
+     *
+     * @param newTeacher new teacher for adding
+     * @return true if there is adding to the list.
+     */
     public boolean addTeacher(String newTeacher) {
         if (teachers.contains(newTeacher)) {
             return false;
@@ -63,10 +83,20 @@ public class Subject {
         return true;
     }
 
-    long getMarkRaw() {
+    /**
+     * Return long value (raw representation) of mark.
+     *
+     * @return long value (raw representation) of mark.
+     */
+    public long getMarkRaw() {
         return mark;
     }
 
+    /**
+     * Return right representation, without 0 and 1.
+     *
+     * @return string representation
+     */
     public String getMarkString() {
         String markString;
         if (mark == 0 || mark == 1) {
@@ -84,6 +114,11 @@ public class Subject {
         this.mark = mark;
     }
 
+    /**
+     * Cool string representation of subject, with all information.
+     *
+     * @return cool string representation
+     */
     @Override
     public String toString() {
         String markString;
@@ -105,6 +140,11 @@ public class Subject {
                 + "\n mark " + markString;
     }
 
+    /**
+     * Return string of short result of this subject (subject name and mark).
+     *
+     * @return string with short result of subject
+     */
     public String shortResult() {
         return "" + subjectName + ": " + getMarkString() + "";
     }

@@ -1,7 +1,12 @@
-package studentsData.core;
+package ru.nsu.fit.tsukanov.recordBook.core;
 
 import java.util.Objects;
 
+/**
+ * Information about student (owner of recordBook).
+ *
+ * @see RecordBook
+ */
 public final class Student {
     private String surname;
     private String name;
@@ -9,7 +14,15 @@ public final class Student {
     private long group;
     private String email;
 
-
+    /**
+     * Construct student
+     *
+     * @param surname    the surname of student
+     * @param name       the name of student
+     * @param department the department where student studying
+     * @param group      the student's group
+     * @param mail       the student's mail
+     */
     public Student(String surname, String name, String department, long group, String mail) {
         this.surname = surname;
         this.name = name;
@@ -76,6 +89,11 @@ public final class Student {
         return Objects.hash(surname, name, department, group, email);
     }
 
+    /**
+     * cool string representation about all student information.
+     *
+     * @return cool string representation about all student information
+     */
     @Override
     public String toString() {
         return "Student[" +

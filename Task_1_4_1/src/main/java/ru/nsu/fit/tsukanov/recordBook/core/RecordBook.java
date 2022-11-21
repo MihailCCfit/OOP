@@ -1,4 +1,4 @@
-package studentsData.core;
+package ru.nsu.fit.tsukanov.recordBook.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @see Student
  * @see Semester
+ * @see Subject
  */
 public class RecordBook {
     private long id;
@@ -106,7 +107,7 @@ public class RecordBook {
                 semesters.stream()
                         .max(Comparator.comparingLong(Semester::getNumber))
                         .get();
-        if (lastSemester.getMarks().contains(null)) {
+        if (!isPassed()) {
             return false;
         }
         return lastSemester.getMarks().stream().allMatch((x) -> x > 3);
@@ -123,14 +124,16 @@ public class RecordBook {
                 semesters.stream()
                         .max(Comparator.comparingLong(Semester::getNumber))
                         .get();
-        var marks = lastSemester.getMarks();
-        if (marks.contains(null)) {
-            return false;
-        }
-        return lastSemester.getMarks().stream().allMatch((x) -> x > 3)
+        return isPassed()
+                && lastSemester.getMarks().stream().allMatch((x) -> x > 3)
                 && getAverage() >= 4.75 && qualifyingMark == 5;
     }
 
+    /**
+     * Calculates average mark from all semesters.
+     *
+     * @return average mark from all semesters
+     */
     public double getAverage() {
         List<Long> marksFromAll = getMarks();
         if (marksFromAll.isEmpty()) {
@@ -143,12 +146,30 @@ public class RecordBook {
                 / marksFromAll.size();
     }
 
+    /**
+     * Return all marks (without pass or fail).
+     *
+     * @return list of marks
+     */
     public List<Long> getMarks() {
         List<Long> marksFromAll = new ArrayList<>();
         for (Semester semester : semesters) {
             marksFromAll.addAll(semester.getMarks());
         }
         return marksFromAll;
+    }
+
+    /**
+     * Check for passed all subjects.
+     *
+     * @return true, if it's alright
+     */
+    public boolean isPassed() {
+        boolean answer = true;
+        for (Semester semester : semesters) {
+            answer = answer && semester.checkPassed();
+        }
+        return answer;
     }
 
     @Override
