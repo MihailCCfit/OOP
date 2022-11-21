@@ -37,7 +37,7 @@ public class Semester {
         for (Subject subject : subjects) {
             long mark = subject.getMarkRaw();
             if (mark == 0) {
-                throw new IllegalStateException("LOX, FAILED EXAM");
+                marks.add(null);
             }
             if (mark != 1) {
                 marks.add(mark);
