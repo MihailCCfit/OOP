@@ -44,9 +44,9 @@ public class Semester {
      * @see Subject#shortResult()
      */
     public String shortInfo() {
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         for (Subject subject : subjects) {
-            ans += subject.shortResult() + "\n";
+            ans.append(subject.shortResult()).append("\n");
         }
         return "Semester(" + number
                 + ") subjects:\n" + ans;
@@ -75,7 +75,7 @@ public class Semester {
      */
     public boolean checkPassed() {
         for (Subject subject : subjects) {
-            if ((subject.getMarkRaw() == 0) && (subject.getMarkRaw() == 2)) {
+            if ((subject.getMarkRaw() == 0) || (subject.getMarkRaw() == 2)) {
                 return false;
             }
         }
