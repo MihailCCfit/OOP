@@ -1,17 +1,19 @@
-import ParserJSONstudentsData.ParserJsonStudentsData;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import studentsData.core.RecordBook;
-import studentsData.core.Student;
-import studentsData.core.Subject;
+package ru.nsu.fit.tsukanov.recordBook;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData.ParserJsonStudentsData;
+import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
+import ru.nsu.fit.tsukanov.recordBook.core.Student;
+import ru.nsu.fit.tsukanov.recordBook.core.Subject;
+
 
 
 public class TesterRecordBook {
