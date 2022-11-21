@@ -1,9 +1,4 @@
 import ParserJSONstudentsData.ParserJsonStudentsData;
-
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -12,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import studentsData.core.RecordBook;
 import studentsData.core.Student;
 import studentsData.core.Subject;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 
 
 public class TesterRecordBook {
@@ -76,9 +76,14 @@ public class TesterRecordBook {
                 () -> someSubj.setMark(-5));
         someSubj.setMark(1);
         Assertions.assertEquals(someSubj.getMarkString(), "Passed");
+        Assertions.assertFalse(recordBook.hasRedDiploma());
+        recordBook.setQualifyingMark(5);
+        Assertions.assertEquals(5, recordBook.getQualifyingMark());
+        Assertions.assertTrue(recordBook.hasRedDiploma());
         someSubj.setMark(0);
         Assertions.assertEquals(someSubj.getMarkString(), "Failed");
-        Assertions.assertTrue(recordBook.hasRedDiploma());
+        Assertions.assertFalse(recordBook.hasRedDiploma());
+        Assertions.assertFalse(recordBook.hasHighScholarship());
         someSubj.setMark(3);
         Assertions.assertEquals(someSubj.getMarkString(), "3");
         recordBook.getSemesters().clear();
