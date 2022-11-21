@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -132,6 +132,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">RecordBook</span>
 extends java.lang.Object</pre>
+<div class="block">Record book contains <code>id</code>, student and semesters.
+ And has functions for checking Scholarship and color of diploma.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="Student.html" title="class in studentsData.core"><code>Student</code></a>, 
+<a href="Semester.html" title="class in studentsData.core"><code>Semester</code></a></dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -152,10 +159,12 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(studentsData.core.Student,java.util.List,long)">RecordBook</a></span>&#8203;(<a href="Student.html" title="class in studentsData.core">Student</a>&nbsp;student,
-          java.util.List&lt;<a href="Semester.html" title="class in studentsData.core">Semester</a>&gt;&nbsp;semesters,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(studentsData.core.Student,java.util.Collection,long)">RecordBook</a></span>&#8203;(<a href="Student.html" title="class in studentsData.core">Student</a>&nbsp;student,
+          java.util.Collection&lt;? extends <a href="Semester.html" title="class in studentsData.core">Semester</a>&gt;&nbsp;semesters,
           long&nbsp;id)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates Record book.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -183,7 +192,9 @@ extends java.lang.Object</pre>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getId()">getId</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return Id.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Long&gt;</code></td>
@@ -191,31 +202,58 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="Semester.html" title="class in studentsData.core">Semester</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSemesters()">getSemesters</a></span>()</code></th>
+<td class="colFirst"><code>long</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQualifyingMark()">getQualifyingMark</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="Student.html" title="class in studentsData.core">Student</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStudent()">getStudent</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>java.util.List&lt;<a href="Semester.html" title="class in studentsData.core">Semester</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSemesters()">getSemesters</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Return semesters in the List.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasHighScholarship()">hasHighScholarship</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code><a href="Student.html" title="class in studentsData.core">Student</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStudent()">getStudent</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Return student with many fields.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setId(long)">setId</a></span>&#8203;(long&nbsp;id)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasHighScholarship()">hasHighScholarship</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Check fo higher Scholarship.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shortInfo()">shortInfo</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasRedDiploma()">hasRedDiploma</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Check for color of diploma (very useful).</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setId(long)">setId</a></span>&#8203;(long&nbsp;id)</code></th>
+<td class="colLast">
+<div class="block">Set non-negative id.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setQualifyingMark(long)">setQualifyingMark</a></span>&#8203;(long&nbsp;qualifyingMark)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shortInfo()">shortInfo</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Return short info about subject.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -244,15 +282,22 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(studentsData.core.Student,java.util.List,long)">
+<a id="&lt;init&gt;(studentsData.core.Student,java.util.Collection,long)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>RecordBook</h4>
 <pre>public&nbsp;RecordBook&#8203;(<a href="Student.html" title="class in studentsData.core">Student</a>&nbsp;student,
-                  java.util.List&lt;<a href="Semester.html" title="class in studentsData.core">Semester</a>&gt;&nbsp;semesters,
+                  java.util.Collection&lt;? extends <a href="Semester.html" title="class in studentsData.core">Semester</a>&gt;&nbsp;semesters,
                   long&nbsp;id)</pre>
+<div class="block">Creates Record book.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>student</code> - the class Student with many fields</dd>
+<dd><code>semesters</code> - the collection with semesters</dd>
+<dd><code>id</code> - the long, non-negative number</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -272,6 +317,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getStudent</h4>
 <pre class="methodSignature">public&nbsp;<a href="Student.html" title="class in studentsData.core">Student</a>&nbsp;getStudent()</pre>
+<div class="block">Return student with many fields.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>student</dd>
+</dl>
 </li>
 </ul>
 <a id="getSemesters()">
@@ -281,6 +331,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getSemesters</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Semester.html" title="class in studentsData.core">Semester</a>&gt;&nbsp;getSemesters()</pre>
+<div class="block">Return semesters in the List.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>List of semesters</dd>
+</dl>
 </li>
 </ul>
 <a id="getId()">
@@ -290,6 +345,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getId</h4>
 <pre class="methodSignature">public&nbsp;long&nbsp;getId()</pre>
+<div class="block">Return Id.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the id</dd>
+</dl>
 </li>
 </ul>
 <a id="setId(long)">
@@ -299,6 +359,29 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setId</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setId&#8203;(long&nbsp;id)</pre>
+<div class="block">Set non-negative id.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - the identification number</dd>
+</dl>
+</li>
+</ul>
+<a id="getQualifyingMark()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getQualifyingMark</h4>
+<pre class="methodSignature">public&nbsp;long&nbsp;getQualifyingMark()</pre>
+</li>
+</ul>
+<a id="setQualifyingMark(long)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setQualifyingMark</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setQualifyingMark&#8203;(long&nbsp;qualifyingMark)</pre>
 </li>
 </ul>
 <a id="shortInfo()">
@@ -308,6 +391,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>shortInfo</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;shortInfo()</pre>
+<div class="block">Return short info about subject. Show only name and mark for each subject.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>short info about subjects.</dd>
+</dl>
 </li>
 </ul>
 <a id="hasHighScholarship()">
@@ -317,6 +405,26 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>hasHighScholarship</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;hasHighScholarship()</pre>
+<div class="block">Check fo higher Scholarship. If there is no bad mark (less than 4), it would be higher scholarship.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if it would be higher scholarship</dd>
+</dl>
+</li>
+</ul>
+<a id="hasRedDiploma()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hasRedDiploma</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;hasRedDiploma()</pre>
+<div class="block">Check for color of diploma (very useful). If there is no bad mark (less than 4), and 75% of marks are five,
+ and qualifying work mark is five, it would be red Diploma.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if it would be red Diploma</dd>
+</dl>
 </li>
 </ul>
 <a id="getAverage()">

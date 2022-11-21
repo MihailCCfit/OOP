@@ -131,7 +131,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="studentsData/core/Subject.html#getCompetencies()">getCompetencies()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Subject.html" title="class in studentsData.core">Subject</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#getId()">getId()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Return Id.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#getMarks()">getMarks()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Semester.html#getMarks()">getMarks()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Semester.html" title="class in studentsData.core">Semester</a></dt>
@@ -140,10 +142,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Semester.html#getNumber()">getNumber()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Semester.html" title="class in studentsData.core">Semester</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#getQualifyingMark()">getQualifyingMark()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#getSemesters()">getSemesters()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Return semesters in the List.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#getStudent()">getStudent()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Return student with many fields.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Subject.html#getSubjectName()">getSubjectName()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Subject.html" title="class in studentsData.core">Subject</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Semester.html#getSubjects()">getSubjects()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Semester.html" title="class in studentsData.core">Semester</a></dt>
@@ -161,7 +169,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="studentsData/core/Student.html#hashCode()">hashCode()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Student.html" title="class in studentsData.core">Student</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#hasHighScholarship()">hasHighScholarship()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Check fo higher Scholarship.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#hasRedDiploma()">hasRedDiploma()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
+<dd>
+<div class="block">Check for color of diploma (very useful).</div>
+</dd>
 </dl>
 <a id="I:N">
 <!--   -->
@@ -189,9 +203,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h2 class="title">R</h2>
 <dl>
 <dt><a href="studentsData/core/RecordBook.html" title="class in studentsData.core"><span class="typeNameLink">RecordBook</span></a> - Class in <a href="studentsData/core/package-summary.html">studentsData.core</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#%3Cinit%3E(studentsData.core.Student,java.util.List,long)">RecordBook(Student, List&lt;Semester&gt;, long)</a></span> - Constructor for class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Record book contains <code>id</code>, student and semesters.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#%3Cinit%3E(studentsData.core.Student,java.util.Collection,long)">RecordBook(Student, Collection&lt;? extends Semester&gt;, long)</a></span> - Constructor for class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
+<dd>
+<div class="block">Creates Record book.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="ParserJSONstudentsData/ParserJsonStudentsData.html#recordBookParse(org.json.simple.JSONObject)">recordBookParse(JSONObject)</a></span> - Static method in class ParserJSONstudentsData.<a href="ParserJSONstudentsData/ParserJsonStudentsData.html" title="class in ParserJSONstudentsData">ParserJsonStudentsData</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -215,17 +233,23 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="studentsData/core/Student.html#setGroup(long)">setGroup(long)</a></span> - Method in class studentsData.core.<a href="studentsData/core/Student.html" title="class in studentsData.core">Student</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#setId(long)">setId(long)</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Set non-negative id.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Subject.html#setMark(int)">setMark(int)</a></span> - Method in class studentsData.core.<a href="studentsData/core/Subject.html" title="class in studentsData.core">Subject</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Student.html#setName(java.lang.String)">setName(String)</a></span> - Method in class studentsData.core.<a href="studentsData/core/Student.html" title="class in studentsData.core">Student</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#setQualifyingMark(long)">setQualifyingMark(long)</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Student.html#setSurname(java.lang.String)">setSurname(String)</a></span> - Method in class studentsData.core.<a href="studentsData/core/Student.html" title="class in studentsData.core">Student</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Subject.html#setTeachers(java.util.Collection)">setTeachers(Collection&lt;String&gt;)</a></span> - Method in class studentsData.core.<a href="studentsData/core/Subject.html" title="class in studentsData.core">Subject</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/RecordBook.html#shortInfo()">shortInfo()</a></span> - Method in class studentsData.core.<a href="studentsData/core/RecordBook.html" title="class in studentsData.core">RecordBook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Return short info about subject.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Semester.html#shortInfo()">shortInfo()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Semester.html" title="class in studentsData.core">Semester</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="studentsData/core/Subject.html#shortResult()">shortResult()</a></span> - Method in class studentsData.core.<a href="studentsData/core/Subject.html" title="class in studentsData.core">Subject</a></dt>
