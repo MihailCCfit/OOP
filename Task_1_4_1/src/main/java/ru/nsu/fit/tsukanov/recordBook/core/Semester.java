@@ -12,7 +12,7 @@ import java.util.List;
  * @see Subject
  */
 public class Semester {
-    private final ArrayList<Subject> subjects;
+    private final List<Subject> subjects;
     private final long number;
 
     /**
@@ -28,11 +28,21 @@ public class Semester {
         this.subjects.addAll(subjects);
     }
 
-
-    public ArrayList<Subject> getSubjects() {
+    /**
+     * Return list of subjects.
+     *
+     * @return list of subjects
+     * @see Subject
+     */
+    public List<Subject> getSubjects() {
         return subjects;
     }
 
+    /**
+     * Return number of semester.
+     *
+     * @return number of semester
+     */
     public long getNumber() {
         return number;
     }

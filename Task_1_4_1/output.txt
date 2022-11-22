@@ -1,117 +1,117 @@
 RecordBook{id=123456, student=Student[surname=Tsukanov, name=Mikhail, department=FIT, group=21214, mail=m.tsukanov@g.nsu.ru], semesters=[Semester(1) subjects:
-Subject (Введение в алгебру и анализ)
- competencies: [ОПК-1]
+Subject (Р’РІРµРґРµРЅРёРµ РІ Р°Р»РіРµР±СЂСѓ Рё Р°РЅР°Р»РёР·)
+ competencies: [РћРџРљ-1]
  certificationDate: 11.01.2022
- attestationForm: Экзамен
- teachers: [Васкевич Владимир Леонтьевич]
+ attestationForm: Р­РєР·Р°РјРµРЅ
+ teachers: [Р’Р°СЃРєРµРІРёС‡ Р’Р»Р°РґРёРјРёСЂ Р›РµРѕРЅС‚СЊРµРІРёС‡]
  mark 5
-Subject (Введение в дискретную математику и математическую логику)
- competencies: [ОПК-1]
+Subject (Р’РІРµРґРµРЅРёРµ РІ РґРёСЃРєСЂРµС‚РЅСѓСЋ РјР°С‚РµРјР°С‚РёРєСѓ Рё РјР°С‚РµРјР°С‚РёС‡РµСЃРєСѓСЋ Р»РѕРіРёРєСѓ)
+ competencies: [РћРџРљ-1]
  certificationDate: 18.01.2022
- attestationForm: Экзамен
- teachers: [Власов Дмитрий Юрьевич]
+ attestationForm: Р­РєР·Р°РјРµРЅ
+ teachers: [Р’Р»Р°СЃРѕРІ Р”РјРёС‚СЂРёР№ Р®СЂСЊРµРІРёС‡]
  mark 5
-Subject (Декларативное программирование)
- competencies: [ОПК-8]
+Subject (Р”РµРєР»Р°СЂР°С‚РёРІРЅРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ)
+ competencies: [РћРџРљ-8]
  certificationDate: 29.12.2021
- attestationForm: Дифференцированный зачет
- teachers: [Куталев Андрей Витальевич]
+ attestationForm: Р”РёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРЅС‹Р№ Р·Р°С‡РµС‚
+ teachers: [РљСѓС‚Р°Р»РµРІ РђРЅРґСЂРµР№ Р’РёС‚Р°Р»СЊРµРІРёС‡]
  mark 5
-Subject (Императивное программирование)
- competencies: [ОПК-8]
+Subject (РРјРїРµСЂР°С‚РёРІРЅРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ)
+ competencies: [РћРџРљ-8]
  certificationDate: 29.12.2021
- attestationForm: Дифференцированный зачет
- teachers: [Зайцев Вадим Евгеньевич]
+ attestationForm: Р”РёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРЅС‹Р№ Р·Р°С‡РµС‚
+ teachers: [Р—Р°Р№С†РµРІ Р’Р°РґРёРј Р•РІРіРµРЅСЊРµРІРёС‡]
  mark 5
-Subject (Иностранный язык)
- competencies: [УК-4]
+Subject (РРЅРѕСЃС‚СЂР°РЅРЅС‹Р№ СЏР·С‹Рє)
+ competencies: [РЈРљ-4]
  certificationDate: 29.12.2021
- attestationForm: Зачет
- teachers: [Хоцкина Ольга Валерьевна]
+ attestationForm: Р—Р°С‡РµС‚
+ teachers: [РҐРѕС†РєРёРЅР° РћР»СЊРіР° Р’Р°Р»РµСЂСЊРµРІРЅР°]
  mark Passed
-Subject (История)
- competencies: [УК-5]
+Subject (РСЃС‚РѕСЂРёСЏ)
+ competencies: [РЈРљ-5]
  certificationDate: 29.12.2021
- attestationForm: Дифференцированный зачет
- teachers: [Оплаканская Рената Валерьевна]
+ attestationForm: Р”РёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРЅС‹Р№ Р·Р°С‡РµС‚
+ teachers: [РћРїР»Р°РєР°РЅСЃРєР°СЏ Р РµРЅР°С‚Р° Р’Р°Р»РµСЂСЊРµРІРЅР°]
  mark 5
-Subject (Основы культуры речи)
- competencies: [УК-4]
+Subject (РћСЃРЅРѕРІС‹ РєСѓР»СЊС‚СѓСЂС‹ СЂРµС‡Рё)
+ competencies: [РЈРљ-4]
  certificationDate: 29.12.2021
- attestationForm: Дифференцированный зачет
- teachers: [Заворина Татьяна Ивановна]
+ attestationForm: Р”РёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРЅС‹Р№ Р·Р°С‡РµС‚
+ teachers: [Р—Р°РІРѕСЂРёРЅР° РўР°С‚СЊСЏРЅР° РРІР°РЅРѕРІРЅР°]
  mark 5
-Subject (Физическая культура и спорт)
- competencies: [УК-7]
+Subject (Р¤РёР·РёС‡РµСЃРєР°СЏ РєСѓР»СЊС‚СѓСЂР° Рё СЃРїРѕСЂС‚)
+ competencies: [РЈРљ-7]
  certificationDate: 29.12.2021
- attestationForm: Зачет
- teachers: [Опарин Григорий Андреевич]
+ attestationForm: Р—Р°С‡РµС‚
+ teachers: [РћРїР°СЂРёРЅ Р“СЂРёРіРѕСЂРёР№ РђРЅРґСЂРµРµРІРёС‡]
  mark Passed
-Subject (Физическая культура и спорт (элективная дисциплина))
- competencies: [УК-7]
+Subject (Р¤РёР·РёС‡РµСЃРєР°СЏ РєСѓР»СЊС‚СѓСЂР° Рё СЃРїРѕСЂС‚ (СЌР»РµРєС‚РёРІРЅР°СЏ РґРёСЃС†РёРїР»РёРЅР°))
+ competencies: [РЈРљ-7]
  certificationDate: 29.12.2021
- attestationForm: Зачет
- teachers: [Опарин Григорий Андреевич]
+ attestationForm: Р—Р°С‡РµС‚
+ teachers: [РћРїР°СЂРёРЅ Р“СЂРёРіРѕСЂРёР№ РђРЅРґСЂРµРµРІРёС‡]
  mark Passed
-Subject (Цифровые платформы)
- competencies: [ОПК-8]
+Subject (Р¦РёС„СЂРѕРІС‹Рµ РїР»Р°С‚С„РѕСЂРјС‹)
+ competencies: [РћРџРљ-8]
  certificationDate: 29.12.2021
- attestationForm: Зачет
- teachers: [Иртегов Дмитрий Валентинович, Ананько Анатолий Григорьевич]
+ attestationForm: Р—Р°С‡РµС‚
+ teachers: [РСЂС‚РµРіРѕРІ Р”РјРёС‚СЂРёР№ Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡, РђРЅР°РЅСЊРєРѕ РђРЅР°С‚РѕР»РёР№ Р“СЂРёРіРѕСЂСЊРµРІРёС‡]
  mark Passed
 , Semester(2) subjects:
-Subject (Введение в алгебру и анализ)
- competencies: [ОПК-1]
+Subject (Р’РІРµРґРµРЅРёРµ РІ Р°Р»РіРµР±СЂСѓ Рё Р°РЅР°Р»РёР·)
+ competencies: [РћРџРљ-1]
  certificationDate: 16.06.2022
- attestationForm: Экзамен
- teachers: [Васкевич Владимир Леонтьевич, Рудометова Анна Сергеевна, Шваб Ирина Васильевна]
+ attestationForm: Р­РєР·Р°РјРµРЅ
+ teachers: [Р’Р°СЃРєРµРІРёС‡ Р’Р»Р°РґРёРјРёСЂ Р›РµРѕРЅС‚СЊРµРІРёС‡, Р СѓРґРѕРјРµС‚РѕРІР° РђРЅРЅР° РЎРµСЂРіРµРµРІРЅР°, РЁРІР°Р± РСЂРёРЅР° Р’Р°СЃРёР»СЊРµРІРЅР°]
  mark 5
-Subject (Введение в дискретную математику и математическую логику)
- competencies: [ОПК-1]
+Subject (Р’РІРµРґРµРЅРёРµ РІ РґРёСЃРєСЂРµС‚РЅСѓСЋ РјР°С‚РµРјР°С‚РёРєСѓ Рё РјР°С‚РµРјР°С‚РёС‡РµСЃРєСѓСЋ Р»РѕРіРёРєСѓ)
+ competencies: [РћРџРљ-1]
  certificationDate: 20.06.2022
- attestationForm: Экзамен
- teachers: [Апанович Зинаида Владимировна]
+ attestationForm: Р­РєР·Р°РјРµРЅ
+ teachers: [РђРїР°РЅРѕРІРёС‡ Р—РёРЅР°РёРґР° Р’Р»Р°РґРёРјРёСЂРѕРІРЅР°]
  mark 5
-Subject (Декларативное программирование)
- competencies: [ОПК-8]
+Subject (Р”РµРєР»Р°СЂР°С‚РёРІРЅРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ)
+ competencies: [РћРџРљ-8]
  certificationDate: 10.06.2022
- attestationForm: Дифференцированный зачет
- teachers: [Куталев Андрей Витальевич]
+ attestationForm: Р”РёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРЅС‹Р№ Р·Р°С‡РµС‚
+ teachers: [РљСѓС‚Р°Р»РµРІ РђРЅРґСЂРµР№ Р’РёС‚Р°Р»СЊРµРІРёС‡]
  mark 5
-Subject (Измерительный практикум)
- competencies: [ОПК-1]
+Subject (РР·РјРµСЂРёС‚РµР»СЊРЅС‹Р№ РїСЂР°РєС‚РёРєСѓРј)
+ competencies: [РћРџРљ-1]
  certificationDate: 06.06.2022
- attestationForm: Зачет
- teachers: [Брагин Олег Анатольевич, Белоусов Роман Геннадьевич]
+ attestationForm: Р—Р°С‡РµС‚
+ teachers: [Р‘СЂР°РіРёРЅ РћР»РµРі РђРЅР°С‚РѕР»СЊРµРІРёС‡, Р‘РµР»РѕСѓСЃРѕРІ Р РѕРјР°РЅ Р“РµРЅРЅР°РґСЊРµРІРёС‡]
  mark Passed
-Subject (Императивное программирование)
- competencies: [ОПК-8]
+Subject (РРјРїРµСЂР°С‚РёРІРЅРѕРµ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ)
+ competencies: [РћРџРљ-8]
  certificationDate: 27.06.2022
- attestationForm: Экзамен
- teachers: [Нестеренко Татьяна Викторовна, Кирин Денис Леонидович]
+ attestationForm: Р­РєР·Р°РјРµРЅ
+ teachers: [РќРµСЃС‚РµСЂРµРЅРєРѕ РўР°С‚СЊСЏРЅР° Р’РёРєС‚РѕСЂРѕРІРЅР°, РљРёСЂРёРЅ Р”РµРЅРёСЃ Р›РµРѕРЅРёРґРѕРІРёС‡]
  mark 5
-Subject (Иностранный язык)
- competencies: [УК-4]
+Subject (РРЅРѕСЃС‚СЂР°РЅРЅС‹Р№ СЏР·С‹Рє)
+ competencies: [РЈРљ-4]
  certificationDate: 10.06.2022
- attestationForm: Дифференцированный зачет
- teachers: [Хоцкина Ольга Валерьевна]
+ attestationForm: Р”РёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРЅС‹Р№ Р·Р°С‡РµС‚
+ teachers: [РҐРѕС†РєРёРЅР° РћР»СЊРіР° Р’Р°Р»РµСЂСЊРµРІРЅР°]
  mark 4
-Subject (Физическая культура и спорт)
- competencies: [УК-7]
+Subject (Р¤РёР·РёС‡РµСЃРєР°СЏ РєСѓР»СЊС‚СѓСЂР° Рё СЃРїРѕСЂС‚)
+ competencies: [РЈРљ-7]
  certificationDate: 10.06.2022
- attestationForm: Зачет
- teachers: [Опарин Григорий Андреевич]
+ attestationForm: Р—Р°С‡РµС‚
+ teachers: [РћРїР°СЂРёРЅ Р“СЂРёРіРѕСЂРёР№ РђРЅРґСЂРµРµРІРёС‡]
  mark Passed
-Subject (Физическая культура и спорт (элективная дисциплина))
- competencies: [УК-7]
+Subject (Р¤РёР·РёС‡РµСЃРєР°СЏ РєСѓР»СЊС‚СѓСЂР° Рё СЃРїРѕСЂС‚ (СЌР»РµРєС‚РёРІРЅР°СЏ РґРёСЃС†РёРїР»РёРЅР°))
+ competencies: [РЈРљ-7]
  certificationDate: 10.06.2022
- attestationForm: Зачет
- teachers: [Опарин Григорий Андреевич]
+ attestationForm: Р—Р°С‡РµС‚
+ teachers: [РћРїР°СЂРёРЅ Р“СЂРёРіРѕСЂРёР№ РђРЅРґСЂРµРµРІРёС‡]
  mark Passed
-Subject (Цифровые платформы)
- competencies: [ОПК-8]
+Subject (Р¦РёС„СЂРѕРІС‹Рµ РїР»Р°С‚С„РѕСЂРјС‹)
+ competencies: [РћРџРљ-8]
  certificationDate: 10.06.2022
- attestationForm: Дифференцированный зачет
- teachers: [Иртегов Дмитрий Валентинович]
+ attestationForm: Р”РёС„С„РµСЂРµРЅС†РёСЂРѕРІР°РЅРЅС‹Р№ Р·Р°С‡РµС‚
+ teachers: [РСЂС‚РµРіРѕРІ Р”РјРёС‚СЂРёР№ Р’Р°Р»РµРЅС‚РёРЅРѕРІРёС‡]
  mark 5
 ]}

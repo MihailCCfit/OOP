@@ -13,6 +13,9 @@ public class Subject {
     private String certificationDate;
     private final String attestationForm;
     private List<String> teachers;
+    /**
+     * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
+     */
     private long mark;
 
     /**
@@ -107,7 +110,13 @@ public class Subject {
         return markString;
     }
 
-    public void setMark(int mark) {
+    /**
+     * Set mark to specified mark. If mark==1 - Passed, if mark == 0 - failed
+     * mark between 2 and 5 means the same. Other value for mark are invalid.
+     *
+     * @param mark the mark value for setting mark.
+     */
+    public void setMark(long mark) {
         if (mark < 0 || mark > 5) {
             throw new IllegalArgumentException("mark should be between 2 and 5");
         }
@@ -116,6 +125,7 @@ public class Subject {
 
     /**
      * Cool string representation of subject, with all information.
+     * It's contains subjects name, competencies, certificationDate, attestationForm, teachers, mark
      *
      * @return cool string representation
      */

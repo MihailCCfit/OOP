@@ -120,7 +120,7 @@ public class RecordBook {
      * @return true if it would be red Diploma
      */
     public boolean hasRedDiploma() {
-        Semester lastSemester =
+        @SuppressWarnings("OptionalGetWithoutIsPresent") Semester lastSemester =
                 semesters.stream()
                         .max(Comparator.comparingLong(Semester::getNumber))
                         .get();
@@ -172,6 +172,11 @@ public class RecordBook {
         return answer;
     }
 
+    /**
+     * Return cool string representation.
+     *
+     * @return cool string representation
+     */
     @Override
     public String toString() {
         return "RecordBook{" +
