@@ -234,8 +234,10 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMark(int)">setMark</a></span>&#8203;(int&nbsp;mark)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMark(long)">setMark</a></span>&#8203;(long&nbsp;mark)</code></th>
+<td class="colLast">
+<div class="block">Set mark to specified mark.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -422,13 +424,19 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="setMark(int)">
+<a id="setMark(long)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setMark</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setMark&#8203;(int&nbsp;mark)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setMark&#8203;(long&nbsp;mark)</pre>
+<div class="block">Set mark to specified mark. If mark==1 - Passed, if mark == 0 - failed
+ mark between 2 and 5 means the same. Other value for mark are invalid.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>mark</code> - the mark value for setting mark.</dd>
+</dl>
 </li>
 </ul>
 <a id="toString()">
@@ -438,7 +446,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
-<div class="block">Cool string representation of subject, with all information.</div>
+<div class="block">Cool string representation of subject, with all information.
+ It's contains subjects name, competencies, certificationDate, attestationForm, teachers, mark</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
