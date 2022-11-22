@@ -72,6 +72,12 @@ public final class Student {
         this.email = email;
     }
 
+    /**
+     * Check equality by surname, name, department, group, mail.
+     *
+     * @param obj that will be checked for equality with this
+     * @return ture if objects are equal
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
@@ -84,6 +90,11 @@ public final class Student {
                 Objects.equals(this.email(), that.email);
     }
 
+    /**
+     * Calculate hashCode by surname, name, department, group, email.
+     *
+     * @return hashCode by surname, name, department, group, email.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(surname, name, department, group, email);
