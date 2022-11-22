@@ -1,8 +1,7 @@
 package ru.nsu.fit.tsukanov.recordBook;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -30,9 +29,10 @@ public class TesterRecordBook {
         Assertions.assertTrue(recordBook.getAverage() > 4);
         System.out.println(recordBook.shortInfo());
         System.out.println(recordBook);
-        FileWriter fileWriter = new FileWriter("Output.txt");
-        fileWriter.write(recordBook.toString());
-        fileWriter.flush();
+        try (Writer out = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("output.txt"), StandardCharsets.UTF_8))) {
+            out.write(recordBook.toString());
+        }
 
         Student me = new Student("Tsukanov", "Mikhail",
                 "FIT", 21214, "m.tsukanov@g.nsu.ru");
