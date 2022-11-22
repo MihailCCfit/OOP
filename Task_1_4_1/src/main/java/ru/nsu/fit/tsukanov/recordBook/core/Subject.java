@@ -133,9 +133,7 @@ public class Subject {
     public String toString() {
         String markString;
         if (mark == 0 || mark == 1) {
-            markString = mark == 1 ? "Passed" : "Not Passed";
-        } else if (mark < 2 || mark > 5) {
-            markString = "-";
+            markString = mark == 1 ? "Passed" : "Failed";
         } else {
             markString = "" + mark;
         }
@@ -143,8 +141,7 @@ public class Subject {
         return "Subject (" +
                 getSubjectName()
                 + ")\n competencies: " + getCompetencies()
-                + "\n certificationDate: " + (certificationDate.isEmpty() ?
-                "-" : getCertificationDate())
+                + "\n certificationDate: " + getCertificationDate()
                 + "\n attestationForm: " + getAttestationForm()
                 + "\n teachers: " + getTeachers()
                 + "\n mark " + markString;

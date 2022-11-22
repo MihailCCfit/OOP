@@ -29,11 +29,23 @@ public class RecordBook {
      */
 
     public RecordBook(Student student, Collection<? extends Semester> semesters, long id) {
+        this(student, semesters, id, 0);
+    }
+    /**
+     * Creates Record book.
+     *
+     * @param student        the class Student with many fields
+     * @param semesters      the collection with semesters
+     * @param id             the long, non-negative number
+     * @param qualifyingMark the qualifyingMark at the end of study (2-5)
+     */
+
+    public RecordBook(Student student, Collection<? extends Semester> semesters, long id, long qualifyingMark) {
         this.student = student;
         this.semesters = new ArrayList<>(semesters);
         this.id = id;
+        setQualifyingMark(qualifyingMark);
     }
-
     /**
      * Return student with many fields.
      *
@@ -78,6 +90,9 @@ public class RecordBook {
     }
 
     public void setQualifyingMark(long qualifyingMark) {
+        if ((qualifyingMark>5 || qualifyingMark<2)&&qualifyingMark!=0){
+            throw new IllegalArgumentException("Illegal qualifyingMark");
+        }
         this.qualifyingMark = qualifyingMark;
     }
 
