@@ -1,5 +1,8 @@
 package ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
@@ -7,9 +10,6 @@ import ru.nsu.fit.tsukanov.recordBook.core.Semester;
 import ru.nsu.fit.tsukanov.recordBook.core.Student;
 import ru.nsu.fit.tsukanov.recordBook.core.Subject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
@@ -105,19 +105,19 @@ public class ParserJsonStudentsData {
      * @see Subject#getMarkRaw()
      */
     public static Subject subjectParse(JSONObject specificSubject) {
-        String mark = (String) specificSubject.get("Mark");
-        String subjectName = (String) specificSubject.get("Subject");
-        List<String> competencies = new ArrayList<>();
+        final String mark = (String) specificSubject.get("Mark");
+        final String subjectName = (String) specificSubject.get("Subject");
+        final List<String> competencies = new ArrayList<>();
         for (Object competence : ((JSONArray) specificSubject.get("Competencies"))) {
             competencies.add((String) competence);
         }
-        String date = (String) specificSubject.get("Date");
-        String form = (String) specificSubject.get("Attestation form");
-        List<String> teachers = new ArrayList<>();
+        final String date = (String) specificSubject.get("Date");
+        final String form = (String) specificSubject.get("Attestation form");
+        final List<String> teachers = new ArrayList<>();
         for (Object teacher : ((JSONArray) specificSubject.get("Teachers"))) {
             teachers.add((String) teacher);
         }
-        int formattedMark;
+        final int formattedMark;
         if (mark.equals("Pass")) {
             formattedMark = 1;
         } else {
