@@ -157,31 +157,21 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static <a href="../core/RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#recordBookParse(org.json.simple.JSONObject)">recordBookParse</a></span>&#8203;(org.json.simple.JSONObject&nbsp;specificRecordBook)</code></th>
 <td class="colLast">
-<div class="block">JSON format:
- "id": (Long) id
- "Student": (Student) student
- "Semesters": (Semester[]) semesters</div>
+<div class="block">Parser JSON for recordBook.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static <a href="../core/Semester.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Semester</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#semesterParse(org.json.simple.JSONObject)">semesterParse</a></span>&#8203;(org.json.simple.JSONObject&nbsp;specificSemester)</code></th>
 <td class="colLast">
-<div class="block">JSON format:
- "number": (Long) number
- "subjects": (Subject[]) subjects</div>
+<div class="block">Parser JSON for semester.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static <a href="../core/Student.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Student</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#studentParse(org.json.simple.JSONObject)">studentParse</a></span>&#8203;(org.json.simple.JSONObject&nbsp;specificPerson)</code></th>
 <td class="colLast">
-<div class="block">JSON format:
- "surname": (String) surname
- "name": (String) name
- "department": (String) department
- "group": (String) group
- "email": (String) email</div>
+<div class="block">Parser JSON for student.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -229,7 +219,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>recordBookParse</h4>
 <pre class="methodSignature">public static&nbsp;<a href="../core/RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a>&nbsp;recordBookParse&#8203;(org.json.simple.JSONObject&nbsp;specificRecordBook)</pre>
-<div class="block">JSON format:
+<div class="block">Parser JSON for recordBook.
+ JSON format:
  "id": (Long) id
  "Student": (Student) student
  "Semesters": (Semester[]) semesters</div>
@@ -253,7 +244,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>studentParse</h4>
 <pre class="methodSignature">public static&nbsp;<a href="../core/Student.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Student</a>&nbsp;studentParse&#8203;(org.json.simple.JSONObject&nbsp;specificPerson)</pre>
-<div class="block">JSON format:
+<div class="block">Parser JSON for student.
+ JSON format:
  "surname": (String) surname
  "name": (String) name
  "department": (String) department
@@ -276,7 +268,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>semesterParse</h4>
 <pre class="methodSignature">public static&nbsp;<a href="../core/Semester.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Semester</a>&nbsp;semesterParse&#8203;(org.json.simple.JSONObject&nbsp;specificSemester)</pre>
-<div class="block">JSON format:
+<div class="block">Parser JSON for semester.
+ JSON format:
  "number": (Long) number
  "subjects": (Subject[]) subjects</div>
 <dl>
