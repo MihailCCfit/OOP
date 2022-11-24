@@ -1,5 +1,7 @@
 package ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
@@ -7,13 +9,14 @@ import ru.nsu.fit.tsukanov.recordBook.core.Semester;
 import ru.nsu.fit.tsukanov.recordBook.core.Student;
 import ru.nsu.fit.tsukanov.recordBook.core.Subject;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Json-Parser for specified json file, that has specified format.
  */
 public class ParserJsonStudentsData {
+    private ParserJsonStudentsData() {
+
+    }
     /**
      * JSON format:
      * "id": (Long) id

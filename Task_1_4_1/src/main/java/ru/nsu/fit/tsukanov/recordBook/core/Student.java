@@ -80,14 +80,18 @@ public final class Student {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
         var that = (Student) obj;
-        return Objects.equals(surname(), that.surname) &&
-                Objects.equals(this.name(), that.name) &&
-                Objects.equals(this.department(), that.department) &&
-                this.group() == that.group &&
-                Objects.equals(this.email(), that.email);
+        return Objects.equals(surname(), that.surname)
+                && Objects.equals(this.name(), that.name)
+                && Objects.equals(this.department(), that.department)
+                && this.group() == that.group
+                && Objects.equals(this.email(), that.email);
     }
 
     /**
@@ -107,11 +111,11 @@ public final class Student {
      */
     @Override
     public String toString() {
-        return "Student[" +
-                "surname=" + surname + ", " +
-                "name=" + name + ", " +
-                "department=" + department + ", " +
-                "group=" + group + ", " +
-                "mail=" + email + ']';
+        return "Student["
+                + "surname=" + surname + ", "
+                + "name=" + name + ", "
+                + "department=" + department + ", "
+                + "group=" + group + ", "
+                + "mail=" + email + ']';
     }
 }
