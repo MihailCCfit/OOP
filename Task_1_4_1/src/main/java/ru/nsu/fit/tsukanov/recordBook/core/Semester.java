@@ -93,9 +93,9 @@ public class Semester {
     @Override
     public String toString() {
         return "Semester(" + number
-                + ") subjects:\n" +
-                subjects.stream()
-                        .map((x)->x.toString()+"\n")
-                        .reduce(String::concat).orElse("");
+                + ") subjects:\n"
+                + subjects.stream()
+                .map((x) -> x.toString() + "\n")
+                .reduce(String::concat).orElse("");
     }
 }

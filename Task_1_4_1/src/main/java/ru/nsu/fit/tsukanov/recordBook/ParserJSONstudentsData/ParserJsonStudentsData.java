@@ -1,13 +1,15 @@
 package ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
 import ru.nsu.fit.tsukanov.recordBook.core.Semester;
 import ru.nsu.fit.tsukanov.recordBook.core.Student;
 import ru.nsu.fit.tsukanov.recordBook.core.Subject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -17,7 +19,9 @@ public class ParserJsonStudentsData {
     private ParserJsonStudentsData() {
 
     }
+
     /**
+     * Parser JSON for recordBook.
      * JSON format:
      * "id": (Long) id
      * "Student": (Student) student
@@ -42,6 +46,7 @@ public class ParserJsonStudentsData {
     }
 
     /**
+     * Parser JSON for student.
      * JSON format:
      * "surname": (String) surname
      * "name": (String) name
@@ -63,6 +68,7 @@ public class ParserJsonStudentsData {
     }
 
     /**
+     * Parser JSON for semester.
      * JSON format:
      * "number": (Long) number
      * "subjects": (Subject[]) subjects
@@ -73,13 +79,13 @@ public class ParserJsonStudentsData {
      * @see Semester
      * @see ParserJsonStudentsData#subjectParse(JSONObject)
      */
+    @SuppressWarnings("unchecked")
     public static Semester semesterParse(JSONObject specificSemester) {
         long number = (long) specificSemester.get("number");
-        ArrayList<Subject> subjects = new ArrayList<>();
         JSONArray subjectsArray = (JSONArray) specificSemester.get("subjects");
-        for (Object subject : subjectsArray) {
-            subjects.add(subjectParse((JSONObject) subject));
-        }
+        ArrayList<Subject> subjects = (ArrayList<Subject>) subjectsArray.stream()
+                .map(x -> subjectParse((JSONObject) x))
+                .collect(Collectors.toCollection(ArrayList::new));
         return new Semester(subjects, number);
     }
 
