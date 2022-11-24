@@ -73,7 +73,7 @@ public class Subject {
     }
 
     /**
-     * Add teacher into the subject's list of teachers
+     * Add teacher into the subject's list of teachers.
      *
      * @param newTeacher new teacher for adding
      * @return true if there is adding to the list.
@@ -138,8 +138,8 @@ public class Subject {
             markString = "" + mark;
         }
 
-        return "Subject (" +
-                getSubjectName()
+        return "Subject ("
+                + getSubjectName()
                 + ")\n competencies: " + getCompetencies()
                 + "\n certificationDate: " + getCertificationDate()
                 + "\n attestationForm: " + getAttestationForm()

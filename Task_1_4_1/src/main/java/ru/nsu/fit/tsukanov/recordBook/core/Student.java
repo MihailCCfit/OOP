@@ -15,7 +15,7 @@ public final class Student {
     private String email;
 
     /**
-     * Construct student
+     * Construct student with many arguments.
      *
      * @param surname    the surname of student
      * @param name       the name of student

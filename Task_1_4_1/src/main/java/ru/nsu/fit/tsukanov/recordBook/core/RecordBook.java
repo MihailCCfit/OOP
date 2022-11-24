@@ -28,7 +28,8 @@ public class RecordBook {
      * @param id        the long, non-negative number
      */
 
-    public RecordBook(Student student, Collection<? extends Semester> semesters,
+    public RecordBook(Student student,
+                      Collection<? extends Semester> semesters,
                       long id) {
         this(student, semesters, id, 0);
     }
@@ -42,7 +43,9 @@ public class RecordBook {
      * @param qualifyingMark the qualifyingMark at the end of study (2-5)
      */
 
-    public RecordBook(Student student, Collection<? extends Semester> semesters, long id, long qualifyingMark) {
+    public RecordBook(Student student,
+                      Collection<? extends Semester> semesters,
+                      long id, long qualifyingMark) {
         this.student = student;
         this.semesters = new ArrayList<>(semesters);
         this.id = id;
@@ -117,7 +120,8 @@ public class RecordBook {
     }
 
     /**
-     * Check fo higher Scholarship. If there is no bad mark (less than 4), it would be higher scholarship.
+     * Check fo higher Scholarship. If there is no bad mark (less than 4),
+     * it would be higher scholarship.
      *
      * @return true if it would be higher scholarship
      */
@@ -134,7 +138,8 @@ public class RecordBook {
     }
 
     /**
-     * Check for color of diploma (very useful). If there is no bad mark (less than 4), and 75% of marks are five,
+     * Check for color of diploma (very useful).
+     * If there is no bad mark (less than 4), and 75% of marks are five,
      * and qualifying work mark is five, it would be red Diploma.
      *
      * @return true if it would be red Diploma

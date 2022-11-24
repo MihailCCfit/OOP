@@ -1,6 +1,11 @@
 package ru.nsu.fit.tsukanov.recordBook;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import org.json.simple.JSONObject;
@@ -15,9 +20,12 @@ import ru.nsu.fit.tsukanov.recordBook.core.Subject;
 
 
 
+/**
+ * Check RecordBook, ParserJSON, and components of RecordBook.
+ */
 public class TesterRecordBook {
     @Test
-    void testJS() throws IOException, ParseException {
+    void testJson() throws IOException, ParseException {
         FileReader fileReader;
         fileReader = new FileReader("src/test/resources/js.json");
         JSONParser jsonParser = new JSONParser();
@@ -51,8 +59,8 @@ public class TesterRecordBook {
         Assertions.assertNotEquals(me, recordBook.getStudent());
         Assertions.assertEquals(me, me);
         Assertions.assertEquals(me.toString(),
-                "Student[surname=Abo, name=Ba, " +
-                        "department=CCFIT, group=3228, mail=ru.ru]");
+                "Student[surname=Abo, name=Ba, "
+                        + "department=CCFIT, group=3228, mail=ru.ru]");
         for (Subject subject : recordBook.getSemesters().get(1).getSubjects()) {
             if (!subject.getMarkString().equals("5")) {
                 subject.setMark(5);
@@ -97,21 +105,26 @@ public class TesterRecordBook {
     @Test
     void someParserTests() throws ParseException {
         JSONParser jsonParser = new JSONParser();
-        JSONObject object = (JSONObject) jsonParser.parse("{\n" +
-                "          \"Mark\": \"-5\",\n" +
-                "          \"Subject\": \"\\u0412\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 \\u0432 \\u0434\\u0438\\u0441\\u043a\\u0440\\u0435\\u0442\\u043d\\u0443\\u044e \\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0443 \\u0438 \\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u0447\\u0435\\u0441\\u043a\\u0443\\u044e \\u043b\\u043e\\u0433\\u0438\\u043a\\u0443\",\n" +
-                "          \"Competencies\": [\n" +
-                "            \"\\u041e\\u041f\\u041a-1\"\n" +
-                "          ],\n" +
-                "          \"Date\": \"18.01.2022\",\n" +
-                "          \"Attestation form\": \"\\u042d\\u043a\\u0437\\u0430\\u043c\\u0435\\u043d\",\n" +
-                "          \"Teachers\": [\n" +
-                "            \"\\u0412\\u043b\\u0430\\u0441\\u043e\\u0432 \\u0414\\u043c\\u0438\\u0442\\u0440\\u0438\\u0439 \\u042e\\u0440\\u044c\\u0435\\u0432\\u0438\\u0447\"\n" +
-                "          ]\n" +
-                "        }");
+        JSONObject object = (JSONObject) jsonParser.parse("{\n"
+                + "          \"Mark\": \"-5\",\n"
+                + "          \"Subject\": \"\\u0412\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 " +
+                "\\u0432 \\u0434\\u0438\\u0441\\u043a\\u0440\\u0435\\u0442\\u043d\\u0443\\u044e " +
+                "\\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0443 \\u0438 " +
+                "\\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u0447\\u0435\\u0441\\u043a\\u0443\\u044e " +
+                "\\u043b\\u043e\\u0433\\u0438\\u043a\\u0443\",\n"
+                + "          \"Competencies\": [\n"
+                + "            \"\\u041e\\u041f\\u041a-1\"\n"
+                + "          ],\n"
+                + "          \"Date\": \"18.01.2022\",\n"
+                + "          \"Attestation form\": \"\\u042d\\u043a\\u0437\\u0430\\u043c\\u0435\\u043d\",\n"
+                + "          \"Teachers\": [\n"
+                + "            \"\\u0412\\u043b\\u0430\\u0441\\u043e\\u0432 " +
+                "\\u0414\\u043c\\u0438\\u0442\\u0440\\u0438\\u0439 " +
+                "\\u042e\\u0440\\u044c\\u0435\\u0432\\u0438\\u0447\"\n"
+                + "          ]\n"
+                + "        }");
         Assertions.assertThrows(IllegalStateException.class, () ->
                 ParserJsonStudentsData.subjectParse(object));
-        //ParserJsonStudentsData parserJsonStudentsData = new ParserJsonStudentsData();
     }
 
     @Test
@@ -129,8 +142,8 @@ public class TesterRecordBook {
 
     @Test
     void someStudentTests() {
-        Student student = new Student("a", "b", "c"
-                , 3228, "@");
+        Student student = new Student("a", "b", "c",
+                3228, "@");
         Assertions.assertFalse(student.equals("aboba"));
     }
 }
