@@ -28,9 +28,11 @@ public class RecordBook {
      * @param id        the long, non-negative number
      */
 
-    public RecordBook(Student student, Collection<? extends Semester> semesters, long id) {
+    public RecordBook(Student student, Collection<? extends Semester> semesters,
+                      long id) {
         this(student, semesters, id, 0);
     }
+
     /**
      * Creates Record book.
      *
@@ -46,6 +48,7 @@ public class RecordBook {
         this.id = id;
         setQualifyingMark(qualifyingMark);
     }
+
     /**
      * Return student with many fields.
      *
@@ -89,8 +92,14 @@ public class RecordBook {
         return qualifyingMark;
     }
 
+    /**
+     * Set the mark for qualify work.
+     * 0 - None. 2-5 - common mark.
+     *
+     * @param qualifyingMark the mark of qualify work.
+     */
     public void setQualifyingMark(long qualifyingMark) {
-        if ((qualifyingMark>5 || qualifyingMark<2)&&qualifyingMark!=0){
+        if ((qualifyingMark > 5 || qualifyingMark < 2) && qualifyingMark != 0) {
             throw new IllegalArgumentException("Illegal qualifyingMark");
         }
         this.qualifyingMark = qualifyingMark;
@@ -102,13 +111,9 @@ public class RecordBook {
      * @return short info about subjects.
      */
     public String shortInfo() {
-        StringBuilder sems = new StringBuilder();
-        for (Semester semester : semesters) {
-            sems.append(semester.shortInfo());
-        }
         return "RecordBook (" + id + ") Student: "
                 + student + "\n"
-                + sems;
+                + semesters.stream().map(Semester::shortInfo).reduce("", String::concat);
     }
 
     /**
@@ -168,9 +173,7 @@ public class RecordBook {
      */
     public List<Long> getMarks() {
         List<Long> marksFromAll = new ArrayList<>();
-        for (Semester semester : semesters) {
-            marksFromAll.addAll(semester.getMarks());
-        }
+        semesters.stream().map(Semester::getMarks).forEach(marksFromAll::addAll);
         return marksFromAll;
     }
 
@@ -180,11 +183,7 @@ public class RecordBook {
      * @return true, if it's alright
      */
     public boolean isPassed() {
-        boolean answer = true;
-        for (Semester semester : semesters) {
-            answer = answer && semester.checkPassed();
-        }
-        return answer;
+        return semesters.stream().map(Semester::checkPassed).reduce(true, (x, y) -> x && y);
     }
 
     /**
@@ -194,10 +193,10 @@ public class RecordBook {
      */
     @Override
     public String toString() {
-        return "RecordBook{" +
-                "id=" + id +
-                ", student=" + student +
-                ", semesters=" + semesters +
-                '}';
+        return "RecordBook{"
+                + "id=" + id
+                + ", student=" + student
+                + ", semesters=" + semesters
+                + '}';
     }
 }

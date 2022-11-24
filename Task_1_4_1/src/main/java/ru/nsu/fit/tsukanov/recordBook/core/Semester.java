@@ -3,6 +3,7 @@ package ru.nsu.fit.tsukanov.recordBook.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The class that contains subjects and number of this semester.
@@ -54,12 +55,11 @@ public class Semester {
      * @see Subject#shortResult()
      */
     public String shortInfo() {
-        StringBuilder ans = new StringBuilder();
-        for (Subject subject : subjects) {
-            ans.append(subject.shortResult()).append("\n");
-        }
         return "Semester(" + number
-                + ") subjects:\n" + ans;
+                + ") subjects:\n" + subjects.stream()
+                .map(Subject::shortResult)
+                .map((x) -> x.concat("\n"))
+                .reduce(String::concat).orElse("");
     }
 
     /**
@@ -68,14 +68,10 @@ public class Semester {
      * @return list of marks
      */
     public List<Long> getMarks() {
-        List<Long> marks = new ArrayList<>();
-        for (Subject subject : subjects) {
-            long mark = subject.getMarkRaw();
-            if (mark > 1) {
-                marks.add(mark);
-            }
-        }
-        return marks;
+        return subjects.stream()
+                .map(Subject::getMarkRaw)
+                .filter((x) -> x > 1)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -84,12 +80,9 @@ public class Semester {
      * @return return true if all right
      */
     public boolean checkPassed() {
-        for (Subject subject : subjects) {
-            if ((subject.getMarkRaw() == 0) || (subject.getMarkRaw() == 2)) {
-                return false;
-            }
-        }
-        return true;
+        return subjects.stream()
+                .map(Subject::getMarkRaw)
+                .allMatch((x) -> x != 0 && x != 2);
     }
 
     /**
@@ -99,11 +92,10 @@ public class Semester {
      */
     @Override
     public String toString() {
-        StringBuilder subs = new StringBuilder();
-        for (Subject subject : subjects) {
-            subs.append(subject).append("\n");
-        }
         return "Semester(" + number
-                + ") subjects:\n" + subs;
+                + ") subjects:\n" +
+                subjects.stream()
+                        .map((x)->x.toString()+"\n")
+                        .reduce(String::concat).orElse("");
     }
 }
