@@ -36,7 +36,33 @@ public class Semester {
      * @see Subject
      */
     public List<Subject> getSubjects() {
-        return subjects;
+        return new ArrayList<>(subjects);
+    }
+
+    /**
+     * Add the subject to the list of subjects.
+     * If there is no the same subjects,
+     * then specified subject will be added.
+     *
+     * @param subject the semester that will be added into list of semesters
+     * @return true if subject was added
+     */
+    public boolean addSubject(Subject subject){
+        if (subjects.stream().anyMatch((subj) -> subj.equals(subject))) {
+            return false;
+        }
+        subjects.add(subject);
+        return true;
+    }
+
+    /**
+     * @param inputSubjects the collection of subjects
+     *                       that will be added into the list of subjects.
+     */
+    public void addSubjects(Collection<Subject> inputSubjects) {
+        for (Subject subject : inputSubjects) {
+            addSubject(subject);
+        }
     }
 
     /**
