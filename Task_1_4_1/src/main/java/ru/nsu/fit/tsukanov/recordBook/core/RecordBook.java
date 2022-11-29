@@ -67,7 +67,33 @@ public class RecordBook {
      * @return List of semesters
      */
     public List<Semester> getSemesters() {
-        return semesters;
+        return new ArrayList<>(semesters);
+    }
+
+    /**
+     * Add the semester to the list of semesters.
+     * If there is no semester with current number,
+     * then specified semester will be added.
+     *
+     * @param semester the semester that will be added into list of semesters
+     * @return true if semester was added
+     */
+    public boolean addSemester(Semester semester) {
+        if (semesters.stream().anyMatch((sem) -> sem.getNumber() == semester.getNumber())) {
+            return false;
+        }
+        semesters.add(semester);
+        return true;
+    }
+
+    /**
+     * @param inputSemesters the collection of semesters
+     *                       that will be added into the list of semesters.
+     */
+    public void addSemesters(Collection<Semester> inputSemesters) {
+        for (Semester semester : inputSemesters) {
+            addSemester(semester);
+        }
     }
 
     /**
