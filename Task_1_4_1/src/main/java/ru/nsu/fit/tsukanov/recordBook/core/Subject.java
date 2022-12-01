@@ -16,7 +16,7 @@ public class Subject {
     /**
      * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
      */
-    private long mark;
+    private MarkType mark;
 
     /**
      * Construct subject.
@@ -31,7 +31,7 @@ public class Subject {
      */
     public Subject(String subjectName, Collection<String> competencies,
                    String certificationDate, String attestationForm,
-                   Collection<String> teachers, long mark) {
+                   Collection<String> teachers, MarkType mark) {
         this.competencies = new ArrayList<>(competencies);
         this.subjectName = subjectName;
         this.certificationDate = certificationDate;
@@ -43,7 +43,24 @@ public class Subject {
         }
         this.mark = mark;
     }
-
+    /**
+     * Construct subject.
+     * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
+     *
+     * @param subjectName       the name of subject
+     * @param competencies      the competencies
+     * @param certificationDate the date when person passed or got mark.
+     * @param attestationForm   the form of passing the subjects
+     * @param teachers          the persons who taught owner of this
+     * @param mark              the specific mark
+     */
+    public Subject(String subjectName, Collection<String> competencies,
+                   String certificationDate, String attestationForm,
+                   Collection<String> teachers, String mark) {
+        this(subjectName, competencies,
+                certificationDate, attestationForm,
+                teachers, MarkType.createMark(mark));
+    }
     public String getSubjectName() {
         return subjectName;
     }
@@ -92,7 +109,7 @@ public class Subject {
      * @return long value (raw representation) of mark.
      */
     public long getMarkRaw() {
-        return mark;
+        return mark.rawMark();
     }
 
     /**
@@ -101,13 +118,7 @@ public class Subject {
      * @return string representation
      */
     public String getMarkString() {
-        String markString;
-        if (mark == 0 || mark == 1) {
-            markString = mark == 1 ? "Passed" : "Failed";
-        } else {
-            markString = "" + mark;
-        }
-        return markString;
+        return mark.toString();
     }
 
     /**
@@ -116,10 +127,7 @@ public class Subject {
      *
      * @param mark the mark value for setting mark.
      */
-    public void setMark(long mark) {
-        if (mark < 0 || mark > 5) {
-            throw new IllegalArgumentException("mark should be between 2 and 5");
-        }
+    public void setMark(MarkType mark) {
         this.mark = mark;
     }
 
@@ -131,20 +139,13 @@ public class Subject {
      */
     @Override
     public String toString() {
-        String markString;
-        if (mark == 0 || mark == 1) {
-            markString = mark == 1 ? "Passed" : "Failed";
-        } else {
-            markString = "" + mark;
-        }
-
         return "Subject ("
                 + getSubjectName()
                 + ")\n competencies: " + getCompetencies()
                 + "\n certificationDate: " + getCertificationDate()
                 + "\n attestationForm: " + getAttestationForm()
                 + "\n teachers: " + getTeachers()
-                + "\n mark " + markString;
+                + "\n mark: " + mark;
     }
 
     /**

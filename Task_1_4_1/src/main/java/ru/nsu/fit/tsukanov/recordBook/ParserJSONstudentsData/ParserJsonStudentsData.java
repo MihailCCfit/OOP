@@ -5,11 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
-import ru.nsu.fit.tsukanov.recordBook.core.Semester;
-import ru.nsu.fit.tsukanov.recordBook.core.Student;
-import ru.nsu.fit.tsukanov.recordBook.core.Subject;
-
+import ru.nsu.fit.tsukanov.recordBook.core.*;
 
 
 /**
@@ -61,10 +57,11 @@ public class ParserJsonStudentsData {
     public static Student studentParse(JSONObject specificPerson) {
         String surname = (String) specificPerson.get("surname");
         String name = (String) specificPerson.get("name");
+        String patronymic = (String) specificPerson.get("patronymic");
         String department = (String) specificPerson.get("department");
         long group = (Long) specificPerson.get("group");
         String email = (String) specificPerson.get("email");
-        return new Student(surname, name, department, group, email);
+        return new Student(surname, name, patronymic,department, group, email);
     }
 
     /**
@@ -117,16 +114,7 @@ public class ParserJsonStudentsData {
         for (Object teacher : ((JSONArray) specificSubject.get("Teachers"))) {
             teachers.add((String) teacher);
         }
-        final int formattedMark;
-        if (mark.equals("Pass")) {
-            formattedMark = 1;
-        } else {
-            formattedMark = Integer.parseInt(mark);
-            if (formattedMark < 2 || formattedMark > 5) {
-                throw new IllegalStateException("Illegal mark value");
-            }
-        }
         return new Subject(subjectName, competencies,
-                date, form, teachers, formattedMark);
+                date, form, teachers, mark);
     }
 }

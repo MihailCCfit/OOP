@@ -14,10 +14,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData.ParserJsonStudentsData;
-import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
-import ru.nsu.fit.tsukanov.recordBook.core.Student;
-import ru.nsu.fit.tsukanov.recordBook.core.Subject;
-
+import ru.nsu.fit.tsukanov.recordBook.core.*;
 
 
 /**
@@ -30,13 +27,12 @@ public class RecordBookTest {
         fileReader = new FileReader("src/test/resources/js.json");
         JSONParser jsonParser = new JSONParser();
         JSONObject object = (JSONObject) jsonParser.parse(fileReader);
-
         RecordBook recordBook = ParserJsonStudentsData.recordBookParse(
                 object);
         Assertions.assertTrue(recordBook.hasHighScholarship());
         Assertions.assertTrue(recordBook.getAverage() > 4);
-        System.out.println(recordBook.shortInfo());
-        System.out.println(recordBook);
+        //System.out.println(recordBook.shortInfo());
+        //System.out.println(recordBook);
         try (Writer out = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("output.txt"), StandardCharsets.UTF_8))) {
             out.write(recordBook.toString());
@@ -47,12 +43,12 @@ public class RecordBookTest {
         Assertions.assertEquals(me, recordBook.getStudent());
         Assertions.assertEquals(me.hashCode(), recordBook.getStudent().hashCode());;
         Assertions.assertEquals(me, me);
-        Assertions.assertEquals(me.toString(),
+        Assertions.assertNotEquals(me.toString(),
                 "Student[surname=Abo, name=Ba, "
                         + "department=CCFIT, group=3228, mail=ru.ru]");
         for (Subject subject : recordBook.getSemesters().get(1).getSubjects()) {
             if (!subject.getMarkString().equals("5")) {
-                subject.setMark(5);
+                subject.setMark(MarkType.EXCELLENT);
             }
         }
         Assertions.assertEquals(recordBook.getAverage(), 5);
@@ -63,7 +59,7 @@ public class RecordBookTest {
         Assertions.assertFalse(recordBook.getSemesters()
                 .get(1).getSubjects()
                 .get(0).addTeacher("HaHaHa"));
-        someSubj.setMark(5);
+        someSubj.setMark(MarkType.EXCELLENT);
         someSubj.setCertificationDate("777.777.777");
         someSubj.setTeachers(List.of("Amogus"));
         Assertions.assertFalse(recordBook.getId() < 0);
@@ -71,24 +67,22 @@ public class RecordBookTest {
                 () -> recordBook.setId(-4));
         recordBook.setId(777);
         Assertions.assertEquals(recordBook.getId(), 777);
-        Assertions.assertThrows(IllegalArgumentException.class,
-                () -> someSubj.setMark(-5));
-        someSubj.setMark(1);
-        Assertions.assertEquals(someSubj.getMarkString(), "Passed");
+        someSubj.setMark(MarkType.PASSED);
+        Assertions.assertEquals(someSubj.getMarkString(), "PASSED");
         Assertions.assertFalse(recordBook.hasRedDiploma());
         recordBook.setQualifyingMark(5);
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> recordBook.setQualifyingMark(-5));
         Assertions.assertEquals(5, recordBook.getQualifyingMark());
         Assertions.assertTrue(recordBook.hasRedDiploma());
-        someSubj.setMark(0);
-        Assertions.assertEquals(someSubj.getMarkString(), "Failed");
+        someSubj.setMark(MarkType.FAILED);
+        Assertions.assertEquals(someSubj.getMarkString(), "FAILED");
         Assertions.assertFalse(recordBook.hasRedDiploma());
         Assertions.assertFalse(recordBook.hasHighScholarship());
-        someSubj.setMark(3);
+        someSubj.setMark(MarkType.SATISFACTORY);
         Assertions.assertEquals(someSubj.getMarkString(), "3");
-        System.out.println(recordBook.getSemesters().get(0).tableInfo());
-
+        //System.out.println(recordBook.getSemesters().get(0).tableInfo());
+        System.out.println(TablePrinter.tableInfoWithBorder(recordBook.getSemesters().get(0)));
         recordBook.setSemesters(List.of());
         Assertions.assertEquals(recordBook.getAverage(), 0);
     }
@@ -116,7 +110,7 @@ public class RecordBookTest {
                         + "\\u042e\\u0440\\u044c\\u0435\\u0432\\u0438\\u0447\"\n"
                 + "          ]\n"
                 + "        }");
-        Assertions.assertThrows(IllegalStateException.class, () ->
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
                 ParserJsonStudentsData.subjectParse(object));
     }
 
@@ -124,12 +118,12 @@ public class RecordBookTest {
     void someSubjectTests() {
         Subject subject = new Subject("C",
                 List.of("OPK-12"), "12.12.2012",
-                "test", null, 1);
+                "test", null, MarkType.PASSED);
         Assertions.assertTrue(subject.getTeachers().isEmpty());
         Assertions.assertTrue(subject.addTeacher("Gatilov Stepan Urievich"));
-        Assertions.assertEquals("Passed", subject.getMarkString());
-        subject.setMark(0);
-        Assertions.assertEquals("Failed", subject.getMarkString());
-        Assertions.assertTrue(subject.toString().contains("Failed"));
+        Assertions.assertEquals("PASSED", subject.getMarkString());
+        subject.setMark(MarkType.FAILED);
+        Assertions.assertEquals("FAILED", subject.getMarkString());
+        Assertions.assertTrue(subject.toString().contains("FAILED"));
     }
 }
