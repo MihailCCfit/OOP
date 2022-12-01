@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ru.nsu.fit.tsukanov.recordBook.core"},{"l":"ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.tsukanov.recordBook.core"},{"l":"ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData"}];updateSearchResults();
