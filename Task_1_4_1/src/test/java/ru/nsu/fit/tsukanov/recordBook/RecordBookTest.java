@@ -55,6 +55,14 @@ public class RecordBookTest {
         Subject someSubj = recordBook.getSemesters()
                 .get(1).getSubjects()
                 .get(0);
+
+        var semesters = recordBook.getSemesters();
+        var oneSemester = semesters.get(0);
+        Assertions.assertFalse(recordBook.addSemester(recordBook.getSemesters().get(0)));
+        recordBook.addSemesters(recordBook.getSemesters());
+        Assertions.assertFalse(oneSemester.addSubject(oneSemester.getSubjects().get(0)));
+        oneSemester.addSubjects(oneSemester.getSubjects());
+
         Assertions.assertTrue(someSubj.addTeacher("HaHaHa"));
         Assertions.assertFalse(recordBook.getSemesters()
                 .get(1).getSubjects()
@@ -84,8 +92,10 @@ public class RecordBookTest {
         //System.out.println(recordBook.getSemesters().get(0).tableInfo());
         System.out.println(TablePrinter.recordBookInfo(recordBook));
         //System.out.println(TablePrinter.tableInfoWithBorder(recordBook.getSemesters().get(0)));
+        semesters.get(0).toString();
         recordBook.setSemesters(List.of());
         Assertions.assertEquals(recordBook.getAverage(), 0);
+
     }
 
     @Test
@@ -126,5 +136,12 @@ public class RecordBookTest {
         subject.setMark(MarkType.FAILED);
         Assertions.assertEquals("FAILED", subject.getMarkString());
         Assertions.assertTrue(subject.toString().contains("FAILED"));
+    }
+
+    @Test
+    void someMarkTypeTest() {
+        MarkType markType = MarkType.createMark("2");
+        Assertions.assertEquals(2, markType.rawMark());
+        Assertions.assertEquals("2", markType.toString());
     }
 }

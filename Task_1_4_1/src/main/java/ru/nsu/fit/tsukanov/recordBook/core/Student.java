@@ -6,8 +6,8 @@ package ru.nsu.fit.tsukanov.recordBook.core;
  * @see RecordBook
  */
 public record Student(String surname, String name,
-               String patronymic, String department,
-               long group, String email) {
+                      String patronymic, String department,
+                      long group, String email) {
 
     /**
      * cool string representation about all student information.
@@ -18,6 +18,6 @@ public record Student(String surname, String name,
     public String toString() {
         String snp = surname() + " " + name().charAt(0) + ". "
                 + patronymic().charAt(0) + ".";
-        return snp + " " + group() + " " + department;
+        return snp + " " + group() + " " + department() + " " + email();
     }
 }

@@ -123,6 +123,10 @@ public class Subject {
         return mark.toString();
     }
 
+    public MarkType getMark() {
+        return mark;
+    }
+
     /**
      * Set mark to specified mark. If mark==1 - Passed, if mark == 0 - failed
      * mark between 2 and 5 means the same. Other value for mark are invalid.

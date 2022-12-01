@@ -94,8 +94,9 @@ public class Semester {
      */
     public List<Long> getMarks() {
         return subjects.stream()
-                .map(Subject::getMarkRaw)
-                .filter((x) -> x > 1)
+                .map(Subject::getMark)
+                .filter(MarkType::notCreditMark)
+                .map(MarkType::rawMark)
                 .collect(Collectors.toList());
     }
 
