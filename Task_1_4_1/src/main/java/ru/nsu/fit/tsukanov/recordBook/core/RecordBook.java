@@ -221,6 +221,10 @@ public class RecordBook {
         return semesters.stream().map(Semester::checkPassed).reduce(true, (x, y) -> x && y);
     }
 
+    public String tableInfo(){
+
+        return "";
+    }
     /**
      * Return cool string representation.
      *

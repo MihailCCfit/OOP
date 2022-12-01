@@ -87,25 +87,6 @@ public class Semester {
                 + " average: " + getAverage();
     }
 
-    public String tableInfo() {
-        String shortInf = shortInfo();
-        shortInf = shortInf.substring(0, Math.min(tableSize-6, shortInf.length()));
-        String tableOfSubjects = "";
-        for (Subject subject : subjects) {
-            String subjInfo = subject.shortInfo();
-            subjInfo = subjInfo.substring(0, Math.min(tableSize-2, subjInfo.length()));
-            tableOfSubjects += "#" + " ".repeat(4) + subjInfo +
-                    " ".repeat(tableSize - (6+subjInfo.length())) + "#\n";
-        }
-
-
-        return "#" + "+".repeat(tableSize-2) + "#\n"
-                + "#" + " ".repeat(4) + shortInf + " ".repeat(tableSize-(6+shortInf.length())) + "#\n"
-                + "#" + " ".repeat(tableSize-2) + "#\n"
-                + "#" + "-".repeat(tableSize-2) + "#\n"
-                + tableOfSubjects
-                + "#" + "+".repeat(tableSize-2) +"#\n";
-    }
 
     /**
      * Return list of marks (without pass or fail).

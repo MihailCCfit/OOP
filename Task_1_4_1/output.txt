@@ -1,117 +1,117 @@
-RecordBook{id=123456, student=Student[surname=Tsukanov, name=Mikhail, department=FIT, group=21214, mail=m.tsukanov@g.nsu.ru], semesters=[Semester(1) subjects:
+RecordBook{id=123456, student=Tsukanov M. A. 21214 FIT, semesters=[Semester(1) subjects:
 Subject (Введение в алгебру и анализ)
  competencies: [ОПК-1]
  certificationDate: 11.01.2022
  attestationForm: Экзамен
  teachers: [Васкевич Владимир Леонтьевич]
- mark 5
+ mark: 5
 Subject (Введение в дискретную математику и математическую логику)
  competencies: [ОПК-1]
  certificationDate: 18.01.2022
  attestationForm: Экзамен
  teachers: [Власов Дмитрий Юрьевич]
- mark 5
+ mark: 5
 Subject (Декларативное программирование)
  competencies: [ОПК-8]
  certificationDate: 29.12.2021
  attestationForm: Дифференцированный зачет
  teachers: [Куталев Андрей Витальевич]
- mark 5
+ mark: 5
 Subject (Императивное программирование)
  competencies: [ОПК-8]
  certificationDate: 29.12.2021
  attestationForm: Дифференцированный зачет
  teachers: [Зайцев Вадим Евгеньевич]
- mark 5
+ mark: 5
 Subject (Иностранный язык)
  competencies: [УК-4]
  certificationDate: 29.12.2021
  attestationForm: Зачет
  teachers: [Хоцкина Ольга Валерьевна]
- mark Passed
+ mark: PASSED
 Subject (История)
  competencies: [УК-5]
  certificationDate: 29.12.2021
  attestationForm: Дифференцированный зачет
  teachers: [Оплаканская Рената Валерьевна]
- mark 5
+ mark: 5
 Subject (Основы культуры речи)
  competencies: [УК-4]
  certificationDate: 29.12.2021
  attestationForm: Дифференцированный зачет
  teachers: [Заворина Татьяна Ивановна]
- mark 5
+ mark: 5
 Subject (Физическая культура и спорт)
  competencies: [УК-7]
  certificationDate: 29.12.2021
  attestationForm: Зачет
  teachers: [Опарин Григорий Андреевич]
- mark Passed
+ mark: PASSED
 Subject (Физическая культура и спорт (элективная дисциплина))
  competencies: [УК-7]
  certificationDate: 29.12.2021
  attestationForm: Зачет
  teachers: [Опарин Григорий Андреевич]
- mark Passed
+ mark: PASSED
 Subject (Цифровые платформы)
  competencies: [ОПК-8]
  certificationDate: 29.12.2021
  attestationForm: Зачет
  teachers: [Иртегов Дмитрий Валентинович, Ананько Анатолий Григорьевич]
- mark Passed
+ mark: PASSED
 , Semester(2) subjects:
 Subject (Введение в алгебру и анализ)
  competencies: [ОПК-1]
  certificationDate: 16.06.2022
  attestationForm: Экзамен
  teachers: [Васкевич Владимир Леонтьевич, Рудометова Анна Сергеевна, Шваб Ирина Васильевна]
- mark 5
+ mark: 5
 Subject (Введение в дискретную математику и математическую логику)
  competencies: [ОПК-1]
  certificationDate: 20.06.2022
  attestationForm: Экзамен
  teachers: [Апанович Зинаида Владимировна]
- mark 5
+ mark: 5
 Subject (Декларативное программирование)
  competencies: [ОПК-8]
  certificationDate: 10.06.2022
  attestationForm: Дифференцированный зачет
  teachers: [Куталев Андрей Витальевич]
- mark 5
+ mark: 5
 Subject (Измерительный практикум)
  competencies: [ОПК-1]
  certificationDate: 06.06.2022
  attestationForm: Зачет
  teachers: [Брагин Олег Анатольевич, Белоусов Роман Геннадьевич]
- mark Passed
+ mark: PASSED
 Subject (Императивное программирование)
  competencies: [ОПК-8]
  certificationDate: 27.06.2022
  attestationForm: Экзамен
  teachers: [Нестеренко Татьяна Викторовна, Кирин Денис Леонидович]
- mark 5
+ mark: 5
 Subject (Иностранный язык)
  competencies: [УК-4]
  certificationDate: 10.06.2022
  attestationForm: Дифференцированный зачет
  teachers: [Хоцкина Ольга Валерьевна]
- mark 4
+ mark: 4
 Subject (Физическая культура и спорт)
  competencies: [УК-7]
  certificationDate: 10.06.2022
  attestationForm: Зачет
  teachers: [Опарин Григорий Андреевич]
- mark Passed
+ mark: PASSED
 Subject (Физическая культура и спорт (элективная дисциплина))
  competencies: [УК-7]
  certificationDate: 10.06.2022
  attestationForm: Зачет
  teachers: [Опарин Григорий Андреевич]
- mark Passed
+ mark: PASSED
 Subject (Цифровые платформы)
  competencies: [ОПК-8]
  certificationDate: 10.06.2022
  attestationForm: Дифференцированный зачет
  teachers: [Иртегов Дмитрий Валентинович]
- mark 5
+ mark: 5
 ]}
