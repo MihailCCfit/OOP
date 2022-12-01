@@ -1,6 +1,6 @@
 ####################################################################################################
 # RecordBook:                                                                                      #
-#    Tsukanov M. A. 21214 FIT                                                                      #
+#    Tsukanov M. A. 21214 FIT m.tsukanov@g.nsu.ru                                                  #
 #    Average mark: 4,92                                                                            #
 #    High scholarship: YES                                                                         #
 #    QualifyingMark: -                                                                             #
