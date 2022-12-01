@@ -18,6 +18,7 @@ import ru.nsu.fit.tsukanov.recordBook.core.*;
 import ru.nsu.fit.tsukanov.recordBook.core.mark.Mark;
 
 
+
 /**
  * Check RecordBook, ParserJSON, and components of RecordBook.
  */
