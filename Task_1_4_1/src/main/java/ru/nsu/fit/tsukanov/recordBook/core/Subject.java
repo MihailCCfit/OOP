@@ -152,7 +152,7 @@ public class Subject {
      *
      * @return string with short result of subject
      */
-    public String shortResult() {
+    public String shortInfo() {
         return "" + subjectName + ": " + getMarkString() + "";
     }
 }

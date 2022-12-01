@@ -16,7 +16,7 @@ import java.util.List;
 public class RecordBook {
     private long id;
     private final Student student;
-    private final List<Semester> semesters;
+    private List<Semester> semesters;
 
     private long qualifyingMark = 0;
 
@@ -68,6 +68,10 @@ public class RecordBook {
      */
     public List<Semester> getSemesters() {
         return new ArrayList<>(semesters);
+    }
+
+    public void setSemesters(Collection<Semester> semesters) {
+        this.semesters = new ArrayList<>(semesters);
     }
 
     /**

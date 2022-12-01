@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class Semester {
     private final List<Subject> subjects;
     private final long number;
+    public static final int tableSize = 70;
 
     /**
      * Construct semester with subjects and semester number.
@@ -47,7 +48,7 @@ public class Semester {
      * @param subject the semester that will be added into list of semesters
      * @return true if subject was added
      */
-    public boolean addSubject(Subject subject){
+    public boolean addSubject(Subject subject) {
         if (subjects.stream().anyMatch((subj) -> subj.equals(subject))) {
             return false;
         }
@@ -57,7 +58,7 @@ public class Semester {
 
     /**
      * @param inputSubjects the collection of subjects
-     *                       that will be added into the list of subjects.
+     *                      that will be added into the list of subjects.
      */
     public void addSubjects(Collection<Subject> inputSubjects) {
         for (Subject subject : inputSubjects) {
@@ -78,14 +79,32 @@ public class Semester {
      * Return short information about all subjects in this semester.
      *
      * @return string of short information
-     * @see Subject#shortResult()
+     * @see Subject#shortInfo()
      */
     public String shortInfo() {
         return "Semester(" + number
-                + ") subjects:\n" + subjects.stream()
-                .map(Subject::shortResult)
-                .map((x) -> x.concat("\n"))
-                .reduce(String::concat).orElse("");
+                + ") subjects amount: " + subjects.size()
+                + " average: " + getAverage();
+    }
+
+    public String tableInfo() {
+        String shortInf = shortInfo();
+        shortInf = shortInf.substring(0, Math.min(tableSize-6, shortInf.length()));
+        String tableOfSubjects = "";
+        for (Subject subject : subjects) {
+            String subjInfo = subject.shortInfo();
+            subjInfo = subjInfo.substring(0, Math.min(tableSize-2, subjInfo.length()));
+            tableOfSubjects += "#" + " ".repeat(4) + subjInfo +
+                    " ".repeat(tableSize - (6+subjInfo.length())) + "#\n";
+        }
+
+
+        return "#" + "+".repeat(tableSize-2) + "#\n"
+                + "#" + " ".repeat(4) + shortInf + " ".repeat(tableSize-(6+shortInf.length())) + "#\n"
+                + "#" + " ".repeat(tableSize-2) + "#\n"
+                + "#" + "-".repeat(tableSize-2) + "#\n"
+                + tableOfSubjects
+                + "#" + "+".repeat(tableSize-2) +"#\n";
     }
 
     /**
@@ -98,6 +117,24 @@ public class Semester {
                 .map(Subject::getMarkRaw)
                 .filter((x) -> x > 1)
                 .collect(Collectors.toList());
+    }
+
+
+    /**
+     * get average mark of this semester.
+     *
+     * @return average from semester
+     */
+    public double getAverage() {
+        List<Long> marks = getMarks();
+        if (marks.isEmpty()) {
+            return 0;
+        }
+        return (double) marks
+                .stream()
+                .reduce(Long::sum)
+                .get()
+                / marks.size();
     }
 
     /**
