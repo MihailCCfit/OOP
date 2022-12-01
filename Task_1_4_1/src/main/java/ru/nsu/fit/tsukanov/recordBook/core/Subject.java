@@ -43,6 +43,7 @@ public class Subject {
         }
         this.mark = mark;
     }
+
     /**
      * Construct subject.
      * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
@@ -61,6 +62,7 @@ public class Subject {
                 certificationDate, attestationForm,
                 teachers, MarkType.createMark(mark));
     }
+
     public String getSubjectName() {
         return subjectName;
     }

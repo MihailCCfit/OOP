@@ -1,11 +1,15 @@
 package ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
+import ru.nsu.fit.tsukanov.recordBook.core.Semester;
+import ru.nsu.fit.tsukanov.recordBook.core.Student;
+import ru.nsu.fit.tsukanov.recordBook.core.Subject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import ru.nsu.fit.tsukanov.recordBook.core.*;
 
 
 /**
@@ -61,7 +65,7 @@ public class ParserJsonStudentsData {
         String department = (String) specificPerson.get("department");
         long group = (Long) specificPerson.get("group");
         String email = (String) specificPerson.get("email");
-        return new Student(surname, name, patronymic,department, group, email);
+        return new Student(surname, name, patronymic, department, group, email);
     }
 
     /**

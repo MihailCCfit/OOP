@@ -17,6 +17,7 @@ import ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData.ParserJsonStudentsD
 import ru.nsu.fit.tsukanov.recordBook.core.*;
 
 
+
 /**
  * Check RecordBook, ParserJSON, and components of RecordBook.
  */
@@ -92,24 +93,24 @@ public class RecordBookTest {
         JSONParser jsonParser = new JSONParser();
         JSONObject object = (JSONObject) jsonParser
                 .parse("{\n"
-                + "          \"Mark\": \"-5\",\n"
-                + "          \"Subject\": \"\\u0412\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 "
-                + "\\u0432 \\u0434\\u0438\\u0441\\u043a\\u0440\\u0435\\u0442\\u043d\\u0443\\u044e "
-                + "\\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0443 \\u0438 "
-                + "\\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442"
-                + "\\u0438\\u0447\\u0435\\u0441\\u043a\\u0443\\u044e "
-                + "\\u043b\\u043e\\u0433\\u0438\\u043a\\u0443\",\n"
-                + "          \"Competencies\": [\n"
-                + "            \"\\u041e\\u041f\\u041a-1\"\n"
-                + "          ],\n"
-                + "          \"Date\": \"18.01.2022\",\n"
-                + "          \"Attestation form\": \"\\u042d\\u043a\\u0437\\u0430\\u043c\\u0435\\u043d\",\n"
-                + "          \"Teachers\": [\n"
-                + "            \"\\u0412\\u043b\\u0430\\u0441\\u043e\\u0432 "
+                        + "          \"Mark\": \"-5\",\n"
+                        + "          \"Subject\": \"\\u0412\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 "
+                        + "\\u0432 \\u0434\\u0438\\u0441\\u043a\\u0440\\u0435\\u0442\\u043d\\u0443\\u044e "
+                        + "\\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442\\u0438\\u043a\\u0443 \\u0438 "
+                        + "\\u043c\\u0430\\u0442\\u0435\\u043c\\u0430\\u0442"
+                        + "\\u0438\\u0447\\u0435\\u0441\\u043a\\u0443\\u044e "
+                        + "\\u043b\\u043e\\u0433\\u0438\\u043a\\u0443\",\n"
+                        + "          \"Competencies\": [\n"
+                        + "            \"\\u041e\\u041f\\u041a-1\"\n"
+                        + "          ],\n"
+                        + "          \"Date\": \"18.01.2022\",\n"
+                        + "          \"Attestation form\": \"\\u042d\\u043a\\u0437\\u0430\\u043c\\u0435\\u043d\",\n"
+                        + "          \"Teachers\": [\n"
+                        + "            \"\\u0412\\u043b\\u0430\\u0441\\u043e\\u0432 "
                         + "\\u0414\\u043c\\u0438\\u0442\\u0440\\u0438\\u0439 "
                         + "\\u042e\\u0440\\u044c\\u0435\\u0432\\u0438\\u0447\"\n"
-                + "          ]\n"
-                + "        }");
+                        + "          ]\n"
+                        + "        }");
         Assertions.assertThrows(IllegalArgumentException.class, () ->
                 ParserJsonStudentsData.subjectParse(object));
     }

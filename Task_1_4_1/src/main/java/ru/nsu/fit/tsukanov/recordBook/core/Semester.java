@@ -83,7 +83,7 @@ public class Semester {
     public String shortInfo() {
         return "Semester<" + number
                 + "> {subjects amount: " + subjects.size()
-                + " | average: " + String.format("%.2f",  getAverage()) + "}";
+                + " | average: " + String.format("%.2f", getAverage()) + "}";
     }
 
 

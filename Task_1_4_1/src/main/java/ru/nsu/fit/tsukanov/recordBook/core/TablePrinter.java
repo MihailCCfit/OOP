@@ -1,7 +1,18 @@
 package ru.nsu.fit.tsukanov.recordBook.core;
 
+/**
+ * Class for get different string of information about semesters or recordBook.
+ *
+ * @see TablePrinter#recordBookInfo(RecordBook)
+ */
 public final class TablePrinter {
+    /**
+     * Max width for table.
+     */
     public static final int TABLE_SIZE = 100;
+    /**
+     * Default offset of spaces in the table before string
+     */
     public static final int DEFAULT_OFFSET = 4;
 
     private TablePrinter() {
@@ -13,22 +24,19 @@ public final class TablePrinter {
 
     private static String inlineBorder(String text) {
         String copiedText = text.substring(0, Math.min(text.length(), TABLE_SIZE - 2));
-        return "#" + copiedText + offset(TABLE_SIZE -2-copiedText.length()) + "#";
+        return "#" + copiedText + offset(TABLE_SIZE - 2 - copiedText.length()) + "#";
     }
 
-    public static String addBorder(String text, String borderLine) {
-        return
-                borderLine + "\n"
-                        + text
-                        + borderLine + "\n"
-                ;
+    private static String offset(int i) {
+        return " ".repeat(i);
     }
 
-    public static String tableInfoWithBorder(Semester semester) {
-        return addBorder(semesterInfo(semester),
-                "#" + "+".repeat(TABLE_SIZE - 2) + "#");
-    }
-
+    /**
+     * Generates string of information from semester.
+     *
+     * @param semester the semester from which string will be created
+     * @return string with semester's information
+     */
     public static String semesterInfo(Semester semester) {
         String shortInf = semester.shortInfo();
         shortInf = shortInf.substring(0, Math.min(TABLE_SIZE - 6, shortInf.length()));
@@ -46,20 +54,24 @@ public final class TablePrinter {
                 "";
     }
 
-    private static String offset(int i){
-        return " ".repeat(i);
-    }
-
+    /**
+     * Generates string of information from recordBook.
+     * With short information about recordBook: student, average mark etc.
+     * After that there are tables about semesters.
+     *
+     * @param recordBook the recordBook from which string will be created
+     * @return string with recordBook's information
+     */
     public static String recordBookInfo(RecordBook recordBook) {
         String shortAboutSemesters = "";
         String fullSemestersInfo = "";
         for (Semester semester : recordBook.getSemesters()) {
-            shortAboutSemesters += inlineBorder(offset(4)+semester.shortInfo()) + "\n";
-            fullSemestersInfo +=  createBorder('+') +"\n" + semesterInfo(semester);
+            shortAboutSemesters += inlineBorder(offset(4) + semester.shortInfo()) + "\n";
+            fullSemestersInfo += createBorder('+') + "\n" + semesterInfo(semester);
         }
 
 
-        return  createBorder('#') + "\n"
+        return createBorder('#') + "\n"
                 + shortRecordBookInfo(recordBook)
                 + createBorder('-') + "\n"
                 + shortAboutSemesters
@@ -70,24 +82,35 @@ public final class TablePrinter {
 
                 ;
     }
-    private static String createLine(String text, int offset){
+
+    private static String createLine(String text, int offset) {
         return inlineBorder(offset(offset) + text) + "\n";
     }
-    private static String createLine(String text){
+
+    private static String createLine(String text) {
         return createLine(text, DEFAULT_OFFSET);
     }
-    private static String createLine(){
+
+    private static String createLine() {
         return createLine("");
     }
-    public static String shortRecordBookInfo(RecordBook recordBook){
-        String qualMark = recordBook.getQualifyingMark()==0? "-" : String.format("%d",recordBook.getQualifyingMark());
+
+    /**
+     * Generates string of short information from recordBook.
+     * Short information about recordBook: student, average mark etc.
+     *
+     * @param recordBook the recordBook from which string will be created
+     * @return string with recordBook's information
+     */
+    public static String shortRecordBookInfo(RecordBook recordBook) {
+        String qualMark = recordBook.getQualifyingMark() == 0 ? "-" : String.format("%d", recordBook.getQualifyingMark());
         return
                 createLine("RecordBook: ", 1)
-                + createLine(recordBook.getStudent().toString())
-                + createLine("Average mark: "+String.format("%.2f", recordBook.getAverage()))
-                + createLine("High scholarship: " + (recordBook.hasHighScholarship()? "YES" : "NO"))
-                + createLine("QualifyingMark: " + qualMark)
-                + createLine("Red Diploma: " + (recordBook.hasRedDiploma()? "YES" : "NO"))
-                + createLine("Semesters amount: " + recordBook.getSemesters().size());
+                        + createLine(recordBook.getStudent().toString())
+                        + createLine("Average mark: " + String.format("%.2f", recordBook.getAverage()))
+                        + createLine("High scholarship: " + (recordBook.hasHighScholarship() ? "YES" : "NO"))
+                        + createLine("QualifyingMark: " + qualMark)
+                        + createLine("Red Diploma: " + (recordBook.hasRedDiploma() ? "YES" : "NO"))
+                        + createLine("Semesters amount: " + recordBook.getSemesters().size());
     }
 }
