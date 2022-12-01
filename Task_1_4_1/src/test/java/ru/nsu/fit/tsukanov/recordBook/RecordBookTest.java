@@ -23,7 +23,7 @@ import ru.nsu.fit.tsukanov.recordBook.core.Subject;
 /**
  * Check RecordBook, ParserJSON, and components of RecordBook.
  */
-public class TesterRecordBook {
+public class RecordBookTest {
     @Test
     void testJson() throws IOException, ParseException {
         FileReader fileReader;
@@ -42,21 +42,10 @@ public class TesterRecordBook {
             out.write(recordBook.toString());
         }
 
-        Student me = new Student("Tsukanov", "Mikhail",
+        Student me = new Student("Tsukanov", "Mikhail", "Aleksandrov",
                 "FIT", 21214, "m.tsukanov@g.nsu.ru");
         Assertions.assertEquals(me, recordBook.getStudent());
-        Assertions.assertEquals(me.hashCode(), recordBook.getStudent().hashCode());
-
-        me.setEmail("ru.ru");
-        Assertions.assertNotEquals(me, recordBook.getStudent());
-        me.setGroup(3228);
-        Assertions.assertNotEquals(me, recordBook.getStudent());
-        me.setDepartment("CCFIT");
-        Assertions.assertNotEquals(me, recordBook.getStudent());
-        me.setName("Ba");
-        Assertions.assertNotEquals(me, recordBook.getStudent());
-        me.setSurname("Abo");
-        Assertions.assertNotEquals(me, recordBook.getStudent());
+        Assertions.assertEquals(me.hashCode(), recordBook.getStudent().hashCode());;
         Assertions.assertEquals(me, me);
         Assertions.assertEquals(me.toString(),
                 "Student[surname=Abo, name=Ba, "
@@ -98,7 +87,9 @@ public class TesterRecordBook {
         Assertions.assertFalse(recordBook.hasHighScholarship());
         someSubj.setMark(3);
         Assertions.assertEquals(someSubj.getMarkString(), "3");
-        recordBook.getSemesters().clear();
+        System.out.println(recordBook.getSemesters().get(0).tableInfo());
+
+        recordBook.setSemesters(List.of());
         Assertions.assertEquals(recordBook.getAverage(), 0);
     }
 
@@ -140,12 +131,5 @@ public class TesterRecordBook {
         subject.setMark(0);
         Assertions.assertEquals("Failed", subject.getMarkString());
         Assertions.assertTrue(subject.toString().contains("Failed"));
-    }
-
-    @Test
-    void someStudentTests() {
-        Student student = new Student("a", "b", "c",
-                3228, "@");
-        Assertions.assertFalse(student.equals("aboba"));
     }
 }
