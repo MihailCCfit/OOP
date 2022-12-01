@@ -31,17 +31,16 @@ public class RecordBookTest {
                 object);
         Assertions.assertTrue(recordBook.hasHighScholarship());
         Assertions.assertTrue(recordBook.getAverage() > 4);
-        //System.out.println(recordBook.shortInfo());
-        //System.out.println(recordBook);
         try (Writer out = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("output.txt"), StandardCharsets.UTF_8))) {
-            out.write(recordBook.toString());
+            out.write(TablePrinter.recordBookInfo(recordBook));
+            out.flush();
         }
 
         Student me = new Student("Tsukanov", "Mikhail", "Aleksandrov",
                 "FIT", 21214, "m.tsukanov@g.nsu.ru");
         Assertions.assertEquals(me, recordBook.getStudent());
-        Assertions.assertEquals(me.hashCode(), recordBook.getStudent().hashCode());;
+        Assertions.assertEquals(me.hashCode(), recordBook.getStudent().hashCode());
         Assertions.assertEquals(me, me);
         Assertions.assertNotEquals(me.toString(),
                 "Student[surname=Abo, name=Ba, "
@@ -82,7 +81,8 @@ public class RecordBookTest {
         someSubj.setMark(MarkType.SATISFACTORY);
         Assertions.assertEquals(someSubj.getMarkString(), "3");
         //System.out.println(recordBook.getSemesters().get(0).tableInfo());
-        System.out.println(TablePrinter.tableInfoWithBorder(recordBook.getSemesters().get(0)));
+        System.out.println(TablePrinter.recordBookInfo(recordBook));
+        //System.out.println(TablePrinter.tableInfoWithBorder(recordBook.getSemesters().get(0)));
         recordBook.setSemesters(List.of());
         Assertions.assertEquals(recordBook.getAverage(), 0);
     }

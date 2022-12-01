@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class Semester {
     private final List<Subject> subjects;
     private final long number;
-    public static final int tableSize = 70;
 
     /**
      * Construct semester with subjects and semester number.
@@ -82,9 +81,9 @@ public class Semester {
      * @see Subject#shortInfo()
      */
     public String shortInfo() {
-        return "Semester(" + number
-                + ") subjects amount: " + subjects.size()
-                + " average: " + getAverage();
+        return "Semester<" + number
+                + "> {subjects amount: " + subjects.size()
+                + " | average: " + String.format("%.2f",  getAverage()) + "}";
     }
 
 
