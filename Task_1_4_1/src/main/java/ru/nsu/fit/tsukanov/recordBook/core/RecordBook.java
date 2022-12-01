@@ -138,16 +138,6 @@ public class RecordBook {
         this.qualifyingMark = qualifyingMark;
     }
 
-    /**
-     * Return short info about subject. Show only name and mark for each subject.
-     *
-     * @return short info about subjects.
-     */
-    public String shortInfo() {
-        return "RecordBook (" + id + ") Student: "
-                + student + "\n"
-                + semesters.stream().map(Semester::shortInfo).reduce("", String::concat);
-    }
 
     /**
      * Check fo higher Scholarship. If there is no bad mark (less than 4),
@@ -221,10 +211,7 @@ public class RecordBook {
         return semesters.stream().map(Semester::checkPassed).reduce(true, (x, y) -> x && y);
     }
 
-    public String tableInfo(){
 
-        return "";
-    }
     /**
      * Return cool string representation.
      *
