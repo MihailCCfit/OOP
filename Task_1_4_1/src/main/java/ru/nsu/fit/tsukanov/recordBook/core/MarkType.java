@@ -16,14 +16,14 @@ public enum MarkType {
         representation = str;
     }
 
-    public boolean isCreditMark() {
+    public boolean notCreditMark() {
         return switch (this) {
-            case FAILED, PASSED -> true;
-            default -> false;
+            case FAILED, PASSED -> false;
+            default -> true;
         };
     }
 
-    long rawMark() {
+    public long rawMark() {
         return switch (this) {
             case FAILED -> 0;
             case PASSED -> 1;
@@ -62,8 +62,4 @@ public enum MarkType {
         return mark;
     }
 
-    public static void main(String[] args) {
-        System.out.println(MarkType.createMark("5"));
-        System.out.println(MarkType.createMark("PASSED"));
-    }
 }
