@@ -80,6 +80,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">TablePrinter</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Class for get different string of information about semesters or recordBook.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd><a href="#recordBookInfo(ru.nsu.fit.tsukanov.recordBook.core.RecordBook)"><code>recordBookInfo(RecordBook)</code></a></dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -94,10 +99,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static int</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#DEFAULT_OFFSET">DEFAULT_OFFSET</a></span></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Default offset of spaces in the table before string</div>
+</div>
 <div class="col-first odd-row-color"><code>static int</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#TABLE_SIZE">TABLE_SIZE</a></span></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Max width for table.</div>
+</div>
 </div>
 </section>
 </li>
@@ -113,21 +122,20 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code>static <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addBorder(java.lang.String,java.lang.String)">addBorder</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
- <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;borderLine)</code></div>
-<div class="col-last even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#recordBookInfo(ru.nsu.fit.tsukanov.recordBook.core.RecordBook)">recordBookInfo</a></span>&#8203;(<a href="RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a>&nbsp;recordBook)</code></div>
+<div class="col-last even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">
+<div class="block">Generates string of information from recordBook.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code>static <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#recordBookInfo(ru.nsu.fit.tsukanov.recordBook.core.RecordBook)">recordBookInfo</a></span>&#8203;(<a href="RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a>&nbsp;recordBook)</code></div>
-<div class="col-last odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#semesterInfo(ru.nsu.fit.tsukanov.recordBook.core.Semester)">semesterInfo</a></span>&#8203;(<a href="Semester.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Semester</a>&nbsp;semester)</code></div>
+<div class="col-last odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">
+<div class="block">Generates string of information from semester.</div>
+</div>
 <div class="col-first even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code>static <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#semesterInfo(ru.nsu.fit.tsukanov.recordBook.core.Semester)">semesterInfo</a></span>&#8203;(<a href="Semester.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Semester</a>&nbsp;semester)</code></div>
-<div class="col-last even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code>static <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#shortRecordBookInfo(ru.nsu.fit.tsukanov.recordBook.core.RecordBook)">shortRecordBookInfo</a></span>&#8203;(<a href="RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a>&nbsp;recordBook)</code></div>
-<div class="col-last odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code>static <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#tableInfoWithBorder(ru.nsu.fit.tsukanov.recordBook.core.Semester)">tableInfoWithBorder</a></span>&#8203;(<a href="Semester.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Semester</a>&nbsp;semester)</code></div>
-<div class="col-last even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#shortRecordBookInfo(ru.nsu.fit.tsukanov.recordBook.core.RecordBook)">shortRecordBookInfo</a></span>&#8203;(<a href="RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a>&nbsp;recordBook)</code></div>
+<div class="col-last even-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">
+<div class="block">Generates string of short information from recordBook.</div>
+</div>
 </div>
 </div>
 </div>
@@ -149,6 +157,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="TABLE_SIZE">
 <h3>TABLE_SIZE</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">TABLE_SIZE</span></div>
+<div class="block">Max width for table.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd><a href="../../../../../../constant-values.html#ru.nsu.fit.tsukanov.recordBook.core.TablePrinter.TABLE_SIZE">Constant Field Values</a></dd>
@@ -159,6 +168,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="DEFAULT_OFFSET">
 <h3>DEFAULT_OFFSET</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">DEFAULT_OFFSET</span></div>
+<div class="block">Default offset of spaces in the table before string</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd><a href="../../../../../../constant-values.html#ru.nsu.fit.tsukanov.recordBook.core.TablePrinter.DEFAULT_OFFSET">Constant Field Values</a></dd>
@@ -174,34 +184,45 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addBorder(java.lang.String,java.lang.String)">
-<h3>addBorder</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">addBorder</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text,
- <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;borderLine)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="tableInfoWithBorder(ru.nsu.fit.tsukanov.recordBook.core.Semester)">
-<h3>tableInfoWithBorder</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">tableInfoWithBorder</span>&#8203;<span class="parameters">(<a href="Semester.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Semester</a>&nbsp;semester)</span></div>
-</section>
-</li>
-<li>
 <section class="detail" id="semesterInfo(ru.nsu.fit.tsukanov.recordBook.core.Semester)">
 <h3>semesterInfo</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">semesterInfo</span>&#8203;<span class="parameters">(<a href="Semester.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">Semester</a>&nbsp;semester)</span></div>
+<div class="block">Generates string of information from semester.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>semester</code> - the semester from which string will be created</dd>
+<dt>Returns:</dt>
+<dd>string with semester's information</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="recordBookInfo(ru.nsu.fit.tsukanov.recordBook.core.RecordBook)">
 <h3>recordBookInfo</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">recordBookInfo</span>&#8203;<span class="parameters">(<a href="RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a>&nbsp;recordBook)</span></div>
+<div class="block">Generates string of information from recordBook.
+ With short information about recordBook: student, average mark etc.
+ After that there are tables about semesters.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>recordBook</code> - the recordBook from which string will be created</dd>
+<dt>Returns:</dt>
+<dd>string with recordBook's information</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="shortRecordBookInfo(ru.nsu.fit.tsukanov.recordBook.core.RecordBook)">
 <h3>shortRecordBookInfo</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">shortRecordBookInfo</span>&#8203;<span class="parameters">(<a href="RecordBook.html" title="class in ru.nsu.fit.tsukanov.recordBook.core">RecordBook</a>&nbsp;recordBook)</span></div>
+<div class="block">Generates string of short information from recordBook.
+ Short information about recordBook: student, average mark etc.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>recordBook</code> - the recordBook from which string will be created</dd>
+<dt>Returns:</dt>
+<dd>string with recordBook's information</dd>
+</dl>
 </section>
 </li>
 </ul>
