@@ -44,8 +44,7 @@ public final class TablePrinter {
         for (Subject subject : semester.getSubjects()) {
             String subjInfo = subject.shortInfo();
             subjInfo = subjInfo.substring(0, Math.min(TABLE_SIZE - 2, subjInfo.length()));
-            tableOfSubjects += "#" + " ".repeat(4) + subjInfo +
-                    " ".repeat(TABLE_SIZE - (6 + subjInfo.length())) + "#\n";
+            tableOfSubjects += createLine(subjInfo);
         }
         return ""
                 + createLine(shortInf)
@@ -67,7 +66,7 @@ public final class TablePrinter {
         String fullSemestersInfo = "";
         for (Semester semester : recordBook.getSemesters()) {
             shortAboutSemesters += inlineBorder(offset(4) + semester.shortInfo()) + "\n";
-            fullSemestersInfo += createBorder('+') + "\n" + semesterInfo(semester);
+            fullSemestersInfo += (createBorder('+') + "\n" + semesterInfo(semester));
         }
 
 
