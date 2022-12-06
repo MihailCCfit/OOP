@@ -4,5 +4,7 @@ import java.util.List;
 
 public interface CalculatorFunction<T>  {
      int getDimension();
-     T calculate(List<T> list);
+     T calculate(T[] arguments);
+
+
 }
