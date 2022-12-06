@@ -37,6 +37,12 @@ public class RecordBookTest {
             out.write(TablePrinter.recordBookInfo(recordBook));
             out.flush();
         }
+        try (Writer out = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("src/test/resources/output.txt"), StandardCharsets.UTF_8))) {
+
+            out.write(TablePrinter.recordBookInfo(recordBook));
+            out.flush();
+        }
 
         Student me = new Student("Tsukanov", "Mikhail", "Aleksandrov",
                 "FIT", 21214, "m.tsukanov@g.nsu.ru");
