@@ -1,10 +1,8 @@
 package ru.nsu.fit.tsukanov.calculator.core.functions;
 
-import java.util.List;
-
 public interface CalculatorFunction<T>  {
      int getDimension();
-     T calculate(T[] arguments);
+     T calculate(T ... args);
 
-
+     String getOperation();
 }
