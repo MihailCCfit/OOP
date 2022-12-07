@@ -1,8 +1,11 @@
 package ru.nsu.fit.tsukanov.recordBook.core;
 
+import ru.nsu.fit.tsukanov.recordBook.core.mark.Mark;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -95,8 +98,8 @@ public class Semester {
     public List<Long> getMarks() {
         return subjects.stream()
                 .map(Subject::getMark)
-                .filter(MarkType::notCreditMark)
-                .map(MarkType::rawMark)
+                .filter(Mark::notCreditMark)
+                .map(Mark::getMark)
                 .collect(Collectors.toList());
     }
 
@@ -125,8 +128,9 @@ public class Semester {
      */
     public boolean checkPassed() {
         return subjects.stream()
-                .map(Subject::getMarkRaw)
-                .allMatch((x) -> x != 0 && x != 2);
+                .map(Subject::getMark)
+                .filter(Predicate.not(Mark::notCreditMark))
+                .allMatch((x) -> x.getMark() >= 0);
     }
 
     /**

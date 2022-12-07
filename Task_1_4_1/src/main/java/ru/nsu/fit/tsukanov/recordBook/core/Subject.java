@@ -1,5 +1,8 @@
 package ru.nsu.fit.tsukanov.recordBook.core;
 
+import ru.nsu.fit.tsukanov.recordBook.core.mark.DefaultMark;
+import ru.nsu.fit.tsukanov.recordBook.core.mark.Mark;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +19,7 @@ public class Subject {
     /**
      * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
      */
-    private MarkType mark;
+    private Mark mark;
 
     /**
      * Construct subject.
@@ -31,7 +34,7 @@ public class Subject {
      */
     public Subject(String subjectName, Collection<String> competencies,
                    String certificationDate, String attestationForm,
-                   Collection<String> teachers, MarkType mark) {
+                   Collection<String> teachers, Mark mark) {
         this.competencies = new ArrayList<>(competencies);
         this.subjectName = subjectName;
         this.certificationDate = certificationDate;
@@ -60,7 +63,26 @@ public class Subject {
                    Collection<String> teachers, String mark) {
         this(subjectName, competencies,
                 certificationDate, attestationForm,
-                teachers, MarkType.createMark(mark));
+                teachers, DefaultMark.createMarkFromString(mark));
+    }
+
+    /**
+     * Construct subject.
+     * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
+     *
+     * @param subjectName       the name of subject
+     * @param competencies      the competencies
+     * @param certificationDate the date when person passed or got mark.
+     * @param attestationForm   the form of passing the subjects
+     * @param teachers          the persons who taught owner of this
+     * @param mark              the specific mark
+     */
+    public Subject(String subjectName, Collection<String> competencies,
+                   String certificationDate, String attestationForm,
+                   Collection<String> teachers, DefaultMark mark) {
+        this(subjectName, competencies,
+                certificationDate, attestationForm,
+                teachers, mark.toMark());
     }
 
     public String getSubjectName() {
@@ -111,7 +133,7 @@ public class Subject {
      * @return long value (raw representation) of mark.
      */
     public long getMarkRaw() {
-        return mark.rawMark();
+        return mark.getMark();
     }
 
     /**
@@ -123,7 +145,7 @@ public class Subject {
         return mark.toString();
     }
 
-    public MarkType getMark() {
+    public Mark getMark() {
         return mark;
     }
 
@@ -133,8 +155,18 @@ public class Subject {
      *
      * @param mark the mark value for setting mark.
      */
-    public void setMark(MarkType mark) {
+    public void setMark(Mark mark) {
         this.mark = mark;
+    }
+
+    /**
+     * Set mark to specified mark. If mark==1 - Passed, if mark == 0 - failed
+     * mark between 2 and 5 means the same. Other value for mark are invalid.
+     *
+     * @param mark the enum mark value for setting mark.
+     */
+    public void setMark(DefaultMark mark) {
+        this.mark = mark.toMark();
     }
 
     /**
