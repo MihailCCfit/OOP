@@ -1,5 +1,8 @@
 package ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import ru.nsu.fit.tsukanov.recordBook.core.RecordBook;
@@ -7,9 +10,6 @@ import ru.nsu.fit.tsukanov.recordBook.core.Semester;
 import ru.nsu.fit.tsukanov.recordBook.core.Student;
 import ru.nsu.fit.tsukanov.recordBook.core.Subject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
