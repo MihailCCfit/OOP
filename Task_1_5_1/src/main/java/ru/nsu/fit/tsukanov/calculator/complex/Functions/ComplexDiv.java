@@ -23,7 +23,7 @@ public class ComplexDiv implements Function<ComplexNumber> {
      */
     @Override
     public ComplexNumber apply(ComplexNumber[] arguments) {
-        return ComplexNumber.add(arguments[0], arguments[1]);
+        return ComplexNumber.div(arguments[0], arguments[1]);
     }
 
     /**

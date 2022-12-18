@@ -9,7 +9,4 @@ public class NotEnoughArguments extends CalculatorException {
         super(message);
     }
 
-    public NotEnoughArguments(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

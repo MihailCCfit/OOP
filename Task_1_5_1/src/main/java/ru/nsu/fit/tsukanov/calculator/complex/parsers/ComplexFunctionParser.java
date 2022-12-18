@@ -8,15 +8,14 @@ import ru.nsu.fit.tsukanov.calculator.complex.Functions.ComplexSub;
 import ru.nsu.fit.tsukanov.calculator.core.parser.BuildFunctionParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.FunctionParser;
 
+import java.util.List;
+
 public class ComplexFunctionParser extends FunctionParser<ComplexNumber> {
-    public static FunctionParser<ComplexNumber> getParser(){
-        FunctionParser<ComplexNumber> functionParser =
-                new BuildFunctionParser<ComplexNumber>()
-                        .putFunction(new ComplexAdd())
-                        .putFunction(new ComplexDiv())
-                        .putFunction(new ComplexMul())
-                        .putFunction(new ComplexSub())
-                        .build();
-        return functionParser;
+    public static FunctionParser<ComplexNumber> getParser() {
+        return new BuildFunctionParser<ComplexNumber>()
+                .putFunction(List.of(new ComplexAdd(), new ComplexDiv()))
+                .putFunction(new ComplexMul())
+                .putFunction("-", new ComplexSub())
+                .build();
     }
 }

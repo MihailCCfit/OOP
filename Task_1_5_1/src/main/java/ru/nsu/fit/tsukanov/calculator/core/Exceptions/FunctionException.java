@@ -9,7 +9,4 @@ public class FunctionException extends CalculatorException {
         super(message);
     }
 
-    public FunctionException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

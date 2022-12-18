@@ -3,11 +3,8 @@ package ru.nsu.fit.tsukanov.calculator.core.functions;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 
-import java.util.List;
-
 public abstract class AbstractFunctionWrapper<T> implements FunctionWrapper<T> {
 
-    protected List<T> arguments;
     protected Function<T> function;
     protected Calculator<T> calculator;
 
@@ -19,21 +16,11 @@ public abstract class AbstractFunctionWrapper<T> implements FunctionWrapper<T> {
     /**
      * Apply function, depends on (or not) arguments.
      *
-     * @param arguments arguments
      * @return number
      */
     @Override
-    public abstract T apply(T[] arguments) throws CalculatorException;
+    public abstract T apply() throws CalculatorException;
 
-    /**
-     * Return amount of saved arguments.
-     *
-     * @return amount of saved arguments
-     */
-    @Override
-    public int numberOfArguments() {
-        return arguments.size();
-    }
 
     /**
      * Return arity of function.
@@ -53,16 +40,6 @@ public abstract class AbstractFunctionWrapper<T> implements FunctionWrapper<T> {
     @Override
     public String functionRepresentation() {
         return function.representation();
-    }
-
-    /**
-     * Get array of current saved arguments.
-     *
-     * @return array of current arguments.
-     */
-    @Override
-    public T[] curArguments() {
-        return (T[]) arguments.toArray();
     }
 
 
