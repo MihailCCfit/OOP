@@ -1,0 +1,97 @@
+package ru.nsu.fit.tsukanov.calculator.complex.parsers;
+
+import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
+import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
+import ru.nsu.fit.tsukanov.calculator.core.parser.NumberParser;
+
+public class ComplexNumberParser implements NumberParser<ComplexNumber> {
+
+    /**
+     * parse token
+     *
+     * @param token token
+     * @return constant function
+     */
+    @Override
+    public Function<ComplexNumber> parseToken(String token) throws BadLexemeException {
+        if (token.charAt(0) != '(' || token.charAt(token.length() - 1) != ')') {
+            throw new BadLexemeException(token);
+        }
+        token = token.substring(1, token.length() - 1);
+        String[] splited = token.split(",", 0);
+        if (splited.length != 2) {
+            throw new BadLexemeException(token);
+        }
+        var realStr = splited[0];
+        var imagStr = splited[1];
+        double real;
+        double imag;
+        try {
+            real = Double.parseDouble(realStr);
+            imag = Double.parseDouble(imagStr);
+        } catch (NumberFormatException e) {
+            throw new BadLexemeException(token);
+        }
+        return new Function<>() {
+            private final ComplexNumber complexNumber = new ComplexNumber(real, imag);
+
+            @Override
+            public int getArity() {
+                return 0;
+            }
+
+            @Override
+            public ComplexNumber apply(ComplexNumber[] arguments) {
+                return complexNumber;
+            }
+
+            @Override
+            public String representation() {
+                return complexNumber.toString();
+            }
+        };
+    }
+
+    /**
+     * Parse to Number.
+     *
+     * @param token token
+     * @return number
+     */
+
+    @Override
+    public ComplexNumber parseNumber(String token) throws CalculatorException {
+        return parseToken(token).apply((ComplexNumber[]) new Object[0]);
+    }
+
+    /**
+     * Check for number.
+     *
+     * @param token token
+     * @return true if token is number.
+     */
+    @Override
+    public boolean checkNumber(String token) {
+        if (token.charAt(0) != '(' || token.charAt(token.length() - 1) != ')') {
+            return false;
+        }
+        token = token.substring(1, token.length() - 1);
+        String[] splited = token.split(",", 0);
+        if (splited.length != 2) {
+            return false;
+        }
+        var realStr = splited[0];
+        var imagStr = splited[1];
+        try {
+            var real = Double.parseDouble(realStr);
+            var imag = Double.parseDouble(imagStr);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+
+        return false;
+    }
+}
