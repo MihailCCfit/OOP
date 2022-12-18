@@ -15,7 +15,7 @@ import java.util.Comparator;
 
 public class CalculatorTest {
     @Test
-    void test() {
+    void test() throws CalculatorException {
         StackCalculator stackCalculator = new StackCalculator();
         stackCalculator.newLine("+ (1,2) (2,5)");
         try {
@@ -59,6 +59,8 @@ public class CalculatorTest {
         stackCalculator.toString();
         Assertions.assertThrows(NullPointerException.class,
                 () -> stackCalculator.newLine(null));
+        Assertions.assertEquals(new ComplexNumber(0,0), stackCalculator.calculates("sin (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(1,0), stackCalculator.calculates("cos (0,0)"));
 
     }
 
