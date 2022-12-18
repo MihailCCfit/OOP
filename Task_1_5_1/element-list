@@ -1,0 +1,7 @@
+ru.nsu.fit.tsukanov.calculator.complex
+ru.nsu.fit.tsukanov.calculator.complex.Functions
+ru.nsu.fit.tsukanov.calculator.complex.parsers
+ru.nsu.fit.tsukanov.calculator.core
+ru.nsu.fit.tsukanov.calculator.core.Exceptions
+ru.nsu.fit.tsukanov.calculator.core.functions
+ru.nsu.fit.tsukanov.calculator.core.parser
