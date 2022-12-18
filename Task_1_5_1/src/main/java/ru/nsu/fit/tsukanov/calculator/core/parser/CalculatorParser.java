@@ -1,7 +1,6 @@
 package ru.nsu.fit.tsukanov.calculator.core.parser;
 
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 public class CalculatorParser<T> {
@@ -12,11 +11,6 @@ public class CalculatorParser<T> {
         this.numberParser = numberParser;
         this.functionParser = functionParser;
     }
-
-    public FunctionParser<T> getFunctionParser() {
-        return functionParser;
-    }
-
 
     public boolean isNumber(String token) {
         return numberParser.checkNumber(token);
@@ -33,13 +27,6 @@ public class CalculatorParser<T> {
         if (isNumber(token)) {
             return numberParser.parseToken(token);
         }
-        throw new BadLexemeException(token + " not recognized");
-    }
-
-    public T parseNumber(String token) throws CalculatorException {
-        if (isNumber(token)) {
-            return numberParser.parseNumber(token);
-        }
-        throw new BadLexemeException(token + " not recognized");
+        throw new BadLexemeException("{" + token + "} not recognized");
     }
 }

@@ -8,7 +8,4 @@ public class BadLexemeException extends CalculatorException{
     public BadLexemeException(String message) {
         super(message);
     }
-    public BadLexemeException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

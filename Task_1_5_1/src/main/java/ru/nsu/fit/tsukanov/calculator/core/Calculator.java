@@ -17,16 +17,24 @@ public interface Calculator<T> {
      * @return result
      * @throws CalculatorException if there is problem
      */
-    T getResult() throws CalculatorException;
+    T calculates() throws CalculatorException;
 
     /**
-     * Parse and calculates line
+     * Calculates result.
      *
-     * @param line line for parsing
+     * @param line line for calculation
      * @return result
      * @throws CalculatorException if there is problem
      */
-    T getResult(String line) throws CalculatorException;
+    T calculates(String line) throws CalculatorException;
+
+    /**
+     * Return prev result.
+     *
+     * @return result
+     */
+    T getResult();
+
 
     /**
      * Get info about state of calculator.

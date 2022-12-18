@@ -9,7 +9,4 @@ public class NotNumberException extends CalculatorException {
         super(message);
     }
 
-    public NotNumberException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }

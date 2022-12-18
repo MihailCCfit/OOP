@@ -1,5 +1,7 @@
 package ru.nsu.fit.tsukanov.calculator.complex;
 
+import java.util.Objects;
+
 public class ComplexNumber {
     private final double real;
     private final double imaginary;
@@ -34,5 +36,20 @@ public class ComplexNumber {
         return new ComplexNumber(real, imag);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComplexNumber that = (ComplexNumber) o;
+        return Double.compare(that.real, real) == 0 && Double.compare(that.imaginary, imaginary) == 0;
+    }
 
+    public double module(){
+        return Math.sqrt(real*real + imaginary*imaginary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(real, imaginary);
+    }
 }

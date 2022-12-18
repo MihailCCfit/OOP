@@ -6,18 +6,10 @@ public interface FunctionWrapper<T> {
     /**
      * Apply function, depends on (or not) arguments.
      *
-     * @param arguments arguments
      * @return number
      */
-    T apply(T[] arguments) throws CalculatorException;
+    T apply() throws CalculatorException;
 
-    /**
-     * Return amount of saved arguments.
-     *
-     * @return amount of saved arguments
-     */
-
-    int numberOfArguments();
 
     /**
      * Return arity of function.
@@ -33,12 +25,6 @@ public interface FunctionWrapper<T> {
      */
     String functionRepresentation();
 
-    /**
-     * Get array of current saved arguments.
-     *
-     * @return array of current arguments.
-     */
-    T[] curArguments();
 
     default String representation() {
         return "Arity: " + getArity()

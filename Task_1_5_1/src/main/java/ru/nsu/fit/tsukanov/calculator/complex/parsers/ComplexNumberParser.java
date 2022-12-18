@@ -16,6 +16,12 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
      */
     @Override
     public Function<ComplexNumber> parseToken(String token) throws BadLexemeException {
+        if (token == null) {
+            throw new BadLexemeException("Null");
+        }
+        if (token.isEmpty()) {
+            throw new BadLexemeException("Empty");
+        }
         if (token.charAt(0) != '(' || token.charAt(token.length() - 1) != ')') {
             throw new BadLexemeException(token);
         }
@@ -35,8 +41,6 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
             throw new BadLexemeException(token);
         }
         return new Function<>() {
-            private final ComplexNumber complexNumber = new ComplexNumber(real, imag);
-
             @Override
             public int getArity() {
                 return 0;
@@ -44,12 +48,12 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
 
             @Override
             public ComplexNumber apply(ComplexNumber[] arguments) {
-                return complexNumber;
+                return new ComplexNumber(real, imag);
             }
 
             @Override
             public String representation() {
-                return complexNumber.toString();
+                return new ComplexNumber(real, imag).toString();
             }
         };
     }
@@ -63,7 +67,7 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
 
     @Override
     public ComplexNumber parseNumber(String token) throws CalculatorException {
-        return parseToken(token).apply((ComplexNumber[]) new Object[0]);
+        return parseToken(token).apply(new ComplexNumber[0]);
     }
 
     /**
@@ -74,6 +78,12 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
      */
     @Override
     public boolean checkNumber(String token) {
+        if (token == null) {
+            return false;
+        }
+        if (token.isEmpty()) {
+            return false;
+        }
         if (token.charAt(0) != '(' || token.charAt(token.length() - 1) != ')') {
             return false;
         }
@@ -85,13 +95,13 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
         var realStr = splited[0];
         var imagStr = splited[1];
         try {
-            var real = Double.parseDouble(realStr);
-            var imag = Double.parseDouble(imagStr);
+            Double.parseDouble(realStr);
+            Double.parseDouble(imagStr);
         } catch (NumberFormatException e) {
             return false;
         }
 
 
-        return false;
+        return true;
     }
 }
