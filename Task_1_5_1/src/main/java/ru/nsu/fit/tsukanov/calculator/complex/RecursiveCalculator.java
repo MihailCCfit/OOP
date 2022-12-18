@@ -1,15 +1,20 @@
-package ru.nsu.fit.tsukanov.calculator.core;
+package ru.nsu.fit.tsukanov.calculator.complex;
 
+import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 
-public interface Calculator<T> {
+public class RecursiveCalculator<T> implements Calculator<T> {
+
     /**
      * Change line for calculating.
      *
      * @param input line for parsing
      * @return old input
      */
-    String newLine(String input);
+    @Override
+    public String newLine(String input) {
+        return null;
+    }
 
     /**
      * Calculates result.
@@ -17,7 +22,10 @@ public interface Calculator<T> {
      * @return result
      * @throws CalculatorException if there is problem
      */
-    T getResult() throws CalculatorException;
+    @Override
+    public T getResult() throws CalculatorException {
+        return null;
+    }
 
     /**
      * Parse and calculates line
@@ -26,12 +34,18 @@ public interface Calculator<T> {
      * @return result
      * @throws CalculatorException if there is problem
      */
-    T getResult(String line) throws CalculatorException;
+    @Override
+    public T getResult(String line) throws CalculatorException {
+        return null;
+    }
 
     /**
      * Get info about state of calculator.
      *
      * @return information
      */
-    String getInformation();
+    @Override
+    public String getInformation() {
+        return null;
+    }
 }
