@@ -11,6 +11,7 @@ import ru.nsu.fit.tsukanov.calculator.core.parser.Lexer;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public class StackCalculator implements Calculator<ComplexNumber> {
     CalculatorParser<ComplexNumber> calculatorParser;
@@ -46,7 +47,7 @@ public class StackCalculator implements Calculator<ComplexNumber> {
     }
 
     private void tokenize() {
-        tokens = new LinkedList<>(Arrays.stream(lexer.getTokens(line)).toList());
+        tokens = Arrays.stream(lexer.getTokens(line)).collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
