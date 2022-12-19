@@ -98,8 +98,8 @@ public class Semester {
     public List<Long> getMarks() {
         return subjects.stream()
                 .map(Subject::getMark)
-                .filter(Mark::notCreditMark)
-                .map(Mark::getMark)
+                .filter(Mark::isNotCreditMark)
+                .map(Mark::getRawValue)
                 .collect(Collectors.toList());
     }
 
@@ -129,8 +129,8 @@ public class Semester {
     public boolean checkPassed() {
         return subjects.stream()
                 .map(Subject::getMark)
-                .filter(Predicate.not(Mark::notCreditMark))
-                .allMatch((x) -> x.getMark() >= 0);
+                .filter(Predicate.not(Mark::isNotCreditMark))
+                .allMatch((x) -> x.getRawValue() >= 0);
     }
 
     /**

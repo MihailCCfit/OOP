@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData.ParserJsonStudentsData;
 import ru.nsu.fit.tsukanov.recordBook.core.*;
-import ru.nsu.fit.tsukanov.recordBook.core.mark.DefaultMark;
 import ru.nsu.fit.tsukanov.recordBook.core.mark.Mark;
 
 
@@ -55,7 +54,7 @@ public class RecordBookTest {
                         + "department=CCFIT, group=3228, mail=ru.ru]");
         for (Subject subject : recordBook.getSemesters().get(1).getSubjects()) {
             if (!subject.getMarkString().equals("5")) {
-                subject.setMark(DefaultMark.EXCELLENT);
+                subject.setMark(Mark.EXCELLENT);
             }
         }
         Assertions.assertEquals(recordBook.getAverage(), 5);
@@ -74,7 +73,7 @@ public class RecordBookTest {
         Assertions.assertFalse(recordBook.getSemesters()
                 .get(1).getSubjects()
                 .get(0).addTeacher("HaHaHa"));
-        someSubj.setMark(DefaultMark.EXCELLENT);
+        someSubj.setMark(Mark.EXCELLENT);
         someSubj.setCertificationDate("777.777.777");
         someSubj.setTeachers(List.of("Amogus"));
         Assertions.assertFalse(recordBook.getId() < 0);
@@ -82,7 +81,7 @@ public class RecordBookTest {
                 () -> recordBook.setId(-4));
         recordBook.setId(777);
         Assertions.assertEquals(recordBook.getId(), 777);
-        someSubj.setMark(DefaultMark.PASSED);
+        someSubj.setMark(Mark.PASSED);
         Assertions.assertEquals(someSubj.getMarkString(), "PASSED");
         Assertions.assertFalse(recordBook.hasRedDiploma());
         recordBook.setQualifyingMark(5);
@@ -90,11 +89,11 @@ public class RecordBookTest {
                 () -> recordBook.setQualifyingMark(-5));
         Assertions.assertEquals(5, recordBook.getQualifyingMark());
         Assertions.assertTrue(recordBook.hasRedDiploma());
-        someSubj.setMark(DefaultMark.FAILED);
+        someSubj.setMark(Mark.FAILED);
         Assertions.assertEquals(someSubj.getMarkString(), "FAILED");
         Assertions.assertFalse(recordBook.hasRedDiploma());
         Assertions.assertFalse(recordBook.hasHighScholarship());
-        someSubj.setMark(DefaultMark.SATISFACTORY);
+        someSubj.setMark(Mark.SATISFACTORY);
         Assertions.assertEquals(someSubj.getMarkString(), "3");
         //System.out.println(recordBook.getSemesters().get(0).tableInfo());
         System.out.println(TablePrinter.recordBookInfo(recordBook));
@@ -136,19 +135,19 @@ public class RecordBookTest {
     void someSubjectTests() {
         Subject subject = new Subject("C",
                 List.of("OPK-12"), "12.12.2012",
-                "test", null, DefaultMark.PASSED);
+                "test", null, Mark.PASSED);
         Assertions.assertTrue(subject.getTeachers().isEmpty());
         Assertions.assertTrue(subject.addTeacher("Gatilov Stepan Urievich"));
         Assertions.assertEquals("PASSED", subject.getMarkString());
-        subject.setMark(DefaultMark.FAILED.toMark());
+        subject.setMark(Mark.FAILED);
         Assertions.assertEquals("FAILED", subject.getMarkString());
         Assertions.assertTrue(subject.toString().contains("FAILED"));
     }
 
     @Test
     void someMarkTypeTest() {
-        Mark mark = DefaultMark.createMarkFromString("2");
-        Assertions.assertEquals(2, mark.getMark());
-        Assertions.assertEquals("2", mark.toString());
+        Mark mark = Mark.createMarkFromString("2");
+        Assertions.assertEquals(2, mark.getRawValue());
+        Assertions.assertEquals("2", mark.representation);
     }
 }

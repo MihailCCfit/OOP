@@ -1,6 +1,5 @@
 package ru.nsu.fit.tsukanov.recordBook.core;
 
-import ru.nsu.fit.tsukanov.recordBook.core.mark.DefaultMark;
 import ru.nsu.fit.tsukanov.recordBook.core.mark.Mark;
 
 import java.util.ArrayList;
@@ -63,27 +62,9 @@ public class Subject {
                    Collection<String> teachers, String mark) {
         this(subjectName, competencies,
                 certificationDate, attestationForm,
-                teachers, DefaultMark.createMarkFromString(mark));
+                teachers, Mark.createMarkFromString(mark));
     }
 
-    /**
-     * Construct subject.
-     * Mark: 0 - failed, 1 - passed, 2-5 - common mark.
-     *
-     * @param subjectName       the name of subject
-     * @param competencies      the competencies
-     * @param certificationDate the date when person passed or got mark.
-     * @param attestationForm   the form of passing the subjects
-     * @param teachers          the persons who taught owner of this
-     * @param mark              the specific mark
-     */
-    public Subject(String subjectName, Collection<String> competencies,
-                   String certificationDate, String attestationForm,
-                   Collection<String> teachers, DefaultMark mark) {
-        this(subjectName, competencies,
-                certificationDate, attestationForm,
-                teachers, mark.toMark());
-    }
 
     public String getSubjectName() {
         return subjectName;
@@ -133,7 +114,7 @@ public class Subject {
      * @return long value (raw representation) of mark.
      */
     public long getMarkRaw() {
-        return mark.getMark();
+        return mark.getRawValue();
     }
 
     /**
@@ -142,22 +123,14 @@ public class Subject {
      * @return string representation
      */
     public String getMarkString() {
-        return mark.toString();
+        return mark.representation;
     }
 
     public Mark getMark() {
         return mark;
     }
 
-    /**
-     * Set mark to specified mark. If mark==1 - Passed, if mark == 0 - failed
-     * mark between 2 and 5 means the same. Other value for mark are invalid.
-     *
-     * @param mark the mark value for setting mark.
-     */
-    public void setMark(Mark mark) {
-        this.mark = mark;
-    }
+
 
     /**
      * Set mark to specified mark. If mark==1 - Passed, if mark == 0 - failed
@@ -165,8 +138,8 @@ public class Subject {
      *
      * @param mark the enum mark value for setting mark.
      */
-    public void setMark(DefaultMark mark) {
-        this.mark = mark.toMark();
+    public void setMark(Mark mark) {
+        this.mark = mark;
     }
 
     /**
