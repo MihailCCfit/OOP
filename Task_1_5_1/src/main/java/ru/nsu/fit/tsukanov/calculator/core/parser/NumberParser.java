@@ -6,7 +6,7 @@ import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 public interface NumberParser<T> {
     /**
-     * parse token
+     * Parse token.
      *
      * @param token token
      * @return constant function

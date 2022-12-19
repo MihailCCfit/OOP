@@ -11,6 +11,12 @@ import java.util.LinkedList;
 public class ComplexFunctionWrapper extends AbstractFunctionWrapper<ComplexNumber> {
     private final LinkedList<ComplexNumber> arguments = new LinkedList<>();
 
+    /**
+     * Adds number (argument) to the end of arguments list .
+     *
+     * @param complexNumber the number that will be added to the list of arguments.
+     * @throws CalculatorException if there is problem with argument
+     */
     public void addArg(ComplexNumber complexNumber) throws CalculatorException {
         if (complexNumber == null) {
             throw new NullPointerException("Complex number is null");
@@ -25,6 +31,11 @@ public class ComplexFunctionWrapper extends AbstractFunctionWrapper<ComplexNumbe
         super(function, calculator);
     }
 
+    /**
+     * Verifies that a function can be applied.
+     *
+     * @return true if function can be applied
+     */
     public boolean available() {
         return arguments.size() == getArity();
     }
