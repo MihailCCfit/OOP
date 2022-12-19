@@ -3,6 +3,7 @@ package ru.nsu.fit.tsukanov.calculator.complex;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexFunctionParser;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
@@ -13,20 +14,65 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
+/**
+ * Complex number calculator. Calculates different operations.
+ */
 public class StackCalculator implements Calculator<ComplexNumber> {
-    CalculatorParser<ComplexNumber> calculatorParser;
-    Lexer lexer;
-    Deque<ComplexFunctionWrapper> functionWrappers = new LinkedList<>();
-    String line = null;
-    LinkedList<String> tokens = null;
-    ComplexNumber result = null;
+    private final CalculatorParser<ComplexNumber> calculatorParser;
+    private final Lexer lexer;
+    private final Deque<ComplexFunctionWrapper> functionWrappers = new LinkedList<>();
+    private String line = null;
+    private LinkedList<String> tokens;
+    private ComplexNumber result = null;
+
+    /**
+     * Creates stackCalculator, that has stack of functionWrapper. functionWrapper saves arguments
+     * while it isn't available.
+     */
 
     public StackCalculator() {
         var complexFunctionParser = ComplexFunctionParser.getParser();
         var complexNumberParser = new ComplexNumberParser();
         calculatorParser = new CalculatorParser<>(complexNumberParser, complexFunctionParser);
         lexer = string -> string.split(" ");
+        tokens = new LinkedList<>();
     }
+
+    /**
+     * Add token to the end of tokens.
+     *
+     * @param token token (function or number)
+     * @throws BadLexemeException if there is problem with parsing
+     */
+    public void addToken(String token) throws CalculatorException {
+        result = null;
+        calculatorParser.parse(token);
+        tokens.addLast(token);
+        next();
+    }
+
+    /**
+     * Clear all tokens, stack and result.
+     * @return old result
+     */
+
+    public ComplexNumber clear(){
+        var old = result;
+        result = null;
+        tokens.clear();
+        functionWrappers.clear();
+        line = null;
+        return old;
+    }
+
+
+    /**
+     * Calculates next token. It's useful to use this after toke appending.
+     *
+     * @return true if next {@code next} will do nothing. In correct state it signalized that
+     * result was calculated. So check result
+     * @throws CalculatorException if there is some exception to parsing of calculating, or bad input.
+     */
 
     public boolean next() throws CalculatorException {
         if (tokens.isEmpty()) {
@@ -45,6 +91,10 @@ public class StackCalculator implements Calculator<ComplexNumber> {
         return false;
 
     }
+
+    /**
+     * Tokenize input string to the tokens. Currently just separate by the space.
+     */
 
     private void tokenize() {
         tokens = Arrays.stream(lexer.getTokens(line)).collect(Collectors.toCollection(LinkedList::new));
@@ -77,7 +127,6 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      */
     @Override
     public ComplexNumber calculates() throws CalculatorException {
-        tokenize();
         while (true) {
             if (next()) {
                 break;

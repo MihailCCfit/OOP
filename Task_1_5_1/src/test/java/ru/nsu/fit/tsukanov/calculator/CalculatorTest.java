@@ -7,6 +7,7 @@ import ru.nsu.fit.tsukanov.calculator.complex.ComplexFunctionWrapper;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.complex.StackCalculator;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
+import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.*;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
@@ -190,5 +191,21 @@ public class CalculatorTest {
         }
         Assertions.assertFalse(numberParser.checkNumber(null));
         Assertions.assertFalse(numberParser.checkNumber(""));
+    }
+    @Test
+    void testDynamic()  {
+        StackCalculator calculator = new StackCalculator();
+        try {
+            calculator.addToken("+");
+            calculator.addToken("(1,2)");
+            calculator.addToken("(3,2)");
+            Assertions.assertEquals(new ComplexNumber(4,4), calculator.calculates());
+            var old = calculator.clear();
+            calculator.newLine("- (4,4)");
+            calculator.addToken(old.toString());
+        } catch (CalculatorException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
