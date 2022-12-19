@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"RecordBook"},{"l":"ru.nsu.fit.tsukanov.recordBook.core"},{"l":"ru.nsu.fit.tsukanov.recordBook.core.mark"},{"l":"ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.fit.tsukanov.recordBook.core"},{"l":"ru.nsu.fit.tsukanov.recordBook.core.mark"},{"l":"ru.nsu.fit.tsukanov.recordBook.ParserJSONstudentsData"}];updateSearchResults();
