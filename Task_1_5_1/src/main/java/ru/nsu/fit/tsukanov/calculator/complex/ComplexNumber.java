@@ -1,17 +1,13 @@
 package ru.nsu.fit.tsukanov.calculator.complex;
 
-import java.util.Objects;
-
-public class ComplexNumber {
-    private final double real;
-    private final double imaginary;
-
+public record ComplexNumber(double real, double imaginary) {
     /**
      * Return real part of complex number.
      *
      * @return real part of complex number
      */
-    public double getReal() {
+    @Override
+    public double real() {
         return real;
     }
 
@@ -20,7 +16,8 @@ public class ComplexNumber {
      *
      * @return imaginary part of complex number
      */
-    public double getImaginary() {
+    @Override
+    public double imaginary() {
         return imaginary;
     }
 
@@ -30,9 +27,7 @@ public class ComplexNumber {
      * @param real      the real part
      * @param imaginary the imaginary part
      */
-    public ComplexNumber(double real, double imaginary) {
-        this.real = real;
-        this.imaginary = imaginary;
+    public ComplexNumber {
     }
 
     @Override
@@ -98,14 +93,11 @@ public class ComplexNumber {
 
     /**
      * sqrt(real^2 + imaginary^2). Return the module of this complex number (distance from the centre).
+     *
      * @return the module of this complex number
      */
     public double module() {
         return Math.sqrt(real * real + imaginary * imaginary);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(real, imaginary);
-    }
 }

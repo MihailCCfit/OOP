@@ -2,7 +2,6 @@ package ru.nsu.fit.tsukanov.calculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexFunctionWrapper;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.complex.StackCalculator;
@@ -16,6 +15,7 @@ import java.util.Comparator;
 public class CalculatorTest {
     /**
      * Test calculator calculating with valid and invalid input.
+     *
      * @throws CalculatorException if there is problem (can't be)
      */
     @Test
@@ -32,30 +32,40 @@ public class CalculatorTest {
                     new ComplexNumber(4, 6));
             Assertions.assertEquals(stackCalculator.calculates("/ (4,3) (2,0)"),
                     new ComplexNumber(2, 1.5));
+            Assertions.assertEquals(stackCalculator.calculates("ln (1,0)"),
+                    new ComplexNumber(0, 0));
+            Assertions.assertEquals(stackCalculator.calculates("ln (0,1)"),
+                    new ComplexNumber(0, Math.PI / 2));
+            Assertions.assertEquals(stackCalculator.calculates("ln (0,-1)"),
+                    new ComplexNumber(0, -Math.PI / 2));
+            Assertions.assertEquals(stackCalculator.calculates("ln (1,1)"),
+                    new ComplexNumber(Math.log(Math.sqrt(2)), Math.PI / 4));
+            Assertions.assertEquals(stackCalculator.calculates("ln (-1,-1)"),
+                    new ComplexNumber(Math.log(Math.sqrt(2)), -3 * Math.PI / 4));
 
         } catch (CalculatorException e) {
             throw new RuntimeException(e);
         }
         try {
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("(3,2) (2,3)"));
+                    () -> stackCalculator.calculates("(3,2) (2,3)"));
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("3,2)"));
+                    () -> stackCalculator.calculates("3,2)"));
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates(""));
+                    () -> stackCalculator.calculates(""));
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("(3,2"));
+                    () -> stackCalculator.calculates("(3,2"));
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("(3,2,5)"));
+                    () -> stackCalculator.calculates("(3,2,5)"));
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("(3.5.5,2)"));
+                    () -> stackCalculator.calculates("(3.5.5,2)"));
 
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("+"));
+                    () -> stackCalculator.calculates("+"));
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("aboba"));
+                    () -> stackCalculator.calculates("aboba"));
             Assertions.assertThrows(CalculatorException.class,
-                    (Executable) stackCalculator.calculates("+ 5;"));
+                    () -> stackCalculator.calculates("+ 5;"));
             Assertions.assertEquals(stackCalculator.calculates("/ (4,3) (2,0) (2,1)"),
                     new ComplexNumber(2, 1.5));
         } catch (CalculatorException ignore) {
@@ -118,6 +128,7 @@ public class CalculatorTest {
 
     /**
      * Checks functions.
+     *
      * @throws CalculatorException for fun
      */
     @Test
@@ -143,12 +154,8 @@ public class CalculatorTest {
             complexFunctionWrapper.addArg(new ComplexNumber(1, 0));
         } catch (CalculatorException ignore) {
         }
-        try {
-            Assertions.assertThrows(NotEnoughArguments.class,
-                    (Executable) complexFunctionWrapper.apply());
-        } catch (CalculatorException ignore) {
-
-        }
+        Assertions.assertThrows(NotEnoughArguments.class,
+                complexFunctionWrapper::apply);
         try {
             Assertions.assertThrows(NullPointerException.class,
                     () -> complexFunctionWrapper.addArg(null));
@@ -175,34 +182,13 @@ public class CalculatorTest {
     @Test
     void testParsers() {
         ComplexNumberParser numberParser = new ComplexNumberParser();
-        try {
-            Assertions.assertThrows(CalculatorException.class, (Executable) numberParser.parseToken(""));
-        } catch (BadLexemeException ignore) {
-        }
-        try {
-            Assertions.assertThrows(CalculatorException.class, (Executable) numberParser.parseToken("1.1.1"));
-        } catch (BadLexemeException ignore) {
-        }
-        try {
-            Assertions.assertThrows(CalculatorException.class, (Executable) numberParser.parseToken("(1,1"));
-        } catch (BadLexemeException ignore) {
-        }
-        try {
-            Assertions.assertThrows(CalculatorException.class, (Executable) numberParser.parseToken("1,1)"));
-        } catch (BadLexemeException ignore) {
-        }
-        try {
-            Assertions.assertThrows(CalculatorException.class, (Executable) numberParser.parseToken("(1,1,1)"));
-        } catch (BadLexemeException ignore) {
-        }
-        try {
-            Assertions.assertThrows(CalculatorException.class, (Executable) numberParser.parseToken("(1,1.1.1)"));
-        } catch (BadLexemeException ignore) {
-        }
-        try {
-            Assertions.assertThrows(CalculatorException.class, (Executable) numberParser.parseToken(null));
-        } catch (BadLexemeException ignore) {
-        }
+        Assertions.assertThrows(CalculatorException.class, () -> numberParser.parseToken(""));
+        Assertions.assertThrows(CalculatorException.class, () -> numberParser.parseToken("1.1.1"));
+        Assertions.assertThrows(CalculatorException.class, () -> numberParser.parseToken("(1,1"));
+        Assertions.assertThrows(CalculatorException.class, () -> numberParser.parseToken("1,1)"));
+        Assertions.assertThrows(CalculatorException.class, () -> numberParser.parseToken("(1,1,1)"));
+        Assertions.assertThrows(CalculatorException.class, () -> numberParser.parseToken("(1,1.1.1)"));
+        Assertions.assertThrows(CalculatorException.class, () -> numberParser.parseToken(null));
         Assertions.assertFalse(numberParser.checkNumber(null));
         Assertions.assertFalse(numberParser.checkNumber(""));
     }
