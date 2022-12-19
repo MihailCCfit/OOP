@@ -130,9 +130,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the number</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">CalculatorParser&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Combines function and number parsers.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser"><code>FunctionParser</code></a>, 
+<a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser"><code>NumberParser</code></a>, 
+<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions"><code>Function</code></a></dd>
+</dl>
 </li>
 </ul>
 </div>
@@ -156,12 +167,16 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#functionParser">functionParser</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Function parser</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#numberParser">numberParser</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Number Parser</div>
+</td>
 </tr>
 </table>
 </li>
@@ -183,7 +198,9 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(ru.nsu.fit.tsukanov.calculator.core.parser.NumberParser,ru.nsu.fit.tsukanov.calculator.core.parser.FunctionParser)">CalculatorParser</a></span>&#8203;(<a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser,
                 <a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;functionParser)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates parser by the specified number and function parsers</div>
+</td>
 </tr>
 </table>
 </li>
@@ -206,17 +223,23 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isFunction(java.lang.String)">isFunction</a></span>&#8203;(java.lang.String&nbsp;token)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Check token for function according to the function parser.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNumber(java.lang.String)">isNumber</a></span>&#8203;(java.lang.String&nbsp;token)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Check token for number according to the number parser.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#parse(java.lang.String)">parse</a></span>&#8203;(java.lang.String&nbsp;token)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Parse token as number or as function (checked for function firstly).</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -249,6 +272,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>numberParser</h4>
 <pre>protected&nbsp;<a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt; numberParser</pre>
+<div class="block">Number Parser</div>
 </li>
 </ul>
 <a id="functionParser">
@@ -258,6 +282,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>functionParser</h4>
 <pre>protected&nbsp;<a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt; functionParser</pre>
+<div class="block">Function parser</div>
 </li>
 </ul>
 </li>
@@ -278,6 +303,12 @@ extends java.lang.Object</pre>
 <h4>CalculatorParser</h4>
 <pre>public&nbsp;CalculatorParser&#8203;(<a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser,
                         <a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;functionParser)</pre>
+<div class="block">Creates parser by the specified number and function parsers</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numberParser</code> - the number parser</dd>
+<dd><code>functionParser</code> - the function parser</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -297,6 +328,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isNumber</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isNumber&#8203;(java.lang.String&nbsp;token)</pre>
+<div class="block">Check token for number according to the number parser.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>token</code> - that will be checked for number</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if token can be recognized as number</dd>
+</dl>
 </li>
 </ul>
 <a id="isFunction(java.lang.String)">
@@ -306,6 +344,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isFunction</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isFunction&#8203;(java.lang.String&nbsp;token)</pre>
+<div class="block">Check token for function according to the function parser.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>token</code> - that will be checked for function</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if token can be recognized as function</dd>
+</dl>
 </li>
 </ul>
 <a id="parse(java.lang.String)">
@@ -316,9 +361,16 @@ extends java.lang.Object</pre>
 <h4>parse</h4>
 <pre class="methodSignature">public&nbsp;<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;parse&#8203;(java.lang.String&nbsp;token)
                   throws <a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></pre>
+<div class="block">Parse token as number or as function (checked for function firstly).
+ If there is some problem then throws exception.
+ Return function (function can be zero-arity that means number or the constant).</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>token</code> - token that parser try to recognize</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the function of the parsed token</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></code></dd>
+<dd><code><a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></code> - if there is problem with parsing.</dd>
 </dl>
 </li>
 </ul>

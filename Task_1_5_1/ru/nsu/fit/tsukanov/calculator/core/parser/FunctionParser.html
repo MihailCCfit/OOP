@@ -131,12 +131,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the number</dd>
+</dl>
+<dl>
 <dt>Direct Known Subclasses:</dt>
 <dd><code><a href="../../complex/parsers/ComplexFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.parsers">ComplexFunctionParser</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">FunctionParser&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Function parser. Parses by the map of name function to the function.</div>
 </li>
 </ul>
 </div>
@@ -181,23 +186,31 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkToken(java.lang.String)">checkToken</a></span>&#8203;(java.lang.String&nbsp;token)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Check token for the validity.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#parseToken(java.lang.String)">parseToken</a></span>&#8203;(java.lang.String&nbsp;token)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Parse token to the function according to the saved function in the map.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#putFunction(java.lang.String,ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction</a></span>&#8203;(java.lang.String&nbsp;representation,
            <a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;&nbsp;function)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Put new function for identification.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#putFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction</a></span>&#8203;(<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;&nbsp;function)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Put new function for identification.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -249,6 +262,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>putFunction</h4>
 <pre class="methodSignature">public&nbsp;<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;&nbsp;putFunction&#8203;(<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;&nbsp;function)</pre>
+<div class="block">Put new function for identification.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>function</code> - new function that will be added to the parser</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>previous version</dd>
+</dl>
 </li>
 </ul>
 <a id="putFunction(java.lang.String,ru.nsu.fit.tsukanov.calculator.core.functions.Function)">
@@ -259,6 +279,14 @@ extends java.lang.Object</pre>
 <h4>putFunction</h4>
 <pre class="methodSignature">public&nbsp;<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;&nbsp;putFunction&#8203;(java.lang.String&nbsp;representation,
                                <a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;&nbsp;function)</pre>
+<div class="block">Put new function for identification.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>representation</code> - the string representation by that function will be recognized.</dd>
+<dd><code>function</code> - new function that will be added to the parser</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>previous version</dd>
+</dl>
 </li>
 </ul>
 <a id="checkToken(java.lang.String)">
@@ -268,6 +296,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>checkToken</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;checkToken&#8203;(java.lang.String&nbsp;token)</pre>
+<div class="block">Check token for the validity.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>token</code> - the string that will be checked for function.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if token can be recognized</dd>
+</dl>
 </li>
 </ul>
 <a id="parseToken(java.lang.String)">
@@ -278,9 +313,14 @@ extends java.lang.Object</pre>
 <h4>parseToken</h4>
 <pre class="methodSignature">public&nbsp;<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="FunctionParser.html" title="type parameter in FunctionParser">T</a>&gt;&nbsp;parseToken&#8203;(java.lang.String&nbsp;token)
                        throws <a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></pre>
+<div class="block">Parse token to the function according to the saved function in the map.</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>token</code> - the string(token) for parsing</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>function according to the parser and token</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></code></dd>
+<dd><code><a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></code> - if there is problem with parsing</dd>
 </dl>
 </li>
 </ul>

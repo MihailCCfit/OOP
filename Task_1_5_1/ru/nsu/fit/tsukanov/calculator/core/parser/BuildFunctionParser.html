@@ -130,9 +130,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the number for calculator (function return type)</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">BuildFunctionParser&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">Useful and comfortable builder for functionParser.</div>
 </li>
 </ul>
 </div>
@@ -154,7 +159,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">BuildFunctionParser</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Start build.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -177,23 +184,31 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#build()">build</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return built (created) function parser.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#putFunction(java.lang.String,ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction</a></span>&#8203;(java.lang.String&nbsp;representation,
            <a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;function)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Put function into the parser for recognize that.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#putFunction(java.util.List)">putFunction</a></span>&#8203;(java.util.List&lt;<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&gt;&nbsp;functions)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Put functions into the parser for recognize them.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#putFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction</a></span>&#8203;(<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;function)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Put function into the parser for recognize that.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -226,6 +241,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>BuildFunctionParser</h4>
 <pre>public&nbsp;BuildFunctionParser()</pre>
+<div class="block">Start build.</div>
 </li>
 </ul>
 </li>
@@ -246,6 +262,14 @@ extends java.lang.Object</pre>
 <h4>putFunction</h4>
 <pre class="methodSignature">public&nbsp;<a href="BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;putFunction&#8203;(java.lang.String&nbsp;representation,
                                           <a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;function)</pre>
+<div class="block">Put function into the parser for recognize that.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>representation</code> - string by which function will be recognized</dd>
+<dd><code>function</code> - the function that will be saved in the parser</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this for chaining methods</dd>
+</dl>
 </li>
 </ul>
 <a id="putFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">
@@ -255,6 +279,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>putFunction</h4>
 <pre class="methodSignature">public&nbsp;<a href="BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;putFunction&#8203;(<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;function)</pre>
+<div class="block">Put function into the parser for recognize that.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>function</code> - the function that will be saved in the parser</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this builder</dd>
+</dl>
 </li>
 </ul>
 <a id="putFunction(java.util.List)">
@@ -264,6 +295,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>putFunction</h4>
 <pre class="methodSignature">public&nbsp;<a href="BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;putFunction&#8203;(java.util.List&lt;<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&gt;&nbsp;functions)</pre>
+<div class="block">Put functions into the parser for recognize them.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>functions</code> - the list of functions</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this builder</dd>
+</dl>
 </li>
 </ul>
 <a id="build()">
@@ -273,6 +311,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>build</h4>
 <pre class="methodSignature">public&nbsp;<a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt;&nbsp;build()</pre>
+<div class="block">Return built (created) function parser.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>built parser</dd>
+</dl>
 </li>
 </ul>
 </li>

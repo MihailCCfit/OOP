@@ -204,7 +204,9 @@ extends <a href="../core/functions/AbstractFunctionWrapper.html" title="class in
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addArg(ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber)">addArg</a></span>&#8203;(<a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&nbsp;complexNumber)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Adds number (argument) to the end of arguments list .</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a></code></td>
@@ -216,7 +218,9 @@ extends <a href="../core/functions/AbstractFunctionWrapper.html" title="class in
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#available()">available</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Verifies that a function can be applied.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
@@ -289,9 +293,12 @@ extends <a href="../core/functions/AbstractFunctionWrapper.html" title="class in
 <h4>addArg</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addArg&#8203;(<a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&nbsp;complexNumber)
             throws <a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></pre>
+<div class="block">Adds number (argument) to the end of arguments list .</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>complexNumber</code> - the number that will be added to the list of arguments.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></code></dd>
+<dd><code><a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></code> - if there is problem with argument</dd>
 </dl>
 </li>
 </ul>
@@ -302,6 +309,11 @@ extends <a href="../core/functions/AbstractFunctionWrapper.html" title="class in
 <li class="blockList">
 <h4>available</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;available()</pre>
+<div class="block">Verifies that a function can be applied.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if function can be applied</dd>
+</dl>
 </li>
 </ul>
 <a id="apply()">

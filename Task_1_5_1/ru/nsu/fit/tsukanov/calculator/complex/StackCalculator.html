@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -138,6 +138,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">StackCalculator</span>
 extends java.lang.Object
 implements <a href="../core/Calculator.html" title="interface in ru.nsu.fit.tsukanov.calculator.core">Calculator</a>&lt;<a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;</pre>
+<div class="block">Complex number calculator. Calculates different operations.</div>
 </li>
 </ul>
 </div>
@@ -159,7 +160,9 @@ implements <a href="../core/Calculator.html" title="interface in ru.nsu.fit.tsuk
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">StackCalculator</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates stackCalculator, that has stack of functionWrapper.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -180,46 +183,62 @@ implements <a href="../core/Calculator.html" title="interface in ru.nsu.fit.tsuk
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addToken(java.lang.String)">addToken</a></span>&#8203;(java.lang.String&nbsp;token)</code></th>
+<td class="colLast">
+<div class="block">Add token to the end of tokens.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calculates()">calculates</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Calculates result.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calculates(java.lang.String)">calculates</a></span>&#8203;(java.lang.String&nbsp;line)</code></th>
 <td class="colLast">
 <div class="block">Calculates result.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Clear all tokens, stack and result.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInformation()">getInformation</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get info about state of calculator.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getResult()">getResult</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Calculates result.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#newLine(java.lang.String)">newLine</a></span>&#8203;(java.lang.String&nbsp;input)</code></th>
 <td class="colLast">
 <div class="block">Change line for calculating.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#next()">next</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Calculates next token.</div>
+</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -255,6 +274,8 @@ implements <a href="../core/Calculator.html" title="interface in ru.nsu.fit.tsuk
 <li class="blockList">
 <h4>StackCalculator</h4>
 <pre>public&nbsp;StackCalculator()</pre>
+<div class="block">Creates stackCalculator, that has stack of functionWrapper. functionWrapper saves arguments
+ while it isn't available.</div>
 </li>
 </ul>
 </li>
@@ -267,6 +288,38 @@ implements <a href="../core/Calculator.html" title="interface in ru.nsu.fit.tsuk
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="addToken(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addToken</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addToken&#8203;(java.lang.String&nbsp;token)
+              throws <a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></pre>
+<div class="block">Add token to the end of tokens.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>token</code> - token (function or number)</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../core/Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></code> - if there is problem with parsing</dd>
+<dd><code><a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="clear()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>clear</h4>
+<pre class="methodSignature">public&nbsp;<a href="ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&nbsp;clear()</pre>
+<div class="block">Clear all tokens, stack and result.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>old result</dd>
+</dl>
+</li>
+</ul>
 <a id="next()">
 <!--   -->
 </a>
@@ -275,9 +328,13 @@ implements <a href="../core/Calculator.html" title="interface in ru.nsu.fit.tsuk
 <h4>next</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;next()
              throws <a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></pre>
+<div class="block">Calculates next token. It's useful to use this after toke appending.</div>
 <dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if next <code>next</code> will do nothing. In correct state it signalized that
+ result was calculated. So check result</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></code></dd>
+<dd><code><a href="../core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></code> - if there is some exception to parsing of calculating, or bad input.</dd>
 </dl>
 </li>
 </ul>
