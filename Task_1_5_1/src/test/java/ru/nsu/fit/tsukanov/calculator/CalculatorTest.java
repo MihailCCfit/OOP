@@ -7,7 +7,6 @@ import ru.nsu.fit.tsukanov.calculator.complex.ComplexFunctionWrapper;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.complex.StackCalculator;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
-import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.*;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
@@ -15,6 +14,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class CalculatorTest {
+    /**
+     * Test calculator calculating with valid and invalid input.
+     * @throws CalculatorException if there is problem (can't be)
+     */
     @Test
     void test() throws CalculatorException {
         StackCalculator stackCalculator = new StackCalculator();
@@ -60,11 +63,14 @@ public class CalculatorTest {
         stackCalculator.toString();
         Assertions.assertThrows(NullPointerException.class,
                 () -> stackCalculator.newLine(null));
-        Assertions.assertEquals(new ComplexNumber(0,0), stackCalculator.calculates("sin (0,0)"));
-        Assertions.assertEquals(new ComplexNumber(1,0), stackCalculator.calculates("cos (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(0, 0), stackCalculator.calculates("sin (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(1, 0), stackCalculator.calculates("cos (0,0)"));
 
     }
 
+    /**
+     * Just for percents.
+     */
     @Test
     void testExceptions() {
         Assertions.assertThrows(CalculatorException.class,
@@ -110,6 +116,10 @@ public class CalculatorTest {
 
     }
 
+    /**
+     * Checks functions.
+     * @throws CalculatorException for fun
+     */
     @Test
     void functionsTest() throws CalculatorException {
         ComplexFunctionWrapper complexFunctionWrapper = new ComplexFunctionWrapper(new Function<>() {
@@ -158,6 +168,10 @@ public class CalculatorTest {
                 () -> complexFunctionWrapper.addArg(n));
     }
 
+    /**
+     * Test parsers. Because some problems calculator prevents. So parser doesn't throw exception
+     * in calculator.
+     */
     @Test
     void testParsers() {
         ComplexNumberParser numberParser = new ComplexNumberParser();
@@ -192,14 +206,18 @@ public class CalculatorTest {
         Assertions.assertFalse(numberParser.checkNumber(null));
         Assertions.assertFalse(numberParser.checkNumber(""));
     }
+
+    /**
+     * Tests adds.
+     */
     @Test
-    void testDynamic()  {
+    void testDynamic() {
         StackCalculator calculator = new StackCalculator();
         try {
             calculator.addToken("+");
             calculator.addToken("(1,2)");
             calculator.addToken("(3,2)");
-            Assertions.assertEquals(new ComplexNumber(4,4), calculator.calculates());
+            Assertions.assertEquals(new ComplexNumber(4, 4), calculator.calculates());
             var old = calculator.clear();
             calculator.newLine("- (4,4)");
             calculator.addToken(old.toString());
