@@ -75,6 +75,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Apply function, depends on (or not) arguments.</div>
 </dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveWrapper.html#apply()">apply()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveWrapper.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveWrapper</a></dt>
+<dd>
+<div class="block">Apply function, depends on (or not) arguments.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/functions/AbstractFunctionWrapper.html#apply()">apply()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.functions.<a href="ru/nsu/fit/tsukanov/calculator/core/functions/AbstractFunctionWrapper.html" title="class in ru.nsu.fit.tsukanov.calculator.core.functions">AbstractFunctionWrapper</a></dt>
 <dd>
 <div class="block">Apply function, depends on (or not) arguments.</div>
@@ -143,13 +147,19 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
-<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/functions/CalculatorFunction.html#calculate(java.util.List)">calculate(List&lt;T&gt;)</a></span> - Method in interface ru.nsu.fit.tsukanov.calculator.core.functions.<a href="ru/nsu/fit/tsukanov/calculator/core/functions/CalculatorFunction.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">CalculatorFunction</a></dt>
-<dd>&nbsp;</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html#calculates()">calculates()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveCalculator</a></dt>
+<dd>
+<div class="block">Calculates result.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html#calculates()">calculates()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.<a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">StackCalculator</a></dt>
 <dd>
 <div class="block">Calculates result.</div>
 </dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/Calculator.html#calculates()">calculates()</a></span> - Method in interface ru.nsu.fit.tsukanov.calculator.core.<a href="ru/nsu/fit/tsukanov/calculator/core/Calculator.html" title="interface in ru.nsu.fit.tsukanov.calculator.core">Calculator</a></dt>
+<dd>
+<div class="block">Calculates result.</div>
+</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html#calculates(java.lang.String)">calculates(String)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveCalculator</a></dt>
 <dd>
 <div class="block">Calculates result.</div>
 </dd>
@@ -170,8 +180,6 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/Exceptions/CalculatorException.html#%3Cinit%3E()">CalculatorException()</a></span> - Constructor for exception ru.nsu.fit.tsukanov.calculator.core.Exceptions.<a href="ru/nsu/fit/tsukanov/calculator/core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/Exceptions/CalculatorException.html#%3Cinit%3E(java.lang.String)">CalculatorException(String)</a></span> - Constructor for exception ru.nsu.fit.tsukanov.calculator.core.Exceptions.<a href="ru/nsu/fit/tsukanov/calculator/core/Exceptions/CalculatorException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">CalculatorException</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/fit/tsukanov/calculator/core/functions/CalculatorFunction.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions"><span class="type-name-link">CalculatorFunction</span></a>&lt;<a href="ru/nsu/fit/tsukanov/calculator/core/functions/CalculatorFunction.html" title="type parameter in CalculatorFunction">T</a>&gt; - Interface in <a href="ru/nsu/fit/tsukanov/calculator/core/functions/package-summary.html">ru.nsu.fit.tsukanov.calculator.core.functions</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/fit/tsukanov/calculator/core/parser/CalculatorParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser"><span class="type-name-link">CalculatorParser</span></a>&lt;<a href="ru/nsu/fit/tsukanov/calculator/core/parser/CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt; - Class in <a href="ru/nsu/fit/tsukanov/calculator/core/parser/package-summary.html">ru.nsu.fit.tsukanov.calculator.core.parser</a></dt>
 <dd>
@@ -333,8 +341,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Return arity of function.</div>
 </dd>
-<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/functions/CalculatorFunction.html#getDimension()">getDimension()</a></span> - Method in interface ru.nsu.fit.tsukanov.calculator.core.functions.<a href="ru/nsu/fit/tsukanov/calculator/core/functions/CalculatorFunction.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">CalculatorFunction</a></dt>
-<dd>&nbsp;</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html#getInformation()">getInformation()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveCalculator</a></dt>
+<dd>
+<div class="block">Get info about state of calculator.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html#getInformation()">getInformation()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.<a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">StackCalculator</a></dt>
 <dd>
 <div class="block">Get info about state of calculator.</div>
@@ -345,6 +355,10 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/parsers/ComplexFunctionParser.html#getParser()">getParser()</a></span> - Static method in class ru.nsu.fit.tsukanov.calculator.complex.parsers.<a href="ru/nsu/fit/tsukanov/calculator/complex/parsers/ComplexFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.parsers">ComplexFunctionParser</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html#getResult()">getResult()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveCalculator</a></dt>
+<dd>
+<div class="block">Calculates result.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html#getResult()">getResult()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.<a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">StackCalculator</a></dt>
 <dd>
 <div class="block">Calculates result.</div>
@@ -400,6 +414,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html#newLine(java.lang.String)">newLine(String)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveCalculator</a></dt>
+<dd>
+<div class="block">Change line for calculating.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html#newLine(java.lang.String)">newLine(String)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.<a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">StackCalculator</a></dt>
 <dd>
 <div class="block">Change line for calculating.</div>
@@ -484,6 +502,16 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Return real part of complex number.</div>
 </dd>
+<dt><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive"><span class="type-name-link">RecursiveCalculator</span></a> - Class in <a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/package-summary.html">ru.nsu.fit.tsukanov.calculator.complex.recursive</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html#%3Cinit%3E()">RecursiveCalculator()</a></span> - Constructor for class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveCalculator</a></dt>
+<dd>
+<div class="block">Creates stackCalculator, that has stack of functionWrapper.</div>
+</dd>
+<dt><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveWrapper.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive"><span class="type-name-link">RecursiveWrapper</span></a> - Class in <a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/package-summary.html">ru.nsu.fit.tsukanov.calculator.complex.recursive</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveWrapper.html#%3Cinit%3E(ru.nsu.fit.tsukanov.calculator.core.functions.Function,ru.nsu.fit.tsukanov.calculator.complex.recursive.RecursiveCalculator)">RecursiveWrapper(Function&lt;ComplexNumber&gt;, RecursiveCalculator)</a></span> - Constructor for class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveWrapper.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveWrapper</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/Functions/ComplexAdd.html#representation()">representation()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.Functions.<a href="ru/nsu/fit/tsukanov/calculator/complex/Functions/ComplexAdd.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.Functions">ComplexAdd</a></dt>
 <dd>
 <div class="block">String representation.</div>
@@ -524,6 +552,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/fit/tsukanov/calculator/complex/parsers/package-summary.html">ru.nsu.fit.tsukanov.calculator.complex.parsers</a> - package ru.nsu.fit.tsukanov.calculator.complex.parsers</dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/package-summary.html">ru.nsu.fit.tsukanov.calculator.complex.recursive</a> - package ru.nsu.fit.tsukanov.calculator.complex.recursive</dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/fit/tsukanov/calculator/core/package-summary.html">ru.nsu.fit.tsukanov.calculator.core</a> - package ru.nsu.fit.tsukanov.calculator.core</dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/fit/tsukanov/calculator/core/Exceptions/package-summary.html">ru.nsu.fit.tsukanov.calculator.core.Exceptions</a> - package ru.nsu.fit.tsukanov.calculator.core.Exceptions</dt>
@@ -556,6 +586,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
 </dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html#toString()">toString()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.recursive.<a href="ru/nsu/fit/tsukanov/calculator/complex/recursive/RecursiveCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex.recursive">RecursiveCalculator</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html#toString()">toString()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.complex.<a href="ru/nsu/fit/tsukanov/calculator/complex/StackCalculator.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">StackCalculator</a></dt>
 <dd>&nbsp;</dd>
 </dl>
