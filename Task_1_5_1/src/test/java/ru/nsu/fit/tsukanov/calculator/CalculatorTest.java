@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexFunctionWrapper;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
+import ru.nsu.fit.tsukanov.calculator.complex.Functions.ComplexSub;
 import ru.nsu.fit.tsukanov.calculator.complex.StackCalculator;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.*;
@@ -42,6 +43,8 @@ public class CalculatorTest {
                     new ComplexNumber(Math.log(Math.sqrt(2)), Math.PI / 4));
             Assertions.assertEquals(stackCalculator.calculates("ln (-1,-1)"),
                     new ComplexNumber(Math.log(Math.sqrt(2)), -3 * Math.PI / 4));
+            Assertions.assertEquals(stackCalculator.calculates("ln (-1,0)"),
+                    new ComplexNumber(0, Math.PI));
 
         } catch (CalculatorException e) {
             throw new RuntimeException(e);
@@ -173,6 +176,8 @@ public class CalculatorTest {
         complexFunctionWrapper.apply();
         Assertions.assertThrows(CalculatorException.class,
                 () -> complexFunctionWrapper.addArg(n));
+        Assertions.assertEquals("-", new ComplexSub().representation());
+
     }
 
     /**
@@ -206,6 +211,7 @@ public class CalculatorTest {
             Assertions.assertEquals(new ComplexNumber(4, 4), calculator.calculates());
             var old = calculator.clear();
             calculator.newLine("- (4,4)");
+            calculator.getInformation();
             calculator.addToken(old.toString());
         } catch (CalculatorException e) {
             throw new RuntimeException(e);
