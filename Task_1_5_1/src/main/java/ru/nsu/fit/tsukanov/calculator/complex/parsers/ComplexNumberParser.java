@@ -88,12 +88,12 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
             return false;
         }
         token = token.substring(1, token.length() - 1);
-        String[] splited = token.split(",", 0);
-        if (splited.length != 2) {
+        String[] splitted = token.split(",", 0);
+        if (splitted.length != 2) {
             return false;
         }
-        var realStr = splited[0];
-        var imagStr = splited[1];
+        var realStr = splitted[0];
+        var imagStr = splitted[1];
         try {
             Double.parseDouble(realStr);
             Double.parseDouble(imagStr);
