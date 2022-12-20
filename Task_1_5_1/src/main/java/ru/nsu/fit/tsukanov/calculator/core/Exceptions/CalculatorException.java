@@ -1,7 +1,7 @@
 package ru.nsu.fit.tsukanov.calculator.core.Exceptions;
 
-public class CalculatorException extends Exception{
-    public CalculatorException(){
+public class CalculatorException extends Exception {
+    public CalculatorException() {
         super("Some calculator exception");
     }
 

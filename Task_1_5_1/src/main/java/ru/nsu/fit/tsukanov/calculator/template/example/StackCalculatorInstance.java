@@ -8,9 +8,10 @@ import ru.nsu.fit.tsukanov.calculator.core.parser.Lexer;
 import ru.nsu.fit.tsukanov.calculator.template.stack.StackCalculatorTemplate;
 
 public class StackCalculatorInstance extends StackCalculatorTemplate<ComplexNumber> {
-    public StackCalculatorInstance(CalculatorParser<ComplexNumber> calculatorParser, Lexer lexer){
+    public StackCalculatorInstance(CalculatorParser<ComplexNumber> calculatorParser, Lexer lexer) {
         super(calculatorParser, lexer);
     }
+
     public StackCalculatorInstance() {
         super(new CalculatorParser<>(new ComplexNumberParser(), ComplexFunctionParser.getParser()),
                 string -> string.split("\\s+"));

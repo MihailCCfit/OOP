@@ -53,10 +53,11 @@ public class StackCalculator implements Calculator<ComplexNumber> {
 
     /**
      * Clear all tokens, stack and result.
+     *
      * @return old result
      */
 
-    public ComplexNumber clear(){
+    public ComplexNumber clear() {
         var old = result;
         result = null;
         tokens.clear();
