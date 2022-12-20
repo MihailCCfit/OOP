@@ -13,7 +13,7 @@ public class StackCalculatorInstance extends StackCalculatorTemplate<ComplexNumb
     }
 
     public StackCalculatorInstance() {
-        super(new CalculatorParser<>(new ComplexNumberParser(), ComplexFunctionParser.getParser()),
+        this(new CalculatorParser<>(new ComplexNumberParser(), ComplexFunctionParser.getParser()),
                 string -> string.split("\\s+"));
     }
 
