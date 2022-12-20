@@ -4,7 +4,7 @@ import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 /**
- * Combines function and number parsers.
+ * Combines function and number parsers. Generate function from string (token).
  *
  * @param <T> the number
  * @see FunctionParser

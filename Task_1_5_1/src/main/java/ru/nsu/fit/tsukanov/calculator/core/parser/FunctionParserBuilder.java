@@ -8,13 +8,13 @@ import java.util.List;
  * Useful and comfortable builder for functionParser.
  * @param <T> the number for calculator (function return type)
  */
-public class BuildFunctionParser<T> {
+public class FunctionParserBuilder<T> {
     private final FunctionParser<T> functionParser;
 
     /**
      * Start build.
      */
-    public BuildFunctionParser() {
+    public FunctionParserBuilder() {
         functionParser = new FunctionParser<>();
     }
 
@@ -25,7 +25,7 @@ public class BuildFunctionParser<T> {
      * @param function the function that will be saved in the parser
      * @return this for chaining methods
      */
-    public BuildFunctionParser<T> putFunction(String representation, Function<T> function) {
+    public FunctionParserBuilder<T> putFunction(String representation, Function<T> function) {
         functionParser.putFunction(representation, function);
         return this;
     }
@@ -36,7 +36,7 @@ public class BuildFunctionParser<T> {
      * @param function the function that will be saved in the parser
      * @return this builder
      */
-    public BuildFunctionParser<T> putFunction(Function<T> function) {
+    public FunctionParserBuilder<T> putFunction(Function<T> function) {
         functionParser.putFunction(function);
         return this;
     }
@@ -47,7 +47,7 @@ public class BuildFunctionParser<T> {
      * @param functions the list of functions
      * @return this builder
      */
-    public BuildFunctionParser<T> putFunction(List<Function<T>> functions){
+    public FunctionParserBuilder<T> putFunction(List<Function<T>> functions){
         functions.forEach(this::putFunction);
         return this;
     }
