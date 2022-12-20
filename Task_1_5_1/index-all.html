@@ -148,17 +148,9 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/Exceptions/BadLexemeException.html#%3Cinit%3E(java.lang.String)">BadLexemeException(String)</a></span> - Constructor for exception ru.nsu.fit.tsukanov.calculator.core.Exceptions.<a href="ru/nsu/fit/tsukanov/calculator/core/Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html#build()">build()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a></dt>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html#build()">build()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParserBuilder</a></dt>
 <dd>
 <div class="block">Return built (created) function parser.</div>
-</dd>
-<dt><a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser"><span class="type-name-link">BuildFunctionParser</span></a>&lt;<a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html" title="type parameter in BuildFunctionParser">T</a>&gt; - Class in <a href="ru/nsu/fit/tsukanov/calculator/core/parser/package-summary.html">ru.nsu.fit.tsukanov.calculator.core.parser</a></dt>
-<dd>
-<div class="block">Useful and comfortable builder for functionParser.</div>
-</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html#%3Cinit%3E()">BuildFunctionParser()</a></span> - Constructor for class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a></dt>
-<dd>
-<div class="block">Start build.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
@@ -314,6 +306,14 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParser.html#%3Cinit%3E()">FunctionParser()</a></span> - Constructor for class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser"><span class="type-name-link">FunctionParserBuilder</span></a>&lt;<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html" title="type parameter in FunctionParserBuilder">T</a>&gt; - Class in <a href="ru/nsu/fit/tsukanov/calculator/core/parser/package-summary.html">ru.nsu.fit.tsukanov.calculator.core.parser</a></dt>
+<dd>
+<div class="block">Useful and comfortable builder for functionParser.</div>
+</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html#%3Cinit%3E()">FunctionParserBuilder()</a></span> - Constructor for class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParserBuilder</a></dt>
+<dd>
+<div class="block">Start build.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/functions/AbstractFunctionWrapper.html#functionRepresentation()">functionRepresentation()</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.functions.<a href="ru/nsu/fit/tsukanov/calculator/core/functions/AbstractFunctionWrapper.html" title="class in ru.nsu.fit.tsukanov.calculator.core.functions">AbstractFunctionWrapper</a></dt>
 <dd>
 <div class="block">String representation.</div>
@@ -527,25 +527,25 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Parse token.</div>
 </dd>
-<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html#putFunction(java.lang.String,ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction(String, Function&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a></dt>
-<dd>
-<div class="block">Put function into the parser for recognize that.</div>
-</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParser.html#putFunction(java.lang.String,ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction(String, Function&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a></dt>
 <dd>
 <div class="block">Put new function for identification.</div>
 </dd>
-<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html#putFunction(java.util.List)">putFunction(List&lt;Function&lt;T&gt;&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a></dt>
-<dd>
-<div class="block">Put functions into the parser for recognize them.</div>
-</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html#putFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction(Function&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/BuildFunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">BuildFunctionParser</a></dt>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html#putFunction(java.lang.String,ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction(String, Function&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParserBuilder</a></dt>
 <dd>
 <div class="block">Put function into the parser for recognize that.</div>
+</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html#putFunction(java.util.List)">putFunction(List&lt;Function&lt;T&gt;&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParserBuilder</a></dt>
+<dd>
+<div class="block">Put functions into the parser for recognize them.</div>
 </dd>
 <dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParser.html#putFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction(Function&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a></dt>
 <dd>
 <div class="block">Put new function for identification.</div>
+</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html#putFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">putFunction(Function&lt;T&gt;)</a></span> - Method in class ru.nsu.fit.tsukanov.calculator.core.parser.<a href="ru/nsu/fit/tsukanov/calculator/core/parser/FunctionParserBuilder.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParserBuilder</a></dt>
+<dd>
+<div class="block">Put function into the parser for recognize that.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
