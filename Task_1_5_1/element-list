@@ -6,3 +6,5 @@ ru.nsu.fit.tsukanov.calculator.core
 ru.nsu.fit.tsukanov.calculator.core.Exceptions
 ru.nsu.fit.tsukanov.calculator.core.functions
 ru.nsu.fit.tsukanov.calculator.core.parser
+ru.nsu.fit.tsukanov.calculator.template.example
+ru.nsu.fit.tsukanov.calculator.template.stack
