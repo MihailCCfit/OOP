@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 /**
  * Complex number calculator. Calculates different operations. Template for Calculator.
+ * Use prefix notation for input string (or tokens).
  */
 public class StackCalculatorTemplate<T> implements Calculator<T> {
     protected final CalculatorParser<T> calculatorParser;
