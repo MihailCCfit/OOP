@@ -1,7 +1,7 @@
 package ru.nsu.fit.tsukanov.calculator.core.Exceptions;
 
-public class BadLexemeException extends CalculatorException{
-    public BadLexemeException(){
+public class BadLexemeException extends CalculatorException {
+    public BadLexemeException() {
         super("Bad lexeme");
     }
 

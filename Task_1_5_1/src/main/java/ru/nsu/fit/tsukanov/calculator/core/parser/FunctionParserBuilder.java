@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Useful and comfortable builder for functionParser.
+ *
  * @param <T> the number for calculator (function return type)
  */
 public class FunctionParserBuilder<T> {
@@ -22,7 +23,7 @@ public class FunctionParserBuilder<T> {
      * Put function into the parser for recognize that.
      *
      * @param representation string by which function will be recognized
-     * @param function the function that will be saved in the parser
+     * @param function       the function that will be saved in the parser
      * @return this for chaining methods
      */
     public FunctionParserBuilder<T> putFunction(String representation, Function<T> function) {
@@ -47,13 +48,14 @@ public class FunctionParserBuilder<T> {
      * @param functions the list of functions
      * @return this builder
      */
-    public FunctionParserBuilder<T> putFunction(List<Function<T>> functions){
+    public FunctionParserBuilder<T> putFunction(List<Function<T>> functions) {
         functions.forEach(this::putFunction);
         return this;
     }
 
     /**
      * Return built (created) function parser.
+     *
      * @return built parser
      */
 
