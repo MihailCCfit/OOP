@@ -2,27 +2,40 @@ package ru.nsu.fit.tsukanov.calculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexFunctionWrapper;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.complex.Functions.ComplexSub;
 import ru.nsu.fit.tsukanov.calculator.complex.StackCalculator;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
 import ru.nsu.fit.tsukanov.calculator.complex.recursive.RecursiveCalculator;
+import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.*;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
+import ru.nsu.fit.tsukanov.calculator.template.example.StackCalculatorInstance;
 
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class CalculatorTest {
+
+
+    public static Stream<Calculator<ComplexNumber>> calculatorStream() {
+        return Stream.of(new StackCalculatorInstance(), new StackCalculator(), new RecursiveCalculator());
+    }
+
+
     /**
      * Test calculator calculating with valid and invalid input.
      *
      * @throws CalculatorException if there is problem (can't be)
      */
-    @Test
-    void test() throws CalculatorException {
-        StackCalculator stackCalculator = new StackCalculator();
+    @ParameterizedTest
+    @MethodSource("calculatorStream")
+    void test(Calculator<ComplexNumber> stackCalculator) throws CalculatorException {
+
         stackCalculator.newLine("+ (1,2) (2,5)");
         try {
             Assertions.assertEquals(stackCalculator.calculates(), new ComplexNumber(3, 7));
@@ -77,9 +90,8 @@ public class CalculatorTest {
         stackCalculator.toString();
         Assertions.assertThrows(NullPointerException.class,
                 () -> stackCalculator.newLine(null));
-        Assertions.assertEquals(new ComplexNumber(0, 0), stackCalculator.calculates("sin (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(0, 0), stackCalculator.calculates("sin  (0,0)"));
         Assertions.assertEquals(new ComplexNumber(1, 0), stackCalculator.calculates("cos (0,0)"));
-
     }
 
     /**
@@ -144,8 +156,8 @@ public class CalculatorTest {
             }
 
             @Override
-            public ComplexNumber apply(ComplexNumber[] arguments) {
-                return Arrays.stream(arguments).max(Comparator.comparingDouble(ComplexNumber::module)).get();
+            public ComplexNumber apply(List<ComplexNumber> arguments) {
+                return arguments.stream().max(Comparator.comparingDouble(ComplexNumber::module)).get();
             }
 
             @Override
@@ -219,11 +231,12 @@ public class CalculatorTest {
         }
 
     }
-    @Test
-    void testRecursiveCalculator() throws CalculatorException {
-        RecursiveCalculator calculator = new RecursiveCalculator();
+
+    @ParameterizedTest
+    @MethodSource("calculatorStream")
+    void testRecursiveCalculator(Calculator<ComplexNumber> calculator) throws CalculatorException {
         System.out.println(calculator.calculates("(1,2)"));
-        Assertions.assertEquals(new ComplexNumber(1,2),
+        Assertions.assertEquals(new ComplexNumber(1, 2),
                 calculator.calculates("(1,2)"));
         Assertions.assertEquals(calculator.calculates("- (3,2) (2,3)"),
                 new ComplexNumber(1, -1));
@@ -244,7 +257,7 @@ public class CalculatorTest {
         Assertions.assertEquals(calculator.calculates("ln (-1,0)"),
                 new ComplexNumber(0, Math.PI));
         calculator.newLine("+ + (0,0) (0,0) (0,0)");
-        Assertions.assertEquals(calculator.calculates(), new ComplexNumber(0,0));
+        Assertions.assertEquals(calculator.calculates(), new ComplexNumber(0, 0));
 
         calculator.toString();
         Assertions.assertThrows(NullPointerException.class,
@@ -276,4 +289,5 @@ public class CalculatorTest {
         } catch (CalculatorException ignore) {
         }
     }
+
 }

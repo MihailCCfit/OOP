@@ -6,6 +6,9 @@ import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.NumberParser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ComplexNumberParser implements NumberParser<ComplexNumber> {
 
     /**
@@ -47,7 +50,7 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
             }
 
             @Override
-            public ComplexNumber apply(ComplexNumber[] arguments) {
+            public ComplexNumber apply(List<ComplexNumber> arguments) {
                 return new ComplexNumber(real, imag);
             }
 
@@ -67,7 +70,7 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
 
     @Override
     public ComplexNumber parseNumber(String token) throws CalculatorException {
-        return parseToken(token).apply(new ComplexNumber[0]);
+        return parseToken(token).apply(new ArrayList<>());
     }
 
     /**

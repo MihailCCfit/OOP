@@ -3,6 +3,8 @@ package ru.nsu.fit.tsukanov.calculator.complex.Functions;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
+import java.util.List;
+
 public class ComplexSub implements Function<ComplexNumber> {
     /**
      * Return arity of function.
@@ -21,8 +23,8 @@ public class ComplexSub implements Function<ComplexNumber> {
      * @return number
      */
     @Override
-    public ComplexNumber apply(ComplexNumber[] arguments) {
-        return ComplexNumber.sub(arguments[0], arguments[1]);
+    public ComplexNumber apply(List<ComplexNumber> arguments) {
+        return ComplexNumber.sub(arguments.get(0), arguments.get(1));
     }
 
     /**

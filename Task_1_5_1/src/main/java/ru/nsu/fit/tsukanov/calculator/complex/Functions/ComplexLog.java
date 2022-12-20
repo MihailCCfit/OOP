@@ -3,6 +3,8 @@ package ru.nsu.fit.tsukanov.calculator.complex.Functions;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
+import java.util.List;
+
 public class ComplexLog implements Function<ComplexNumber> {
     /**
      * Return arity of function.
@@ -22,8 +24,8 @@ public class ComplexLog implements Function<ComplexNumber> {
      * @return number
      */
     @Override
-    public ComplexNumber apply(ComplexNumber[] arguments) {
-        ComplexNumber number = arguments[0];
+    public ComplexNumber apply(List<ComplexNumber> arguments) {
+        ComplexNumber number = arguments.get(0);
         double x = number.real();
         double y = number.imaginary();
         var r = number.module();

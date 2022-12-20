@@ -3,6 +3,8 @@ package ru.nsu.fit.tsukanov.calculator.complex.Functions;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
+import java.util.List;
+
 public class ComplexCos implements Function<ComplexNumber> {
     /**
      * Return arity of function.
@@ -21,8 +23,8 @@ public class ComplexCos implements Function<ComplexNumber> {
      * @return number
      */
     @Override
-    public ComplexNumber apply(ComplexNumber[] arguments) {
-        ComplexNumber num = arguments[0];
+    public ComplexNumber apply(List<ComplexNumber> arguments) {
+        ComplexNumber num = arguments.get(0);
         double real = num.real();
         double im = num.imaginary();
         return new ComplexNumber(Math.cos(real) * Math.cosh(im),

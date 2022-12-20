@@ -30,4 +30,6 @@ public interface FunctionWrapper<T> {
         return "Arity: " + getArity()
                 + "Function: " + functionRepresentation();
     }
+
+    boolean available();
 }

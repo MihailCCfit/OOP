@@ -1,9 +1,6 @@
-package ru.nsu.fit.tsukanov.calculator.complex;
+package ru.nsu.fit.tsukanov.calculator.template.stack;
 
-import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexFunctionParser;
-import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
@@ -14,55 +11,31 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
+
 /**
- * Complex number calculator. Calculates different operations.
+ * Complex number calculator. Calculates different operations. Template for Calculator.
  */
-public class StackCalculator implements Calculator<ComplexNumber> {
-    private final CalculatorParser<ComplexNumber> calculatorParser;
-    private final Lexer lexer;
-    private final Deque<ComplexFunctionWrapper> functionWrappers = new LinkedList<>();
-    private String line = null;
-    private LinkedList<String> tokens;
-    private ComplexNumber result = null;
+public class StackCalculatorTemplate<T> implements Calculator<T> {
+    protected final CalculatorParser<T> calculatorParser;
+    protected final Lexer lexer;
+    protected final Deque<FunctionWrapperStack<T>> functionWrappers = new LinkedList<>();
+    protected String line = null;
+    protected LinkedList<String> tokens;
+    protected T result = null;
 
     /**
      * Creates stackCalculator, that has stack of functionWrapper. functionWrapper saves arguments
      * while it isn't available.
      */
 
-    public StackCalculator() {
-        var complexFunctionParser = ComplexFunctionParser.getParser();
-        var complexNumberParser = new ComplexNumberParser();
-        calculatorParser = new CalculatorParser<>(complexNumberParser, complexFunctionParser);
-        lexer = string -> string.split("\\s+");
+    public StackCalculatorTemplate(CalculatorParser<T> calculatorParser) {
+        this(calculatorParser, string -> string.split("\\s+"));
+    }
+
+    public StackCalculatorTemplate(CalculatorParser<T> calculatorParser, Lexer lexer) {
+        this.calculatorParser = calculatorParser;
+        this.lexer = lexer;
         tokens = new LinkedList<>();
-    }
-
-    /**
-     * Add token to the end of tokens.
-     *
-     * @param token token (function or number)
-     * @throws BadLexemeException if there is problem with parsing
-     */
-    public void addToken(String token) throws CalculatorException {
-        result = null;
-        calculatorParser.parse(token);
-        tokens.addLast(token);
-        next();
-    }
-
-    /**
-     * Clear all tokens, stack and result.
-     * @return old result
-     */
-
-    public ComplexNumber clear(){
-        var old = result;
-        result = null;
-        tokens.clear();
-        functionWrappers.clear();
-        line = null;
-        return old;
     }
 
 
@@ -78,8 +51,9 @@ public class StackCalculator implements Calculator<ComplexNumber> {
         if (tokens.isEmpty()) {
             return true;
         }
-        Function<ComplexNumber> foo = calculatorParser.parse(tokens.removeFirst());
-        functionWrappers.addLast(new ComplexFunctionWrapper(foo, this));
+        var tok = tokens.removeFirst();
+        Function<T> foo = calculatorParser.parse(tok);
+        functionWrappers.addLast(new FunctionWrapperStack<>(foo, this));
         while (functionWrappers.peekLast().available()) {
             var availableFunction = functionWrappers.removeLast();
             if (functionWrappers.isEmpty()) {
@@ -96,7 +70,7 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      * Tokenize input string to the tokens. Currently just separate by the space.
      */
 
-    private void tokenize() {
+    protected void tokenize() {
         tokens = Arrays.stream(lexer.getTokens(line)).collect(Collectors.toCollection(LinkedList::new));
     }
 
@@ -126,7 +100,7 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public ComplexNumber calculates() throws CalculatorException {
+    public T calculates() throws CalculatorException {
         while (true) {
             if (next()) {
                 break;
@@ -150,7 +124,7 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public ComplexNumber calculates(String line) throws CalculatorException {
+    public T calculates(String line) throws CalculatorException {
         newLine(line);
         return calculates();
     }
@@ -161,7 +135,7 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      * @return result
      */
     @Override
-    public ComplexNumber getResult() {
+    public T getResult() {
         return result;
     }
 
