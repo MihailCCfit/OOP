@@ -73,9 +73,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run check style
-        uses: nikitasavinov/checkstyle-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          checkstyle_config: '.github/google_checks.xml'
-          reporter: 'github-pr-check'
+#      - name: Run check style
+#        uses: nikitasavinov/checkstyle-action@master
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          checkstyle_config: '.github/google_checks.xml'
+#          reporter: 'github-pr-check'
