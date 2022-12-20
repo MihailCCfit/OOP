@@ -25,10 +25,27 @@ public class RecursiveCalculator implements Calculator<ComplexNumber> {
      */
 
     public RecursiveCalculator() {
-        var complexFunctionParser = ComplexFunctionParser.getParser();
-        var complexNumberParser = new ComplexNumberParser();
-        calculatorParser = new CalculatorParser<>(complexNumberParser, complexFunctionParser);
-        lexer = string -> string.split(" ");
+        this(new CalculatorParser<>(new ComplexNumberParser(), ComplexFunctionParser.getParser()));
+    }
+
+    /**
+     * Creates stackCalculator, that has stack of functionWrapper.
+     *
+     * @param calculatorParser the parser for parsing tokens
+     */
+    public RecursiveCalculator(CalculatorParser<ComplexNumber> calculatorParser) {
+        this(calculatorParser, string -> string.split("\\s+"));
+    }
+
+    /**
+     * Creates stackCalculator, that has stack of functionWrapper.
+     *
+     * @param calculatorParser the parser for parsing tokens
+     * @param lexer            for tokenize
+     */
+    public RecursiveCalculator(CalculatorParser<ComplexNumber> calculatorParser, Lexer lexer) {
+        this.calculatorParser = calculatorParser;
+        this.lexer = lexer;
         tokens = new LinkedList<>();
     }
 
@@ -134,4 +151,6 @@ public class RecursiveCalculator implements Calculator<ComplexNumber> {
                 ", result=" + result +
                 '}';
     }
+
+
 }

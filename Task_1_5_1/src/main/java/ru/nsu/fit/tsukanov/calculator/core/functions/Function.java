@@ -1,5 +1,7 @@
 package ru.nsu.fit.tsukanov.calculator.core.functions;
 
+import java.util.List;
+
 public interface Function<T> {
     /**
      * Return arity of function.
@@ -14,7 +16,7 @@ public interface Function<T> {
      * @param arguments arguments
      * @return number
      */
-    T apply(T[] arguments);
+    T apply(List<T> arguments);
 
     /**
      * String representation.

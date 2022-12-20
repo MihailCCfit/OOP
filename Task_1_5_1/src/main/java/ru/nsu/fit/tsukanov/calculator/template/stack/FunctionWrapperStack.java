@@ -1,33 +1,34 @@
-package ru.nsu.fit.tsukanov.calculator.complex;
+package ru.nsu.fit.tsukanov.calculator.template.stack;
 
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.NotEnoughArguments;
+import ru.nsu.fit.tsukanov.calculator.core.functions.AbstractFunctionWrapper;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
-import ru.nsu.fit.tsukanov.calculator.template.stack.FunctionWrapperStack;
 
 import java.util.LinkedList;
 
-public class ComplexFunctionWrapper extends FunctionWrapperStack<ComplexNumber> {
-    private final LinkedList<ComplexNumber> arguments = new LinkedList<>();
+public class FunctionWrapperStack<T> extends AbstractFunctionWrapper<T> {
+
+    private final LinkedList<T> arguments = new LinkedList<>();
 
     /**
      * Adds number (argument) to the end of arguments list .
      *
-     * @param complexNumber the number that will be added to the list of arguments.
+     * @param number the number that will be added to the list of arguments.
      * @throws CalculatorException if there is problem with argument
      */
-    public void addArg(ComplexNumber complexNumber) throws CalculatorException {
-        if (complexNumber == null) {
+    public void addArg(T number) throws CalculatorException {
+        if (number == null) {
             throw new NullPointerException("Complex number is null");
         }
         if (arguments.size() >= getArity()) {
             throw new CalculatorException("Too much arguments");
         }
-        arguments.addLast(complexNumber);
+        arguments.addLast(number);
     }
 
-    public ComplexFunctionWrapper(Function<ComplexNumber> function, Calculator<ComplexNumber> calculator) {
+    public FunctionWrapperStack(Function<T> function, Calculator<T> calculator) {
         super(function, calculator);
     }
 
@@ -46,7 +47,7 @@ public class ComplexFunctionWrapper extends FunctionWrapperStack<ComplexNumber> 
      * @return number
      */
     @Override
-    public ComplexNumber apply() throws CalculatorException {
+    public T apply() throws CalculatorException {
         if (arguments.size() < getArity()) {
             throw new NotEnoughArguments("For function: {" + function.representation() + "} Needs:" + getArity()
                     + "| Current:" + arguments.size() + " args: " + arguments);
