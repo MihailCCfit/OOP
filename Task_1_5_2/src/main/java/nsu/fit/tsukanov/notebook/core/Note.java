@@ -7,16 +7,16 @@ import java.util.Date;
 
 
 @JsonSerialize
-public record Note (@JsonProperty("id") Long id,
-                    @JsonProperty("name") String name,
-                    @JsonProperty("date") Date date,
-                    @JsonProperty("text") String text){
+public record Note(
+        @JsonProperty("name") String name,
+        @JsonProperty("date") Date date,
+        @JsonProperty("text") String text) {
 
     @Override
     public String toString() {
         return "Note" +
                 "(" + name + "):\n" +
                 "Date: " + date +
-                "\n" + text;
+                "\nText:\n" + text;
     }
 }
