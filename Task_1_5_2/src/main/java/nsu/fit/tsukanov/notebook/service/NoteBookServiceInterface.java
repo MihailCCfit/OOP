@@ -1,4 +1,4 @@
-package nsu.fit.tsukanov.service;
+package nsu.fit.tsukanov.notebook.service;
 
 import nsu.fit.tsukanov.notebook.core.Note;
 

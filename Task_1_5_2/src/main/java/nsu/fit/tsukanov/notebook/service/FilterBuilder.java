@@ -1,4 +1,4 @@
-package nsu.fit.tsukanov.service;
+package nsu.fit.tsukanov.notebook.service;
 
 import nsu.fit.tsukanov.notebook.core.Note;
 
@@ -27,13 +27,6 @@ public class FilterBuilder {
     public FilterBuilder before(Date date) {
         if (date != null) {
             noteStream = noteStream.filter((x) -> x.date().before(date));
-        }
-        return this;
-    }
-
-    public FilterBuilder containsInHeader(String word) {
-        if (word != null) {
-            noteStream = noteStream.filter((x) -> x.name().contains(word));
         }
         return this;
     }

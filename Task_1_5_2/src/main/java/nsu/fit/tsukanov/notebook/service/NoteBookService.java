@@ -1,4 +1,4 @@
-package nsu.fit.tsukanov.service;
+package nsu.fit.tsukanov.notebook.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nsu.fit.tsukanov.notebook.core.Configuration;
@@ -28,15 +28,10 @@ public class NoteBookService implements NoteBookServiceInterface {
         }
     }
 
-    public static boolean removeBook() {
-        return removeBook(null);
+    public void clear(){
+        noteBook.noteTable().clear();
     }
 
-    public static boolean removeBook(String name) {
-        String noteBookPath = Configuration.noteBookPath(name);
-        File noteBookFile = new File(noteBookPath);
-        return noteBookFile.delete();
-    }
 
     public boolean removeThisBook() {
         String noteBookPath = Configuration.noteBookPath(noteBook.noteBookName());
