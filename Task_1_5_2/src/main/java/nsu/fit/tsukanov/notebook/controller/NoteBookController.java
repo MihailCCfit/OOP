@@ -51,16 +51,13 @@ public class NoteBookController implements Callable<Integer> {
     String bookName = null;
 
 
-    // this example implements Callable, so parsing, error handling
-    // and handling user requests for usage help or version help
-    // can be done with one line of code.
 //    public static void main(String... args) {
 //        int exitCode = new CommandLine(new NoteBookController()).execute("-bn", "MyBook","-add", "First day", "Hello world!");
 //        System.exit(exitCode);
 //    }
 
     @Override
-    public Integer call() { // the business logic...
+    public Integer call() {
         System.out.println("Start");
         NoteBookService noteBookService = null;
         try {

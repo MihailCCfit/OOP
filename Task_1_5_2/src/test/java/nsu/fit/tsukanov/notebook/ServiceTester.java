@@ -29,12 +29,15 @@ public class ServiceTester {
             throw new RuntimeException(e);
         }
         Assertions.assertTrue(service.getNotes().toString().contains("Note1"));
-        Assertions.assertTrue(service.getAllNoteNamesFiltered(date, new Date(), List.of("Note")).toString().contains("Note1"));
+        Assertions.assertTrue(
+                service.getAllNoteNamesFiltered(date, new Date(), List.of("Note"))
+                        .toString().contains("Note1"));
         Assertions.assertSame(service.getNote("Note1").text(), note.text());
         service.removeNote("Note1");
         Assertions.assertFalse(service.getNotes().toString().contains("Note1"));
         Assertions.assertFalse(service.toString().isEmpty());
-        var noteNames = service.getAllNoteNamesFiltered(null, null, List.of("Note"));
+        var noteNames = service
+                .getAllNoteNamesFiltered(null, null, List.of("Note"));
         Assertions.assertFalse(noteNames.toString().contains("Note"));
         try {
 //            service.removeThisBook();

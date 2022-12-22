@@ -1,6 +1,5 @@
 package nsu.fit.tsukanov.notebook.controller;
 
-import nsu.fit.tsukanov.notebook.core.Configuration;
 import nsu.fit.tsukanov.notebook.service.NoteBookService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class ControllerTester {
     @Test
-    void tst(){
+    void tst() {
         NoteBookController bookController = new NoteBookController();
         bookController.show = true;
         bookController.call();
