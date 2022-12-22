@@ -7,6 +7,7 @@ public class Configuration {
     static public final String BasicNoteBookName = "notebook";
     static public final String ConfName = "configuration.json";
 
+    private Configuration(){}
     static public String configurationPath() {
         return BasePath + ConfName;
     }

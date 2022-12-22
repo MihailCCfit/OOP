@@ -1,7 +1,7 @@
-package nsu.fit.tsukanov.Controller;
+package nsu.fit.tsukanov.notebook.controller;
 
 import nsu.fit.tsukanov.notebook.core.Note;
-import nsu.fit.tsukanov.service.NoteBookService;
+import nsu.fit.tsukanov.notebook.service.NoteBookService;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -43,12 +43,12 @@ public class NoteBookController implements Callable<Integer> {
 
     @Parameters(index = "0..*",
             description = "The arguments for filtering notes that will be showed")
-    private List<String> words = null;
+    List<String> words = null;
 
     @Option(names = {"-bn", "--bookname"},
             arity = "1",
             description = "Nothing if basic, some - for specified")
-    private String bookName = null;
+    String bookName = null;
 
 
     // this example implements Callable, so parsing, error handling
@@ -77,6 +77,11 @@ public class NoteBookController implements Callable<Integer> {
             if (res == null) {
                 System.out.println("There is no note for remove: {" + rmNote + "}");
             }
+            try {
+                noteBookService.saveBook();
+            } catch (IOException e) {
+                System.err.println(e);
+            }
         }
 
         if (addList != null) {
@@ -90,7 +95,7 @@ public class NoteBookController implements Callable<Integer> {
             }
             System.out.println("Note saved, previous: " + (prevNote == null ? "" : prevNote));
         }
-        System.out.println("End");
+//        System.out.println("End");
         return 0;
     }
 }
