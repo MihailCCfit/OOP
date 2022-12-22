@@ -2,6 +2,7 @@ package nsu.fit.tsukanov.notebook.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.TreeMap;
 
 @JsonSerialize

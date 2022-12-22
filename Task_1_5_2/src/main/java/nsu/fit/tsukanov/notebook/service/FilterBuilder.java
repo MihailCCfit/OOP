@@ -13,6 +13,7 @@ public class FilterBuilder {
     FilterBuilder(Stream<Note> noteStream) {
         this.noteStream = noteStream;
     }
+
     FilterBuilder(List<Note> noteList) {
         this(noteList.stream());
     }

@@ -28,7 +28,7 @@ public class NoteBookService implements NoteBookServiceInterface {
         }
     }
 
-    public void clear(){
+    public void clear() {
         noteBook.noteTable().clear();
     }
 
