@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"nsu.fit.tsukanov.notebook.controller"},{"l":"nsu.fit.tsukanov.notebook.core"},{"l":"nsu.fit.tsukanov.notebook.service"}];updateSearchResults();
