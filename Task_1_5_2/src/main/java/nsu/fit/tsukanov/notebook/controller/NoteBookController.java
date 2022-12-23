@@ -19,7 +19,7 @@ public class NoteBookController implements Callable<Integer> {
 
     @Option(names = "-add",
             arity = "2",
-            description = "add not {<name> <text>}")
+            description = "add note to ")
     List<String> addList = null;
 
     @Option(names = "-rm",
@@ -49,12 +49,6 @@ public class NoteBookController implements Callable<Integer> {
             arity = "1",
             description = "Nothing if basic, some - for specified")
     String bookName = null;
-
-
-//    public static void main(String... args) {
-//        int exitCode = new CommandLine(new NoteBookController()).execute("-bn", "MyBook","-add", "First day", "Hello world!");
-//        System.exit(exitCode);
-//    }
 
     @Override
     public Integer call() {
