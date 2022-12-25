@@ -151,6 +151,6 @@ public class AnonCalculatorTest {
                 string -> string.split(";\\s*")
         );
 
-        Assertions.assertEquals(12 - Math.E, calculator.calculates("max; +; 5; 3; -; 12; e"));
+        Assertions.assertEquals(12 - Math.E, calculator.calculate("max; +; 5; 3; -; 12; e"));
     }
 }
