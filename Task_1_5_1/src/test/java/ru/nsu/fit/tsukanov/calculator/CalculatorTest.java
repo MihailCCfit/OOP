@@ -38,26 +38,26 @@ public class CalculatorTest {
 
         stackCalculator.newLine("+ (1,2) (2,5)");
         try {
-            Assertions.assertEquals(stackCalculator.calculates(), new ComplexNumber(3, 7));
+            Assertions.assertEquals(stackCalculator.calculate(), new ComplexNumber(3, 7));
             System.out.println(stackCalculator.getInformation());
             Assertions.assertEquals(stackCalculator.getResult(), new ComplexNumber(3, 7));
-            Assertions.assertEquals(stackCalculator.calculates("- (3,2) (2,3)"),
+            Assertions.assertEquals(stackCalculator.calculate("- (3,2) (2,3)"),
                     new ComplexNumber(1, -1));
-            Assertions.assertEquals(stackCalculator.calculates("* (2,0) (2,3)"),
+            Assertions.assertEquals(stackCalculator.calculate("* (2,0) (2,3)"),
                     new ComplexNumber(4, 6));
-            Assertions.assertEquals(stackCalculator.calculates("/ (4,3) (2,0)"),
+            Assertions.assertEquals(stackCalculator.calculate("/ (4,3) (2,0)"),
                     new ComplexNumber(2, 1.5));
-            Assertions.assertEquals(stackCalculator.calculates("ln (1,0)"),
+            Assertions.assertEquals(stackCalculator.calculate("ln (1,0)"),
                     new ComplexNumber(0, 0));
-            Assertions.assertEquals(stackCalculator.calculates("ln (0,1)"),
+            Assertions.assertEquals(stackCalculator.calculate("ln (0,1)"),
                     new ComplexNumber(0, Math.PI / 2));
-            Assertions.assertEquals(stackCalculator.calculates("ln (0,-1)"),
+            Assertions.assertEquals(stackCalculator.calculate("ln (0,-1)"),
                     new ComplexNumber(0, -Math.PI / 2));
-            Assertions.assertEquals(stackCalculator.calculates("ln (1,1)"),
+            Assertions.assertEquals(stackCalculator.calculate("ln (1,1)"),
                     new ComplexNumber(Math.log(Math.sqrt(2)), Math.PI / 4));
-            Assertions.assertEquals(stackCalculator.calculates("ln (-1,-1)"),
+            Assertions.assertEquals(stackCalculator.calculate("ln (-1,-1)"),
                     new ComplexNumber(Math.log(Math.sqrt(2)), -3 * Math.PI / 4));
-            Assertions.assertEquals(stackCalculator.calculates("ln (-1,0)"),
+            Assertions.assertEquals(stackCalculator.calculate("ln (-1,0)"),
                     new ComplexNumber(0, Math.PI));
 
         } catch (CalculatorException e) {
@@ -65,33 +65,33 @@ public class CalculatorTest {
         }
         try {
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("(3,2) (2,3)"));
+                    () -> stackCalculator.calculate("(3,2) (2,3)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("3,2)"));
+                    () -> stackCalculator.calculate("3,2)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates(""));
+                    () -> stackCalculator.calculate(""));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("(3,2"));
+                    () -> stackCalculator.calculate("(3,2"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("(3,2,5)"));
+                    () -> stackCalculator.calculate("(3,2,5)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("(3.5.5,2)"));
+                    () -> stackCalculator.calculate("(3.5.5,2)"));
 
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("+"));
+                    () -> stackCalculator.calculate("+"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("aboba"));
+                    () -> stackCalculator.calculate("aboba"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculates("+ 5;"));
-            Assertions.assertEquals(stackCalculator.calculates("/ (4,3) (2,0) (2,1)"),
+                    () -> stackCalculator.calculate("+ 5;"));
+            Assertions.assertEquals(stackCalculator.calculate("/ (4,3) (2,0) (2,1)"),
                     new ComplexNumber(2, 1.5));
         } catch (CalculatorException ignore) {
         }
         stackCalculator.toString();
         Assertions.assertThrows(NullPointerException.class,
                 () -> stackCalculator.newLine(null));
-        Assertions.assertEquals(new ComplexNumber(0, 0), stackCalculator.calculates("sin  (0,0)"));
-        Assertions.assertEquals(new ComplexNumber(1, 0), stackCalculator.calculates("cos (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(0, 0), stackCalculator.calculate("sin  (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(1, 0), stackCalculator.calculate("cos (0,0)"));
     }
 
     /**
@@ -221,7 +221,7 @@ public class CalculatorTest {
             calculator.addToken("+");
             calculator.addToken("(1,2)");
             calculator.addToken("(3,2)");
-            Assertions.assertEquals(new ComplexNumber(4, 4), calculator.calculates());
+            Assertions.assertEquals(new ComplexNumber(4, 4), calculator.calculate());
             var old = calculator.clear();
             calculator.newLine("- (4,4)");
             calculator.getInformation();
@@ -235,56 +235,56 @@ public class CalculatorTest {
     @ParameterizedTest
     @MethodSource("calculatorStream")
     void testRecursiveCalculator(Calculator<ComplexNumber> calculator) throws CalculatorException {
-        System.out.println(calculator.calculates("(1,2)"));
+        System.out.println(calculator.calculate("(1,2)"));
         Assertions.assertEquals(new ComplexNumber(1, 2),
-                calculator.calculates("(1,2)"));
-        Assertions.assertEquals(calculator.calculates("- (3,2) (2,3)"),
+                calculator.calculate("(1,2)"));
+        Assertions.assertEquals(calculator.calculate("- (3,2) (2,3)"),
                 new ComplexNumber(1, -1));
-        Assertions.assertEquals(calculator.calculates("* (2,0) (2,3)"),
+        Assertions.assertEquals(calculator.calculate("* (2,0) (2,3)"),
                 new ComplexNumber(4, 6));
-        Assertions.assertEquals(calculator.calculates("/ (4,3) (2,0)"),
+        Assertions.assertEquals(calculator.calculate("/ (4,3) (2,0)"),
                 new ComplexNumber(2, 1.5));
-        Assertions.assertEquals(calculator.calculates("ln (1,0)"),
+        Assertions.assertEquals(calculator.calculate("ln (1,0)"),
                 new ComplexNumber(0, 0));
-        Assertions.assertEquals(calculator.calculates("ln (0,1)"),
+        Assertions.assertEquals(calculator.calculate("ln (0,1)"),
                 new ComplexNumber(0, Math.PI / 2));
-        Assertions.assertEquals(calculator.calculates("ln (0,-1)"),
+        Assertions.assertEquals(calculator.calculate("ln (0,-1)"),
                 new ComplexNumber(0, -Math.PI / 2));
-        Assertions.assertEquals(calculator.calculates("ln (1,1)"),
+        Assertions.assertEquals(calculator.calculate("ln (1,1)"),
                 new ComplexNumber(Math.log(Math.sqrt(2)), Math.PI / 4));
-        Assertions.assertEquals(calculator.calculates("ln (-1,-1)"),
+        Assertions.assertEquals(calculator.calculate("ln (-1,-1)"),
                 new ComplexNumber(Math.log(Math.sqrt(2)), -3 * Math.PI / 4));
-        Assertions.assertEquals(calculator.calculates("ln (-1,0)"),
+        Assertions.assertEquals(calculator.calculate("ln (-1,0)"),
                 new ComplexNumber(0, Math.PI));
         calculator.newLine("+ + (0,0) (0,0) (0,0)");
-        Assertions.assertEquals(calculator.calculates(), new ComplexNumber(0, 0));
+        Assertions.assertEquals(calculator.calculate(), new ComplexNumber(0, 0));
 
         calculator.toString();
         Assertions.assertThrows(NullPointerException.class,
                 () -> calculator.newLine(null));
-        Assertions.assertEquals(new ComplexNumber(0, 0), calculator.calculates("sin (0,0)"));
-        Assertions.assertEquals(new ComplexNumber(1, 0), calculator.calculates("cos (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(0, 0), calculator.calculate("sin (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(1, 0), calculator.calculate("cos (0,0)"));
         try {
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("(3,2) (2,3)"));
+                    () -> calculator.calculate("(3,2) (2,3)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("3,2)"));
+                    () -> calculator.calculate("3,2)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates(""));
+                    () -> calculator.calculate(""));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("(3,2"));
+                    () -> calculator.calculate("(3,2"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("(3,2,5)"));
+                    () -> calculator.calculate("(3,2,5)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("(3.5.5,2)"));
+                    () -> calculator.calculate("(3.5.5,2)"));
 
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("+"));
+                    () -> calculator.calculate("+"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("aboba"));
+                    () -> calculator.calculate("aboba"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> calculator.calculates("+ 5;"));
-            Assertions.assertEquals(calculator.calculates("/ (4,3) (2,0) (2,1)"),
+                    () -> calculator.calculate("+ 5;"));
+            Assertions.assertEquals(calculator.calculate("/ (4,3) (2,0) (2,1)"),
                     new ComplexNumber(2, 1.5));
         } catch (CalculatorException ignore) {
         }

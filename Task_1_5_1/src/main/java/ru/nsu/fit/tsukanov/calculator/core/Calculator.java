@@ -17,7 +17,7 @@ public interface Calculator<T> {
      * @return result
      * @throws CalculatorException if there is problem
      */
-    T calculates() throws CalculatorException;
+    T calculate() throws CalculatorException;
 
     /**
      * Calculates result.
@@ -26,7 +26,7 @@ public interface Calculator<T> {
      * @return result
      * @throws CalculatorException if there is problem
      */
-    T calculates(String line) throws CalculatorException;
+    T calculate(String line) throws CalculatorException;
 
     /**
      * Return prev result.

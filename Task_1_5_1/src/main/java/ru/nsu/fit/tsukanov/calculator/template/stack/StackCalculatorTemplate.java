@@ -101,7 +101,7 @@ public class StackCalculatorTemplate<T> implements Calculator<T> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public T calculates() throws CalculatorException {
+    public T calculate() throws CalculatorException {
         while (true) {
             if (next()) {
                 break;
@@ -125,9 +125,9 @@ public class StackCalculatorTemplate<T> implements Calculator<T> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public T calculates(String line) throws CalculatorException {
+    public T calculate(String line) throws CalculatorException {
         newLine(line);
-        return calculates();
+        return calculate();
     }
 
     /**

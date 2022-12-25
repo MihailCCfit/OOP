@@ -98,7 +98,7 @@ public class RecursiveCalculator implements Calculator<ComplexNumber> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public ComplexNumber calculates() throws CalculatorException {
+    public ComplexNumber calculate() throws CalculatorException {
         result = next();
         if (tokens.size() != 0) {
             throw new CalculatorException("Result:" + result + "There are not parsed tokens: " + tokens);
@@ -115,9 +115,9 @@ public class RecursiveCalculator implements Calculator<ComplexNumber> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public ComplexNumber calculates(String line) throws CalculatorException {
+    public ComplexNumber calculate(String line) throws CalculatorException {
         newLine(line);
-        return calculates();
+        return calculate();
     }
 
     /**

@@ -127,7 +127,7 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public ComplexNumber calculates() throws CalculatorException {
+    public ComplexNumber calculate() throws CalculatorException {
         while (true) {
             if (next()) {
                 break;
@@ -151,9 +151,9 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      * @throws CalculatorException if there is problem
      */
     @Override
-    public ComplexNumber calculates(String line) throws CalculatorException {
+    public ComplexNumber calculate(String line) throws CalculatorException {
         newLine(line);
-        return calculates();
+        return calculate();
     }
 
     /**
