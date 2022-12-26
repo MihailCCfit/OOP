@@ -10,12 +10,20 @@ import picocli.CommandLine.Parameters;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
+/**
+ * Controls notebook and notes.
+ */
 @Command(name = "notebook", mixinStandardHelpOptions = true,
         version = "notebook " + Configuration.version,
         subcommands = {NoteAdd.class, NoteRemove.class, NoteShow.class},
         description = "Save, show notes.")
 public class NoteBookController implements Callable<Integer> {
 
+
+    /**
+     * Set current book.
+     * @param bookName the name of which book it needs to open
+     */
     @Option(names = {"-bn", "--bookname"},
             arity = "1",
             description = "Nothing if basic, some - for specified",
@@ -27,6 +35,10 @@ public class NoteBookController implements Callable<Integer> {
         }
     }
 
+    /**
+     * Remove noteBook with specified name or default noteBook.
+     * @param bookName the name of book for removing
+     */
     @Command(name = "bookRemove",header = "book remove", description = "Remove this noteBook")
     void bookRemove(@Parameters(index = "0", arity = "0..1") String bookName) {
         NoteBookService service;

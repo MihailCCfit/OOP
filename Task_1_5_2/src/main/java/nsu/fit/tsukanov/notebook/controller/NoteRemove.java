@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+/**
+ * Remove note from the current noteBook.
+ */
 @Command(name = "remove", aliases = {"rm"},
         version = "remove " + Configuration.version,
         description = "Remove note from the current noteBook.")
