@@ -13,19 +13,22 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class NoteBookService implements NoteBookServiceInterface {
-    private NoteBook noteBook;
+    private NoteBook noteBook = null;
 
-    public void openBook(String name) throws IOException {
+    public boolean wasOpened(){
+        return noteBook!=null;
+    }
+
+    public boolean openBook(String name) throws IOException {
         String noteBookPath = Configuration.noteBookPath(name);
         File noteBookFile = new File(noteBookPath);
 
         if (noteBookFile.exists()) {
             ObjectMapper mapper = new ObjectMapper();
             noteBook = mapper.readValue(noteBookFile, NoteBook.class);
-        } else {
-            noteBook = new NoteBook(Configuration.getNoteBookName(name), new TreeMap<>());
-            saveBook();
+            return true;
         }
+        return false;
     }
 
     public void clear() {
@@ -51,8 +54,17 @@ public class NoteBookService implements NoteBookServiceInterface {
     }
 
     public NoteBookService(String noteBookName) throws IOException {
-        openBook(noteBookName);
+        this(noteBookName, false);
     }
+    public NoteBookService(String noteBookName, boolean createNew) throws IOException {
+        if (!openBook(noteBookName) && createNew){
+            noteBook = new NoteBook(Configuration.getNoteBookName(noteBookName), new TreeMap<>());
+            saveBook();
+        }
+
+
+    }
+
 
     public List<String> getAllNoteNames() {
         return noteBook.noteTable().keySet().stream().toList();

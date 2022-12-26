@@ -57,4 +57,15 @@ public class FilterBuilder {
         return noteStream.collect(Collectors.toList());
     }
 
+    static public String showFilter(Date after, Date before, List<String> words) {
+        String basic = "Show all notes";
+        if (after != null || before != null || words != null) {
+            basic += " that";
+        }
+        String afterString = after != null ? " created after " + after : "";
+        String beforeString = after != null ? " created before " + before : "";
+        String wordsString = after != null ? " contains in the heading " + words : "";
+        return basic + afterString + beforeString + wordsString + ".";
+    }
+
 }
