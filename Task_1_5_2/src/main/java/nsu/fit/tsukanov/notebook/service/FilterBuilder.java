@@ -64,8 +64,9 @@ public class FilterBuilder {
         }
         String afterString = after != null ? " created after " + after : "";
         String beforeString = after != null ? " created before " + before : "";
-        String wordsString = after != null ? " contains in the heading " + words : "";
-        return basic + afterString + beforeString + wordsString + ".";
+        String wordsString = words != null ? " contains in the heading ["
+                + words.stream().reduce((x, y) -> x+ ", " + y).get() + "]": "";
+        return basic + afterString + beforeString + wordsString + ":";
     }
 
 }

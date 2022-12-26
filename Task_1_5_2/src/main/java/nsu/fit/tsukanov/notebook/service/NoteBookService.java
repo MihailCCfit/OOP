@@ -30,13 +30,22 @@ public class NoteBookService implements NoteBookServiceInterface {
         }
         return false;
     }
+    public void reopenBook() throws IOException {
+        openBook(noteBook.noteBookName());
+    }
 
     public void clear() {
-        noteBook.noteTable().clear();
+        if (noteBook != null){
+            noteBook.noteTable().clear();
+        }
     }
 
 
     public boolean removeThisBook() {
+        if (noteBook == null){
+            throw new IllegalStateException("there is no noteBook");
+//            return false;
+        }
         String noteBookPath = Configuration.noteBookPath(noteBook.noteBookName());
         File noteBookFile = new File(noteBookPath);
         return noteBookFile.delete();
@@ -51,6 +60,9 @@ public class NoteBookService implements NoteBookServiceInterface {
 
     public NoteBookService() throws IOException {
         this(null);
+    }
+    public NoteBookService(boolean createNew) throws IOException {
+        this(null, createNew);
     }
 
     public NoteBookService(String noteBookName) throws IOException {
