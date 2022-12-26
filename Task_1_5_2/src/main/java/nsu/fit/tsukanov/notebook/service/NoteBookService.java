@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class NoteBookService implements NoteBookServiceInterface {
     private NoteBook noteBook = null;
 
-    public boolean wasOpened(){
-        return noteBook!=null;
+    public boolean wasOpened() {
+        return noteBook != null;
     }
 
     public boolean openBook(String name) throws IOException {
@@ -30,19 +30,20 @@ public class NoteBookService implements NoteBookServiceInterface {
         }
         return false;
     }
+
     public void reopenBook() throws IOException {
         openBook(noteBook.noteBookName());
     }
 
     public void clear() {
-        if (noteBook != null){
+        if (noteBook != null) {
             noteBook.noteTable().clear();
         }
     }
 
 
     public boolean removeThisBook() {
-        if (noteBook == null){
+        if (noteBook == null) {
             throw new IllegalStateException("there is no noteBook");
 //            return false;
         }
@@ -61,6 +62,7 @@ public class NoteBookService implements NoteBookServiceInterface {
     public NoteBookService() throws IOException {
         this(null);
     }
+
     public NoteBookService(boolean createNew) throws IOException {
         this(null, createNew);
     }
@@ -68,8 +70,9 @@ public class NoteBookService implements NoteBookServiceInterface {
     public NoteBookService(String noteBookName) throws IOException {
         this(noteBookName, false);
     }
+
     public NoteBookService(String noteBookName, boolean createNew) throws IOException {
-        if (!openBook(noteBookName) && createNew){
+        if (!openBook(noteBookName) && createNew) {
             noteBook = new NoteBook(Configuration.getNoteBookName(noteBookName), new TreeMap<>());
             saveBook();
         }
@@ -77,15 +80,30 @@ public class NoteBookService implements NoteBookServiceInterface {
 
     }
 
-
+    /**
+     * Return list of notes' names.
+     *
+     * @return list of notes' names
+     */
     public List<String> getAllNoteNames() {
         return noteBook.noteTable().keySet().stream().toList();
     }
 
+    /**
+     * Return list of notes' names filtered by the date.
+     *
+     * @return list of notes' names
+     */
     public List<String> getAllNoteNamesFiltered(Date from, Date to, List<String> words) {
         return getFilteredNotes(from, to, words).stream().map(Note::name).collect(Collectors.toList());
     }
 
+    /**
+     * Find the note that has specified name.
+     *
+     * @param noteName the name for finding
+     * @return the note that has specified name
+     */
     public Note getNote(String noteName) {
         return noteBook.noteTable().get(noteName);
     }

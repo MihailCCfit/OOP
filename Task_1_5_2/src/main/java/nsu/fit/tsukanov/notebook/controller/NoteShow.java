@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+/**
+ * Show notes of the current noteBook.
+ */
 @Command(name = "show", aliases = {"sh"}, mixinStandardHelpOptions = true,
         version = "show " + Configuration.version,
         description = "show notes of the current noteBook.")
@@ -35,7 +38,6 @@ public class NoteShow implements Callable<Integer> {
      * Computes a result, or throws an exception if unable to do so.
      *
      * @return computed result
-     * @throws Exception if unable to compute a result
      */
     @Override
     public Integer call() {

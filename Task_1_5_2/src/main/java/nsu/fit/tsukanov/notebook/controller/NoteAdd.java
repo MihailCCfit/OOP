@@ -10,6 +10,9 @@ import picocli.CommandLine.Parameters;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
+/**
+ * Add note to the current noteBook.
+ */
 @Command(name = "add",
         version = "add " + Configuration.version,
         description = "Add note to the current noteBook.")
