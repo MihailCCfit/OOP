@@ -12,6 +12,7 @@ public class ControllerTester {
     @Test
     void tst() {
         NoteBookController bookController = new NoteBookController();
+        bookController.call();
         CommandLine commandLine = new CommandLine(bookController);
         commandLine.execute("bookRemove");
         commandLine.execute("add", "Header", "Body", "-c");

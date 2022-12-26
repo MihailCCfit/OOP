@@ -53,10 +53,8 @@ public class NoteBookController implements Callable<Integer> {
             service.removeThisBook();
             System.out.println(
                     "NoteBook (" + bookName + ") was deleted");
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException | IOException e) {
             System.out.println("There is no noteBook with this name: " + bookName);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
 
     }
