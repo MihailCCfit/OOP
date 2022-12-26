@@ -38,6 +38,7 @@ public class ControllerTester {
             Assertions.assertEquals(1, res);
             commandLine.execute("-bn", "NotBook", "show");
             commandLine.execute("bookRemove");
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

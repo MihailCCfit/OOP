@@ -11,17 +11,19 @@ import java.io.IOException;
 import java.util.concurrent.Callable;
 
 /**
- * Controls notebook and notes.
+ * Controls notebook and notes. By the "-bn" you can use different noteBooks.
  */
-@Command(name = "notebook", mixinStandardHelpOptions = true,
+@Command(name = "smallNoteBook", aliases = {"notebook", "snb", "smallBook"}, mixinStandardHelpOptions = true,
         version = "notebook " + Configuration.version,
         subcommands = {NoteAdd.class, NoteRemove.class, NoteShow.class},
-        description = "Save, show notes.")
+        description = "Save notes by adding, remove notes, show notes filtering by dates\n" +
+                "You can use different noteBooks")
 public class NoteBookController implements Callable<Integer> {
 
 
     /**
      * Set current book.
+     *
      * @param bookName the name of which book it needs to open
      */
     @Option(names = {"-bn", "--bookname"},
@@ -37,25 +39,24 @@ public class NoteBookController implements Callable<Integer> {
 
     /**
      * Remove noteBook with specified name or default noteBook.
+     *
      * @param bookName the name of book for removing
      */
-    @Command(name = "bookRemove",header = "book remove", description = "Remove this noteBook")
+    @Command(name = "bookRemove", header = "book remove", description = "Remove this noteBook")
     void bookRemove(@Parameters(index = "0", arity = "0..1") String bookName) {
         NoteBookService service;
-        if (bookName == null){
+        if (bookName == null) {
             bookName = Configuration.BasicNoteBookName;
         }
         try {
             service = new NoteBookService(bookName);
-            var wasDeleted = service.removeThisBook();
-            System.out.println(wasDeleted?
-                    "NoteBook ("+bookName + ") was deleted"
-                    : "Note Book (" + bookName + ") wasn't deleted");
+            service.removeThisBook();
+            System.out.println(
+                    "NoteBook (" + bookName + ") was deleted");
+        } catch (IllegalStateException e) {
+            System.out.println("There is no noteBook with this name: " + bookName);
         } catch (IOException e) {
-            System.out.println("There is no book with this name: " + bookName);
-        }
-        catch (IllegalStateException e){
-            System.out.println("There is no noteBook with this name: "+ bookName);
+            throw new RuntimeException(e);
         }
 
     }
