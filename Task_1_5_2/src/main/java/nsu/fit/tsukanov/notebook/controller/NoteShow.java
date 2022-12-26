@@ -1,6 +1,7 @@
 package nsu.fit.tsukanov.notebook.controller;
 
 import nsu.fit.tsukanov.notebook.core.Configuration;
+import nsu.fit.tsukanov.notebook.core.Note;
 import nsu.fit.tsukanov.notebook.service.FilterBuilder;
 import nsu.fit.tsukanov.notebook.service.NoteBookService;
 import picocli.CommandLine.Command;
@@ -26,7 +27,7 @@ public class NoteShow implements Callable<Integer> {
             description = "Date to to sort notes")
     Date to = null;
 
-    @Parameters
+    @Parameters(arity = "0..*")
     List<String> words = null;
 
 
@@ -43,7 +44,7 @@ public class NoteShow implements Callable<Integer> {
         try {
             noteBookService = new NoteBookService(bkName);
         } catch (IOException e) {
-            System.err.println(e);
+            System.err.println(e.getMessage());
             return 1;
         }
         if (!noteBookService.wasOpened()) {
@@ -52,7 +53,9 @@ public class NoteShow implements Callable<Integer> {
         }
         var notes = noteBookService.getFilteredNotes(from, to, words);
         System.out.println(FilterBuilder.showFilter(from, to, words));
-        System.out.println(notes);
+        System.out.println("\n" + "#".repeat(40)+ "\n"
+                + notes.stream().map(Note::toString).reduce((x, y) -> x + "\n" + "-".repeat(40) + "\n" + y).get()
+                + "\n" + "#".repeat(40)+ "\n");
         return 0;
     }
 }

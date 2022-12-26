@@ -16,7 +16,7 @@ public class ServiceTester {
         Date date = new Date();
         NoteBookService service = null;
         try {
-            service = new NoteBookService();
+            service = new NoteBookService(true);
             service.clear();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,7 +41,7 @@ public class ServiceTester {
         Assertions.assertFalse(noteNames.toString().contains("Note"));
         try {
 //            service.removeThisBook();
-            service = new NoteBookService("NewBook");
+            service = new NoteBookService("NewBook", true);
             service.clear();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -54,7 +54,7 @@ public class ServiceTester {
             Assertions.assertTrue(service.getNotes().toString().contains("Note1"));
             Assertions.assertTrue(service.getAllNoteNames().toString().contains("Note1"));
             Assertions.assertTrue(service.removeThisBook());
-            service = new NoteBookService("NewBook");
+            service = new NoteBookService("NewBook", true);
             Assertions.assertFalse(service.getNotes().toString().contains("Note1"));
 //            service.removeThisBook();
         } catch (IOException e) {
