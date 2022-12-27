@@ -64,7 +64,6 @@ public class CalculatorTest {
                     new ComplexNumber(Math.log(Math.sqrt(2)), -3 * Math.PI / 4));
             Assertions.assertEquals(calculator.calculate("ln (-1,0)"),
                     new ComplexNumber(0, Math.PI));
-
         } catch (CalculatorException e) {
             throw new RuntimeException(e);
         }

@@ -151,7 +151,7 @@ public class AnonCalculatorTest {
                 ),
                 string -> string.split(";\\s*")
         );
-        calculator.addToParser(new NumberParserInterface<Double>() {
+        calculator.addToParser(new NumberParserInterface<>() {
             /**
              * Parse to Number.
              *

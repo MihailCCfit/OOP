@@ -57,10 +57,11 @@ public class StackCalculator implements Calculator<ComplexNumber> {
         next();
     }
 
-    public boolean addToParser(NumberParserInterface<ComplexNumber> numberParser){
+    public boolean addToParser(NumberParserInterface<ComplexNumber> numberParser) {
         return calculatorParser.addParser(numberParser);
     }
-    public boolean addToParser(Function<ComplexNumber> function){
+
+    public boolean addToParser(Function<ComplexNumber> function) {
         return calculatorParser.addFunction(function);
     }
 
