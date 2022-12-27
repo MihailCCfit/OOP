@@ -244,7 +244,7 @@ public class CalculatorTest {
                 new ComplexNumber(4, 6));
         Assertions.assertEquals(calculator.calculate("/ (4,3) (2,0)"),
                 new ComplexNumber(2, 1.5));
-        Assertions.assertEquals(calculator.calculate("ln (1,0)"),
+        Assertions.assertEquals(calculator.calculate("ln 1"),
                 new ComplexNumber(0, 0));
         Assertions.assertEquals(calculator.calculate("ln (0,1)"),
                 new ComplexNumber(0, Math.PI / 2));
@@ -254,7 +254,7 @@ public class CalculatorTest {
                 new ComplexNumber(Math.log(Math.sqrt(2)), Math.PI / 4));
         Assertions.assertEquals(calculator.calculate("ln (-1,-1)"),
                 new ComplexNumber(Math.log(Math.sqrt(2)), -3 * Math.PI / 4));
-        Assertions.assertEquals(calculator.calculate("ln (-1,0)"),
+        Assertions.assertEquals(calculator.calculate("ln -1"),
                 new ComplexNumber(0, Math.PI));
         calculator.newLine("+ + (0,0) (0,0) (0,0)");
         Assertions.assertEquals(calculator.calculate(), new ComplexNumber(0, 0));
@@ -286,6 +286,8 @@ public class CalculatorTest {
                     () -> calculator.calculate("+ 5;"));
             Assertions.assertEquals(calculator.calculate("/ (4,3) (2,0) (2,1)"),
                     new ComplexNumber(2, 1.5));
+            Assertions.assertEquals(calculator.calculate("+ 1 2"),
+                    new ComplexNumber(3, 0));
         } catch (CalculatorException ignore) {
         }
     }

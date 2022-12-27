@@ -2,20 +2,22 @@ package ru.nsu.fit.tsukanov.calculator.core.parser;
 
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
+import ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParser;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 
 /**
  * Combines function and number parsers. Generate function from string (token).
  *
  * @param <T> the number
  * @see FunctionParser
- * @see NumberParser
+ * @see NumberParserInterface
  * @see Function
  */
 public class CalculatorParser<T> {
     /**
      * Number Parser
      */
-    protected NumberParser<T> numberParser;
+    protected NumberParserInterface<T> numberParser;
     /**
      * Function parser
      */
@@ -27,7 +29,7 @@ public class CalculatorParser<T> {
      * @param numberParser   the number parser
      * @param functionParser the function parser
      */
-    public CalculatorParser(NumberParser<T> numberParser, FunctionParser<T> functionParser) {
+    public CalculatorParser(NumberParserInterface<T> numberParser, FunctionParser<T> functionParser) {
         this.numberParser = numberParser;
         this.functionParser = functionParser;
     }

@@ -1,10 +1,9 @@
-package ru.nsu.fit.tsukanov.calculator.core.parser;
+package ru.nsu.fit.tsukanov.calculator.core.parser.numbers;
 
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
-public interface NumberParser<T> {
+public interface NumberParserInterface<T> {
     /**
      * Parse token.
      *
@@ -19,7 +18,7 @@ public interface NumberParser<T> {
      * @param token token
      * @return number
      */
-    T parseNumber(String token) throws CalculatorException;
+    T parseNumber(String token) throws BadLexemeException;
 
     /**
      * Check for number.
