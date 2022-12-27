@@ -20,7 +20,7 @@ public class FunctionWrapperStack<T> extends AbstractFunctionWrapper<T> {
      */
     public void addArg(T number) throws CalculatorException {
         if (number == null) {
-            throw new NullPointerException("Complex number is null");
+            throw new CalculatorException("Complex number is null");
         }
         if (arguments.size() >= getArity()) {
             throw new CalculatorException("Too much arguments");

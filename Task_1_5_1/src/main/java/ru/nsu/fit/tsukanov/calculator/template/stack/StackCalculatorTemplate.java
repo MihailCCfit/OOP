@@ -5,6 +5,7 @@ import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.Lexer;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 
 import java.util.Arrays;
 import java.util.Deque;
@@ -162,4 +163,13 @@ public class StackCalculatorTemplate<T> implements Calculator<T> {
                 ", result=" + result +
                 '}';
     }
+
+    public boolean addToParser(NumberParserInterface<T> numberParser) {
+        return calculatorParser.addParser(numberParser);
+    }
+
+    public boolean addToParser(Function<T> function) {
+        return calculatorParser.addFunction(function);
+    }
+
 }

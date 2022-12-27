@@ -36,12 +36,30 @@ public class ComplexNumberParser extends NumberParser<ComplexNumber> {
         var imagStr = splited[1];
         double real;
         double imag;
+        boolean rFlag = false;
+        boolean iFlag = false;
+        if (realStr.charAt(realStr.length() - 1) == '`') {
+            rFlag = true;
+            realStr = realStr.substring(0, realStr.length() - 1);
+        }
+        if (imagStr.charAt(imagStr.length() - 1) == '`') {
+            iFlag = true;
+            imagStr = imagStr.substring(0, imagStr.length() - 1);
+        }
         try {
             real = Double.parseDouble(realStr);
+            if (rFlag) {
+                real = real * Math.PI / 180;
+            }
             imag = Double.parseDouble(imagStr);
+            if (iFlag) {
+                imag = imag * Math.PI / 180;
+            }
         } catch (NumberFormatException e) {
             throw new BadLexemeException(token);
         }
+        double finalImag = imag;
+        double finalReal = real;
         return new Function<>() {
             @Override
             public int getArity() {
@@ -50,12 +68,12 @@ public class ComplexNumberParser extends NumberParser<ComplexNumber> {
 
             @Override
             public ComplexNumber apply(List<ComplexNumber> arguments) {
-                return new ComplexNumber(real, imag);
+                return new ComplexNumber(finalReal, finalImag);
             }
 
             @Override
             public String representation() {
-                return new ComplexNumber(real, imag).toString();
+                return new ComplexNumber(finalReal, finalImag).toString();
             }
         };
     }
@@ -83,27 +101,11 @@ public class ComplexNumberParser extends NumberParser<ComplexNumber> {
         if (token == null) {
             return false;
         }
-        if (token.isEmpty()) {
-            return false;
-        }
-        if (token.charAt(0) != '(' || token.charAt(token.length() - 1) != ')') {
-            return false;
-        }
-        token = token.substring(1, token.length() - 1);
-        String[] splitted = token.split(",", 0);
-        if (splitted.length != 2) {
-            return false;
-        }
-        var realStr = splitted[0];
-        var imagStr = splitted[1];
         try {
-            Double.parseDouble(realStr);
-            Double.parseDouble(imagStr);
-        } catch (NumberFormatException e) {
+            parseToken(token);
+            return true;
+        } catch (BadLexemeException e) {
             return false;
         }
-
-
-        return true;
     }
 }
