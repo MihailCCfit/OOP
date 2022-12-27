@@ -3,6 +3,7 @@ package ru.nsu.fit.tsukanov.calculator.core.parser;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParser;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 
 /**
@@ -17,7 +18,7 @@ public class CalculatorParser<T> {
     /**
      * Number Parser
      */
-    protected NumberParserInterface<T> numberParser;
+    protected NumberParser<T> numberParser;
     /**
      * Function parser
      */
@@ -30,7 +31,8 @@ public class CalculatorParser<T> {
      * @param functionParser the function parser
      */
     public CalculatorParser(NumberParserInterface<T> numberParser, FunctionParser<T> functionParser) {
-        this.numberParser = numberParser;
+        this.numberParser = new NumberParser<>();
+        this.numberParser.putNumberParser(numberParser);
         this.functionParser = functionParser;
     }
 
@@ -71,5 +73,12 @@ public class CalculatorParser<T> {
             return numberParser.parseToken(token);
         }
         throw new BadLexemeException("{" + token + "} not recognized");
+    }
+
+    public boolean addParser(NumberParserInterface<T> numberParser) {
+        return this.numberParser.putNumberParser(numberParser);
+    }
+    public boolean addFunction(Function<T> function){
+        return this.functionParser.putFunction(function)==null;
     }
 }

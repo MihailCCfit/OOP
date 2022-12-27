@@ -3,6 +3,8 @@ package ru.nsu.fit.tsukanov.calculator.core.parser.numbers;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
+import java.util.List;
+
 public interface NumberParserInterface<T> {
     /**
      * Parse token.
@@ -10,7 +12,25 @@ public interface NumberParserInterface<T> {
      * @param token token
      * @return constant function
      */
-    Function<T> parseToken(String token) throws BadLexemeException;
+    default Function<T> parseToken(String token) throws BadLexemeException {
+        var num = parseNumber(token);
+        return new Function<>() {
+            @Override
+            public int getArity() {
+                return 0;
+            }
+
+            @Override
+            public T apply(List<T> arguments) {
+                return num;
+            }
+
+            @Override
+            public String representation() {
+                return num.toString();
+            }
+        };
+    }
 
     /**
      * Parse to Number.
@@ -26,5 +46,12 @@ public interface NumberParserInterface<T> {
      * @param token token
      * @return true if token is number.
      */
-    boolean checkNumber(String token);
+    default boolean checkNumber(String token) {
+        try {
+            parseToken(token);
+            return true;
+        } catch (BadLexemeException e) {
+            return false;
+        }
+    }
 }

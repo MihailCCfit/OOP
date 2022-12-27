@@ -15,11 +15,13 @@ public class NumberParser<T> implements NumberParserInterface<T> {
         return numberParsers.add(numberParser);
     }
 
-    private List<T> listOfParsed(String token) throws BadLexemeException {
+    private List<T> listOfParsed(String token)  {
         List<T> results = new ArrayList<>();
         for (NumberParserInterface<T> numberParser : numberParsers) {
             if (numberParser.checkNumber(token)) {
-                results.add(numberParser.parseNumber(token));
+                try {
+                    results.add(numberParser.parseNumber(token));
+                } catch (BadLexemeException ignore){}
             }
         }
         return results;
@@ -34,11 +36,7 @@ public class NumberParser<T> implements NumberParserInterface<T> {
     @Override
     public Function<T> parseToken(String token) throws BadLexemeException {
         List<T> list;
-        try {
-            list = listOfParsed(token);
-        } catch (BadLexemeException e) {
-            throw new RuntimeException(e);
-        }
+        list = listOfParsed(token);
         if (list.size() != 1) {
             throw new BadLexemeException("There is no valid possible number: " + list);
         }
@@ -80,10 +78,8 @@ public class NumberParser<T> implements NumberParserInterface<T> {
      */
     @Override
     public boolean checkNumber(String token) {
-        try {
-            return listOfParsed(token).size() == 1;
-        } catch (BadLexemeException e) {
-            return false;
-        }
+
+        return listOfParsed(token).size() == 1;
+
     }
 }

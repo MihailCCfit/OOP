@@ -2,6 +2,7 @@ package ru.nsu.fit.tsukanov.calculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
@@ -150,7 +151,71 @@ public class AnonCalculatorTest {
                 ),
                 string -> string.split(";\\s*")
         );
+        calculator.addToParser(new NumberParserInterface<Double>() {
+            /**
+             * Parse to Number.
+             *
+             * @param token token
+             * @return number
+             */
+            @Override
+            public Double parseNumber(String token) throws BadLexemeException {
+                if (!token.contains("/")) {
+                    throw new BadLexemeException("There is no /");
+                }
 
+                String[] strings = token.split("/");
+                var numerator = Double.parseDouble(strings[0]);
+                var denominator = Double.parseDouble(strings[1]);
+                return numerator / denominator;
+            }
+        });
         Assertions.assertEquals(12 - Math.E, calculator.calculate("max; +; 5; 3; -; 12; e"));
+        Assertions.assertEquals(5, calculator.calculate("10/2"));
+
+
+        Calculator<Integer> calculator1 = new Calculator<>() {
+            @Override
+            public String newLine(String input) {
+                return null;
+            }
+
+            @Override
+            public Integer calculate() {
+                return null;
+            }
+
+            @Override
+            public Integer calculate(String line) {
+                return null;
+            }
+
+            @Override
+            public Integer getResult() {
+                return null;
+            }
+
+            @Override
+            public String getInformation() {
+                return null;
+            }
+        };
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> calculator1.addToParser(token -> null));
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> calculator1.addToParser(new Function<>() {
+            @Override
+            public int getArity() {
+                return 0;
+            }
+
+            @Override
+            public Integer apply(List<Integer> arguments) {
+                return null;
+            }
+
+            @Override
+            public String representation() {
+                return null;
+            }
+        }));
     }
 }

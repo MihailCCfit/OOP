@@ -1,6 +1,8 @@
 package ru.nsu.fit.tsukanov.calculator.core;
 
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
+import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 
 public interface Calculator<T> {
     /**
@@ -42,4 +44,12 @@ public interface Calculator<T> {
      * @return information
      */
     String getInformation();
+
+    default boolean addToParser(NumberParserInterface<T> numberParser) {
+        throw new UnsupportedOperationException("addToParser not implemented");
+    }
+
+    default boolean addToParser(Function<T> function) {
+        throw new UnsupportedOperationException("addToParser not implemented");
+    }
 }

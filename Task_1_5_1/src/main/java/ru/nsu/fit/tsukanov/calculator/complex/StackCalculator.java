@@ -10,6 +10,7 @@ import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.Lexer;
 import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserBuilder;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 
 import java.util.Arrays;
 import java.util.Deque;
@@ -54,6 +55,13 @@ public class StackCalculator implements Calculator<ComplexNumber> {
         calculatorParser.parse(token);
         tokens.addLast(token);
         next();
+    }
+
+    public boolean addToParser(NumberParserInterface<ComplexNumber> numberParser){
+        return calculatorParser.addParser(numberParser);
+    }
+    public boolean addToParser(Function<ComplexNumber> function){
+        return calculatorParser.addFunction(function);
     }
 
     /**

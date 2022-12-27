@@ -6,9 +6,11 @@ import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.RealNumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
+import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.Lexer;
 import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserBuilder;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -25,7 +27,12 @@ public class RecursiveCalculator implements Calculator<ComplexNumber> {
      * Creates stackCalculator, that has stack of functionWrapper. functionWrapper saves arguments
      * while it isn't available.
      */
-
+    public boolean addToParser(NumberParserInterface<ComplexNumber> numberParser){
+        return calculatorParser.addParser(numberParser);
+    }
+    public boolean addToParser(Function<ComplexNumber> function){
+        return calculatorParser.addFunction(function);
+    }
     public RecursiveCalculator() {
         this(new CalculatorParser<>(new NumberParserBuilder<ComplexNumber>()
                 .putParser(new RealNumberParser())

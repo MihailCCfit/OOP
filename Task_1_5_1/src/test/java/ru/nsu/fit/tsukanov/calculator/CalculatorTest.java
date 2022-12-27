@@ -9,11 +9,16 @@ import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.complex.Functions.ComplexSub;
 import ru.nsu.fit.tsukanov.calculator.complex.StackCalculator;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
+import ru.nsu.fit.tsukanov.calculator.complex.parsers.RealNumberParser;
 import ru.nsu.fit.tsukanov.calculator.complex.recursive.RecursiveCalculator;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.*;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParser;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserBuilder;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 import ru.nsu.fit.tsukanov.calculator.template.example.StackCalculatorInstance;
+import ru.nsu.fit.tsukanov.calculator.template.stack.FunctionWrapperStack;
 
 import java.util.Comparator;
 import java.util.List;
@@ -34,30 +39,30 @@ public class CalculatorTest {
      */
     @ParameterizedTest
     @MethodSource("calculatorStream")
-    void test(Calculator<ComplexNumber> stackCalculator) throws CalculatorException {
+    void test(Calculator<ComplexNumber> calculator) throws CalculatorException {
 
-        stackCalculator.newLine("+ (1,2) (2,5)");
+        calculator.newLine("+ (1,2) (2,5)");
         try {
-            Assertions.assertEquals(stackCalculator.calculate(), new ComplexNumber(3, 7));
-            System.out.println(stackCalculator.getInformation());
-            Assertions.assertEquals(stackCalculator.getResult(), new ComplexNumber(3, 7));
-            Assertions.assertEquals(stackCalculator.calculate("- (3,2) (2,3)"),
+            Assertions.assertEquals(calculator.calculate(), new ComplexNumber(3, 7));
+            System.out.println(calculator.getInformation());
+            Assertions.assertEquals(calculator.getResult(), new ComplexNumber(3, 7));
+            Assertions.assertEquals(calculator.calculate("- (3,2) (2,3)"),
                     new ComplexNumber(1, -1));
-            Assertions.assertEquals(stackCalculator.calculate("* (2,0) (2,3)"),
+            Assertions.assertEquals(calculator.calculate("* (2,0) (2,3)"),
                     new ComplexNumber(4, 6));
-            Assertions.assertEquals(stackCalculator.calculate("/ (4,3) (2,0)"),
+            Assertions.assertEquals(calculator.calculate("/ (4,3) (2,0)"),
                     new ComplexNumber(2, 1.5));
-            Assertions.assertEquals(stackCalculator.calculate("ln (1,0)"),
+            Assertions.assertEquals(calculator.calculate("ln (1,0)"),
                     new ComplexNumber(0, 0));
-            Assertions.assertEquals(stackCalculator.calculate("ln (0,1)"),
+            Assertions.assertEquals(calculator.calculate("ln (0,1)"),
                     new ComplexNumber(0, Math.PI / 2));
-            Assertions.assertEquals(stackCalculator.calculate("ln (0,-1)"),
+            Assertions.assertEquals(calculator.calculate("ln (0,-1)"),
                     new ComplexNumber(0, -Math.PI / 2));
-            Assertions.assertEquals(stackCalculator.calculate("ln (1,1)"),
+            Assertions.assertEquals(calculator.calculate("ln (1,1)"),
                     new ComplexNumber(Math.log(Math.sqrt(2)), Math.PI / 4));
-            Assertions.assertEquals(stackCalculator.calculate("ln (-1,-1)"),
+            Assertions.assertEquals(calculator.calculate("ln (-1,-1)"),
                     new ComplexNumber(Math.log(Math.sqrt(2)), -3 * Math.PI / 4));
-            Assertions.assertEquals(stackCalculator.calculate("ln (-1,0)"),
+            Assertions.assertEquals(calculator.calculate("ln (-1,0)"),
                     new ComplexNumber(0, Math.PI));
 
         } catch (CalculatorException e) {
@@ -65,33 +70,79 @@ public class CalculatorTest {
         }
         try {
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("(3,2) (2,3)"));
+                    () -> calculator.calculate("(3,2) (2,3)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("3,2)"));
+                    () -> calculator.calculate("3,2)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate(""));
+                    () -> calculator.calculate(""));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("(3,2"));
+                    () -> calculator.calculate("(3,2"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("(3,2,5)"));
+                    () -> calculator.calculate("(3,2,5)"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("(3.5.5,2)"));
+                    () -> calculator.calculate("(3.5.5,2)"));
 
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("+"));
+                    () -> calculator.calculate("+"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("aboba"));
+                    () -> calculator.calculate("aboba"));
             Assertions.assertThrows(CalculatorException.class,
-                    () -> stackCalculator.calculate("+ 5;"));
-            Assertions.assertEquals(stackCalculator.calculate("/ (4,3) (2,0) (2,1)"),
+                    () -> calculator.calculate("+ 5;"));
+            Assertions.assertEquals(calculator.calculate("/ (4,3) (2,0) (2,1)"),
                     new ComplexNumber(2, 1.5));
         } catch (CalculatorException ignore) {
         }
-        stackCalculator.toString();
+        calculator.toString();
         Assertions.assertThrows(NullPointerException.class,
-                () -> stackCalculator.newLine(null));
-        Assertions.assertEquals(new ComplexNumber(0, 0), stackCalculator.calculate("sin  (0,0)"));
-        Assertions.assertEquals(new ComplexNumber(1, 0), stackCalculator.calculate("cos (0,0)"));
+                () -> calculator.newLine(null));
+        Assertions.assertEquals(new ComplexNumber(0, 0), calculator.calculate("sin  (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(1, 0), calculator.calculate("cos (0,0)"));
+        calculator.addToParser(new NumberParserInterface<>() {
+            private static double fib(int index) {
+                double x1 = 0;
+                double x2 = 1;
+                for (int i = 0; i < index; i++) {
+                    x2 = x2 + x1;
+                    x1 = x2 - x1;
+                }
+                return x2;
+            }
+
+            @Override
+            public ComplexNumber parseNumber(String token) throws BadLexemeException {
+                String fib = "fib";
+                if (token.startsWith(fib)) {
+                    token = token.substring(fib.length());
+                    if (token.charAt(0) == '(' && token.charAt(token.length() - 1) == ')') {
+                        token = token.substring(1, token.length() - 1);
+                        try {
+                            return new ComplexNumber(fib(Integer.parseInt(token)), 0);
+                        } catch (NumberFormatException e) {
+                            throw new BadLexemeException(e.getMessage());
+                        }
+                    }
+                }
+                throw new BadLexemeException("Bad token: " + token);
+            }
+        });
+        calculator.addToParser(new Function<>() {
+            @Override
+            public int getArity() {
+                return 1;
+            }
+
+            @Override
+            public ComplexNumber apply(List<ComplexNumber> arguments) {
+                var number = arguments.get(0);
+                return new ComplexNumber(number.imaginary(), number.real());
+            }
+
+            @Override
+            public String representation() {
+                return "swap";
+            }
+        });
+        Assertions.assertEquals(new ComplexNumber(0, 2), calculator.calculate("swap - fib(4) fib(3)"));
     }
 
     /**
@@ -139,6 +190,7 @@ public class CalculatorTest {
                 () -> {
                     throw new FunctionException("hi");
                 });
+
 
     }
 
@@ -263,6 +315,7 @@ public class CalculatorTest {
         Assertions.assertThrows(NullPointerException.class,
                 () -> calculator.newLine(null));
         Assertions.assertEquals(new ComplexNumber(0, 0), calculator.calculate("sin (0,0)"));
+        Assertions.assertEquals(new ComplexNumber(1, 0), calculator.calculate("sin (90`,0`)"));
         Assertions.assertEquals(new ComplexNumber(1, 0), calculator.calculate("cos (0,0)"));
         try {
             Assertions.assertThrows(CalculatorException.class,
@@ -290,6 +343,90 @@ public class CalculatorTest {
                     new ComplexNumber(3, 0));
         } catch (CalculatorException ignore) {
         }
+    }
+
+    @Test
+    void testOthers() {
+        NumberParserInterface<Integer> numberParser = token -> {
+            try {
+                return Integer.parseInt(token);
+            } catch (NumberFormatException e) {
+                throw new BadLexemeException(e.getMessage());
+            }
+
+        };
+        NumberParserInterface<Integer> numberParser2 = token -> {
+            try {
+                return Integer.parseInt(token);
+            } catch (NumberFormatException e) {
+                throw new BadLexemeException(e.getMessage());
+            }
+
+        };
+        try {
+            Function<Integer> fun = numberParser.parseToken("5");
+            Assertions.assertEquals(5, fun.apply(List.of()));
+            Assertions.assertEquals(0, fun.getArity());
+            Assertions.assertFalse(fun.representation().isEmpty());
+            Assertions.assertThrows(BadLexemeException.class,
+                    () -> numberParser.parseToken(".."));
+        } catch (BadLexemeException e) {
+            throw new RuntimeException(e);
+        }
+        NumberParser<Integer> numberParser1 = new NumberParser<>();
+        numberParser1.putNumberParser(numberParser);
+        try {
+            Assertions.assertEquals("1", numberParser1.parseToken("1").representation());
+        } catch (BadLexemeException e) {
+            throw new RuntimeException(e);
+        }
+        numberParser1.putNumberParser(numberParser2);
+        NumberParser<Integer> numberParser11 = new NumberParserBuilder<Integer>()
+                .putParser(List.of(numberParser1))
+                .build();
+        Assertions.assertThrows(BadLexemeException.class, () -> numberParser11.parseNumber("1"));
+        Assertions.assertThrows(BadLexemeException.class, () -> numberParser11.parseNumber("."));
+        FunctionWrapperStack<Integer> functionWrapper = new FunctionWrapperStack<>(
+                new Function<>() {
+                    @Override
+                    public int getArity() {
+                        return 1;
+                    }
+
+                    @Override
+                    public Integer apply(List<Integer> arguments) {
+                        return arguments.get(0) * 3 - 1;
+                    }
+
+                    @Override
+                    public String representation() {
+                        return "1";
+                    }
+                }
+                , null);
+        Assertions.assertThrows(CalculatorException.class, () -> functionWrapper.addArg(null));
+        Assertions.assertThrows(CalculatorException.class, () -> {
+            functionWrapper.addArg(0);
+            functionWrapper.addArg(0);
+        });
+        RealNumberParser realNumberParser = new RealNumberParser();
+        Function<ComplexNumber> fun;
+        try {
+            fun = realNumberParser.parseToken("5.5");
+        } catch (BadLexemeException e) {
+            throw new RuntimeException(e);
+        }
+        Assertions.assertEquals(new ComplexNumber(5.5, 0), fun.apply(List.of()));
+        Assertions.assertEquals(0, fun.getArity());
+        Assertions.assertEquals("5.5", fun.representation());
+        ComplexNumberParser complexNumberParser = new ComplexNumberParser();
+        try {
+            fun = complexNumberParser.parseToken("(5,10)");
+        } catch (BadLexemeException e) {
+            throw new RuntimeException(e);
+        }
+        Assertions.assertEquals(0, fun.getArity());
+        Assertions.assertEquals(new ComplexNumber(5, 10).toString(), fun.representation());
     }
 
 }
