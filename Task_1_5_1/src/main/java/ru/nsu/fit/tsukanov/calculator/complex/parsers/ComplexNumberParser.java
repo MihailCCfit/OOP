@@ -2,14 +2,13 @@ package ru.nsu.fit.tsukanov.calculator.complex.parsers;
 
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
-import ru.nsu.fit.tsukanov.calculator.core.parser.NumberParser;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComplexNumberParser implements NumberParser<ComplexNumber> {
+public class ComplexNumberParser extends NumberParser<ComplexNumber> {
 
     /**
      * parse token
@@ -69,7 +68,7 @@ public class ComplexNumberParser implements NumberParser<ComplexNumber> {
      */
 
     @Override
-    public ComplexNumber parseNumber(String token) throws CalculatorException {
+    public ComplexNumber parseNumber(String token) throws BadLexemeException {
         return parseToken(token).apply(new ArrayList<>());
     }
 

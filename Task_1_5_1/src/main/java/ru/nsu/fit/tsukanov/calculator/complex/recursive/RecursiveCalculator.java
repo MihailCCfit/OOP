@@ -3,10 +3,12 @@ package ru.nsu.fit.tsukanov.calculator.complex.recursive;
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexFunctionParser;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
+import ru.nsu.fit.tsukanov.calculator.complex.parsers.RealNumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.Lexer;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserBuilder;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -25,7 +27,11 @@ public class RecursiveCalculator implements Calculator<ComplexNumber> {
      */
 
     public RecursiveCalculator() {
-        this(new CalculatorParser<>(new ComplexNumberParser(), ComplexFunctionParser.getParser()));
+        this(new CalculatorParser<>(new NumberParserBuilder<ComplexNumber>()
+                .putParser(new RealNumberParser())
+                .putParser(new ComplexNumberParser())
+                .build(),
+                ComplexFunctionParser.getParser()));
     }
 
     /**

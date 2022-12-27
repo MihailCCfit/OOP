@@ -1,4 +1,4 @@
-package ru.nsu.fit.tsukanov.calculator.core.parser;
+package ru.nsu.fit.tsukanov.calculator.core.parser.functions;
 
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 

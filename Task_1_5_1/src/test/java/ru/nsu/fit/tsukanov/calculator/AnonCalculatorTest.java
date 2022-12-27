@@ -6,8 +6,8 @@ import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
-import ru.nsu.fit.tsukanov.calculator.core.parser.FunctionParserBuilder;
-import ru.nsu.fit.tsukanov.calculator.core.parser.NumberParser;
+import ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParserBuilder;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 import ru.nsu.fit.tsukanov.calculator.template.stack.StackCalculatorTemplate;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class AnonCalculatorTest {
     void basic() throws CalculatorException {
         StackCalculatorTemplate<Double> calculator = new StackCalculatorTemplate<>(
                 new CalculatorParser<>(
-                        new NumberParser<>() {
+                        new NumberParserInterface<>() {
                             @Override
                             public Function<Double> parseToken(String token) throws BadLexemeException {
                                 double val;

@@ -2,8 +2,8 @@ package ru.nsu.fit.tsukanov.calculator.complex.parsers;
 
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.complex.Functions.*;
-import ru.nsu.fit.tsukanov.calculator.core.parser.FunctionParser;
-import ru.nsu.fit.tsukanov.calculator.core.parser.FunctionParserBuilder;
+import ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParser;
+import ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParserBuilder;
 
 import java.util.List;
 

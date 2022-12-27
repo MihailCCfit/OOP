@@ -2,12 +2,14 @@ package ru.nsu.fit.tsukanov.calculator.complex;
 
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexFunctionParser;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
+import ru.nsu.fit.tsukanov.calculator.complex.parsers.RealNumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.Lexer;
+import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserBuilder;
 
 import java.util.Arrays;
 import java.util.Deque;
@@ -32,7 +34,10 @@ public class StackCalculator implements Calculator<ComplexNumber> {
 
     public StackCalculator() {
         var complexFunctionParser = ComplexFunctionParser.getParser();
-        var complexNumberParser = new ComplexNumberParser();
+        var complexNumberParser = new NumberParserBuilder<ComplexNumber>()
+                .putParser(new ComplexNumberParser())
+                .putParser(new RealNumberParser())
+                .build();
         calculatorParser = new CalculatorParser<>(complexNumberParser, complexFunctionParser);
         lexer = string -> string.split("\\s+");
         tokens = new LinkedList<>();
