@@ -87,8 +87,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Combines function and number parsers. Generate function from string (token).</div>
 <dl class="notes">
 <dt>See Also:</dt>
-<dd><a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser"><code>FunctionParser</code></a>, 
-<a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser"><code>NumberParser</code></a>, 
+<dd><a href="functions/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser.functions"><code>FunctionParser</code></a>, 
+<a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers"><code>NumberParserInterface</code></a>, 
 <a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions"><code>Function</code></a></dd>
 </dl>
 </section>
@@ -103,12 +103,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected <a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></div>
+<div class="col-first even-row-color"><code>protected <a href="functions/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser.functions">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></div>
 <div class="col-second even-row-color"><code><span class="member-name-link"><a href="#functionParser">functionParser</a></span></code></div>
 <div class="col-last even-row-color">
 <div class="block">Function parser</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code>protected <a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#numberParser">numberParser</a></span></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Number Parser</div>
@@ -124,8 +124,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E(ru.nsu.fit.tsukanov.calculator.core.parser.NumberParser,ru.nsu.fit.tsukanov.calculator.core.parser.FunctionParser)">CalculatorParser</a></span>&#8203;(<a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser,
- <a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;functionParser)</code></div>
+<div class="col-constructor-name even-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E(ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface,ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParser)">CalculatorParser</a></span>&#8203;(<a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser,
+ <a href="functions/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser.functions">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;functionParser)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates parser by the specified number and function parsers</div>
 </div>
@@ -178,14 +178,14 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="numberParser">
 <h3>numberParser</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</span>&nbsp;<span class="element-name">numberParser</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</span>&nbsp;<span class="element-name">numberParser</span></div>
 <div class="block">Number Parser</div>
 </section>
 </li>
 <li>
 <section class="detail" id="functionParser">
 <h3>functionParser</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</span>&nbsp;<span class="element-name">functionParser</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="functions/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser.functions">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</span>&nbsp;<span class="element-name">functionParser</span></div>
 <div class="block">Function parser</div>
 </section>
 </li>
@@ -198,10 +198,10 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(ru.nsu.fit.tsukanov.calculator.core.parser.NumberParser,ru.nsu.fit.tsukanov.calculator.core.parser.FunctionParser)">
+<section class="detail" id="&lt;init&gt;(ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface,ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParser)">
 <h3>CalculatorParser</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CalculatorParser</span>&#8203;<span class="parameters">(<a href="NumberParser.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser,
- <a href="FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;functionParser)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CalculatorParser</span>&#8203;<span class="parameters">(<a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser,
+ <a href="functions/FunctionParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser.functions">FunctionParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;functionParser)</span></div>
 <div class="block">Creates parser by the specified number and function parsers</div>
 <dl class="notes">
 <dt>Parameters:</dt>
