@@ -97,9 +97,7 @@ implements <a href="../../core/Calculator.html" title="interface in ru.nsu.fit.t
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E()">RecursiveCalculator</a></span>()</code></div>
-<div class="col-last even-row-color">
-<div class="block">Creates stackCalculator, that has stack of functionWrapper.</div>
-</div>
+<div class="col-last even-row-color">&nbsp;</div>
 <div class="col-constructor-name odd-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E(ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser)">RecursiveCalculator</a></span>&#8203;(<a href="../../core/parser/CalculatorParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser">CalculatorParser</a>&lt;<a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;&nbsp;calculatorParser)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Creates stackCalculator, that has stack of functionWrapper.</div>
@@ -123,6 +121,14 @@ implements <a href="../../core/Calculator.html" title="interface in ru.nsu.fit.t
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addToParser(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">addToParser</a></span>&#8203;(<a href="../../core/functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;&nbsp;function)</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addToParser(ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface)">addToParser</a></span>&#8203;(<a href="../../core/parser/numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;&nbsp;numberParser)</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Creates stackCalculator, that has stack of functionWrapper.</div>
+</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#calculate()">calculate</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
@@ -172,8 +178,6 @@ implements <a href="../../core/Calculator.html" title="interface in ru.nsu.fit.t
 <section class="detail" id="&lt;init&gt;()">
 <h3>RecursiveCalculator</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">RecursiveCalculator</span>()</div>
-<div class="block">Creates stackCalculator, that has stack of functionWrapper. functionWrapper saves arguments
- while it isn't available.</div>
 </section>
 </li>
 <li>
@@ -208,6 +212,28 @@ implements <a href="../../core/Calculator.html" title="interface in ru.nsu.fit.t
 <section class="method-details" id="method.detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="addToParser(ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface)">
+<h3>addToParser</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addToParser</span>&#8203;<span class="parameters">(<a href="../../core/parser/numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;&nbsp;numberParser)</span></div>
+<div class="block">Creates stackCalculator, that has stack of functionWrapper. functionWrapper saves arguments
+ while it isn't available.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../core/Calculator.html#addToParser(ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface)">addToParser</a></code>&nbsp;in interface&nbsp;<code><a href="../../core/Calculator.html" title="interface in ru.nsu.fit.tsukanov.calculator.core">Calculator</a>&lt;<a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="addToParser(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">
+<h3>addToParser</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addToParser</span>&#8203;<span class="parameters">(<a href="../../core/functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;&nbsp;function)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../core/Calculator.html#addToParser(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">addToParser</a></code>&nbsp;in interface&nbsp;<code><a href="../../core/Calculator.html" title="interface in ru.nsu.fit.tsukanov.calculator.core">Calculator</a>&lt;<a href="../ComplexNumber.html" title="class in ru.nsu.fit.tsukanov.calculator.complex">ComplexNumber</a>&gt;</code></dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="newLine(java.lang.String)">
 <h3>newLine</h3>

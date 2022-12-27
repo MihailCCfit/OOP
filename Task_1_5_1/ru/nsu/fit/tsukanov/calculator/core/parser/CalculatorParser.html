@@ -108,7 +108,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Function parser</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></div>
+<div class="col-first odd-row-color"><code>protected <a href="numbers/NumberParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><span class="member-name-link"><a href="#numberParser">numberParser</a></span></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Number Parser</div>
@@ -144,6 +144,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">addFunction</a></span>&#8203;(<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;function)</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#addParser(ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface)">addParser</a></span>&#8203;(<a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser)</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#isFunction(java.lang.String)">isFunction</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Check token for function according to the function parser.</div>
@@ -178,7 +184,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="numberParser">
 <h3>numberParser</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</span>&nbsp;<span class="element-name">numberParser</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="numbers/NumberParser.html" title="class in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParser</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</span>&nbsp;<span class="element-name">numberParser</span></div>
 <div class="block">Number Parser</div>
 </section>
 </li>
@@ -260,6 +266,18 @@ loadScripts(document, 'script');</script>
 <dt>Throws:</dt>
 <dd><code><a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></code> - if there is problem with parsing.</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="addParser(ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface)">
+<h3>addParser</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addParser</span>&#8203;<span class="parameters">(<a href="numbers/NumberParserInterface.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.parser.numbers">NumberParserInterface</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;numberParser)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="addFunction(ru.nsu.fit.tsukanov.calculator.core.functions.Function)">
+<h3>addFunction</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addFunction</span>&#8203;<span class="parameters">(<a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;&nbsp;function)</span></div>
 </section>
 </li>
 </ul>
