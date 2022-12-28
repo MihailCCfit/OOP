@@ -27,17 +27,15 @@ public class CaesarDeCoding implements Function<String> {
         String message = arguments.get(1);
         StringBuilder result = new StringBuilder();
         for (char character : message.toCharArray()) {
-            if (character != ' ') {
-                int originalAlphabetPosition = character - 'a';
-                int newAlphabetPosition = (originalAlphabetPosition - shift) % 26;
-                if (newAlphabetPosition<0){
-                    newAlphabetPosition+=26;
-                }
-                char newCharacter = (char) ('a' + newAlphabetPosition);
-                result.append(newCharacter);
-            } else {
-                result.append(character);
+
+            int originalAlphabetPosition = character - 'a';
+            int newAlphabetPosition = (originalAlphabetPosition - shift) % 26;
+            if (newAlphabetPosition < 0) {
+                newAlphabetPosition += 26;
             }
+            char newCharacter = (char) ('a' + newAlphabetPosition);
+            result.append(newCharacter);
+
         }
         return result.toString();
     }

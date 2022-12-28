@@ -1,11 +1,11 @@
-package ru.nsu.fit.tsukanov.calculator.complex.Functions;
+package ru.nsu.fit.tsukanov.calculator.complex.functions;
 
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 import java.util.List;
 
-public class ComplexAdd implements Function<ComplexNumber> {
+public class ComplexMul implements Function<ComplexNumber> {
     /**
      * Return arity of function.
      *
@@ -24,7 +24,7 @@ public class ComplexAdd implements Function<ComplexNumber> {
      */
     @Override
     public ComplexNumber apply(List<ComplexNumber> arguments) {
-        return ComplexNumber.add(arguments.get(0), arguments.get(1));
+        return ComplexNumber.mul(arguments.get(0), arguments.get(1));
     }
 
     /**
@@ -34,7 +34,6 @@ public class ComplexAdd implements Function<ComplexNumber> {
      */
     @Override
     public String representation() {
-        return "+";
+        return "*";
     }
-
 }

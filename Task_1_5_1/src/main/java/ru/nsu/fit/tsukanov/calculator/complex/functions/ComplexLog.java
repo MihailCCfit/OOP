@@ -1,4 +1,4 @@
-package ru.nsu.fit.tsukanov.calculator.complex.Functions;
+package ru.nsu.fit.tsukanov.calculator.complex.functions;
 
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;

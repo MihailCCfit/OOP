@@ -111,9 +111,7 @@ public class StackCalculatorTemplate<T> implements Calculator<T> {
         if (tokens.size() != 0) {
             throw new CalculatorException("Result:" + result + "There are not parsed tokens: " + tokens);
         }
-        if (functionWrappers.peek() == null) {
-            throw new CalculatorException("There is no result with: " + functionWrappers);
-        }
+
         result = functionWrappers.peek().apply();
         return result;
     }
