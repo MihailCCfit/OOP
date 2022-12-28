@@ -1,7 +1,7 @@
 package ru.nsu.fit.tsukanov.calculator.complex.parsers;
 
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParser;
 
@@ -17,20 +17,20 @@ public class ComplexNumberParser extends NumberParser<ComplexNumber> {
      * @return constant function
      */
     @Override
-    public Function<ComplexNumber> parseToken(String token) throws BadLexemeException {
+    public Function<ComplexNumber> parseToken(String token) throws BadTokenException {
         if (token == null) {
-            throw new BadLexemeException("Null");
+            throw new BadTokenException("Null");
         }
         if (token.isEmpty()) {
-            throw new BadLexemeException("Empty");
+            throw new BadTokenException("Empty");
         }
         if (token.charAt(0) != '(' || token.charAt(token.length() - 1) != ')') {
-            throw new BadLexemeException(token);
+            throw new BadTokenException(token);
         }
         token = token.substring(1, token.length() - 1);
         String[] splited = token.split(",", 0);
         if (splited.length != 2) {
-            throw new BadLexemeException(token);
+            throw new BadTokenException(token);
         }
         var realStr = splited[0];
         var imagStr = splited[1];
@@ -56,7 +56,7 @@ public class ComplexNumberParser extends NumberParser<ComplexNumber> {
                 imag = imag * Math.PI / 180;
             }
         } catch (NumberFormatException e) {
-            throw new BadLexemeException(token);
+            throw new BadTokenException(token);
         }
         double finalImag = imag;
         double finalReal = real;
@@ -86,7 +86,7 @@ public class ComplexNumberParser extends NumberParser<ComplexNumber> {
      */
 
     @Override
-    public ComplexNumber parseNumber(String token) throws BadLexemeException {
+    public ComplexNumber parseNumber(String token) throws BadTokenException {
         return parseToken(token).apply(new ArrayList<>());
     }
 
@@ -104,7 +104,7 @@ public class ComplexNumberParser extends NumberParser<ComplexNumber> {
         try {
             parseToken(token);
             return true;
-        } catch (BadLexemeException e) {
+        } catch (BadTokenException e) {
             return false;
         }
     }

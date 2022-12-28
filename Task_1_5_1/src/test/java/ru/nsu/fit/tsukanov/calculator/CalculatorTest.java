@@ -96,6 +96,7 @@ public class CalculatorTest {
                 () -> calculator.newLine(null));
         Assertions.assertEquals(new ComplexNumber(0, 0), calculator.calculate("sin  (0,0)"));
         Assertions.assertEquals(new ComplexNumber(1, 0), calculator.calculate("cos (0,0)"));
+        Assertions.assertEquals("1.0i", new ComplexNumber(0, 1).toString());
         calculator.addToParser(new NumberParserInterface<>() {
             private static double fib(int index) {
                 double x1 = 0;
@@ -108,7 +109,7 @@ public class CalculatorTest {
             }
 
             @Override
-            public ComplexNumber parseNumber(String token) throws BadLexemeException {
+            public ComplexNumber parseNumber(String token) throws BadTokenException {
                 String fib = "fib";
                 if (token.startsWith(fib)) {
                     token = token.substring(fib.length());
@@ -117,11 +118,11 @@ public class CalculatorTest {
                         try {
                             return new ComplexNumber(fib(Integer.parseInt(token)), 0);
                         } catch (NumberFormatException e) {
-                            throw new BadLexemeException(e.getMessage());
+                            throw new BadTokenException(e.getMessage());
                         }
                     }
                 }
-                throw new BadLexemeException("Bad token: " + token);
+                throw new BadTokenException("Bad token: " + token);
             }
         });
         calculator.addToParser(new Function<>() {
@@ -167,11 +168,11 @@ public class CalculatorTest {
                 });
         Assertions.assertThrows(CalculatorException.class,
                 () -> {
-                    throw new BadLexemeException();
+                    throw new BadTokenException();
                 });
         Assertions.assertThrows(CalculatorException.class,
                 () -> {
-                    throw new BadLexemeException("hi");
+                    throw new BadTokenException("hi");
                 });
         Assertions.assertThrows(CalculatorException.class,
                 () -> {
@@ -349,7 +350,7 @@ public class CalculatorTest {
             try {
                 return Integer.parseInt(token);
             } catch (NumberFormatException e) {
-                throw new BadLexemeException(e.getMessage());
+                throw new BadTokenException(e.getMessage());
             }
 
         };
@@ -357,7 +358,7 @@ public class CalculatorTest {
             try {
                 return Integer.parseInt(token);
             } catch (NumberFormatException e) {
-                throw new BadLexemeException(e.getMessage());
+                throw new BadTokenException(e.getMessage());
             }
 
         };
@@ -366,24 +367,24 @@ public class CalculatorTest {
             Assertions.assertEquals(5, fun.apply(List.of()));
             Assertions.assertEquals(0, fun.getArity());
             Assertions.assertFalse(fun.representation().isEmpty());
-            Assertions.assertThrows(BadLexemeException.class,
+            Assertions.assertThrows(BadTokenException.class,
                     () -> numberParser.parseToken(".."));
-        } catch (BadLexemeException e) {
+        } catch (BadTokenException e) {
             throw new RuntimeException(e);
         }
         NumberParser<Integer> numberParser1 = new NumberParser<>();
         numberParser1.putNumberParser(numberParser);
         try {
             Assertions.assertEquals("1", numberParser1.parseToken("1").representation());
-        } catch (BadLexemeException e) {
+        } catch (BadTokenException e) {
             throw new RuntimeException(e);
         }
         numberParser1.putNumberParser(numberParser2);
         NumberParser<Integer> numberParser11 = new NumberParserBuilder<Integer>()
                 .putParser(List.of(numberParser1))
                 .build();
-        Assertions.assertThrows(BadLexemeException.class, () -> numberParser11.parseNumber("1"));
-        Assertions.assertThrows(BadLexemeException.class, () -> numberParser11.parseNumber("."));
+        Assertions.assertThrows(BadTokenException.class, () -> numberParser11.parseNumber("1"));
+        Assertions.assertThrows(BadTokenException.class, () -> numberParser11.parseNumber("."));
         FunctionWrapperStack<Integer> functionWrapper = new FunctionWrapperStack<>(
                 new Function<>() {
                     @Override
@@ -411,7 +412,7 @@ public class CalculatorTest {
         Function<ComplexNumber> fun;
         try {
             fun = realNumberParser.parseToken("5.5");
-        } catch (BadLexemeException e) {
+        } catch (BadTokenException e) {
             throw new RuntimeException(e);
         }
         Assertions.assertEquals(new ComplexNumber(5.5, 0), fun.apply(List.of()));
@@ -420,7 +421,7 @@ public class CalculatorTest {
         ComplexNumberParser complexNumberParser = new ComplexNumberParser();
         try {
             fun = complexNumberParser.parseToken("(5,10)");
-        } catch (BadLexemeException e) {
+        } catch (BadTokenException e) {
             throw new RuntimeException(e);
         }
         Assertions.assertEquals(0, fun.getArity());

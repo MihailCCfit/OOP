@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.fit.tsukanov.calculator.coding.CodingCalculator;
 import ru.nsu.fit.tsukanov.calculator.coding.methods.CaesarCoding;
 import ru.nsu.fit.tsukanov.calculator.coding.methods.CaesarDeCoding;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
 import ru.nsu.fit.tsukanov.calculator.core.parser.functions.FunctionParser;
@@ -29,10 +29,10 @@ public class CaesarCodingTest {
              * @return number
              */
             @Override
-            public String parseNumber(String token) throws BadLexemeException {
+            public String parseNumber(String token) throws BadTokenException {
                 for (char c : token.toCharArray()) {
                     if (!Character.isAlphabetic(c)) {
-                        throw new BadLexemeException(c + " is not alphabetic");
+                        throw new BadTokenException(c + " is not alphabetic");
                     }
                 }
                 return token;
@@ -46,10 +46,10 @@ public class CaesarCodingTest {
              * @return number
              */
             @Override
-            public String parseNumber(String token) throws BadLexemeException {
+            public String parseNumber(String token) throws BadTokenException {
                 for (char c : token.toCharArray()) {
                     if (!Character.isDigit(c)) {
-                        throw new BadLexemeException(c + " is not alphabetic");
+                        throw new BadTokenException(c + " is not alphabetic");
                     }
                 }
                 return token;

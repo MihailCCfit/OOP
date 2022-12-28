@@ -3,7 +3,7 @@ package ru.nsu.fit.tsukanov.calculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
@@ -20,12 +20,12 @@ public class AnonCalculatorTest {
                 new CalculatorParser<>(
                         new NumberParserInterface<>() {
                             @Override
-                            public Function<Double> parseToken(String token) throws BadLexemeException {
+                            public Function<Double> parseToken(String token) throws BadTokenException {
                                 double val;
                                 try {
                                     val = Double.parseDouble(token);
                                 } catch (NumberFormatException e) {
-                                    throw new BadLexemeException("Bad token: " + token);
+                                    throw new BadTokenException("Bad token: " + token);
                                 }
                                 return new Function<>() {
                                     @Override
@@ -46,12 +46,12 @@ public class AnonCalculatorTest {
                             }
 
                             @Override
-                            public Double parseNumber(String token) throws BadLexemeException {
+                            public Double parseNumber(String token) throws BadTokenException {
 
                                 try {
                                     return Double.parseDouble(token);
                                 } catch (NumberFormatException e) {
-                                    throw new BadLexemeException("Bad token: " + token);
+                                    throw new BadTokenException("Bad token: " + token);
                                 }
                             }
 
@@ -159,9 +159,9 @@ public class AnonCalculatorTest {
              * @return number
              */
             @Override
-            public Double parseNumber(String token) throws BadLexemeException {
+            public Double parseNumber(String token) throws BadTokenException {
                 if (!token.contains("/")) {
-                    throw new BadLexemeException("There is no /");
+                    throw new BadTokenException("There is no /");
                 }
 
                 String[] strings = token.split("/");
