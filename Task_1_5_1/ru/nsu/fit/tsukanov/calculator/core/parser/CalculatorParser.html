@@ -254,7 +254,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="parse(java.lang.String)">
 <h3>parse</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../functions/Function.html" title="interface in ru.nsu.fit.tsukanov.calculator.core.functions">Function</a>&lt;<a href="CalculatorParser.html" title="type parameter in CalculatorParser">T</a>&gt;</span>&nbsp;<span class="element-name">parse</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</span>
-                  throws <span class="exceptions"><a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></span></div>
+                  throws <span class="exceptions"><a href="../Exceptions/BadTokenException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadTokenException</a></span></div>
 <div class="block">Parse token as number or as function (checked for function firstly).
  If there is some problem then throws exception.
  Return function (function can be zero-arity that means number or the constant).</div>
@@ -264,7 +264,7 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>the function of the parsed token</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../Exceptions/BadLexemeException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadLexemeException</a></code> - if there is problem with parsing.</dd>
+<dd><code><a href="../Exceptions/BadTokenException.html" title="class in ru.nsu.fit.tsukanov.calculator.core.Exceptions">BadTokenException</a></code> - if there is problem with parsing.</dd>
 </dl>
 </section>
 </li>
