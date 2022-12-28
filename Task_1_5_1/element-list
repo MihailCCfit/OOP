@@ -1,7 +1,7 @@
 ru.nsu.fit.tsukanov.calculator.coding
 ru.nsu.fit.tsukanov.calculator.coding.methods
 ru.nsu.fit.tsukanov.calculator.complex
-ru.nsu.fit.tsukanov.calculator.complex.Functions
+ru.nsu.fit.tsukanov.calculator.complex.functions
 ru.nsu.fit.tsukanov.calculator.complex.parsers
 ru.nsu.fit.tsukanov.calculator.complex.recursive
 ru.nsu.fit.tsukanov.calculator.core
@@ -10,5 +10,8 @@ ru.nsu.fit.tsukanov.calculator.core.functions
 ru.nsu.fit.tsukanov.calculator.core.parser
 ru.nsu.fit.tsukanov.calculator.core.parser.functions
 ru.nsu.fit.tsukanov.calculator.core.parser.numbers
+ru.nsu.fit.tsukanov.calculator.real
+ru.nsu.fit.tsukanov.calculator.real.functions
+ru.nsu.fit.tsukanov.calculator.real.parsers
 ru.nsu.fit.tsukanov.calculator.template.example
 ru.nsu.fit.tsukanov.calculator.template.stack
