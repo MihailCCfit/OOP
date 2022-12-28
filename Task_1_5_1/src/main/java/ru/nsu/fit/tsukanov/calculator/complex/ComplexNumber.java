@@ -32,7 +32,16 @@ public record ComplexNumber(double real, double imaginary) {
 
     @Override
     public String toString() {
-        return "(" + real + "," + imaginary + ")";
+        if (imaginary == 0 && real == 0) {
+            return "0";
+        }
+        if (real == 0) {
+            return imaginary + "i";
+        }
+        if (imaginary == 0) {
+            return real + "";
+        }
+        return "(" + real + "," + imaginary + "i)";
     }
 
     /**
@@ -99,5 +108,6 @@ public record ComplexNumber(double real, double imaginary) {
     public double module() {
         return Math.sqrt(real * real + imaginary * imaginary);
     }
+
 
 }
