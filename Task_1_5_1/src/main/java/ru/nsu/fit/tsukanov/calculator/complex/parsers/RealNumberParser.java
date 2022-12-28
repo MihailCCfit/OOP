@@ -1,7 +1,7 @@
 package ru.nsu.fit.tsukanov.calculator.complex.parsers;
 
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.numbers.NumberParserInterface;
 
@@ -15,13 +15,13 @@ public class RealNumberParser implements NumberParserInterface<ComplexNumber> {
      * @return constant function
      */
     @Override
-    public Function<ComplexNumber> parseToken(String token) throws BadLexemeException {
+    public Function<ComplexNumber> parseToken(String token) throws BadTokenException {
         double res;
         try {
             res = Double.parseDouble(token);
         }
         catch (NumberFormatException e){
-            throw new BadLexemeException(e.getMessage());
+            throw new BadTokenException(e.getMessage());
         }
         return new Function<>() {
             @Override
@@ -48,7 +48,7 @@ public class RealNumberParser implements NumberParserInterface<ComplexNumber> {
      * @return number
      */
     @Override
-    public ComplexNumber parseNumber(String token) throws BadLexemeException {
+    public ComplexNumber parseNumber(String token) throws BadTokenException {
         return parseToken(token).apply(List.of());
     }
 
@@ -63,7 +63,7 @@ public class RealNumberParser implements NumberParserInterface<ComplexNumber> {
         try {
             parseToken(token);
             return true;
-        } catch (BadLexemeException e) {
+        } catch (BadTokenException e) {
             return false;
         }
     }

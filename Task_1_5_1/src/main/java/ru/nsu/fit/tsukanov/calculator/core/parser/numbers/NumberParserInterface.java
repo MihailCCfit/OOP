@@ -1,6 +1,6 @@
 package ru.nsu.fit.tsukanov.calculator.core.parser.numbers;
 
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface NumberParserInterface<T> {
      * @param token token
      * @return constant function
      */
-    default Function<T> parseToken(String token) throws BadLexemeException {
+    default Function<T> parseToken(String token) throws BadTokenException {
         var num = parseNumber(token);
         return new Function<>() {
             @Override
@@ -38,7 +38,7 @@ public interface NumberParserInterface<T> {
      * @param token token
      * @return number
      */
-    T parseNumber(String token) throws BadLexemeException;
+    T parseNumber(String token) throws BadTokenException;
 
     /**
      * Check for number.
@@ -50,7 +50,7 @@ public interface NumberParserInterface<T> {
         try {
             parseToken(token);
             return true;
-        } catch (BadLexemeException e) {
+        } catch (BadTokenException e) {
             return false;
         }
     }

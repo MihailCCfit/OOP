@@ -47,12 +47,13 @@ public record ComplexNumber(double real, double imaginary) {
     /**
      * a+b. Sum of the complex numbers.
      *
-     * @param a the first number
-     * @param b the second number
+     * @param a the   first number
+     * @param b the   second number
      * @return the summary of numbers
      */
     public static ComplexNumber add(ComplexNumber a, ComplexNumber b) {
         return new ComplexNumber(a.real + b.real, a.imaginary + b.imaginary);
+
     }
 
     /**

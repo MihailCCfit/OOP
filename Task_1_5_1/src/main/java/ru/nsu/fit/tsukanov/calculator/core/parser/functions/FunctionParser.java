@@ -1,6 +1,6 @@
 package ru.nsu.fit.tsukanov.calculator.core.parser.functions;
 
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 import java.util.HashMap;
@@ -51,11 +51,11 @@ public class FunctionParser<T> {
      *
      * @param token the string(token) for parsing
      * @return function according to the parser and token
-     * @throws BadLexemeException if there is problem with parsing
+     * @throws BadTokenException if there is problem with parsing
      */
-    public Function<T> parseToken(String token) throws BadLexemeException {
+    public Function<T> parseToken(String token) throws BadTokenException {
         if (!checkToken(token)) {
-            throw new BadLexemeException();
+            throw new BadTokenException();
         }
         return dictionary.get(token);
     }

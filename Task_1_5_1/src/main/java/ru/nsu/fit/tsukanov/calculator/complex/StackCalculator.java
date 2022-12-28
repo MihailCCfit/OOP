@@ -4,7 +4,7 @@ import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexFunctionParser;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.ComplexNumberParser;
 import ru.nsu.fit.tsukanov.calculator.complex.parsers.RealNumberParser;
 import ru.nsu.fit.tsukanov.calculator.core.Calculator;
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.Exceptions.CalculatorException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 import ru.nsu.fit.tsukanov.calculator.core.parser.CalculatorParser;
@@ -48,7 +48,7 @@ public class StackCalculator implements Calculator<ComplexNumber> {
      * Add token to the end of tokens.
      *
      * @param token token (function or number)
-     * @throws BadLexemeException if there is problem with parsing
+     * @throws BadTokenException if there is problem with parsing
      */
     public void addToken(String token) throws CalculatorException {
         result = null;

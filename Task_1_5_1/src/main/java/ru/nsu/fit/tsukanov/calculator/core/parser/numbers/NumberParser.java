@@ -1,6 +1,6 @@
 package ru.nsu.fit.tsukanov.calculator.core.parser.numbers;
 
-import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadLexemeException;
+import ru.nsu.fit.tsukanov.calculator.core.Exceptions.BadTokenException;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class NumberParser<T> implements NumberParserInterface<T> {
             if (numberParser.checkNumber(token)) {
                 try {
                     results.add(numberParser.parseNumber(token));
-                } catch (BadLexemeException ignore){}
+                } catch (BadTokenException ignore){}
             }
         }
         return results;
@@ -34,11 +34,11 @@ public class NumberParser<T> implements NumberParserInterface<T> {
      * @return constant function
      */
     @Override
-    public Function<T> parseToken(String token) throws BadLexemeException {
+    public Function<T> parseToken(String token) throws BadTokenException {
         List<T> list;
         list = listOfParsed(token);
         if (list.size() != 1) {
-            throw new BadLexemeException("There is no valid possible number: " + list);
+            throw new BadTokenException("There is no valid possible number: " + list);
         }
         var num = list.get(0);
         return new Function<>() {
@@ -66,7 +66,7 @@ public class NumberParser<T> implements NumberParserInterface<T> {
      * @return number
      */
     @Override
-    public T parseNumber(String token) throws BadLexemeException {
+    public T parseNumber(String token) throws BadTokenException {
         return parseToken(token).apply(List.of());
     }
 
