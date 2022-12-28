@@ -273,10 +273,9 @@ public class CalculatorTest {
             calculator.addToken("(1,2)");
             calculator.addToken("(3,2)");
             Assertions.assertEquals(new ComplexNumber(4, 4), calculator.calculate());
-            var old = calculator.clear();
+            calculator.clear();
             calculator.newLine("- (4,4)");
             calculator.getInformation();
-            calculator.addToken(old.toString());
         } catch (CalculatorException e) {
             throw new RuntimeException(e);
         }
@@ -428,4 +427,11 @@ public class CalculatorTest {
         Assertions.assertEquals(new ComplexNumber(5, 10).toString(), fun.representation());
     }
 
+    @ParameterizedTest
+    @MethodSource("calculatorStream")
+    void realNumbersTest(Calculator<ComplexNumber> calculator) throws CalculatorException {
+        Assertions.assertEquals("3.0", calculator.calculate("+ 1 2").toString());
+        Assertions.assertEquals("2.5", calculator.calculate("/ - (3,2) (-2,2) 2").toString());
+        Assertions.assertEquals(Math.sin(1) + "", calculator.calculate("sin cos ln 1").toString());
+    }
 }
