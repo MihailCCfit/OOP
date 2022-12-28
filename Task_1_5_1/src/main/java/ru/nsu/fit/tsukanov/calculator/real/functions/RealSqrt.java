@@ -1,11 +1,11 @@
-package ru.nsu.fit.tsukanov.calculator.complex.Functions;
+package ru.nsu.fit.tsukanov.calculator.real.functions;
 
-import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 import java.util.List;
 
-public class ComplexMul implements Function<ComplexNumber> {
+public class RealSqrt implements Function<Double> {
+
     /**
      * Return arity of function.
      *
@@ -13,7 +13,7 @@ public class ComplexMul implements Function<ComplexNumber> {
      */
     @Override
     public int getArity() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -23,8 +23,8 @@ public class ComplexMul implements Function<ComplexNumber> {
      * @return number
      */
     @Override
-    public ComplexNumber apply(List<ComplexNumber> arguments) {
-        return ComplexNumber.mul(arguments.get(0), arguments.get(1));
+    public Double apply(List<Double> arguments) {
+        return Math.sqrt(arguments.get(0));
     }
 
     /**
@@ -34,6 +34,6 @@ public class ComplexMul implements Function<ComplexNumber> {
      */
     @Override
     public String representation() {
-        return "*";
+        return "sqrt";
     }
 }

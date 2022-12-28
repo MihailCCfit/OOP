@@ -1,11 +1,10 @@
-package ru.nsu.fit.tsukanov.calculator.complex.Functions;
+package ru.nsu.fit.tsukanov.calculator.real.functions;
 
-import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 import java.util.List;
 
-public class ComplexDiv implements Function<ComplexNumber> {
+public class RealDiv implements Function<Double> {
 
     /**
      * Return arity of function.
@@ -24,8 +23,8 @@ public class ComplexDiv implements Function<ComplexNumber> {
      * @return number
      */
     @Override
-    public ComplexNumber apply(List<ComplexNumber> arguments) {
-        return ComplexNumber.div(arguments.get(0), arguments.get(1));
+    public Double apply(List<Double> arguments) {
+        return arguments.get(0) / arguments.get(1);
     }
 
     /**

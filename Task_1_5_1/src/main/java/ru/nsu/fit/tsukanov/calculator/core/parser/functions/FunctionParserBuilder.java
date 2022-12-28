@@ -49,7 +49,9 @@ public class FunctionParserBuilder<T> {
      * @return this builder
      */
     public FunctionParserBuilder<T> putFunction(List<Function<T>> functions) {
-        functions.forEach(this::putFunction);
+        for (Function<T> function : functions) {
+            putFunction(function);
+        }
         return this;
     }
 

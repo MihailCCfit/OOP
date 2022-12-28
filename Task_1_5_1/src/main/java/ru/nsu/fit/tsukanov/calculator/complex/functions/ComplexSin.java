@@ -1,11 +1,11 @@
-package ru.nsu.fit.tsukanov.calculator.complex.Functions;
+package ru.nsu.fit.tsukanov.calculator.complex.functions;
 
 import ru.nsu.fit.tsukanov.calculator.complex.ComplexNumber;
 import ru.nsu.fit.tsukanov.calculator.core.functions.Function;
 
 import java.util.List;
 
-public class ComplexSub implements Function<ComplexNumber> {
+public class ComplexSin implements Function<ComplexNumber> {
     /**
      * Return arity of function.
      *
@@ -13,7 +13,7 @@ public class ComplexSub implements Function<ComplexNumber> {
      */
     @Override
     public int getArity() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -24,7 +24,11 @@ public class ComplexSub implements Function<ComplexNumber> {
      */
     @Override
     public ComplexNumber apply(List<ComplexNumber> arguments) {
-        return ComplexNumber.sub(arguments.get(0), arguments.get(1));
+        ComplexNumber num = arguments.get(0);
+        double real = num.real();
+        double im = num.imaginary();
+        return new ComplexNumber(Math.sin(real) * Math.cosh(im),
+                Math.cos(real) * Math.sinh(im));
     }
 
     /**
@@ -34,8 +38,6 @@ public class ComplexSub implements Function<ComplexNumber> {
      */
     @Override
     public String representation() {
-        return "-";
+        return "sin";
     }
-
-
 }
