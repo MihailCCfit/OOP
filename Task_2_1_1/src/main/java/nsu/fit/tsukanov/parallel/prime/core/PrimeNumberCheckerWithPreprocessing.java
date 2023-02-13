@@ -19,7 +19,7 @@ public class PrimeNumberCheckerWithPreprocessing implements PrimeNumberChecker {
         int[] arr = new int[(int) (Math.sqrt(maxNumber) + 2)];
         arr[0] = 1;
         arr[1] = 1;
-        for (int i = 2; i <= arr.length; i++) {
+        for (int i = 2; i < arr.length; i++) {
             if (arr[i] == 0) {
                 primeDividers.add(i);
                 if (i*i> arr.length) continue;
@@ -48,6 +48,9 @@ public class PrimeNumberCheckerWithPreprocessing implements PrimeNumberChecker {
             return true;
         }
         for (Integer divider : primeDividers) {
+            if (divider>= num){
+                break;
+            }
             if (num%divider==0){
                 return true;
             }

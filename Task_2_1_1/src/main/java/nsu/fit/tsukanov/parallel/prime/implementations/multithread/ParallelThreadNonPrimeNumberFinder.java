@@ -1,8 +1,8 @@
 package nsu.fit.tsukanov.parallel.prime.implementations.multithread;
 
+import nsu.fit.tsukanov.parallel.prime.core.CheckerProvider;
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
-import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerProvider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,12 +42,15 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
     }
 
     /**
-     * @param integers
-     * @return
+     * Check collection for containing prime numbers.
+     *
+     * @param integers collection of numbers for checking
+     * @return true if collection has a complex number
      */
     @Override
     public boolean hasNoPrime(Collection<Integer> integers) {
-        WorkingThread workingThread = new WorkingThread(integers);
+        WorkingThread workingThread = new WorkingThread(integers,
+                CheckerProvider.create(integers, numberOfThreads));
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < numberOfThreads; i++) {
             threads.add(new Thread(workingThread));
@@ -67,8 +70,10 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
         private final Iterator<Integer> iterator;
         private final Collection<Integer> integers;
         private final atomicBoolean result = new atomicBoolean();
+        private final PrimeNumberChecker primeNumberChecker;
 
-        private WorkingThread(Collection<Integer> integers) {
+        private WorkingThread(Collection<Integer> integers, PrimeNumberChecker primeNumberChecker) {
+            this.primeNumberChecker = primeNumberChecker;
             iterator = integers.iterator();
             this.integers = integers;
         }
@@ -87,7 +92,6 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
         @Override
         public void run() {
             Integer number;
-            PrimeNumberChecker primeNumberChecker = PrimeNumberCheckerProvider.create(integers);
             while ((number = getNext()) != null) {
                 if (primeNumberChecker.notPrime(number)) {
                     result.setFlag(true);

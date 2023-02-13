@@ -1,6 +1,7 @@
 package nsu.fit.tsukanov.parallel;
 
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
+import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerWithPreprocessing;
 import nsu.fit.tsukanov.parallel.prime.implementations.linear.LinearNonPrimeFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadNonPrimeNumberFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.tools.EratosthenesSieve;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class TesterDifferentTypes {
 
-    int numberOfPrimeNumbers= 10000;
+    int numberOfPrimeNumbers = 10000;
     int maxInt = 50000000;
 
     public List<Integer> getNumbers(int max, int number) {
@@ -84,6 +85,13 @@ public class TesterDifferentTypes {
     public void TestParallelStream() {
         NonPrimesFinder finder = new ParallelThreadNonPrimeNumberFinder();
         var res = finder.hasNoPrime(getNumbers(maxInt, numberOfPrimeNumbers));
+        Assertions.assertFalse(res);
+    }
+
+    @Test
+    public void Test() {
+        PrimeNumberCheckerWithPreprocessing checker = new PrimeNumberCheckerWithPreprocessing(3343);
+        var res = checker.notPrime(3343);
         Assertions.assertFalse(res);
     }
 
