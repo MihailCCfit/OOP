@@ -1,15 +1,21 @@
 package nsu.fit.tsukanov.parallel;
 
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
+import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
+import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerWithPreprocessing;
 import nsu.fit.tsukanov.parallel.prime.implementations.linear.LinearNonPrimeFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadNonPrimeNumberFinder;
+import nsu.fit.tsukanov.parallel.prime.implementations.parallelstream.ParallelStreamNonPrimeNumberFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.tools.EratosthenesSieve;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 public class TesterDifferentTypes {
@@ -26,7 +32,7 @@ public class TesterDifferentTypes {
         return integers;
     }
 
-    private List<Integer> listOfBigPrimeNumbers(int size) {
+    private static List<Integer> listOfBigPrimeNumbers(int size) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             list.add(1000000007);
@@ -38,61 +44,51 @@ public class TesterDifferentTypes {
         return list;
     }
 
-    /**
-     * large numbers
-     */
-    @Test
-    public void TestParallelThreadNonPrimeFinderWithBigNumbers() {
-        NonPrimesFinder finder = new ParallelThreadNonPrimeNumberFinder();
-        var list = listOfBigPrimeNumbers(numberOfPrimeNumbers);
-        var res = finder.hasNoPrime(list);
-        Assertions.assertTrue(res);
+    public static Stream<NonPrimesFinder> PrimeCheckerStream() {
+        return Stream.of(new ParallelThreadNonPrimeNumberFinder(),
+                new ParallelStreamNonPrimeNumberFinder(),
+                new LinearNonPrimeFinder());
     }
 
-    @Test
-    public void TestLinearNonPrimeFinderWithBigNumbers() {
-        NonPrimesFinder finder = new LinearNonPrimeFinder();
-        var res = finder.hasNoPrime(listOfBigPrimeNumbers(numberOfPrimeNumbers));
-        Assertions.assertTrue(res);
-    }
 
-    @Test
-    public void TestParallelStreamWithBigNumbers() {
-        NonPrimesFinder finder = new ParallelThreadNonPrimeNumberFinder();
-        var res = finder.hasNoPrime(listOfBigPrimeNumbers(numberOfPrimeNumbers));
-        Assertions.assertTrue(res);
+    @ParameterizedTest
+    @MethodSource("PrimeCheckerStream")
+    public void TestParallelThreadNonPrimeFinderWithBigNumbers(NonPrimesFinder finder) {
+        List<Integer> list;
+        list = listOfBigPrimeNumbers(numberOfPrimeNumbers);
+        Assertions.assertTrue(finder.hasNoPrime(list));
+        list = getNumbers(100, numberOfPrimeNumbers);
+        Assertions.assertFalse(finder.hasNoPrime(list));
+        list = getNumbers(maxInt, numberOfPrimeNumbers);
+        Assertions.assertFalse(finder.hasNoPrime(list));
     }
 
     /**
      * random numbers
      */
     @Test
-    public void TestParallelThreadNonPrime() {
-        NonPrimesFinder finder = new ParallelThreadNonPrimeNumberFinder();
-        var res = finder.hasNoPrime(getNumbers(maxInt, numberOfPrimeNumbers));
-        Assertions.assertFalse(res);
+    public void testPrimeNumberChecker() {
+        var ref = new Object() {
+            PrimeNumberChecker checker = new PrimeNumberCheckerWithPreprocessing(1000);
+        };
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ref.checker.notPrime(-5));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ref.checker.notPrime(5000));
+        Assertions.assertTrue(ref.checker.notPrime(1));
+        ref.checker = new PrimeNumberCheckerInstant();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> ref.checker.notPrime(-5));
     }
 
     @Test
-    public void TestLinearNonPrime() {
-        NonPrimesFinder finder = new LinearNonPrimeFinder();
-
-        var res = finder.hasNoPrime(getNumbers(maxInt, numberOfPrimeNumbers));
-        Assertions.assertFalse(res);
-    }
-
-    @Test
-    public void TestParallelStream() {
-        NonPrimesFinder finder = new ParallelThreadNonPrimeNumberFinder();
-        var res = finder.hasNoPrime(getNumbers(maxInt, numberOfPrimeNumbers));
-        Assertions.assertFalse(res);
-    }
-
-    @Test
-    public void Test() {
-        PrimeNumberCheckerWithPreprocessing checker = new PrimeNumberCheckerWithPreprocessing(3343);
-        var res = checker.notPrime(3343);
-        Assertions.assertFalse(res);
+    public void testSieve() {
+        EratosthenesSieve eratosthenesSieve = new EratosthenesSieve(10000);
+        eratosthenesSieve.setSeed();
+        Assertions.assertTrue(eratosthenesSieve.isPrime(5));
+        Assertions.assertFalse(eratosthenesSieve.isPrime(4));
+        Assertions.assertEquals(5, eratosthenesSieve.nextPrime(4));
+        var list = eratosthenesSieve.getNumbers(3000);
+        eratosthenesSieve = new EratosthenesSieve(20000);
+        Assertions.assertEquals(3000, list.size());
+        Assertions.assertTrue(list.stream().allMatch(eratosthenesSieve::isPrime));
     }
 
 
