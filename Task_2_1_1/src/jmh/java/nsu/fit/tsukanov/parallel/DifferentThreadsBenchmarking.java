@@ -11,7 +11,7 @@ import java.util.List;
 public class DifferentThreadsBenchmarking {
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        @Param({"2", "5", "10", "25", "50", "100", "250", "500", "1000", "2500", "5000", "10000", "50000"})
+        @Param({"2", "5", "10", "25", "50", "100", "250", "500", "1000", "2500", "5000"})
         public int numberOfPrimeNumbers;
         @Param({"1", "2", "4", "6", "8", "12"})
         public int threadsAmount;

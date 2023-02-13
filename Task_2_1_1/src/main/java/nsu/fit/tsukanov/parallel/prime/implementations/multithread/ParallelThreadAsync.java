@@ -2,7 +2,7 @@ package nsu.fit.tsukanov.parallel.prime.implementations.multithread;
 
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
-import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerProvider;
+import nsu.fit.tsukanov.parallel.prime.core.CheckerProvider;
 
 import java.util.Collection;
 import java.util.concurrent.BlockingQueue;
@@ -67,7 +67,7 @@ public class ParallelThreadAsync implements NonPrimesFinder {
          */
         @Override
         public void run() {
-            PrimeNumberChecker primeNumberChecker = PrimeNumberCheckerProvider.create(integers);
+            PrimeNumberChecker primeNumberChecker = CheckerProvider.create(integers);
             for (Integer integer : integers) {
                 if (result) {
                     break;

@@ -60,8 +60,6 @@ public class DifferentTypesBenchmarking {
             var res = finder.hasNoPrime(state.bigPrimeNumbers);
             assert (!res);
         }
-
-
     }
 
     @State(Scope.Benchmark)
