@@ -13,7 +13,7 @@ public class DifferentThreadsBenchmarking {
     public static class BenchmarkState {
         @Param({"10", "25", "50", "100", "250", "500", "1000", "2500", "5000", "10000", "50000"})
         public int numberOfPrimeNumbers;
-        @Param({"1", "2", "4", "6", "8", "12"})
+        @Param({"1", "2", "4", "6", "8"})
         public int threadsAmount;
         public int maxInt = 40000000;
         EratosthenesSieve eratosthenesSieve = new EratosthenesSieve(maxInt);

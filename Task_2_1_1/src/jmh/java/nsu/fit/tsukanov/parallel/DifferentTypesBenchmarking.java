@@ -1,6 +1,7 @@
 package nsu.fit.tsukanov.parallel;
 
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
+import nsu.fit.tsukanov.parallel.prime.implementations.hybrid.Hybrid;
 import nsu.fit.tsukanov.parallel.prime.implementations.linear.LinearNonPrimeFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadNonPrimeNumberFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadWithAtomic;
@@ -69,6 +70,13 @@ public class DifferentTypesBenchmarking {
             var res = finder.hasNoPrime(state.bigPrimeNumbers);
             assert (!res);
         }
+
+        @Benchmark
+        public void ParallelHybrid(Blackhole blackhole, BenchmarkState state) {
+            NonPrimesFinder finder = new Hybrid();
+            var res = finder.hasNoPrime(state.bigPrimeNumbers);
+            assert (!res);
+        }
     }
 
     @State(Scope.Benchmark)
@@ -104,6 +112,13 @@ public class DifferentTypesBenchmarking {
         @Benchmark
         public void ParallelStream(Blackhole blackhole, BenchmarkState state) {
             NonPrimesFinder finder = new ParallelStreamNonPrimeNumberFinder();
+            var res = finder.hasNoPrime(state.primeNumbers);
+            assert (!res);
+        }
+
+        @Benchmark
+        public void ParallelHybrid(Blackhole blackhole, BenchmarkState state) {
+            NonPrimesFinder finder = new Hybrid();
             var res = finder.hasNoPrime(state.primeNumbers);
             assert (!res);
         }
