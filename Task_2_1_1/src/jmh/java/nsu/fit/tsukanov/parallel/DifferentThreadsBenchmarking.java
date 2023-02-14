@@ -37,15 +37,5 @@ public class DifferentThreadsBenchmarking {
         }
     }
 
-    @State(Scope.Benchmark)
-    @BenchmarkMode(Mode.Throughput)
-    public static class DifferentThreadsWithAtomic {
-        @Benchmark
-        public void TestParallelThreadNonPrime(Blackhole blackhole, BenchmarkState state) {
-            NonPrimesFinder finder = new ParallelThreadNonPrimeNumberFinder(state.threadsAmount);
-            var res = finder.hasNoPrime(state.primeNumbers);
-            assert (!res);
-        }
-    }
 
 }
