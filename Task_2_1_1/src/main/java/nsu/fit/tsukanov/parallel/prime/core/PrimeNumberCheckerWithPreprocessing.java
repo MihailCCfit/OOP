@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Calculates all possible prime divisor for the range.
  * Complexity:
  * O(N^(1/2)*log(log(N))) - preprocessing
  * O(N*N^(1/2) / (log(N)-B)), where  B=1,08366.
