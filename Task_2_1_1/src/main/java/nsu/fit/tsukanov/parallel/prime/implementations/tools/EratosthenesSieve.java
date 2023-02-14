@@ -7,13 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * It's used for generating prime numbers in the range.
+ */
 public class EratosthenesSieve {
 
     private final int[] isPrime;
     private final int[] nextPrime;
     private final long SEED = 123456;
-    Random random = new Random(SEED);
+    private final Random random = new Random(SEED);
 
+    /**
+     * @param maxSize the upper bound of the range
+     */
     public EratosthenesSieve(int maxSize) {
         isPrime = new int[maxSize];
         nextPrime = new int[maxSize];
@@ -51,6 +57,12 @@ public class EratosthenesSieve {
         return answer;
     }
 
+    /**
+     * Check the number for prime.
+     *
+     * @param n the number for checking
+     * @return true if number is prime
+     */
     public boolean isPrime(int n) {
         if (n >= isPrime.length || n < 0) {
             throw new IllegalArgumentException();
@@ -58,6 +70,12 @@ public class EratosthenesSieve {
         return isPrime[n] == 0;
     }
 
+    /**
+     * Get next prime that greater or equal than specified number.
+     *
+     * @param n the num
+     * @return next prime number
+     */
     public int nextPrime(int n) {
         if (n >= isPrime.length || n < 0) {
             throw new IllegalArgumentException();
@@ -65,9 +83,22 @@ public class EratosthenesSieve {
         return nextPrime[n];
     }
 
+    /**
+     * Return random prime number in the range of maxSize (array).
+     *
+     * @return random prime number in the range of maxSize (array).
+     */
+
     public int getRandomPrime() {
         return nextPrime[random.nextInt(nextPrime.length)];
     }
+
+    /**
+     * Create list of random prime numbers with specified size.
+     *
+     * @param size the size for output list of prime numbers
+     * @return the list of random prime numbers
+     */
 
     public List<Integer> getNumbers(int size) {
         List<Integer> list = new ArrayList<>();
@@ -77,12 +108,20 @@ public class EratosthenesSieve {
         return list;
     }
 
+    /**
+     * Set seed for random generator.
+     *
+     * @param seed the seed for generator
+     */
     public void setSeed(long seed) {
         random.setSeed(seed);
     }
 
+    /**
+     * Set seed.
+     */
     public void setSeed() {
-        random.setSeed(SEED);
+        setSeed(SEED);
     }
 
 }

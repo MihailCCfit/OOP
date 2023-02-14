@@ -21,22 +21,14 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
         this.numberOfThreads = numberOfThreads;
     }
 
-    private static class atomicBoolean {
-        private boolean flag;
+    private static class MyBoolean {
+        boolean flag;
 
-        public atomicBoolean() {
+        public MyBoolean() {
             this(false);
         }
 
-        public atomicBoolean(boolean flag) {
-            this.flag = flag;
-        }
-
-        public boolean isFlag() {
-            return flag;
-        }
-
-        public void setFlag(boolean flag) {
+        public MyBoolean(boolean flag) {
             this.flag = flag;
         }
     }
@@ -63,13 +55,13 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
                 throw new RuntimeException(e);
             }
         }
-        return workingThread.result.isFlag();
+        return workingThread.result.flag;
     }
 
     private static class WorkingThread implements Runnable {
         private final Iterator<Integer> iterator;
         private final Collection<Integer> integers;
-        private final atomicBoolean result = new atomicBoolean();
+        private final MyBoolean result = new MyBoolean();
         private final PrimeNumberChecker primeNumberChecker;
 
         private WorkingThread(Collection<Integer> integers, PrimeNumberChecker primeNumberChecker) {
@@ -94,13 +86,13 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
             Integer number;
             while ((number = getNext()) != null) {
                 if (primeNumberChecker.notPrime(number)) {
-                    result.setFlag(true);
+                    result.flag = true;
                 }
             }
         }
 
         private Integer getNext() {
-            if (result.isFlag()) {
+            if (result.flag) {
                 return null;
             }
             synchronized (iterator) {
