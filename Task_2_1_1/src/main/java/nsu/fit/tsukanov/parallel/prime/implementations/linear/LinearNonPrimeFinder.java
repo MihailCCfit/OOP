@@ -1,8 +1,8 @@
 package nsu.fit.tsukanov.parallel.prime.implementations.linear;
 
-import nsu.fit.tsukanov.parallel.prime.core.CheckerProvider;
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
+import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
 
 import java.util.Collection;
 
@@ -16,7 +16,7 @@ public class LinearNonPrimeFinder implements NonPrimesFinder {
      */
     @Override
     public boolean hasNoPrime(Collection<Integer> integers) {
-        PrimeNumberChecker primeNumberChecker = CheckerProvider.create(integers);
+        PrimeNumberChecker primeNumberChecker = new PrimeNumberCheckerInstant();
         for (Integer integer : integers) {
             if (primeNumberChecker.notPrime(integer)) {
                 return true;
