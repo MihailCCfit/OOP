@@ -15,7 +15,6 @@ public class ParallelThreadWithAtomic implements NonPrimesFinder {
 
     public ParallelThreadWithAtomic() {
 
-
     }
 
     public ParallelThreadWithAtomic(int numberOfThreads) {
