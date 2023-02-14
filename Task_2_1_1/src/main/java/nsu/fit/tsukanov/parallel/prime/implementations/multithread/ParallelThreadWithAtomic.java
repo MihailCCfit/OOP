@@ -6,22 +6,24 @@ import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
+public class ParallelThreadWithAtomic implements NonPrimesFinder {
     private int numberOfThreads = 8;
+    private final AtomicInteger atomicInteger = new AtomicInteger(0);
 
-    public ParallelThreadNonPrimeNumberFinder() {
+    public ParallelThreadWithAtomic() {
+
 
     }
 
-    public ParallelThreadNonPrimeNumberFinder(int numberOfThreads) {
+    public ParallelThreadWithAtomic(int numberOfThreads) {
         this.numberOfThreads = numberOfThreads;
     }
 
     private static class MyBoolean {
-        boolean flag;
+        public boolean flag;
 
         public MyBoolean() {
             this(false);
@@ -41,7 +43,7 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
     @Override
     public boolean hasNoPrime(Collection<Integer> integers) {
         WorkingThread workingThread = new WorkingThread(integers,
-                new PrimeNumberCheckerInstant());
+                new PrimeNumberCheckerInstant(), atomicInteger);
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < numberOfThreads; i++) {
             threads.add(new Thread(workingThread));
@@ -58,13 +60,16 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
     }
 
     private static class WorkingThread implements Runnable {
-        private final Iterator<Integer> iterator;
+        private final Integer[] numbers;
         private final MyBoolean result = new MyBoolean();
         private final PrimeNumberChecker primeNumberChecker;
+        private final AtomicInteger atomicInteger;
 
-        private WorkingThread(Collection<Integer> integers, PrimeNumberChecker primeNumberChecker) {
+        private WorkingThread(Collection<Integer> integers, PrimeNumberChecker primeNumberChecker,
+                              AtomicInteger atomicInteger) {
+            this.atomicInteger = atomicInteger;
             this.primeNumberChecker = primeNumberChecker;
-            iterator = integers.iterator();
+            numbers = integers.toArray(new Integer[0]);
         }
 
         /**
@@ -92,13 +97,13 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
             if (result.flag) {
                 return null;
             }
-            synchronized (iterator) {
-                if (iterator.hasNext()) {
-                    return iterator.next();
-                }
+            int i = atomicInteger.getAndIncrement();
+            if (i < numbers.length) {
+                return numbers[i];
             }
             return null;
         }
     }
+
 
 }

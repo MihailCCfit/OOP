@@ -6,6 +6,7 @@ import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerWithPreprocessing;
 import nsu.fit.tsukanov.parallel.prime.implementations.linear.LinearNonPrimeFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadNonPrimeNumberFinder;
+import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadWithAtomic;
 import nsu.fit.tsukanov.parallel.prime.implementations.parallelstream.ParallelStreamNonPrimeNumberFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.tools.EratosthenesSieve;
 import org.junit.jupiter.api.Assertions;
@@ -47,7 +48,8 @@ public class TesterDifferentTypes {
     public static Stream<NonPrimesFinder> PrimeCheckerStream() {
         return Stream.of(new ParallelThreadNonPrimeNumberFinder(),
                 new ParallelStreamNonPrimeNumberFinder(),
-                new LinearNonPrimeFinder());
+                new LinearNonPrimeFinder(),
+                new ParallelThreadWithAtomic());
     }
 
 

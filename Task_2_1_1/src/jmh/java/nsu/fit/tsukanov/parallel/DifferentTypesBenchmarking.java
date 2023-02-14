@@ -3,6 +3,7 @@ package nsu.fit.tsukanov.parallel;
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.linear.LinearNonPrimeFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadNonPrimeNumberFinder;
+import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadWithAtomic;
 import nsu.fit.tsukanov.parallel.prime.implementations.parallelstream.ParallelStreamNonPrimeNumberFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.tools.EratosthenesSieve;
 import org.openjdk.jmh.annotations.*;
@@ -15,7 +16,7 @@ public class DifferentTypesBenchmarking {
 
     @State(Scope.Benchmark)
     public static class BenchmarkState {
-        @Param({"1", "2", "5", "10", "25", "50", "100", "250", "500", "1000", "5000", "10000", "50000", "100000"})
+        @Param({"2", "10", "25", "50", "100", "250", "500", "1000", "5000", "10000", "50000"})
         public int numberOfPrimeNumbers;
         public int maxInt = 10000000;
         public EratosthenesSieve eratosthenesSieve = new EratosthenesSieve(maxInt);
@@ -47,6 +48,14 @@ public class DifferentTypesBenchmarking {
         }
 
         @Benchmark
+
+        public void ParallelThreadWithAtomic(Blackhole blackhole, BenchmarkState state) {
+            NonPrimesFinder finder = new ParallelThreadWithAtomic();
+            var res = finder.hasNoPrime(state.bigPrimeNumbers);
+            assert (!res);
+        }
+
+        @Benchmark
         public void Linear(Blackhole blackhole, BenchmarkState state) {
             NonPrimesFinder finder = new LinearNonPrimeFinder();
             var res = finder.hasNoPrime(state.bigPrimeNumbers);
@@ -72,6 +81,13 @@ public class DifferentTypesBenchmarking {
         @Benchmark
         public void ParallelThread(Blackhole blackhole, BenchmarkState state) {
             NonPrimesFinder finder = new ParallelThreadNonPrimeNumberFinder();
+            var res = finder.hasNoPrime(state.primeNumbers);
+            assert (!res);
+        }
+
+        @Benchmark
+        public void ParallelThreadWithAtomic(Blackhole blackhole, BenchmarkState state) {
+            NonPrimesFinder finder = new ParallelThreadWithAtomic();
             var res = finder.hasNoPrime(state.primeNumbers);
             assert (!res);
         }
