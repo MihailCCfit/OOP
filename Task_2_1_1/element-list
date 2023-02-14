@@ -1,4 +1,5 @@
 nsu.fit.tsukanov.parallel.prime.core
+nsu.fit.tsukanov.parallel.prime.implementations.hybrid
 nsu.fit.tsukanov.parallel.prime.implementations.linear
 nsu.fit.tsukanov.parallel.prime.implementations.multithread
 nsu.fit.tsukanov.parallel.prime.implementations.parallelstream
