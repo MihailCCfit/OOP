@@ -4,6 +4,7 @@ import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerWithPreprocessing;
+import nsu.fit.tsukanov.parallel.prime.implementations.hybrid.Hybrid;
 import nsu.fit.tsukanov.parallel.prime.implementations.linear.LinearNonPrimeFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadNonPrimeNumberFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadWithAtomic;
@@ -49,7 +50,8 @@ public class TesterDifferentTypes {
         return Stream.of(new ParallelThreadNonPrimeNumberFinder(),
                 new ParallelStreamNonPrimeNumberFinder(),
                 new LinearNonPrimeFinder(),
-                new ParallelThreadWithAtomic());
+                new ParallelThreadWithAtomic(),
+                new Hybrid());
     }
 
 
