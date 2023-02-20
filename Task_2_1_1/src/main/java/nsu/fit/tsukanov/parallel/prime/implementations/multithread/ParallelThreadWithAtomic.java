@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ParallelThreadWithAtomic implements NonPrimesFinder {
-    private int numberOfThreads = 8;
+    private int numberOfThreads = Runtime.getRuntime().availableProcessors();
     private final AtomicInteger atomicInteger = new AtomicInteger(0);
 
     public ParallelThreadWithAtomic() {

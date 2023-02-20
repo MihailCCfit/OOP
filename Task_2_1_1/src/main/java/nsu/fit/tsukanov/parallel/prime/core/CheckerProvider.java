@@ -1,5 +1,6 @@
 package nsu.fit.tsukanov.parallel.prime.core;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 public class CheckerProvider {
