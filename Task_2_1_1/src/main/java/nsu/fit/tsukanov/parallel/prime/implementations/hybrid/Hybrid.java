@@ -3,7 +3,6 @@ package nsu.fit.tsukanov.parallel.prime.implementations.hybrid;
 import nsu.fit.tsukanov.parallel.prime.core.CheckerProvider;
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
-import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
 
 import java.util.ArrayList;
 import java.util.Collection;
