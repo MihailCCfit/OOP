@@ -15,6 +15,12 @@ public class PrimeNumberCheckerWithPreprocessing implements PrimeNumberChecker {
     private final List<Integer> primeDividers = new ArrayList<>();
     private final int max;
 
+    /**
+     * Creates prime number checker, based on factorisation using eratosthenes Sieve.
+     *
+     * @param maxNumber the max number of possible numbers for checking
+     */
+
     public PrimeNumberCheckerWithPreprocessing(int maxNumber) {
         this.max = maxNumber;
         int[] arr = new int[(int) (Math.sqrt(maxNumber) + 2)];
@@ -23,7 +29,7 @@ public class PrimeNumberCheckerWithPreprocessing implements PrimeNumberChecker {
         for (int i = 2; i < arr.length; i++) {
             if (arr[i] == 0) {
                 primeDividers.add(i);
-                if (i*i> arr.length) continue;
+                if (i * i > arr.length) continue;
                 for (int j = i + i; j < arr.length; j += i) {
                     arr[j] = 1;
                 }
@@ -49,10 +55,10 @@ public class PrimeNumberCheckerWithPreprocessing implements PrimeNumberChecker {
             return true;
         }
         for (Integer divider : primeDividers) {
-            if (divider>= num){
+            if (divider >= num) {
                 break;
             }
-            if (num%divider==0){
+            if (num % divider == 0) {
                 return true;
             }
         }

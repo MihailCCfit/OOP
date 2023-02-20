@@ -1,6 +1,5 @@
 package nsu.fit.tsukanov.parallel.prime.core;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 public class CheckerProvider {
@@ -9,6 +8,14 @@ public class CheckerProvider {
         return create(numbers, 1);
     }
 
+    /**
+     * Heuristic creator of primeNumber, that calculates possible best checker depends on specified numbers
+     * and amount of available threads.
+     *
+     * @param numbers the collection of numbers (non-negative integers)
+     * @param threads the amount of threads
+     * @return PrimeNumberChecker
+     */
     public static PrimeNumberChecker create(Collection<Integer> numbers, int threads) {
         double instant = 0;
         double preProc = 0;
