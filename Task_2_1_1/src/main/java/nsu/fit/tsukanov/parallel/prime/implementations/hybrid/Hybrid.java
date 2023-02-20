@@ -35,11 +35,11 @@ public class Hybrid implements NonPrimesFinder {
         int[] threadTable = new int[]{1, 2, 4, 6, 12};
         int j = 0;
         int size = integers.size();
-        while (j < arr.length-1 && size > arr[j]) {
+        while (j < arr.length - 1 && size > arr[j]) {
             j++;
         }
         int numberOfThreads = threadTable[j];
-        if (numberOfThreads == 1){
+        if (numberOfThreads == 1) {
             PrimeNumberChecker primeNumberChecker = CheckerProvider.create(integers);
             for (Integer integer : integers) {
                 if (primeNumberChecker.notPrime(integer)) {

@@ -12,9 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -80,9 +78,9 @@ public class TesterDifferentTypes {
         Assertions.assertTrue(ref.checker.notPrime(1));
         ref.checker = new PrimeNumberCheckerInstant();
         Assertions.assertThrows(IllegalArgumentException.class, () -> ref.checker.notPrime(-5));
-        var checker2 = CheckerProvider.create(List.of(1,2,3,4));
+        var checker2 = CheckerProvider.create(List.of(1, 2, 3, 4));
         Assertions.assertTrue(checker2 instanceof PrimeNumberCheckerInstant);
-        checker2 = CheckerProvider.create(Stream.iterate(0, (x)->x<1000,(x)->x+1).collect(Collectors.toList()), 2);
+        checker2 = CheckerProvider.create(Stream.iterate(0, (x) -> x < 1000, (x) -> x + 1).collect(Collectors.toList()), 2);
         Assertions.assertTrue(checker2 instanceof PrimeNumberCheckerWithPreprocessing);
     }
 
