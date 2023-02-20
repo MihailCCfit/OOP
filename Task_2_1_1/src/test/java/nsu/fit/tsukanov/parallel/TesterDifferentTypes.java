@@ -1,9 +1,6 @@
 package nsu.fit.tsukanov.parallel;
 
-import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
-import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
-import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
-import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerWithPreprocessing;
+import nsu.fit.tsukanov.parallel.prime.core.*;
 import nsu.fit.tsukanov.parallel.prime.implementations.hybrid.Hybrid;
 import nsu.fit.tsukanov.parallel.prime.implementations.linear.LinearNonPrimeFinder;
 import nsu.fit.tsukanov.parallel.prime.implementations.multithread.ParallelThreadNonPrimeNumberFinder;
@@ -15,8 +12,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -80,6 +80,10 @@ public class TesterDifferentTypes {
         Assertions.assertTrue(ref.checker.notPrime(1));
         ref.checker = new PrimeNumberCheckerInstant();
         Assertions.assertThrows(IllegalArgumentException.class, () -> ref.checker.notPrime(-5));
+        var checker2 = CheckerProvider.create(List.of(1,2,3,4));
+        Assertions.assertTrue(checker2 instanceof PrimeNumberCheckerInstant);
+        checker2 = CheckerProvider.create(Stream.iterate(0, (x)->x<1000,(x)->x+1).collect(Collectors.toList()), 2);
+        Assertions.assertTrue(checker2 instanceof PrimeNumberCheckerWithPreprocessing);
     }
 
     @Test

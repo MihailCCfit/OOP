@@ -3,6 +3,7 @@ package nsu.fit.tsukanov.parallel.prime.implementations.hybrid;
 import nsu.fit.tsukanov.parallel.prime.core.CheckerProvider;
 import nsu.fit.tsukanov.parallel.prime.core.NonPrimesFinder;
 import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberChecker;
+import nsu.fit.tsukanov.parallel.prime.core.PrimeNumberCheckerInstant;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,14 +32,23 @@ public class Hybrid implements NonPrimesFinder {
      */
     @Override
     public boolean hasNoPrime(Collection<Integer> integers) {
-        int[] arr = new int[]{50, 100, 500, 2500};
-        int[] threadTable = new int[]{1, 2, 4, 6, 8};
+        int[] arr = new int[]{10, 100, 500, 2500, 5000};
+        int[] threadTable = new int[]{1, 2, 4, 6, 12};
         int j = 0;
         int size = integers.size();
-        while (j < arr.length && size < arr[j]) {
+        while (j < arr.length-1 && size > arr[j]) {
             j++;
         }
         int numberOfThreads = threadTable[j];
+        if (numberOfThreads == 1){
+            PrimeNumberChecker primeNumberChecker = CheckerProvider.create(integers);
+            for (Integer integer : integers) {
+                if (primeNumberChecker.notPrime(integer)) {
+                    return true;
+                }
+            }
+            return false;
+        }
         WorkingThread workingThread = new WorkingThread(integers,
                 CheckerProvider.create(integers, numberOfThreads));
         List<Thread> threads = new ArrayList<>();
