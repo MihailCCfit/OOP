@@ -113,7 +113,10 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code>static <a href="PrimeNumberChecker.html" title="interface in nsu.fit.tsukanov.parallel.prime.core">PrimeNumberChecker</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#create(java.util.Collection,int)">create</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;numbers,
  int&nbsp;threads)</code></div>
-<div class="col-last odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table">
+<div class="block">Heuristic creator of primeNumber, that calculates possible best checker depends on specified numbers
+ and amount of available threads.</div>
+</div>
 </div>
 </div>
 </div>
@@ -156,6 +159,15 @@ loadScripts(document, 'script');</script>
 <h3>create</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="PrimeNumberChecker.html" title="interface in nsu.fit.tsukanov.parallel.prime.core">PrimeNumberChecker</a></span>&nbsp;<span class="element-name">create</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;numbers,
  int&nbsp;threads)</span></div>
+<div class="block">Heuristic creator of primeNumber, that calculates possible best checker depends on specified numbers
+ and amount of available threads.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>numbers</code> - the collection of numbers (non-negative integers)</dd>
+<dd><code>threads</code> - the amount of threads</dd>
+<dt>Returns:</dt>
+<dd>PrimeNumberChecker</dd>
+</dl>
 </section>
 </li>
 </ul>
