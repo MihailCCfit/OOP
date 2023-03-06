@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"nsu.fit.tsukanov"},{"l":"nsu.fit.tsukanov.baker"},{"l":"nsu.fit.tsukanov.baker.repository"},{"l":"nsu.fit.tsukanov.client"},{"l":"nsu.fit.tsukanov.courier"},{"l":"nsu.fit.tsukanov.order"},{"l":"nsu.fit.tsukanov.pizza"},{"l":"nsu.fit.tsukanov.storage"}];updateSearchResults();
