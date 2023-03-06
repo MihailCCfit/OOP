@@ -1,0 +1,9 @@
+custom:
+  bakers:
+    number: 5
+  storage:
+    max-size: 20
+  couriers:
+    number: 4
+  clients:
+    number: 3
