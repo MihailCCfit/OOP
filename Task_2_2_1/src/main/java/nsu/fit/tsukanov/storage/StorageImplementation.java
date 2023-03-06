@@ -29,7 +29,7 @@ public class StorageImplementation implements Storage {
 
     @Override
     public boolean isEmpty() {
-        return amount==0;
+        return amount == 0;
     }
 
     @Override
@@ -43,18 +43,22 @@ public class StorageImplementation implements Storage {
             pizzaOrders.add(pizzaOrder);
             amount++;
         }
+        this.notifyAll();
         return pizzaOrder;
     }
 
     @Override
     public PizzaOrder takePizzaOrder() {
-        if (amount==0){
+        if (amount == 0) {
             throw new IllegalStateException();
         }
+        PizzaOrder pizzaOrder;
         synchronized (this) {
             amount--;
-            return pizzaOrders.removeLast();
+            pizzaOrder = pizzaOrders.removeLast();
         }
+        this.notifyAll();
+        return pizzaOrder;
     }
 
     @Override
@@ -68,6 +72,7 @@ public class StorageImplementation implements Storage {
                 orders.add(pizzaOrders.removeLast());
             }
         }
+        this.notifyAll();
         return orders;
     }
 
