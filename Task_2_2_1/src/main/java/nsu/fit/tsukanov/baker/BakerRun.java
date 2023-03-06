@@ -58,6 +58,7 @@ public class BakerRun implements Runnable {
                 storage.addPizzaOrder(pizzaOrder);
                 log.info("{} put order into storage", self);
             }
+            storage.notifyAll();
         }
     }
 
