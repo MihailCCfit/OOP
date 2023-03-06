@@ -14,7 +14,7 @@ public class OrderBoardDeque implements OrderBoard {
 
     @Override
     public Order takeOrder() {
-        synchronized (orderQueue) {
+        synchronized (this) {
             return orderQueue.removeFirst();
         }
     }
@@ -22,16 +22,17 @@ public class OrderBoardDeque implements OrderBoard {
     @Override
     public Order addOrder(Order order) {
 
-        synchronized (orderQueue) {
+        synchronized (this) {
             orderQueue.addLast(order);
+            notifyAll();
         }
-        this.notifyAll();
+
         return order;
     }
 
     @Override
     public boolean hasOrder() {
-        synchronized (orderQueue) {
+        synchronized (this) {
             return !orderQueue.isEmpty();
         }
     }
