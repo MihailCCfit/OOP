@@ -1,24 +1,30 @@
 package nsu.fit.tsukanov.order;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.client.Client;
-import nsu.fit.tsukanov.pizza.PizzaOrder;
+import nsu.fit.tsukanov.pizza.Pizza;
 
 import java.util.function.Consumer;
 
 @AllArgsConstructor
 @Slf4j
+@Getter
 public class Order implements Consumer<Client> {
 
     private String nameOrder;
-    private PizzaOrder pizza;
+    private Pizza pizza;
 
     private Client client;
     private Consumer<Client> call;
 
-    public PizzaOrder getPizzaOrder() {
+    public Pizza getPizza() {
         return pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
     }
 
     /**

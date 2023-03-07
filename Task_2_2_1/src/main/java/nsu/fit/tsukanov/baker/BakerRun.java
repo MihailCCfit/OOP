@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.order.Order;
 import nsu.fit.tsukanov.order.OrderBoard;
-import nsu.fit.tsukanov.pizza.PizzaOrder;
 import nsu.fit.tsukanov.storage.Storage;
 
 
@@ -14,6 +13,15 @@ public class BakerRun implements Runnable {
     private final Baker self;
     private final Storage storage;
     private final OrderBoard orderBoard;
+    private boolean work;
+
+    public boolean isWork() {
+        return work;
+    }
+
+    public void setWork(boolean work) {
+        this.work = work;
+    }
 
     /**
      * When an object implementing interface {@code Runnable} is used
@@ -44,8 +52,15 @@ public class BakerRun implements Runnable {
                 log.info("Baker {} get order {}", self, order);
             }
             log.info("Baker {} starts cooking", self);
-            PizzaOrder pizzaOrder = self.cook(order.getPizzaOrder());
-            log.info("Baker {} ends cooking pizza {}", self, pizzaOrder);
+            try {
+                order.setPizza(self.cook(order.getPizza()));
+            } catch (InterruptedException e) {
+                synchronized (orderBoard) {
+                    orderBoard.addOrder(order);
+                }
+                return;
+            }
+            log.info("Baker {} ends cooking pizza {}", self, order.getPizza());
             synchronized (storage) {
                 while (storage.isFull()) {
                     try {
@@ -55,10 +70,11 @@ public class BakerRun implements Runnable {
                         return;
                     }
                 }
-                storage.addPizzaOrder(pizzaOrder);
+                storage.addPizzaOrder(order);
                 log.info("{} put order into storage", self);
+                storage.notifyAll();
             }
-            storage.notifyAll();
+
         }
     }
 
