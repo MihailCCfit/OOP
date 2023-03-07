@@ -1,6 +1,6 @@
 package nsu.fit.tsukanov.storage;
 
-import nsu.fit.tsukanov.pizza.PizzaOrder;
+import nsu.fit.tsukanov.order.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,9 +13,9 @@ public interface Storage {
 
     long amountOfPizza();
 
-    PizzaOrder addPizzaOrder(PizzaOrder pizzaOrder);
+    Order addPizzaOrder(Order pizzaOrder);
 
-    PizzaOrder takePizzaOrder();
+    Order takePizzaOrder();
 
-    List<PizzaOrder> takePizzaOrders(long amount);
+    List<Order> takePizzaOrders(long amount);
 }

@@ -3,24 +3,25 @@ package nsu.fit.tsukanov.baker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import nsu.fit.tsukanov.pizza.PizzaOrder;
+import lombok.extern.slf4j.Slf4j;
+import nsu.fit.tsukanov.pizza.Pizza;
 
 @AllArgsConstructor
 @Getter
 @Setter
+@Slf4j
 public class Baker {
     private Long id;
     private String name;
     private Long productionTime;
     private Long errorTime;
 
-    public PizzaOrder cook(PizzaOrder pizzaOrder) {
-        try {
-            wait(productionTime * 1000 + errorTime * 100);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    public Pizza cook(Pizza pizza) throws InterruptedException {
+        synchronized (this) {
+            Thread.sleep(productionTime * 1000 + errorTime * 100);
         }
-        return pizzaOrder;
+        log.warn("Interrupt while cooking");
+        return pizza;
     }
 
     @Override

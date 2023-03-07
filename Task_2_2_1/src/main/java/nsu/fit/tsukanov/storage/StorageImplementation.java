@@ -1,7 +1,7 @@
 package nsu.fit.tsukanov.storage;
 
 import lombok.extern.slf4j.Slf4j;
-import nsu.fit.tsukanov.pizza.PizzaOrder;
+import nsu.fit.tsukanov.order.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Slf4j
 @Repository
 public class StorageImplementation implements Storage {
-    private final Deque<PizzaOrder> pizzaOrders = new LinkedList<>();
+    private final Deque<Order> pizzaOrders = new LinkedList<>();
 
     @Value(value = "${custom.storage.max-size}")
     private int maxSize;
@@ -38,32 +38,35 @@ public class StorageImplementation implements Storage {
     }
 
     @Override
-    public PizzaOrder addPizzaOrder(PizzaOrder pizzaOrder) {
+    public Order addPizzaOrder(Order pizzaOrder) {
         synchronized (this) {
             pizzaOrders.add(pizzaOrder);
             amount++;
         }
+        log.info("Storage size: {}. Pizza added", amount);
         this.notifyAll();
         return pizzaOrder;
     }
 
     @Override
-    public PizzaOrder takePizzaOrder() {
+    public Order takePizzaOrder() {
+
         if (amount == 0) {
             throw new IllegalStateException();
         }
-        PizzaOrder pizzaOrder;
+        Order pizzaOrder;
         synchronized (this) {
             amount--;
             pizzaOrder = pizzaOrders.removeLast();
         }
+        log.info("Storage size: {}. Pizza taked", amount);
         this.notifyAll();
         return pizzaOrder;
     }
 
     @Override
-    public List<PizzaOrder> takePizzaOrders(long amount) {
-        List<PizzaOrder> orders = new ArrayList<>();
+    public List<Order> takePizzaOrders(long amount) {
+        List<Order> orders = new ArrayList<>();
         synchronized (pizzaOrders) {
             for (long i = 0; i < amount; i++) {
                 if (pizzaOrders.isEmpty()) {

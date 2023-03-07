@@ -9,14 +9,18 @@ import java.util.List;
 
 @Repository
 public class BakerRepositoryJSON implements BakerRepository {
+    private List<Baker> bakers = new ArrayList<>();
+
     @Override
     public Baker save(Baker baker) {
+        bakers.add(baker);
         //TODO: saving in JSON
-        return null;
+        return baker;
     }
 
     @Override
     public void delete(Baker baker) {
+        bakers.remove(baker);
         //TODO: deleting from JSON
     }
 
@@ -33,13 +37,12 @@ public class BakerRepositoryJSON implements BakerRepository {
     @Override
     public List<Baker> findAll() {
         //TODO: finding all from JSON
-        return new ArrayList<>();
+        return new ArrayList<>(bakers);
     }
 
     @Override
     public List<Baker> addAll(Collection<Baker> bakers) {
-        System.out.println("HELLO");
-        //TODO: add all to JSON
-        return bakers.stream().toList();
+        this.bakers.addAll(bakers);
+        return new ArrayList<>(bakers);
     }
 }
