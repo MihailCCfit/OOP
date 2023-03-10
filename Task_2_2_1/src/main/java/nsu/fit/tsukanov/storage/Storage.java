@@ -16,5 +16,5 @@ public interface Storage {
 
     Order takePizzaOrder();
 
-    List<Order> takePizzaOrders(long amount);
+    List<Order> takePizzaOrders(int amount);
 }

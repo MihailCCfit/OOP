@@ -4,6 +4,8 @@ import nsu.fit.tsukanov.baker.BakerService;
 import nsu.fit.tsukanov.baker.repository.BakerRepository;
 import nsu.fit.tsukanov.baker.repository.BakerRepositoryJSON;
 import nsu.fit.tsukanov.client.ClientService;
+import nsu.fit.tsukanov.courier.CourierRepository;
+import nsu.fit.tsukanov.courier.CourierRepositoryJSON;
 import nsu.fit.tsukanov.courier.CourierService;
 import nsu.fit.tsukanov.interfaces.PizzaService;
 import nsu.fit.tsukanov.order.OrderBoard;
@@ -17,11 +19,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         BakerRepository bakerRepository = new BakerRepositoryJSON();
+        CourierRepository courierRepository = new CourierRepositoryJSON();
         Storage storage = new StorageImplementation();
         OrderBoard orderBoard = new OrderBoardDeque();
         BakerService bakerService = new BakerService(bakerRepository, storage, orderBoard);
         ClientService clientService = new ClientService(orderBoard);
-        CourierService courierService = new CourierService();
+
+        CourierService courierService = new CourierService(courierRepository, storage);
         List<PizzaService> services = List.of(bakerService, clientService, courierService);
         initializing(services);
         starting(services);

@@ -36,12 +36,10 @@ public class StorageImplementation implements Storage {
 
     @Override
     public Order addPizzaOrder(Order pizzaOrder) {
-        synchronized (this) {
-            pizzaOrders.add(pizzaOrder);
-            amount++;
-        }
+        pizzaOrders.add(pizzaOrder);
+        amount++;
+
         log.info("Storage size: {}. Pizza added", amount);
-        this.notifyAll();
         return pizzaOrder;
     }
 
@@ -52,27 +50,25 @@ public class StorageImplementation implements Storage {
             throw new IllegalStateException();
         }
         Order pizzaOrder;
-        synchronized (this) {
-            amount--;
-            pizzaOrder = pizzaOrders.removeLast();
-        }
+
+        amount--;
+        pizzaOrder = pizzaOrders.removeLast();
+
         log.info("Storage size: {}. Pizza taked", amount);
-        this.notifyAll();
         return pizzaOrder;
     }
 
     @Override
-    public List<Order> takePizzaOrders(long amount) {
+    public List<Order> takePizzaOrders(int amount) {
         List<Order> orders = new ArrayList<>();
-        synchronized (pizzaOrders) {
-            for (long i = 0; i < amount; i++) {
-                if (pizzaOrders.isEmpty()) {
-                    break;
-                }
-                orders.add(pizzaOrders.removeLast());
+        for (long i = 0; i < amount; i++) {
+            if (pizzaOrders.isEmpty()) {
+                break;
             }
+            orders.add(pizzaOrders.removeLast());
+            this.amount--;
         }
-        this.notifyAll();
+        log.info("Take orders, amount: {}", this.amount);
         return orders;
     }
 
