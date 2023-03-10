@@ -2,19 +2,21 @@ package nsu.fit.tsukanov.baker;
 
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.baker.repository.BakerRepository;
+import nsu.fit.tsukanov.interfaces.PizzaService;
 import nsu.fit.tsukanov.order.OrderBoard;
 import nsu.fit.tsukanov.storage.Storage;
-import org.springframework.stereotype.Service;
+import nsu.fit.tsukanov.workingType.WorkingType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Service
 @Slf4j
-public class BakerService {
+public class BakerService implements PizzaService {
     private final BakerRepository bakerRepository;
     private final List<Thread> threads = new ArrayList<>();
-    private final List<BakerRun> bakerRunList = new ArrayList<>();
+    private final Map<Baker, BakerRun> bakerRunMap = new HashMap<>();
     private final Storage storage;
 
     private final OrderBoard orderBoard;
@@ -23,10 +25,16 @@ public class BakerService {
         this.bakerRepository = bakerRepository;
         this.storage = storage;
         this.orderBoard = orderBoard;
-        bakerReposInit();
+    }
+    private List<Baker> initializationList() {
+        List<Baker> bakers = new ArrayList<>();
+        bakers.add(new Baker(0L, "paul", 5L, 1L));
+        bakers.add(new Baker(1L, "albert", 5L, 1L));
+        return bakers;
     }
 
-    private void bakerReposInit() {
+    @Override
+    public void initialize() {
         List<Baker> bakers = bakerRepository.findAll();
         if (bakers.isEmpty()) {
             bakerRepository.addAll(initializationList());
@@ -37,26 +45,49 @@ public class BakerService {
         log.info("Bakers was initialized: {}", bakers.size());
     }
 
-    private List<Baker> initializationList() {
-        List<Baker> bakers = new ArrayList<>();
-        bakers.add(new Baker(0L, "f", 1L, 1L));
-        return bakers;
-    }
-
     public void startWorking() {
         for (Baker baker : bakerRepository.findAll()) {
-            Thread thread = new Thread(new BakerRun(baker, storage, orderBoard, true));
+            var bakerRun = new BakerRun(baker, storage, orderBoard, WorkingType.WORKING);
+            bakerRunMap.put(baker, bakerRun);
+            Thread thread = new Thread(bakerRun);
+            thread.setDaemon(true);
             thread.start();
         }
         log.info("Baker Service started working, amount: {}", threads.size());
     }
 
-    public void stopWorking() {
+    public void enableWorking() {
+        setWorking(WorkingType.WORKING);
+        for (Thread thread : threads) {
+            thread.start();
+        }
+    }
+
+    public void finalWorking() {
+        setWorking(WorkingType.LAST);
+    }
+
+    @Override
+    public void alarmWorking() {
+        setWorking(WorkingType.ALARM);
         for (Thread thread : threads) {
             thread.interrupt();
         }
         threads.clear();
     }
 
+    public void stopWorking() {
+        setWorking(WorkingType.STOP);
+    }
+
+
+    public void setWorking(WorkingType workingType) {
+        log.info("Set working [{}] for all ", workingType);
+        bakerRunMap.values().forEach((bakerRun -> bakerRun.setWorkingType(workingType)));
+    }
+
+    public void setWorking(Baker baker, WorkingType workingType) {
+        bakerRunMap.get(baker).setWorkingType(workingType);
+    }
 
 }

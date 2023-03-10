@@ -1,5 +1,18 @@
 package nsu.fit.tsukanov.courier;
 
+import java.util.Collection;
+import java.util.List;
+
 public interface CourierRepository {
-    //TODO: CourierRepo interface
+    Courier save(Courier courier);
+
+    void delete(Courier courier);
+
+    void delete(Long courierId);
+
+    void deleteAll();
+
+    List<Courier> findAll();
+
+    void addAll(Collection<Courier> couriers);
 }

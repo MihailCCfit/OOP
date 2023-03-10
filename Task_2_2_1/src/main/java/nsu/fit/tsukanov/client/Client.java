@@ -11,10 +11,18 @@ import java.util.Random;
 @Slf4j
 public class Client implements Runnable {
     private final OrderBoard orderBoard;
-    private final String name = "Client " + new Random().nextInt(100);
+    private final String name = "Client " + new Random().nextInt(255);
+    private final Random random = new Random();
+    private final int waitingTime;
+    private final int biasTime;
 
-    public Client(OrderBoard orderBoard) {
+    public Client(OrderBoard orderBoard, int waitingTime, int biasTime) {
         this.orderBoard = orderBoard;
+        this.waitingTime = waitingTime;
+        this.biasTime = biasTime;
+        if (biasTime < 0 || waitingTime < 0) {
+            throw new IllegalArgumentException("negative time");
+        }
     }
 
     /**
@@ -30,21 +38,27 @@ public class Client implements Runnable {
      */
     @Override
     public void run() {
-        Random random = new Random();
         while (true) {
             var order = getRandomOrder(random.nextInt());
-            try {
+            synchronized (this) {
+                try {
+                    Thread.sleep(random.nextInt(biasTime) * 1000L + 1);
+                } catch (InterruptedException ignored) {
+                }
+            }
+            synchronized (orderBoard) {
                 orderBoard.addOrder(order);
                 log.info("{} put order {}", this, order);
+            }
+            try {
                 synchronized (this) {
                     this.wait();
                 }
             } catch (InterruptedException e) {
-                log.warn("{} ends working", this);
-                return;
+                log.warn("{} got pizza", this);
             }
             try {
-                Thread.sleep(1000 * 10);
+                Thread.sleep(random.nextInt(biasTime) * 1000L + waitingTime * 1000L + 1);
             } catch (InterruptedException e) {
                 log.warn("{} ends working", this);
                 return;
@@ -52,7 +66,6 @@ public class Client implements Runnable {
         }
     }
 
-    //TODO: Client class
     public Order getRandomOrder(int x) {
         int mod = 3;
         x = x % mod;
@@ -66,17 +79,14 @@ public class Client implements Runnable {
             case 2 -> "Margaritta";
             default -> "Barbecue";
         };
-        Order pizzaOrder = new Order("EAT", new Pizza(name), this, (client) -> {
+        return new Order("EAT", new Pizza(name), this, (client) -> {
             client.notify();
             log.info("Call client {}", client);
         });
-        return pizzaOrder;
     }
 
     @Override
     public String toString() {
-        return "Client{" +
-                "name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

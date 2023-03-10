@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.order.Order;
 import nsu.fit.tsukanov.order.OrderBoard;
 import nsu.fit.tsukanov.storage.Storage;
+import nsu.fit.tsukanov.workingType.WorkingType;
+
+import static nsu.fit.tsukanov.workingType.WorkingType.*;
 
 
 @AllArgsConstructor
@@ -13,15 +16,16 @@ public class BakerRun implements Runnable {
     private final Baker self;
     private final Storage storage;
     private final OrderBoard orderBoard;
-    private boolean work;
+    private WorkingType workingType;
 
-    public boolean isWork() {
-        return work;
+    public WorkingType getWorkingType() {
+        return workingType;
     }
 
-    public void setWork(boolean work) {
-        this.work = work;
+    public void setWorkingType(WorkingType workingType) {
+        this.workingType = workingType;
     }
+
 
     /**
      * When an object implementing interface {@code Runnable} is used
@@ -37,15 +41,20 @@ public class BakerRun implements Runnable {
     @Override
     public void run() {
         log.info("Baker {} started working", self);
-        while (endCondition()) {
+        while (loopCondition()) {
             Order order;
             synchronized (orderBoard) {
                 while (!orderBoard.hasOrder()) {
                     try {
                         orderBoard.wait();
                     } catch (InterruptedException e) {
-                        log.warn("{} Ends working at board", self);
-                        return;
+                        if (workingType == ALARM) {
+                            log.warn("Baker {} evacuated", self);
+                            return;
+                        } else if (workingType == LAST) {
+                            log.info("Baker {} end working", self);
+                            return;
+                        }
                     }
                 }
                 order = orderBoard.takeOrder();
@@ -55,30 +64,41 @@ public class BakerRun implements Runnable {
             try {
                 order.setPizza(self.cook(order.getPizza()));
             } catch (InterruptedException e) {
-                synchronized (orderBoard) {
+                if (workingType == ALARM) {
+                    log.warn("Baker {} evacuated", self);
+                    return;
+                } else if (workingType == LAST) {
                     orderBoard.addOrder(order);
+                    log.info("Baker {} end working, returned order", self);
+                    return;
                 }
-                return;
+
             }
             log.info("Baker {} ends cooking pizza {}", self, order.getPizza());
             synchronized (storage) {
                 while (storage.isFull()) {
                     try {
+                        log.info("{}", storage.amountOfPizza());
                         storage.wait();
                     } catch (InterruptedException e) {
-                        log.warn("{} Ends working at storage", self);
-                        return;
+                        if (workingType == ALARM) {
+                            log.warn("Baker {} evacuated", self);
+                            return;
+                        } else if (workingType == LAST) {
+                            orderBoard.addOrder(order);
+                            log.info("Baker {} end working, returned order", self);
+                            return;
+                        }
                     }
                 }
                 storage.addPizzaOrder(order);
                 log.info("{} put order into storage", self);
                 storage.notifyAll();
             }
-
         }
     }
 
-    boolean endCondition() {
-        return true;
+    boolean loopCondition() {
+        return workingType == WORKING;
     }
 }
