@@ -39,10 +39,9 @@ public class Order implements Consumer<Client> {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "nameOrder='" + nameOrder + '\'' +
-                ", pizza=" + pizza +
-                ", client=" + client +
+        return "{" + nameOrder +
+                ", " + pizza +
+                ", " + client +
                 '}';
     }
 }

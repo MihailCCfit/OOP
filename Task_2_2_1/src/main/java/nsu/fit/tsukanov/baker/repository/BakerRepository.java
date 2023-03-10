@@ -27,5 +27,5 @@ public interface BakerRepository {
 
     List<Baker> findAll();
 
-    List<Baker> addAll(Collection<Baker> bakers);
+    void addAll(Collection<Baker> bakers);
 }

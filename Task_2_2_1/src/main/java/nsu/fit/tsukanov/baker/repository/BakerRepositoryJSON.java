@@ -1,15 +1,13 @@
 package nsu.fit.tsukanov.baker.repository;
 
 import nsu.fit.tsukanov.baker.Baker;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Repository
 public class BakerRepositoryJSON implements BakerRepository {
-    private List<Baker> bakers = new ArrayList<>();
+    private final List<Baker> bakers = new ArrayList<>();
 
     @Override
     public Baker save(Baker baker) {
@@ -41,8 +39,7 @@ public class BakerRepositoryJSON implements BakerRepository {
     }
 
     @Override
-    public List<Baker> addAll(Collection<Baker> bakers) {
+    public void addAll(Collection<Baker> bakers) {
         this.bakers.addAll(bakers);
-        return new ArrayList<>(bakers);
     }
 }

@@ -1,9 +1,8 @@
 package nsu.fit.tsukanov.storage;
 
 import lombok.extern.slf4j.Slf4j;
+import nsu.fit.tsukanov.configuration.Configuration;
 import nsu.fit.tsukanov.order.Order;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -11,12 +10,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
-@Repository
 public class StorageImplementation implements Storage {
     private final Deque<Order> pizzaOrders = new LinkedList<>();
 
-    @Value(value = "${custom.storage.max-size}")
-    private int maxSize;
+    private final int maxSize = Configuration.MAX_STORAGE_SIZE;
 
     private int amount = 0;
 

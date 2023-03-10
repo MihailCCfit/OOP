@@ -1,13 +1,11 @@
 package nsu.fit.tsukanov.order;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.Deque;
 import java.util.LinkedList;
 
 @Slf4j
-@Service
 public class OrderBoardDeque implements OrderBoard {
     private final Deque<Order> orderQueue = new LinkedList<>();
 

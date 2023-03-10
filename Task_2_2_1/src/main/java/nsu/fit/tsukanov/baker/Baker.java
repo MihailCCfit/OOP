@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.pizza.Pizza;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -20,7 +22,6 @@ public class Baker {
         synchronized (this) {
             Thread.sleep(productionTime * 1000 + errorTime * 100);
         }
-        log.warn("Interrupt while cooking");
         return pizza;
     }
 
@@ -33,10 +34,14 @@ public class Baker {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
     public String toString() {
-        return "Baker{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "{" + id +
+                ": " + name +
                 '}';
     }
 }

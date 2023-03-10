@@ -1,16 +1,16 @@
 package nsu.fit.tsukanov.client;
 
 import lombok.extern.slf4j.Slf4j;
+import nsu.fit.tsukanov.interfaces.PizzaService;
 import nsu.fit.tsukanov.order.OrderBoard;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-@Service
 @Slf4j
-public class ClientService {
+public class ClientService implements PizzaService {
     @Value(value = "${custom.clients.number}")
     private Integer clientsAmount;
 
@@ -21,17 +21,24 @@ public class ClientService {
     public ClientService(OrderBoard orderBoard) {
         this.orderBoard = orderBoard;
         clients = new ArrayList<>();
+
+    }
+
+    @Override
+    public void initialize() {
         if (clientsAmount == null) {
             clientsAmount = 5;
         }
+        Random random = new Random();
         for (int i = 0; i < clientsAmount; i++) {
-            clients.add(new Client(orderBoard));
+            clients.add(new Client(orderBoard, 5 + random.nextInt(15),
+                    random.nextInt(5) + 1));
         }
     }
 
-    public void startWorking(){
+    public void startWorking() {
         threads.clear();
-        clients.forEach((cl)-> {
+        clients.forEach((cl) -> {
             Thread thread = new Thread(cl);
             threads.add(thread);
             thread.start();
@@ -39,7 +46,29 @@ public class ClientService {
         log.info("Client service starts working, clients number {}", threads.size());
     }
 
-    public void endWorking(){
+    @Override
+    public void enableWorking() {
+
+    }
+
+    @Override
+    public void stopWorking() {
+        endWorking();
+
+    }
+
+    @Override
+    public void finalWorking() {
+        endWorking();
+
+    }
+
+    @Override
+    public void alarmWorking() {
+        endWorking();
+    }
+
+    public void endWorking() {
         for (Thread thread : threads) {
             thread.interrupt();
         }
