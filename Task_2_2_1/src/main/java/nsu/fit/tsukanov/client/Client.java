@@ -80,7 +80,9 @@ public class Client implements Runnable {
             default -> "Barbecue";
         };
         return new Order("EAT", new Pizza(name), this, (client) -> {
-            client.notify();
+            synchronized (client) {
+                client.notify();
+            }
             log.info("Call client {}", client);
         });
     }

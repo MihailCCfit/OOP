@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.pizza.Pizza;
 
 import java.util.Objects;
+import java.util.Random;
 
 @AllArgsConstructor
 @Getter
@@ -15,12 +16,14 @@ import java.util.Objects;
 public class Baker {
     private Long id;
     private String name;
-    private Long productionTime;
-    private Long errorTime;
+    private int productionTime;
+    private int errorTime;
+
+    private final Random random = new Random();
 
     public Pizza cook(Pizza pizza) throws InterruptedException {
         synchronized (this) {
-            Thread.sleep(productionTime * 1000 + errorTime * 100);
+            Thread.sleep(productionTime * 1000L + random.nextInt(errorTime+1) * 1000L + 1);
         }
         return pizza;
     }

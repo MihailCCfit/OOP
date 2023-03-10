@@ -79,6 +79,7 @@ public class BakerRun implements Runnable {
                 while (storage.isFull()) {
                     try {
                         log.info("{}", storage.amountOfPizza());
+                        storage.notifyAll();
                         storage.wait();
                     } catch (InterruptedException e) {
                         if (workingType == ALARM) {
@@ -92,7 +93,7 @@ public class BakerRun implements Runnable {
                     }
                 }
                 storage.addPizzaOrder(order);
-                log.info("{} put order into storage", self);
+                log.info("Baker {} put order into storage", self);
                 storage.notifyAll();
             }
         }

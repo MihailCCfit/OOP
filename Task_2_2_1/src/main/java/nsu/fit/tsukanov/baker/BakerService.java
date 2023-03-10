@@ -26,10 +26,14 @@ public class BakerService implements PizzaService {
         this.storage = storage;
         this.orderBoard = orderBoard;
     }
+
     private List<Baker> initializationList() {
         List<Baker> bakers = new ArrayList<>();
-        bakers.add(new Baker(0L, "paul", 5L, 1L));
-        bakers.add(new Baker(1L, "albert", 5L, 1L));
+        bakers.add(new Baker(0L, "paul", 4, 4));
+        bakers.add(new Baker(1L, "albert", 8, 1));
+        bakers.add(new Baker(2L, "ban", 5, 2));
+        bakers.add(new Baker(3L, "bert", 15, 0));
+        bakers.add(new Baker(4L, "random", 2, 15));
         return bakers;
     }
 
@@ -50,8 +54,8 @@ public class BakerService implements PizzaService {
             var bakerRun = new BakerRun(baker, storage, orderBoard, WorkingType.WORKING);
             bakerRunMap.put(baker, bakerRun);
             Thread thread = new Thread(bakerRun);
-            thread.setDaemon(true);
             thread.start();
+            threads.add(thread);
         }
         log.info("Baker Service started working, amount: {}", threads.size());
     }
