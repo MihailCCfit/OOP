@@ -57,10 +57,13 @@ loadScripts(document, 'script');</script>
 <li><a href="nsu/fit/tsukanov/baker/package-tree.html">nsu.fit.tsukanov.baker</a>, </li>
 <li><a href="nsu/fit/tsukanov/baker/repository/package-tree.html">nsu.fit.tsukanov.baker.repository</a>, </li>
 <li><a href="nsu/fit/tsukanov/client/package-tree.html">nsu.fit.tsukanov.client</a>, </li>
+<li><a href="nsu/fit/tsukanov/configuration/package-tree.html">nsu.fit.tsukanov.configuration</a>, </li>
 <li><a href="nsu/fit/tsukanov/courier/package-tree.html">nsu.fit.tsukanov.courier</a>, </li>
+<li><a href="nsu/fit/tsukanov/interfaces/package-tree.html">nsu.fit.tsukanov.interfaces</a>, </li>
 <li><a href="nsu/fit/tsukanov/order/package-tree.html">nsu.fit.tsukanov.order</a>, </li>
 <li><a href="nsu/fit/tsukanov/pizza/package-tree.html">nsu.fit.tsukanov.pizza</a>, </li>
-<li><a href="nsu/fit/tsukanov/storage/package-tree.html">nsu.fit.tsukanov.storage</a></li>
+<li><a href="nsu/fit/tsukanov/storage/package-tree.html">nsu.fit.tsukanov.storage</a>, </li>
+<li><a href="nsu/fit/tsukanov/workingType/package-tree.html">nsu.fit.tsukanov.workingType</a></li>
 </ul>
 </div>
 <section class="hierarchy">
@@ -71,13 +74,14 @@ loadScripts(document, 'script');</script>
 <li class="circle">nsu.fit.tsukanov.baker.<a href="nsu/fit/tsukanov/baker/Baker.html" title="class in nsu.fit.tsukanov.baker"><span class="type-name-link">Baker</span></a></li>
 <li class="circle">nsu.fit.tsukanov.baker.repository.<a href="nsu/fit/tsukanov/baker/repository/BakerRepositoryJSON.html" title="class in nsu.fit.tsukanov.baker.repository"><span class="type-name-link">BakerRepositoryJSON</span></a> (implements nsu.fit.tsukanov.baker.repository.<a href="nsu/fit/tsukanov/baker/repository/BakerRepository.html" title="interface in nsu.fit.tsukanov.baker.repository">BakerRepository</a>)</li>
 <li class="circle">nsu.fit.tsukanov.baker.<a href="nsu/fit/tsukanov/baker/BakerRun.html" title="class in nsu.fit.tsukanov.baker"><span class="type-name-link">BakerRun</span></a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>)</li>
-<li class="circle">nsu.fit.tsukanov.baker.<a href="nsu/fit/tsukanov/baker/BakerService.html" title="class in nsu.fit.tsukanov.baker"><span class="type-name-link">BakerService</span></a></li>
+<li class="circle">nsu.fit.tsukanov.baker.<a href="nsu/fit/tsukanov/baker/BakerService.html" title="class in nsu.fit.tsukanov.baker"><span class="type-name-link">BakerService</span></a> (implements nsu.fit.tsukanov.interfaces.<a href="nsu/fit/tsukanov/interfaces/PizzaService.html" title="interface in nsu.fit.tsukanov.interfaces">PizzaService</a>)</li>
 <li class="circle">nsu.fit.tsukanov.client.<a href="nsu/fit/tsukanov/client/Client.html" title="class in nsu.fit.tsukanov.client"><span class="type-name-link">Client</span></a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>)</li>
-<li class="circle">nsu.fit.tsukanov.client.<a href="nsu/fit/tsukanov/client/ClientService.html" title="class in nsu.fit.tsukanov.client"><span class="type-name-link">ClientService</span></a></li>
+<li class="circle">nsu.fit.tsukanov.client.<a href="nsu/fit/tsukanov/client/ClientService.html" title="class in nsu.fit.tsukanov.client"><span class="type-name-link">ClientService</span></a> (implements nsu.fit.tsukanov.interfaces.<a href="nsu/fit/tsukanov/interfaces/PizzaService.html" title="interface in nsu.fit.tsukanov.interfaces">PizzaService</a>)</li>
+<li class="circle">nsu.fit.tsukanov.configuration.<a href="nsu/fit/tsukanov/configuration/Configuration.html" title="class in nsu.fit.tsukanov.configuration"><span class="type-name-link">Configuration</span></a></li>
 <li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/Courier.html" title="class in nsu.fit.tsukanov.courier"><span class="type-name-link">Courier</span></a></li>
-<li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/CourierRepositoryJSON.html" title="class in nsu.fit.tsukanov.courier"><span class="type-name-link">CourierRepositoryJSON</span></a></li>
-<li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/CourierService.html" title="class in nsu.fit.tsukanov.courier"><span class="type-name-link">CourierService</span></a></li>
-<li class="circle">nsu.fit.tsukanov.<a href="nsu/fit/tsukanov/Initial.html" title="class in nsu.fit.tsukanov"><span class="type-name-link">Initial</span></a></li>
+<li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/CourierRepositoryJSON.html" title="class in nsu.fit.tsukanov.courier"><span class="type-name-link">CourierRepositoryJSON</span></a> (implements nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/CourierRepository.html" title="interface in nsu.fit.tsukanov.courier">CourierRepository</a>)</li>
+<li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/CourierRun.html" title="class in nsu.fit.tsukanov.courier"><span class="type-name-link">CourierRun</span></a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>)</li>
+<li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/CourierService.html" title="class in nsu.fit.tsukanov.courier"><span class="type-name-link">CourierService</span></a> (implements nsu.fit.tsukanov.interfaces.<a href="nsu/fit/tsukanov/interfaces/PizzaService.html" title="interface in nsu.fit.tsukanov.interfaces">PizzaService</a>)</li>
 <li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/InitialCourier.html" title="class in nsu.fit.tsukanov.courier"><span class="type-name-link">InitialCourier</span></a></li>
 <li class="circle">nsu.fit.tsukanov.<a href="nsu/fit/tsukanov/Main.html" title="class in nsu.fit.tsukanov"><span class="type-name-link">Main</span></a></li>
 <li class="circle">nsu.fit.tsukanov.order.<a href="nsu/fit/tsukanov/order/Order.html" title="class in nsu.fit.tsukanov.order"><span class="type-name-link">Order</span></a> (implements java.util.function.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;T&gt;)</li>
@@ -94,7 +98,22 @@ loadScripts(document, 'script');</script>
 <li class="circle">nsu.fit.tsukanov.baker.repository.<a href="nsu/fit/tsukanov/baker/repository/BakerRepository.html" title="interface in nsu.fit.tsukanov.baker.repository"><span class="type-name-link">BakerRepository</span></a></li>
 <li class="circle">nsu.fit.tsukanov.courier.<a href="nsu/fit/tsukanov/courier/CourierRepository.html" title="interface in nsu.fit.tsukanov.courier"><span class="type-name-link">CourierRepository</span></a></li>
 <li class="circle">nsu.fit.tsukanov.order.<a href="nsu/fit/tsukanov/order/OrderBoard.html" title="interface in nsu.fit.tsukanov.order"><span class="type-name-link">OrderBoard</span></a></li>
+<li class="circle">nsu.fit.tsukanov.interfaces.<a href="nsu/fit/tsukanov/interfaces/PizzaService.html" title="interface in nsu.fit.tsukanov.interfaces"><span class="type-name-link">PizzaService</span></a></li>
 <li class="circle">nsu.fit.tsukanov.storage.<a href="nsu/fit/tsukanov/storage/Storage.html" title="interface in nsu.fit.tsukanov.storage"><span class="type-name-link">Storage</span></a></li>
+</ul>
+</section>
+<section class="hierarchy">
+<h2 title="Enum Class Hierarchy">Enum Class Hierarchy</h2>
+<ul>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link"><span class="type-name-link">Object</span></a>
+<ul>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link"><span class="type-name-link">Enum</span></a>&lt;E&gt; (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;, java.lang.constant.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/constant/Constable.html" title="class or interface in java.lang.constant" class="external-link">Constable</a>, java.io.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
+<ul>
+<li class="circle">nsu.fit.tsukanov.workingType.<a href="nsu/fit/tsukanov/workingType/WorkingType.html" title="enum class in nsu.fit.tsukanov.workingType"><span class="type-name-link">WorkingType</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </section>
 </main>

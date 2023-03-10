@@ -2,7 +2,10 @@ nsu.fit.tsukanov
 nsu.fit.tsukanov.baker
 nsu.fit.tsukanov.baker.repository
 nsu.fit.tsukanov.client
+nsu.fit.tsukanov.configuration
 nsu.fit.tsukanov.courier
+nsu.fit.tsukanov.interfaces
 nsu.fit.tsukanov.order
 nsu.fit.tsukanov.pizza
 nsu.fit.tsukanov.storage
+nsu.fit.tsukanov.workingType
