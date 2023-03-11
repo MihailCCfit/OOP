@@ -3,6 +3,7 @@ package nsu.fit.tsukanov.client;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.interfaces.PizzaService;
 import nsu.fit.tsukanov.order.OrderBoard;
+import nsu.fit.tsukanov.workingType.WorkingType;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class ClientService implements PizzaService {
         clients.forEach((cl) -> {
             Thread thread = new Thread(cl);
             threads.add(thread);
+            thread.setDaemon(true);
             thread.start();
         });
         log.info("Client service starts working, clients number {}", threads.size());
@@ -60,7 +62,6 @@ public class ClientService implements PizzaService {
     @Override
     public void finalWorking() {
         endWorking();
-
     }
 
     @Override
@@ -74,5 +75,9 @@ public class ClientService implements PizzaService {
         }
         log.info("Client service end working");
         threads.clear();
+    }
+
+    public void setWorking(WorkingType workingType) {
+        log.info("Set working [{}] for all couriers", workingType);
     }
 }

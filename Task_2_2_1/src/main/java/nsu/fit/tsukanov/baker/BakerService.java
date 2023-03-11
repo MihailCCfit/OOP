@@ -62,9 +62,6 @@ public class BakerService implements PizzaService {
 
     public void enableWorking() {
         setWorking(WorkingType.WORKING);
-        for (Thread thread : threads) {
-            thread.start();
-        }
     }
 
     public void finalWorking() {
@@ -86,7 +83,7 @@ public class BakerService implements PizzaService {
 
 
     public void setWorking(WorkingType workingType) {
-        log.info("Set working [{}] for all ", workingType);
+        log.info("Set working [{}] for all bakers", workingType);
         bakerRunMap.values().forEach((bakerRun -> bakerRun.setWorkingType(workingType)));
     }
 

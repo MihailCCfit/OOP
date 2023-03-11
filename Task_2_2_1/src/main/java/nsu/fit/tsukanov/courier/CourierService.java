@@ -50,22 +50,31 @@ public class CourierService implements PizzaService {
 
     @Override
     public void enableWorking() {
-
+        setWorking(WorkingType.WORKING);
     }
 
     @Override
     public void stopWorking() {
-
+        setWorking(WorkingType.STOP);
     }
 
     @Override
     public void finalWorking() {
-
+        setWorking(WorkingType.LAST);
+        threads.clear();
+        courierRunMap.clear();
     }
 
     @Override
     public void alarmWorking() {
-
+        setWorking(WorkingType.ALARM);
+        threads.clear();
+        courierRunMap.clear();
     }
-    //TODO: CourierService class
+
+    public void setWorking(WorkingType workingType) {
+        log.info("Set working [{}] for all couriers", workingType);
+        courierRunMap.values().forEach((courierRun -> courierRun.setWorkingType(workingType)));
+    }
+
 }
