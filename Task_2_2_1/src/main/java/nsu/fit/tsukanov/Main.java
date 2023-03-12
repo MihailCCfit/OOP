@@ -27,6 +27,7 @@ public class Main {
 
         CourierService courierService = new CourierService(courierRepository, storage);
         List<PizzaService> services = List.of(bakerService, clientService, courierService);
+
         initializing(services);
         starting(services);
         Scanner scanner = new Scanner(System.in);

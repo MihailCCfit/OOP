@@ -13,13 +13,12 @@ import nsu.fit.tsukanov.storage.Storage;
 import nsu.fit.tsukanov.storage.StorageImplementation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
 import static nsu.fit.tsukanov.Main.initializing;
 
-@SpringBootTest(classes = OrderBoard.class)
+
 public class TestClass {
 
     private OrderBoard orderBoard = new OrderBoardDeque();
