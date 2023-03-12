@@ -1,8 +1,8 @@
 package nsu.fit.tsukanov.courier;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.order.Order;
 
@@ -11,22 +11,31 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
-@RequiredArgsConstructor
 @Slf4j
 @Getter
+@Setter
 public class Courier {
-    private final Long id;
-    private final String name;
-    private final int deliveryTime;
-    private final int errorTime;
-    private final int capacity;
-    @JsonProperty(access = WRITE_ONLY)
+    private Long id;
+    private String name;
+    private int deliveryTime;
+    private int errorTime;
+    private int capacity;
+
+    public Courier(Long id, String name, int deliveryTime, int errorTime, int capacity) {
+        this.id = id;
+        this.name = name;
+        this.deliveryTime = deliveryTime;
+        this.errorTime = errorTime;
+        this.capacity = capacity;
+    }
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private List<Order> orderList = new ArrayList<>();
-    private final Random random = new Random();
 
     private void deliver(Order order) {
+        Random random = new Random();
         log.info("{} Start delivering", this);
         synchronized (this) {
             try {
@@ -52,12 +61,6 @@ public class Courier {
         orderList.addAll(orders);
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                id +
-                ", " + name
-                + '}';
-    }
+
 }
 

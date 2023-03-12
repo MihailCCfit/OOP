@@ -1,45 +1,88 @@
 package nsu.fit.tsukanov.baker.repository;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import nsu.fit.tsukanov.baker.Baker;
+import nsu.fit.tsukanov.configuration.Configuration;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BakerRepositoryJSON implements BakerRepository {
-    private final List<Baker> bakers = new ArrayList<>();
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final File fileBakers;
+
+    private List<Baker> bakers;
+
+    public BakerRepositoryJSON() {
+        fileBakers = new File(Configuration.BAKERS);
+        if (!fileBakers.exists()) {
+            bakers = new ArrayList<>();
+            writeToFile(bakers);
+        } else {
+            try {
+                bakers = objectMapper.readValue(fileBakers, new TypeReference<List<Baker>>() {
+                });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+    }
+
+    private void writeToFile(Object object) {
+        try {
+            objectMapper.writeValue(fileBakers, object);
+        } catch (IOException e) {
+            fileBakers.mkdirs();
+            try {
+                fileBakers.createNewFile();
+                objectMapper.writeValue(fileBakers, object);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
 
     @Override
     public Baker save(Baker baker) {
         bakers.add(baker);
-        //TODO: saving in JSON
+        writeToFile(bakers);
+
         return baker;
     }
 
     @Override
     public void delete(Baker baker) {
         bakers.remove(baker);
-        //TODO: deleting from JSON
+        writeToFile(bakers);
     }
 
     @Override
     public void delete(Long bakerId) {
-        //TODO: deleting from JSON
+        bakers = bakers.stream().filter(baker -> !baker.id().equals(bakerId)).collect(Collectors.toList());
+        writeToFile(bakers);
     }
 
     @Override
     public void deleteAll() {
-        //TODO: deleting from JSON
+        bakers.clear();
+        writeToFile(bakers);
     }
 
     @Override
     public List<Baker> findAll() {
-        //TODO: finding all from JSON
         return new ArrayList<>(bakers);
     }
 
     @Override
     public void addAll(Collection<Baker> bakers) {
         this.bakers.addAll(bakers);
+        writeToFile(bakers);
     }
 }
