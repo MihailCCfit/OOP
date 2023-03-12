@@ -59,6 +59,7 @@ public class BakerRun implements Runnable {
                 }
                 order = orderBoard.takeOrder();
                 log.info("Baker {} get order {}", self, order);
+                orderBoard.notifyAll();
             }
             log.info("Baker {} starts cooking", self);
             try {

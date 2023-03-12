@@ -20,7 +20,6 @@ public class StorageImplementation implements Storage {
 
     @Override
     public boolean isFull() {
-        assert (amount > 0 && amount <= maxSize);
         return amount == maxSize;
     }
 
