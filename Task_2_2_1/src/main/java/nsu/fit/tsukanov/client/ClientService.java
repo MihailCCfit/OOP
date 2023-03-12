@@ -70,14 +70,12 @@ public class ClientService implements PizzaService {
     }
 
     public void endWorking() {
-        for (Thread thread : threads) {
-            thread.interrupt();
-        }
+
         log.info("Client service end working");
         threads.clear();
     }
 
     public void setWorking(WorkingType workingType) {
-        log.info("Set working [{}] for all couriers", workingType);
+        log.info("Set working [{}] for all clients", workingType);
     }
 }

@@ -15,6 +15,7 @@ public class Client implements Runnable {
     private final Random random = new Random();
     private final int waitingTime;
     private final int biasTime;
+    private boolean orderReturned = false;
 
     public Client(OrderBoard orderBoard, int waitingTime, int biasTime) {
         this.orderBoard = orderBoard;
@@ -38,32 +39,55 @@ public class Client implements Runnable {
      */
     @Override
     public void run() {
-        while (true) {
-            var order = getRandomOrder(random.nextInt());
-            synchronized (this) {
-                try {
-                    Thread.sleep(random.nextInt(biasTime) * 1000L + 1);
-                } catch (InterruptedException ignored) {
-                }
-            }
-            synchronized (orderBoard) {
-                orderBoard.addOrder(order);
-                log.info("{} put order {}", this, order);
-            }
+        while (!Thread.interrupted()) {
+
+            if (!orderAndWait()) break;
+        }
+    }
+
+    /**
+     * @return true when working was interrupted
+     */
+    public boolean orderAndWait() {
+        order();
+        return waitOrder();
+    }
+
+    public void order() {
+        var order = getRandomOrder(random.nextInt());
+        orderReturned = false;
+        synchronized (this) {
             try {
-                synchronized (this) {
-                    this.wait();
-                }
-            } catch (InterruptedException e) {
-                log.warn("{} got pizza", this);
-            }
-            try {
-                Thread.sleep(random.nextInt(biasTime) * 1000L + waitingTime * 1000L + 1);
-            } catch (InterruptedException e) {
-                log.warn("{} ends working", this);
-                return;
+                Thread.sleep(random.nextInt(biasTime) * 1000L + 1);
+            } catch (InterruptedException ignored) {
             }
         }
+        synchronized (orderBoard) {
+            orderBoard.addOrder(order);
+            log.info("{} put order {}", this, order);
+            orderBoard.notifyAll();
+        }
+    }
+
+    public boolean waitOrder() {
+        try {
+            synchronized (this) {
+                this.wait(30*1000);
+            }
+        } catch (InterruptedException e) {
+            log.warn("{} got pizza", this);
+        }
+        try {
+            Thread.sleep(random.nextInt(biasTime) * 1000L + waitingTime * 1000L + 1);
+        } catch (InterruptedException e) {
+            log.warn("{} ends working", this);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean gotPizza() {
+        return orderReturned;
     }
 
     public Order getRandomOrder(int x) {
@@ -82,6 +106,7 @@ public class Client implements Runnable {
         return new Order("EAT", new Pizza(name), this, (client) -> {
             synchronized (client) {
                 client.notify();
+                orderReturned = true;
             }
             log.info("Call client {}", client);
         });
