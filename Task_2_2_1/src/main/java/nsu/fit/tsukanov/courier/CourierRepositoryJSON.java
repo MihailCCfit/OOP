@@ -64,7 +64,7 @@ public class CourierRepositoryJSON implements CourierRepository {
         Iterator<Courier> iterator = couriers.iterator();
         while (iterator.hasNext()) {
             var cour = iterator.next();
-            if (cour.getId().equals(courierId)) {
+            if (cour.id().equals(courierId)) {
                 iterator.remove();
                 break;
             }

@@ -58,7 +58,7 @@ public class CourierRun implements Runnable {
                     }
                 }
                 log.info("Courier {} waits for pizza", self);
-                var orders = storage.takePizzaOrders(self.getCapacity());
+                var orders = storage.takePizzaOrders(self.capacity());
                 log.info("Courier {} get orders {}", self, orders);
                 self.addOrders(orders);
                 storage.notifyAll();
