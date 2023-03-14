@@ -21,7 +21,7 @@ public class ParallelThreadNonPrimeNumberFinder implements NonPrimesFinder {
     }
 
     private static class MyBoolean {
-        boolean flag;
+        volatile boolean flag;
 
         public MyBoolean() {
             this(false);
