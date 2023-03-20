@@ -58,6 +58,7 @@ public class ClientService implements PizzaService {
     public void endWorking() {
         log.info("Client service end working");
         clients.forEach(Client::stop);
+        threads.forEach(Thread::interrupt);
         threads.clear();
     }
 

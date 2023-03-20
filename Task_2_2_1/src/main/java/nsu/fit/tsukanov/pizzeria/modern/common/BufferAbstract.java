@@ -35,15 +35,15 @@ public class BufferAbstract<T> implements Buffer<T> {
 
     @Override
     public void notifyAllForEmpty() {
-        synchronized (fullBuffer) {
-            fullBuffer.notifyAll();
+        synchronized (emptyBuffer) {
+            emptyBuffer.notifyAll();
         }
     }
 
     @Override
     public void notifyForEmpty() {
-        synchronized (fullBuffer) {
-            fullBuffer.notify();
+        synchronized (emptyBuffer) {
+            emptyBuffer.notify();
         }
     }
 

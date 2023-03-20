@@ -64,6 +64,7 @@ public class BakerService implements PizzaService {
         for (BakerRun bakerRun : bakerRunMap.values()) {
             bakerRun.stop();
         }
+        threads.forEach(Thread::interrupt);
         bakerRunMap.clear();
         threads.clear();
     }

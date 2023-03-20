@@ -53,13 +53,14 @@ public class CourierRun implements Runnable {
                 i++;
                 self.addOrder(storage.remove());
             }
-            storage.getFullBuffer().notifyAll();
+            storage.notifyForFull();
         }
 
     }
 
     public void produce() {
         self.deliver();
+        self.orderList().clear();
     }
 
     public void stop() {

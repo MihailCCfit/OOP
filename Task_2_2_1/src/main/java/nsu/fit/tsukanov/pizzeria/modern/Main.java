@@ -1,7 +1,23 @@
 package nsu.fit.tsukanov.pizzeria.modern;
 
+import nsu.fit.tsukanov.pizzeria.modern.common.interfaces.PizzaService;
+import nsu.fit.tsukanov.pizzeria.modern.modules.baker.BakerService;
+import nsu.fit.tsukanov.pizzeria.modern.modules.baker.repository.BakerRepository;
+import nsu.fit.tsukanov.pizzeria.modern.modules.baker.repository.BakerRepositoryJSON;
+import nsu.fit.tsukanov.pizzeria.modern.modules.client.ClientService;
+import nsu.fit.tsukanov.pizzeria.modern.modules.courier.CourierRepository;
+import nsu.fit.tsukanov.pizzeria.modern.modules.courier.CourierRepositoryJSON;
+import nsu.fit.tsukanov.pizzeria.modern.modules.courier.CourierService;
+import nsu.fit.tsukanov.pizzeria.modern.modules.order.OrderBoard;
+import nsu.fit.tsukanov.pizzeria.modern.modules.order.OrderBoardDeque;
+import nsu.fit.tsukanov.pizzeria.modern.modules.storage.Storage;
+import nsu.fit.tsukanov.pizzeria.modern.modules.storage.StorageImplementation;
+
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {/*
+    public static void main(String[] args) {
         BakerRepository bakerRepository = new BakerRepositoryJSON();
         CourierRepository courierRepository = new CourierRepositoryJSON();
         Storage storage = new StorageImplementation();
@@ -18,10 +34,7 @@ public class Main {
         while (true) {
             String line = scanner.nextLine();
             switch (line) {
-                case "final" -> finalWorking(services);
-                case "enable" -> enable(services);
                 case "start" -> starting(services);
-                case "alarm" -> alarm(services);
                 case "stop" -> stop(services);
                 case "end" -> {
                     System.out.println("Ends");
@@ -43,17 +56,4 @@ public class Main {
         services.forEach(PizzaService::stopWorking);
     }
 
-    public static void alarm(List<PizzaService> services) {
-        services.forEach(PizzaService::alarmWorking);
-    }
-
-    public static void enable(List<PizzaService> services) {
-        services.forEach(PizzaService::enableWorking);
-    }
-
-    public static void finalWorking(List<PizzaService> services) {
-        services.forEach(PizzaService::finalWorking);
-    }
-    */
-    }
 }
