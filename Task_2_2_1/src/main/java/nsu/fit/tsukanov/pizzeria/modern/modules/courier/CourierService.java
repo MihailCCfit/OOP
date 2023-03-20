@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.pizzeria.modern.common.interfaces.PizzaService;
 import nsu.fit.tsukanov.pizzeria.modern.modules.storage.Storage;
-import nsu.fit.tsukanov.pizzeria.modern.workingType.WorkingType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +39,7 @@ public class CourierService implements PizzaService {
     public void startWorking() {
         log.info("Courier service start working");
         for (Courier courier : courierRepository.findAll()) {
-            var courierRun = new CourierRun(courier, storage, WorkingType.WORKING);
+            var courierRun = new CourierRun(courier, storage);
             courierRunMap.put(courier, courierRun);
             Thread thread = new Thread(courierRun);
             thread.start();
@@ -49,32 +48,13 @@ public class CourierService implements PizzaService {
     }
 
     @Override
-    public void enableWorking() {
-        setWorking(WorkingType.WORKING);
-    }
-
-    @Override
     public void stopWorking() {
-        setWorking(WorkingType.STOP);
-    }
-
-    @Override
-    public void finalWorking() {
-        setWorking(WorkingType.LAST);
-        threads.clear();
+        for (CourierRun courier : courierRunMap.values()) {
+            courier.stop();
+        }
         courierRunMap.clear();
-    }
-
-    @Override
-    public void alarmWorking() {
-        setWorking(WorkingType.ALARM);
         threads.clear();
-        courierRunMap.clear();
     }
 
-    public void setWorking(WorkingType workingType) {
-        log.info("Set working [{}] for all couriers", workingType);
-        courierRunMap.values().forEach((courierRun -> courierRun.setWorkingType(workingType)));
-    }
 
 }

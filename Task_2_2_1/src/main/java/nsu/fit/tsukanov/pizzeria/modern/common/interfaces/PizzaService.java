@@ -5,11 +5,5 @@ public interface PizzaService {
 
     void startWorking();
 
-    void enableWorking();
-
     void stopWorking();
-
-    void finalWorking();
-
-    void alarmWorking();
 }

@@ -3,7 +3,6 @@ package nsu.fit.tsukanov.pizzeria.modern.modules.client;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.pizzeria.modern.common.interfaces.PizzaService;
 import nsu.fit.tsukanov.pizzeria.modern.modules.order.OrderBoard;
-import nsu.fit.tsukanov.pizzeria.modern.workingType.WorkingType;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
@@ -48,34 +47,18 @@ public class ClientService implements PizzaService {
         log.info("Client service starts working, clients number {}", threads.size());
     }
 
-    @Override
-    public void enableWorking() {
-
-    }
 
     @Override
     public void stopWorking() {
+
         endWorking();
 
-    }
-
-    @Override
-    public void finalWorking() {
-        endWorking();
-    }
-
-    @Override
-    public void alarmWorking() {
-        endWorking();
     }
 
     public void endWorking() {
-
         log.info("Client service end working");
+        clients.forEach(Client::stop);
         threads.clear();
     }
 
-    public void setWorking(WorkingType workingType) {
-        log.info("Set working [{}] for all clients", workingType);
-    }
 }
