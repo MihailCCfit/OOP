@@ -22,20 +22,23 @@ record Courier(
         this(id, name, deliveryTime, errorTime, capacity, new ArrayList<>());
     }
 
-    private void deliver(Order order) {
+    private void deliver(Order order) throws InterruptedException {
         Random random = new Random();
         synchronized (this) {
-            try {
-                Thread.sleep(deliveryTime * 1000L + random.nextInt(errorTime + 1) * 1000L + 1);
-            } catch (InterruptedException ignore) {
-            }
+
+            Thread.sleep(deliveryTime * 1000L + random.nextInt(errorTime + 1) * 1000L + 1);
+
         }
         order.getCall().accept(order.getClient());
     }
 
     public void deliver() {
         for (Order order : orderList) {
-            deliver(order);
+            try {
+                deliver(order);
+            } catch (InterruptedException e) {
+                break;
+            }
         }
     }
 

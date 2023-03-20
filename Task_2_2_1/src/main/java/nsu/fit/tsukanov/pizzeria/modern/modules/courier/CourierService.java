@@ -53,6 +53,7 @@ public class CourierService implements PizzaService {
             courier.stop();
         }
         courierRunMap.clear();
+        threads.forEach(Thread::interrupt);
         threads.clear();
     }
 

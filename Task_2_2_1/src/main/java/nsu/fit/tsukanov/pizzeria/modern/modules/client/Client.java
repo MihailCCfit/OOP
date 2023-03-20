@@ -2,9 +2,9 @@ package nsu.fit.tsukanov.pizzeria.modern.modules.client;
 
 
 import lombok.extern.slf4j.Slf4j;
+import nsu.fit.tsukanov.pizzeria.modern.common.pizza.Pizza;
 import nsu.fit.tsukanov.pizzeria.modern.modules.order.Order;
 import nsu.fit.tsukanov.pizzeria.modern.modules.order.OrderBoard;
-import nsu.fit.tsukanov.pizzeria.modern.common.pizza.Pizza;
 
 import java.util.Random;
 
@@ -16,6 +16,7 @@ public class Client implements Runnable {
     private final int waitingTime;
     private final int biasTime;
     private boolean orderReturned = false;
+    private volatile boolean runFlag;
 
     public Client(OrderBoard orderBoard, int waitingTime, int biasTime) {
         this.orderBoard = orderBoard;
@@ -39,21 +40,27 @@ public class Client implements Runnable {
      */
     @Override
     public void run() {
+        log.info("Client {} start working", this);
         while (!Thread.interrupted()) {
 
             if (!orderAndWait()) break;
         }
+        log.info("Client {} end working", this);
     }
 
     /**
      * @return true when working was interrupted
      */
     public boolean orderAndWait() {
-        order();
+        try {
+            order();
+        } catch (InterruptedException e) {
+            return false;
+        }
         return waitOrder();
     }
 
-    public void order() {
+    public void order() throws InterruptedException {
         var order = getRandomOrder(random.nextInt());
         orderReturned = false;
         synchronized (this) {
@@ -62,20 +69,27 @@ public class Client implements Runnable {
             } catch (InterruptedException ignored) {
             }
         }
-        synchronized (orderBoard) {
+        Object fullBuf;
+        synchronized (fullBuf = orderBoard.getFullBuffer()) {
+            while (orderBoard.isFull()) {
+                fullBuf.wait();
+            }
             orderBoard.add(order);
             log.info("{} put order {}", this, order);
-            orderBoard.notifyAll();
+            fullBuf.notify();
+            orderBoard.notifyAllForEmpty();
         }
     }
 
     public boolean waitOrder() {
-        try {
-            synchronized (this) {
-                this.wait(30*1000);
+        while (!gotPizza()) {
+            try {
+                synchronized (this) {
+                    this.wait(30 * 1000);
+                }
+            } catch (InterruptedException e) {
+                log.warn("{} got pizza", this);
             }
-        } catch (InterruptedException e) {
-            log.warn("{} got pizza", this);
         }
         try {
             Thread.sleep(random.nextInt(biasTime) * 1000L + waitingTime * 1000L + 1);
@@ -104,14 +118,19 @@ public class Client implements Runnable {
             default -> "Barbecue";
         };
         return new Order("EAT", new Pizza(name), this, (client) -> {
-            synchronized (client) {
-                client.notify();
+            synchronized (orderBoard.getFullBuffer()) {
                 orderReturned = true;
+                orderBoard.getFullBuffer().notifyAll();
+                synchronized (this) {
+                    this.notify();
+                }
+
             }
             log.info("Call client {}", client);
         });
     }
-    public void stop(){
+
+    public void stop() {
 
     }
 

@@ -66,7 +66,7 @@ public class BakerRun implements Runnable {
                 return;
             }
             currentOrder = orderBoard.remove();
-            storage.getFullBuffer().notifyAll();
+            //orderBoard.notifyForFull();
         }
 
     }
@@ -75,8 +75,8 @@ public class BakerRun implements Runnable {
         try {
             Pizza producedPizza = self.cook(currentOrder.getPizza());
             currentOrder.setPizza(producedPizza);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException ignore) {
+
         }
         if (!runFlag) {
             return;
@@ -94,7 +94,7 @@ public class BakerRun implements Runnable {
                 return;
             }
             storage.add(currentOrder);
-            storage.getEmptyBuffer().notifyAll();
+            storage.notifyAllForEmpty();
         }
     }
 
