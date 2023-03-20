@@ -57,7 +57,7 @@ public class BufferAbstract<T> implements Buffer<T> {
     }
 
     @Override
-    public T remove()  {
+    public T remove() {
 
         synchronized (buffer) {
             assert buffer.isEmpty();

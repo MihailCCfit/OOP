@@ -1,7 +1,6 @@
 package nsu.fit.tsukanov.pizzeria.modern.modules.courier;
 
 import lombok.extern.slf4j.Slf4j;
-import nsu.fit.tsukanov.pizzeria.modern.common.pizza.Pizza;
 import nsu.fit.tsukanov.pizzeria.modern.modules.storage.Storage;
 
 @Slf4j
@@ -17,78 +16,53 @@ public class CourierRun implements Runnable {
         runFlag = true;
     }
 
-    /**
-     * When an object implementing interface {@code Runnable} is used
-     * to create a thread, starting the thread causes the object's
-     * {@code run} method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method {@code run} is that it may
-     * take any action whatsoever.
-     *
-     * @see Thread#run()
-     */
     @Override
     public void run() {
         runFlag = true;
-        log.info("Baker {} started working", self);
+        log.info("Courier {} started working", self);
         while (runFlag) {
-            log.info("Baker {} started taking order", self);
+            log.info("Courier {} started taking orders", self);
             consume();
-            log.info("Baker {} took order {}", self, currentOrder);
+            log.info("Courier {} took orders {}", self, self.orderList());
             if (!runFlag) {
                 break;
             }
-            log.info("Baker {} start producing {}", self, currentOrder);
+            log.info("Courier {} start delivering {}", self, self.orderList());
             produce();
-            log.info("Baker {} ends producing {}", self, currentOrder);
+            log.info("Courier {} ends delivering {}", self, self.orderList());
         }
-        log.info("Baker {} ends working", self);
+        log.info("Courier {} ends working", self);
     }
 
 
     public void consume() {
-        if (orderBoard.isEmpty()) {
-            try {
-                orderBoard.wait();
-            } catch (InterruptedException e) {
+        Object storageEmpty;
+        synchronized (storageEmpty = storage.getEmptyBuffer()) {
+            while (storage.isEmpty()) {
+                try {
+                    storageEmpty.wait();
+                } catch (InterruptedException e) {
+                    return;
+                }
+            }
+            if (!runFlag) {
                 return;
             }
+            int i = 0;
+            while (!storage.isEmpty() && i < self.capacity()) {
+                i++;
+                self.addOrder(storage.remove());
+            }
+            storage.getFullBuffer().notifyAll();
         }
-        if (!runFlag) {
-            return;
-        }
-        currentOrder = orderBoard.remove();
-        orderBoard.notifyAllForFull();
 
     }
 
     public void produce() {
-        try {
-            Pizza producedPizza = self.cook(currentOrder.getPizza());
-            currentOrder.setPizza(producedPizza);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        if (!runFlag) {
-            return;
-        }
-        while (storage.isFull()) {
-            try {
-                storage.wait();
-            } catch (InterruptedException e) {
-                break;
-            }
-        }
-        if (!runFlag) {
-            return;
-        }
-        storage.add(currentOrder);
-        storage.notifyAllForEmpty();
+        self.deliver();
     }
 
     public void stop() {
         runFlag = false;
-        orderBoard.notifyAllForFull();
     }
 }

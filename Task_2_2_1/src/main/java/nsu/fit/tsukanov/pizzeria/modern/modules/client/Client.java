@@ -63,7 +63,7 @@ public class Client implements Runnable {
             }
         }
         synchronized (orderBoard) {
-            orderBoard.addOrder(order);
+            orderBoard.add(order);
             log.info("{} put order {}", this, order);
             orderBoard.notifyAll();
         }
@@ -110,6 +110,9 @@ public class Client implements Runnable {
             }
             log.info("Call client {}", client);
         });
+    }
+    public void stop(){
+
     }
 
     @Override

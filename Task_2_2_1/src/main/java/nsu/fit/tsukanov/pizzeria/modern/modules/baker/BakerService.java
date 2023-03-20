@@ -59,35 +59,14 @@ public class BakerService implements PizzaService {
         log.info("Baker Service started working, amount: {}", threads.size());
     }
 
-    public void enableWorking() {
-        setWorking(WorkingType.WORKING);
-    }
-
-    public void finalWorking() {
-        setWorking(WorkingType.LAST);
-    }
-
     @Override
-    public void alarmWorking() {
-        setWorking(WorkingType.ALARM);
-        for (Thread thread : threads) {
-            thread.interrupt();
+    public void stopWorking() {
+        for (BakerRun bakerRun : bakerRunMap.values()) {
+            bakerRun.stop();
         }
+        bakerRunMap.clear();
         threads.clear();
     }
 
-    public void stopWorking() {
-        setWorking(WorkingType.STOP);
-    }
-
-
-    public void setWorking(WorkingType workingType) {
-        log.info("Set working [{}] for all bakers", workingType);
-        bakerRunMap.values().forEach((bakerRun -> bakerRun.setWorkingType(workingType)));
-    }
-
-    public void setWorking(Baker baker, WorkingType workingType) {
-        bakerRunMap.get(baker).setWorkingType(workingType);
-    }
 
 }

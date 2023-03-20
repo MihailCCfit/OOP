@@ -53,18 +53,21 @@ public class BakerRun implements Runnable {
 
 
     public void consume() {
-        if (orderBoard.isEmpty()) {
-            try {
-                orderBoard.wait();
-            } catch (InterruptedException e) {
+        Object boardEmpty;
+        synchronized (boardEmpty = orderBoard.getEmptyBuffer()) {
+            while (orderBoard.isEmpty()) {
+                try {
+                    boardEmpty.wait();
+                } catch (InterruptedException e) {
+                    return;
+                }
+            }
+            if (!runFlag) {
                 return;
             }
+            currentOrder = orderBoard.remove();
+            storage.getFullBuffer().notifyAll();
         }
-        if (!runFlag) {
-            return;
-        }
-        currentOrder = orderBoard.remove();
-        orderBoard.notifyAllForFull();
 
     }
 
@@ -78,22 +81,24 @@ public class BakerRun implements Runnable {
         if (!runFlag) {
             return;
         }
-        while (storage.isFull()) {
-            try {
-                storage.wait();
-            } catch (InterruptedException e) {
-                break;
+        Object storageFull;
+        synchronized (storageFull = storage.getFullBuffer()) {
+            while (storage.isFull()) {
+                try {
+                    storageFull.wait();
+                } catch (InterruptedException e) {
+                    break;
+                }
             }
+            if (!runFlag) {
+                return;
+            }
+            storage.add(currentOrder);
+            storage.getEmptyBuffer().notifyAll();
         }
-        if (!runFlag) {
-            return;
-        }
-        storage.add(currentOrder);
-        storage.notifyAllForEmpty();
     }
 
     public void stop() {
         runFlag = false;
-        orderBoard.notifyAllForFull();
     }
 }
