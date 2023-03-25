@@ -1,24 +1,10 @@
 package nsu.fit.tsukanov.pizzeria.old;
 
-import nsu.fit.tsukanov.pizzeria.old.baker.BakerService;
-import nsu.fit.tsukanov.pizzeria.old.baker.repository.BakerRepository;
-import nsu.fit.tsukanov.pizzeria.old.baker.repository.BakerRepositoryJSON;
-import nsu.fit.tsukanov.pizzeria.old.client.Client;
-import nsu.fit.tsukanov.pizzeria.old.courier.CourierRepository;
-import nsu.fit.tsukanov.pizzeria.old.courier.CourierRepositoryJSON;
-import nsu.fit.tsukanov.pizzeria.old.courier.CourierService;
-import nsu.fit.tsukanov.pizzeria.old.interfaces.PizzaService;
-import nsu.fit.tsukanov.pizzeria.old.order.Order;
-import nsu.fit.tsukanov.pizzeria.old.order.OrderBoard;
-import nsu.fit.tsukanov.pizzeria.old.order.OrderBoardDeque;
-import nsu.fit.tsukanov.pizzeria.old.storage.Storage;
-import nsu.fit.tsukanov.pizzeria.old.storage.StorageImplementation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static nsu.fit.tsukanov.pizzeria.old.Main.initializing;
 
 
 public class TestClass {
