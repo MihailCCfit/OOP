@@ -80,7 +80,7 @@ public class BakerRepositoryJSON implements BakerRepository {
     }
 
     @Override
-    public void addAll(Collection<BakerEntity> bakers) {
+    public void saveAll(Collection<BakerEntity> bakers) {
         this.bakers.addAll(bakers);
         writeToFile(bakers);
     }

@@ -84,7 +84,7 @@ public class CourierRepositoryJSON implements CourierRepository {
     }
 
     @Override
-    public void addAll(Collection<CourierEntity> couriers) {
+    public void saveAll(Collection<CourierEntity> couriers) {
         this.couriers.addAll(couriers);
         writeToFile(couriers);
     }

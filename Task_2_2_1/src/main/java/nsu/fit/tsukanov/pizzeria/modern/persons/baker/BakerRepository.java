@@ -1,6 +1,5 @@
 package nsu.fit.tsukanov.pizzeria.modern.persons.baker;
 
-import nsu.fit.tsukanov.pizzeria.modern.persons.baker.BakerEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -27,5 +26,5 @@ public interface BakerRepository {
 
     List<BakerEntity> findAll();
 
-    void addAll(Collection<BakerEntity> bakers);
+    void saveAll(Collection<BakerEntity> bakers);
 }
