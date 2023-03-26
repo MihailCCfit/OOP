@@ -18,7 +18,7 @@ public class Baker implements Runnable {
 
     private volatile boolean isWorking = true;
 
-    private Order order;
+    private Order order = null;
 
 
     public Baker(BakerEntity baker, Storage storage, OrderBoard orderBoard) {
@@ -36,6 +36,7 @@ public class Baker implements Runnable {
         baker.cook(pizza);
         log.info("{} Cooked pizza {} to {}", baker, order.pizzaName(), order.clientName());
         DeliveryOrder deliveryOrder = new DeliveryOrder(pizza, order.callOrderOwner(), order.clientName());
+        order = null;
         storage.put(deliveryOrder);
         log.info("{} Put order {} to storage", baker, deliveryOrder);
     }
@@ -72,6 +73,10 @@ public class Baker implements Runnable {
 
     public void setWorking(boolean working) {
         isWorking = working;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 
     @Override

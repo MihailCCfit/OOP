@@ -3,6 +3,7 @@ package nsu.fit.tsukanov.pizzeria.modern.persons.baker;
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.pizzeria.modern.common.objects.Pizza;
 
+import java.util.Objects;
 import java.util.Random;
 
 @Slf4j
@@ -25,5 +26,18 @@ public record BakerEntity(
                 id +
                 "-'" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BakerEntity that = (BakerEntity) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
