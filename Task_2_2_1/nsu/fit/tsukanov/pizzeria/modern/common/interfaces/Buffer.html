@@ -75,15 +75,16 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="description">
 <dl class="notes">
-<dt>All Known Subinterfaces:</dt>
-<dd><code><a href="../../modules/order/OrderBoard.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.modules.order">OrderBoard</a></code>, <code><a href="../../modules/storage/Storage.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.modules.storage">Storage</a></code></dd>
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - the objects that contains in buffer</dd>
 </dl>
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../BufferAbstract.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common">BufferAbstract</a></code>, <code><a href="../../modules/order/OrderBoardDeque.html" title="class in nsu.fit.tsukanov.pizzeria.modern.modules.order">OrderBoardDeque</a></code>, <code><a href="../../modules/storage/StorageImplementation.html" title="class in nsu.fit.tsukanov.pizzeria.modern.modules.storage">StorageImplementation</a></code></dd>
+<dd><code><a href="../buffer/BufferAbstract.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">BufferAbstract</a></code>, <code><a href="../buffer/OrderBoard.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">OrderBoard</a></code>, <code><a href="../buffer/Storage.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Storage</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Buffer&lt;T&gt;</span></div>
+<div class="block">With synchronization</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -98,39 +99,68 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#add(T)">add</a></span>&#8203;(<a href="Buffer.html" title="type parameter in Buffer">T</a>&nbsp;object)</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#getEmptyBuffer()">getEmptyBuffer</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#getFullBuffer()">getFullBuffer</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#capacity()">capacity</a></span>()</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Return max size of the buffer.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#drainTo(java.util.Collection)">drainTo</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Buffer.html" title="type parameter in Buffer">T</a>&gt;&nbsp;collection)</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Removes all available elements from this queue and adds them
+ to the given collection.</div>
+</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#drainTo(java.util.Collection,int)">drainTo</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Buffer.html" title="type parameter in Buffer">T</a>&gt;&nbsp;collectionForSaving,
+ int&nbsp;maxElements)</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Removes at most the given number of available elements from this queue and adds them to the given collection.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#isEmpty()">isEmpty</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Check buffer for empty.</div>
+</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#isFull()">isFull</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Check buffer for full.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyAllForEmpty()">notifyAllForEmpty</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyAllCanPut()">notifyAllCanPut</a></span>()</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Notify all objects that are waiting to put something int buffer.</div>
+</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyAllForFull()">notifyAllForFull</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyAllCanTake()">notifyAllCanTake</a></span>()</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Notify all objects that are waiting to take something from buffer.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyForEmpty()">notifyForEmpty</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyCanPut()">notifyCanPut</a></span>()</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Notify object that's waiting to put something into buffer.</div>
+</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyForFull()">notifyForFull</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="Buffer.html" title="type parameter in Buffer">T</a></code></div>
-<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#remove()">remove</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#notifyCanTake()">notifyCanTake</a></span>()</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Notify object that's waiting to take something from the buffer.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#put(T)">put</a></span>&#8203;(<a href="Buffer.html" title="type parameter in Buffer">T</a>&nbsp;object)</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Put something to the buffer.</div>
+</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#size()">size</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Return the current size.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><a href="Buffer.html" title="type parameter in Buffer">T</a></code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#take()">take</a></span>()</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
+<div class="block">Take some object from the buffer.</div>
+</div>
 </div>
 </div>
 </div>
@@ -146,69 +176,139 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="notifyAllForFull()">
-<h3>notifyAllForFull</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyAllForFull</span>()</div>
+<section class="detail" id="notifyAllCanPut()">
+<h3>notifyAllCanPut</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyAllCanPut</span>()</div>
+<div class="block">Notify all objects that are waiting to put something int buffer.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="notifyForFull()">
-<h3>notifyForFull</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyForFull</span>()</div>
+<section class="detail" id="notifyCanPut()">
+<h3>notifyCanPut</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyCanPut</span>()</div>
+<div class="block">Notify object that's waiting to put something into buffer.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="notifyAllForEmpty()">
-<h3>notifyAllForEmpty</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyAllForEmpty</span>()</div>
+<section class="detail" id="notifyAllCanTake()">
+<h3>notifyAllCanTake</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyAllCanTake</span>()</div>
+<div class="block">Notify all objects that are waiting to take something from buffer.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="notifyForEmpty()">
-<h3>notifyForEmpty</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyForEmpty</span>()</div>
+<section class="detail" id="notifyCanTake()">
+<h3>notifyCanTake</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">notifyCanTake</span>()</div>
+<div class="block">Notify object that's waiting to take something from the buffer.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="add(T)">
-<h3 id="add(java.lang.Object)">add</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">add</span>&#8203;<span class="parameters">(<a href="Buffer.html" title="type parameter in Buffer">T</a>&nbsp;object)</span></div>
+<section class="detail" id="put(T)">
+<h3 id="put(java.lang.Object)">put</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">put</span>&#8203;<span class="parameters">(<a href="Buffer.html" title="type parameter in Buffer">T</a>&nbsp;object)</span>
+  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Put something to the buffer. This method uses synchronized, so it's parallel save. Waits if buffer is full.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>object</code> - the object that will be stored into the buffer.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="remove()">
-<h3>remove</h3>
-<div class="member-signature"><span class="return-type"><a href="Buffer.html" title="type parameter in Buffer">T</a></span>&nbsp;<span class="element-name">remove</span>()</div>
+<section class="detail" id="take()">
+<h3>take</h3>
+<div class="member-signature"><span class="return-type"><a href="Buffer.html" title="type parameter in Buffer">T</a></span>&nbsp;<span class="element-name">take</span>()
+throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Take some object from the buffer.
+ This method uses synchronized, so it's parallel save. Waits if buffer is empty.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>took object from buffer.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="drainTo(java.util.Collection)">
+<h3>drainTo</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">drainTo</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Buffer.html" title="type parameter in Buffer">T</a>&gt;&nbsp;collection)</span>
+     throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Removes all available elements from this queue and adds them
+ to the given collection.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>collection</code> - the collection to transfer elements into</dd>
+<dt>Returns:</dt>
+<dd>the number of elements transferred</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="drainTo(java.util.Collection,int)">
+<h3>drainTo</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">drainTo</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Buffer.html" title="type parameter in Buffer">T</a>&gt;&nbsp;collectionForSaving,
+ int&nbsp;maxElements)</span>
+     throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Removes at most the given number of available elements from this queue and adds them to the given collection.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>collectionForSaving</code> - – the collection to transfer elements into</dd>
+<dd><code>maxElements</code> - – the maximum number of elements to transfer</dd>
+<dt>Returns:</dt>
+<dd>the number of elements transferred</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isFull()">
 <h3>isFull</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isFull</span>()</div>
+<div class="block">Check buffer for full.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if buffer is full</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isEmpty()">
 <h3>isEmpty</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isEmpty</span>()</div>
+<div class="block">Check buffer for empty.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if buffer is empty</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="size()">
 <h3>size</h3>
 <div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">size</span>()</div>
+<div class="block">Return the current size.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the currents size (amount of elements) in the buffer</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getFullBuffer()">
-<h3>getFullBuffer</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">getFullBuffer</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="getEmptyBuffer()">
-<h3>getEmptyBuffer</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">getEmptyBuffer</span>()</div>
+<section class="detail" id="capacity()">
+<h3>capacity</h3>
+<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">capacity</span>()</div>
+<div class="block">Return max size of the buffer.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>max size of the buffer.</dd>
+</dl>
 </section>
 </li>
 </ul>
