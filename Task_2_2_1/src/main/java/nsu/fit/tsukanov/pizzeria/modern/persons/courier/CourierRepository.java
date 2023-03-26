@@ -14,5 +14,5 @@ public interface CourierRepository {
 
     List<CourierEntity> findAll();
 
-    void addAll(Collection<CourierEntity> couriers);
+    void saveAll(Collection<CourierEntity> couriers);
 }

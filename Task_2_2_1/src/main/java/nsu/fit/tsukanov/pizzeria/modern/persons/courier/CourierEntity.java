@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import nsu.fit.tsukanov.pizzeria.modern.common.objects.DeliveryOrder;
 
 import java.util.*;
@@ -12,7 +11,6 @@ import java.util.*;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class CourierEntity {
     private Long id;
@@ -52,7 +50,7 @@ public class CourierEntity {
     public void delivery() throws InterruptedException {
         Random random = new Random();
         Iterator<DeliveryOrder> iterator = orderList.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             var order = iterator.next();
             iterator.remove();
             order.callOrderOwner();
@@ -65,6 +63,15 @@ public class CourierEntity {
 
     public int canTake() {
         return capacity - orderList.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Courier{" +
+                id +
+                "-'" + name + '\'' +
+                "orders:" + orderList +
+                "}";
     }
 }
 

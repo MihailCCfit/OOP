@@ -19,4 +19,11 @@ public record BakerEntity(
         pizza.setCooked(true);
     }
 
+    @Override
+    public String toString() {
+        return "Baker{" +
+                id +
+                "-'" + name + '\'' +
+                '}';
+    }
 }
