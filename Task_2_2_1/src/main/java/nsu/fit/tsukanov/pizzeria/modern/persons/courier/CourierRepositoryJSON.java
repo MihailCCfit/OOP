@@ -64,10 +64,10 @@ public class CourierRepositoryJSON implements CourierRepository {
         Iterator<CourierEntity> iterator = couriers.iterator();
         while (iterator.hasNext()) {
             var cour = iterator.next();
-//            if (cour.id().equals(courierId)) {
-//                iterator.remove();
-//                break;
-//            }
+            if (cour.getId().equals(courierId)) {
+                iterator.remove();
+                break;
+            }
         }
         writeToFile(couriers);
     }
