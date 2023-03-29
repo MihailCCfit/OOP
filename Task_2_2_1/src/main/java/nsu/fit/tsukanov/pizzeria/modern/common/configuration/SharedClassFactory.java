@@ -4,17 +4,17 @@ import nsu.fit.tsukanov.pizzeria.modern.common.buffer.OrderBoard;
 import nsu.fit.tsukanov.pizzeria.modern.common.buffer.Storage;
 import nsu.fit.tsukanov.pizzeria.modern.common.dto.DeliveryOrder;
 import nsu.fit.tsukanov.pizzeria.modern.persons.baker.BakerRepository;
-import nsu.fit.tsukanov.pizzeria.modern.persons.baker.BakerRepositoryJSON;
+import nsu.fit.tsukanov.pizzeria.modern.persons.baker.JsonBakerRepository;
 import nsu.fit.tsukanov.pizzeria.modern.persons.courier.CourierRepository;
-import nsu.fit.tsukanov.pizzeria.modern.persons.courier.CourierRepositoryJSON;
+import nsu.fit.tsukanov.pizzeria.modern.persons.courier.JsonCourierRepository;
 
 public class SharedClassFactory {
     private final OrderBoard orderBoard = new OrderBoard(Configuration.MAX_ORDER_BOARD_SIZE);
     private final Storage<DeliveryOrder> storage = new Storage<>(Configuration.MAX_STORAGE_SIZE);
 
-    private final BakerRepository bakerRepository = new BakerRepositoryJSON();
+    private final BakerRepository bakerRepository = new JsonBakerRepository();
 
-    private final CourierRepository courierRepository = new CourierRepositoryJSON();
+    private final CourierRepository courierRepository = new JsonCourierRepository();
 
     /**
      * Idempotent function, that return the same object - bakerRepository.

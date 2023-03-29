@@ -11,13 +11,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class CourierRepositoryJSON implements CourierRepository {
+public class JsonCourierRepository implements CourierRepository {
     private final List<Courier> couriers;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final File fileCouriers;
 
-    public CourierRepositoryJSON() {
+    public JsonCourierRepository() {
         fileCouriers = new File(Configuration.COURIERS);
         if (!fileCouriers.exists()) {
             couriers = initializationList();
