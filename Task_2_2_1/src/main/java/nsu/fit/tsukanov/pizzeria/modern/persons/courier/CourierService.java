@@ -6,7 +6,6 @@ import nsu.fit.tsukanov.pizzeria.modern.common.configuration.SharedClassFactory;
 import nsu.fit.tsukanov.pizzeria.modern.common.dto.DeliveryOrder;
 import nsu.fit.tsukanov.pizzeria.modern.common.interfaces.PizzaService;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,9 @@ public class CourierService implements PizzaService {
         courierRepository = sharedClassFactory.getCourierRepository();
     }
 
+    /**
+     * Start working. maybe download objects.
+     */
     @Override
     public void startWorking() {
         initialize();
@@ -34,6 +36,9 @@ public class CourierService implements PizzaService {
 
     }
 
+    /**
+     * Stop working. It may be not instantly.
+     */
     @Override
     public void stopWorking() {
         log.info("Courier service stop working, amount of couriers: {}", courierThreadMap.size());
@@ -43,14 +48,9 @@ public class CourierService implements PizzaService {
         });
     }
 
+
     private void initialize() {
         List<Courier> couriers = courierRepository.findAll();
-        if (couriers.isEmpty()) {
-            couriers = initializationList();
-            courierRepository.saveAll(couriers);
-        }
-
-
         for (Courier courier : couriers) {
             CourierManager courierManager = new CourierManager(courier, storage);
             courierThreadMap.put(courierManager, new Thread(courierManager));
@@ -58,11 +58,4 @@ public class CourierService implements PizzaService {
 
     }
 
-    private List<Courier> initializationList() {
-        List<Courier> courierEntities = new ArrayList<>();
-        courierEntities.add(new Courier(0L, "paul", 4, 4, 2));
-        courierEntities.add(new Courier(1L, "albert", 8, 1, 1));
-        courierEntities.add(new Courier(2L, "ban", 5, 2, 3));
-        return courierEntities;
-    }
 }

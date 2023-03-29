@@ -1,21 +1,26 @@
-package nsu.fit.tsukanov.pizzeria.modern.common.objects;
+package nsu.fit.tsukanov.pizzeria.modern.common.dto;
 
 import java.util.function.Consumer;
 
-
+/**
+ * Class that simulate delivered box with products
+ */
 public class DeliveryOrder {
     private final Pizza pizza;
-    private final Consumer<Pizza> callOrderOwner;
+    private final Consumer<Pizza> orderCallback;
     private final String clientName;
 
-    public DeliveryOrder(Pizza pizza, Consumer<Pizza> callOrderOwner, String clientName) {
+    public DeliveryOrder(Pizza pizza, Consumer<Pizza> orderCallback, String clientName) {
         this.pizza = pizza;
-        this.callOrderOwner = callOrderOwner;
+        this.orderCallback = orderCallback;
         this.clientName = clientName;
     }
 
+    /**
+     * Call client
+     */
     public void callOrderOwner() {
-        callOrderOwner.accept(pizza);
+        orderCallback.accept(pizza);
     }
 
     @Override

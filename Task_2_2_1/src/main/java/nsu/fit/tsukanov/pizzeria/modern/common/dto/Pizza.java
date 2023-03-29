@@ -1,8 +1,4 @@
-package nsu.fit.tsukanov.pizzeria.modern.common.objects;
-
-import lombok.AllArgsConstructor;
-
-import java.io.BufferedReader;
+package nsu.fit.tsukanov.pizzeria.modern.common.dto;
 
 
 public class Pizza {
