@@ -1,76 +1,90 @@
 package nsu.fit.tsukanov.pizzeria.modern.persons.courier;
 
-import lombok.extern.slf4j.Slf4j;
-import nsu.fit.tsukanov.pizzeria.modern.common.buffer.Storage;
-import nsu.fit.tsukanov.pizzeria.modern.common.objects.DeliveryOrder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import nsu.fit.tsukanov.pizzeria.modern.common.dto.DeliveryOrder;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-@Slf4j
-public class Courier implements Runnable {
-
-    private final CourierEntity courier;
-
-    private final Storage storage;
+import java.util.*;
 
 
-    private volatile boolean isWorking = true;
+@Getter
+@Setter
+@NoArgsConstructor
+public class Courier {
+    private Long id;
+    private String name;
+    private int deliveryTime;
+    private int errorTime;
+    private int capacity;
+    @JsonIgnore
+    private final List<DeliveryOrder> orderList = new ArrayList<>();
 
-    public Courier(CourierEntity courier, Storage storage) {
-        this.courier = courier;
-        this.storage = storage;
+    public Courier(Long id, String name, int deliveryTime, int errorTime, int capacity) {
+        this.id = id;
+        this.name = name;
+        this.deliveryTime = deliveryTime;
+        this.errorTime = errorTime;
+        this.capacity = capacity;
     }
 
-    public void consume() throws InterruptedException {
-        Collection<DeliveryOrder> orders = new ArrayList<>();
-        storage.drainTo(orders, courier.canTake());
-        courier.addOrder(orders);
-        log.info("{} Took pizza for delivering {}", courier, orders);
+    public void addOrder(DeliveryOrder order) {
+        if (orderList.size() >= capacity) {
+            return;
+        }
+        orderList.add(order);
     }
 
-    public void produce() throws InterruptedException {
-        courier.delivery();
-        log.info("{} Delivered orders", courier);
-    }
-
-
-    @Override
-    public void run() {
-        while (isWorking) {
-            try {
-                consume();
-            } catch (InterruptedException e) {
-                if (!isWorking) {
-                    break;
-                }
+    public void addOrder(Collection<DeliveryOrder> orders) {
+        int size = orderList.size();
+        for (DeliveryOrder order : orders) {
+            if (size >= capacity) {
+                return;
             }
-
-            try {
-                produce();
-            } catch (InterruptedException e) {
-                if (!isWorking) {
-                    break;
-                }
-            }
-
+            orderList.add(order);
+            size++;
         }
     }
 
-    public boolean isWorking() {
-        return isWorking;
+    public void deliver() throws InterruptedException {
+        Random random = new Random();
+        Iterator<DeliveryOrder> iterator = orderList.iterator();
+        while (iterator.hasNext()) {
+            var order = iterator.next();
+            iterator.remove();
+            order.callOrderOwner();
+        }
+        orderList.clear();
+        synchronized (this) {
+            Thread.sleep((long) 1000 * deliveryTime + random.nextInt(1000 * errorTime));
+        }
     }
 
-    public void setWorking(boolean working) {
-        isWorking = working;
+    public int canTake() {
+        return capacity - orderList.size();
     }
-
 
     @Override
     public String toString() {
         return "Courier{" +
-                "courier=" + courier +
-                ", isWorking=" + isWorking +
-                '}';
+                id +
+                "-'" + name + '\'' +
+                "orders:" + orderList +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Courier that = (Courier) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
+

@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CourierRepositoryJSON implements CourierRepository {
-    private final List<CourierEntity> couriers;
+    private final List<Courier> couriers;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final File fileCouriers;
@@ -24,7 +24,7 @@ public class CourierRepositoryJSON implements CourierRepository {
             writeToFile(couriers);
         } else {
             try {
-                couriers = objectMapper.readValue(fileCouriers, new TypeReference<List<CourierEntity>>() {
+                couriers = objectMapper.readValue(fileCouriers, new TypeReference<List<Courier>>() {
                 });
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -47,21 +47,21 @@ public class CourierRepositoryJSON implements CourierRepository {
     }
 
     @Override
-    public CourierEntity save(CourierEntity courier) {
+    public Courier save(Courier courier) {
         couriers.add(courier);
         writeToFile(couriers);
         return courier;
     }
 
     @Override
-    public void delete(CourierEntity courier) {
+    public void delete(Courier courier) {
         couriers.remove(courier);
         writeToFile(couriers);
     }
 
     @Override
     public void delete(Long courierId) {
-        Iterator<CourierEntity> iterator = couriers.iterator();
+        Iterator<Courier> iterator = couriers.iterator();
         while (iterator.hasNext()) {
             var cour = iterator.next();
             if (cour.getId().equals(courierId)) {
@@ -79,12 +79,12 @@ public class CourierRepositoryJSON implements CourierRepository {
     }
 
     @Override
-    public List<CourierEntity> findAll() {
+    public List<Courier> findAll() {
         return new ArrayList<>(couriers);
     }
 
     @Override
-    public void saveAll(Collection<CourierEntity> couriers) {
+    public void saveAll(Collection<Courier> couriers) {
         this.couriers.addAll(couriers);
         writeToFile(couriers);
     }

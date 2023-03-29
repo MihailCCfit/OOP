@@ -1,20 +1,13 @@
 package nsu.fit.tsukanov.pizzeria.old;
 
-import nsu.fit.tsukanov.pizzeria.modern.common.buffer.BufferAbstract;
 import nsu.fit.tsukanov.pizzeria.modern.common.buffer.OrderBoard;
 import nsu.fit.tsukanov.pizzeria.modern.common.buffer.Storage;
 import nsu.fit.tsukanov.pizzeria.modern.common.configuration.Configuration;
-import nsu.fit.tsukanov.pizzeria.modern.common.interfaces.Buffer;
-import nsu.fit.tsukanov.pizzeria.modern.controller.Pizzeria;
-import nsu.fit.tsukanov.pizzeria.modern.persons.baker.Baker;
-import nsu.fit.tsukanov.pizzeria.modern.persons.baker.BakerEntity;
-import nsu.fit.tsukanov.pizzeria.modern.persons.baker.BakerRepository;
-import nsu.fit.tsukanov.pizzeria.modern.persons.baker.BakerRepositoryJSON;
+import nsu.fit.tsukanov.pizzeria.modern.common.configuration.SharedClassFactory;
+import nsu.fit.tsukanov.pizzeria.modern.common.interfaces.StorageInterface;
+import nsu.fit.tsukanov.pizzeria.modern.persons.baker.*;
 import nsu.fit.tsukanov.pizzeria.modern.persons.client.Client;
-import nsu.fit.tsukanov.pizzeria.modern.persons.courier.Courier;
-import nsu.fit.tsukanov.pizzeria.modern.persons.courier.CourierEntity;
-import nsu.fit.tsukanov.pizzeria.modern.persons.courier.CourierRepository;
-import nsu.fit.tsukanov.pizzeria.modern.persons.courier.CourierRepositoryJSON;
+import nsu.fit.tsukanov.pizzeria.modern.persons.courier.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -52,41 +45,41 @@ public class TestClass {
         Assertions.assertFalse(orderBoard.isFull());
         Assertions.assertEquals(1, orderBoard.size());
         Assertions.assertFalse(client.havePizza());
-        BakerEntity bakerEntity = new BakerEntity(0L, "Paul", 1, 1);
-        Baker baker = new Baker(bakerEntity, storage, orderBoard);
-        Assertions.assertNull(baker.getOrder());
+        Baker baker = new Baker(0L, "Paul", 1, 1);
+        BakerManager bakerManager = new BakerManager(baker, storage, orderBoard);
+        Assertions.assertNull(bakerManager.getOrder());
         try {
-            baker.consume();
+            bakerManager.consume();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        Assertions.assertNotNull(baker.getOrder());
+        Assertions.assertNotNull(bakerManager.getOrder());
         Assertions.assertFalse(storage.isFull());
         Assertions.assertTrue(storage.isEmpty());
         Assertions.assertEquals(0, storage.size());
         try {
-            baker.produce();
+            bakerManager.produce();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         Assertions.assertEquals(1, storage.size());
         Assertions.assertFalse(storage.isEmpty());
         Assertions.assertFalse(storage.isFull());
-        CourierEntity courierEntity = new CourierEntity(0L, "Ben", 1, 1, 2);
-        Assertions.assertTrue(courierEntity.getOrderList().isEmpty());
-        Courier courier = new Courier(courierEntity, storage);
+        Courier courier = new Courier(0L, "Ben", 1, 1, 2);
+        Assertions.assertTrue(courier.getOrderList().isEmpty());
+        CourierManager courierManager = new CourierManager(courier, storage);
         try {
-            courier.consume();
+            courierManager.consume();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         Assertions.assertFalse(storage.isFull());
         Assertions.assertTrue(storage.isEmpty());
         Assertions.assertEquals(0, storage.size());
-        Assertions.assertFalse(courierEntity.getOrderList().isEmpty());
+        Assertions.assertFalse(courier.getOrderList().isEmpty());
         thread.start();
         try {
-            courier.produce();
+            courierManager.produce();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -98,33 +91,43 @@ public class TestClass {
             }
         }
         Assertions.assertTrue(client.havePizza());
-        Assertions.assertTrue(courierEntity.getOrderList().isEmpty());
+        Assertions.assertTrue(courier.getOrderList().isEmpty());
     }
 
     @Test
     void stupidTest() {
-        Pizzeria pizzeria = new Pizzeria();
-        Thread pizThread = new Thread(() -> {
-            pizzeria.start();
-            try {
-                Thread.sleep(1000 * 15);
-            } catch (InterruptedException ignore) {
-            }
-            pizzeria.stop();
-        });
-        pizThread.start();
-        try {
-            pizThread.join();
-        } catch (InterruptedException ignore) {
+        SharedClassFactory factory = new SharedClassFactory();
+        BakerService bakerService = new BakerService(factory);
+        CourierService courierService = new CourierService(factory);
+        Client client = new Client(factory.getOrderBoard(), 1, 1);
+        Assertions.assertFalse(client.havePizza());
+        bakerService.startWorking();
+        courierService.startWorking();
 
+        Thread clientThread = new Thread(() -> {
+            try {
+                client.produce();
+                client.consume();
+            } catch (InterruptedException e) {
+
+            }
         }
+        );
+        clientThread.start();
+        try {
+            clientThread.join(40 * 1000);
+        } catch (InterruptedException e) {
+        }
+        Assertions.assertTrue(client.havePizza());
+
+
     }
 
     @Test
     void testRepositories() {
         BakerRepository bakerRepository = new BakerRepositoryJSON();
         bakerRepository.delete(15L);
-        BakerEntity baker = new BakerEntity(15L, "Og", 1, 1);
+        Baker baker = new Baker(15L, "Og", 1, 1);
         Assertions.assertFalse(bakerRepository.findAll().contains(baker));
         bakerRepository.save(baker);
         Assertions.assertTrue(bakerRepository.findAll().contains(baker));
@@ -135,7 +138,7 @@ public class TestClass {
 
         CourierRepository courierRepository = new CourierRepositoryJSON();
         courierRepository.delete(15L);
-        CourierEntity courier = new CourierEntity(15L, "Og", 1, 1, 2);
+        Courier courier = new Courier(15L, "Og", 1, 1, 2);
         Assertions.assertFalse(courierRepository.findAll().contains(courier));
         courierRepository.save(courier);
         Assertions.assertTrue(courierRepository.findAll().contains(courier));
@@ -147,7 +150,7 @@ public class TestClass {
 
     @Test
     void testBuffer() {
-        Buffer<Integer> integerBuffer = new BufferAbstract<>(5);
+        StorageInterface<Integer> integerBuffer = new Storage<>(5);
         try {
             integerBuffer.put(1);
         } catch (InterruptedException e) {

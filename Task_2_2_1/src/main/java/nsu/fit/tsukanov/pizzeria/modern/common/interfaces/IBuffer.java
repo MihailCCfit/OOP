@@ -1,13 +1,11 @@
 package nsu.fit.tsukanov.pizzeria.modern.common.interfaces;
 
-import java.util.Collection;
-
 /**
  * With synchronization
  *
  * @param <T> the objects that contains in buffer
  */
-public interface Buffer<T> {
+public interface IBuffer<T> {
     /**
      * Notify all objects that are waiting to put something int buffer.
      */
@@ -44,24 +42,6 @@ public interface Buffer<T> {
 
     T take() throws InterruptedException;
 
-    /**
-     * Removes all available elements from this queue and adds them
-     * to the given collection.
-     *
-     * @param collection the collection to transfer elements into
-     * @return the number of elements transferred
-     */
-
-    int drainTo(Collection<? super T> collection) throws InterruptedException;
-
-    /**
-     * Removes at most the given number of available elements from this queue and adds them to the given collection.
-     *
-     * @param collectionForSaving – the collection to transfer elements into
-     * @param maxElements         – the maximum number of elements to transfer
-     * @return the number of elements transferred
-     */
-    int drainTo(Collection<? super T> collectionForSaving, int maxElements) throws InterruptedException;
 
     /**
      * Check buffer for full.
