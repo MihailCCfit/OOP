@@ -4,15 +4,15 @@ import java.util.Collection;
 import java.util.List;
 
 public interface CourierRepository {
-    CourierEntity save(CourierEntity courier);
+    Courier save(Courier courier);
 
-    void delete(CourierEntity courier);
+    void delete(Courier courier);
 
     void delete(Long courierId);
 
     void deleteAll();
 
-    List<CourierEntity> findAll();
+    List<Courier> findAll();
 
-    void saveAll(Collection<CourierEntity> couriers);
+    void saveAll(Collection<Courier> couriers);
 }

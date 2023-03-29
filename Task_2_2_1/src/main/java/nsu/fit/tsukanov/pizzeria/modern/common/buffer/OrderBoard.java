@@ -1,9 +1,9 @@
 package nsu.fit.tsukanov.pizzeria.modern.common.buffer;
 
 import nsu.fit.tsukanov.pizzeria.modern.common.configuration.Configuration;
-import nsu.fit.tsukanov.pizzeria.modern.common.objects.Order;
+import nsu.fit.tsukanov.pizzeria.modern.common.dto.Order;
 
-public class OrderBoard extends BufferAbstract<Order> {
+public class OrderBoard extends Buffer<Order> {
     public OrderBoard(int capacity) {
         super(capacity);
     }

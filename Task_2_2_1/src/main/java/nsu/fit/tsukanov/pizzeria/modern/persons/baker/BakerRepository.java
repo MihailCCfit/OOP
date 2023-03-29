@@ -16,15 +16,15 @@ public interface BakerRepository {
      * @param baker the baker for save
      * @return saved baker
      */
-    BakerEntity save(BakerEntity baker);
+    Baker save(Baker baker);
 
-    void delete(BakerEntity baker);
+    void delete(Baker baker);
 
     void delete(Long bakerId);
 
     void deleteAll();
 
-    List<BakerEntity> findAll();
+    List<Baker> findAll();
 
-    void saveAll(Collection<BakerEntity> bakers);
+    void saveAll(Collection<Baker> bakers);
 }

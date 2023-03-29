@@ -15,7 +15,7 @@ public class BakerRepositoryJSON implements BakerRepository {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final File fileBakers;
 
-    private List<BakerEntity> bakers;
+    private List<Baker> bakers;
 
     public BakerRepositoryJSON() {
         fileBakers = new File(Configuration.BAKERS);
@@ -24,7 +24,7 @@ public class BakerRepositoryJSON implements BakerRepository {
             writeToFile(bakers);
         } else {
             try {
-                bakers = objectMapper.readValue(fileBakers, new TypeReference<List<BakerEntity>>() {
+                bakers = objectMapper.readValue(fileBakers, new TypeReference<List<Baker>>() {
                 });
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -49,7 +49,7 @@ public class BakerRepositoryJSON implements BakerRepository {
     }
 
     @Override
-    public BakerEntity save(BakerEntity baker) {
+    public Baker save(Baker baker) {
         bakers.add(baker);
         writeToFile(bakers);
 
@@ -57,7 +57,7 @@ public class BakerRepositoryJSON implements BakerRepository {
     }
 
     @Override
-    public void delete(BakerEntity baker) {
+    public void delete(Baker baker) {
         bakers.remove(baker);
         writeToFile(bakers);
     }
@@ -75,12 +75,12 @@ public class BakerRepositoryJSON implements BakerRepository {
     }
 
     @Override
-    public List<BakerEntity> findAll() {
+    public List<Baker> findAll() {
         return new ArrayList<>(bakers);
     }
 
     @Override
-    public void saveAll(Collection<BakerEntity> bakers) {
+    public void saveAll(Collection<Baker> bakers) {
         this.bakers.addAll(bakers);
         writeToFile(bakers);
     }
