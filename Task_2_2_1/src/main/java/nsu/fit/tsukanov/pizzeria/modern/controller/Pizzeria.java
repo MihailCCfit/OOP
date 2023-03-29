@@ -21,6 +21,9 @@ public class Pizzeria {
         courierService = new CourierService(factory);
     }
 
+    /**
+     * Start working. maybe download objects.
+     */
     public void start() {
         log.info("Pizzeria start new beautiful day");
         bakerService.startWorking();
@@ -28,6 +31,9 @@ public class Pizzeria {
         courierService.startWorking();
     }
 
+    /**
+     * Stop working. It may be not instantly.
+     */
     public void stop() {
         bakerService.stopWorking();
         clientService.stopWorking();

@@ -2,8 +2,8 @@ package nsu.fit.tsukanov.pizzeria.modern.persons.client;
 
 import lombok.extern.slf4j.Slf4j;
 import nsu.fit.tsukanov.pizzeria.modern.common.buffer.OrderBoard;
-import nsu.fit.tsukanov.pizzeria.modern.common.objects.Order;
-import nsu.fit.tsukanov.pizzeria.modern.common.objects.Pizza;
+import nsu.fit.tsukanov.pizzeria.modern.common.dto.Order;
+import nsu.fit.tsukanov.pizzeria.modern.common.dto.Pizza;
 
 import java.util.Random;
 import java.util.function.Consumer;

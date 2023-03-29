@@ -21,6 +21,9 @@ public class ClientService implements PizzaService {
         orderBoard = sharedClassFactory.getOrderBoard();
     }
 
+    /**
+     * Start working. maybe download objects.
+     */
     @Override
     public void startWorking() {
         initialize();
@@ -33,6 +36,9 @@ public class ClientService implements PizzaService {
 
     }
 
+    /**
+     * Stop working. It may be not instantly.
+     */
     @Override
     public void stopWorking() {
         log.info("Client service stop working, amount of clients: {}", clientThreadMap.size());

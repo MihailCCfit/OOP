@@ -20,7 +20,7 @@ public class CourierRepositoryJSON implements CourierRepository {
     public CourierRepositoryJSON() {
         fileCouriers = new File(Configuration.COURIERS);
         if (!fileCouriers.exists()) {
-            couriers = new ArrayList<>();
+            couriers = initializationList();
             writeToFile(couriers);
         } else {
             try {
@@ -32,6 +32,25 @@ public class CourierRepositoryJSON implements CourierRepository {
         }
     }
 
+    /**
+     * Creates initialize values, if there is no file
+     *
+     * @return list of couriers
+     */
+    private List<Courier> initializationList() {
+        List<Courier> courierEntities = new ArrayList<>();
+        courierEntities.add(new Courier(0L, "paul", 4, 4, 2));
+        courierEntities.add(new Courier(1L, "albert", 8, 1, 1));
+        courierEntities.add(new Courier(2L, "ban", 5, 2, 3));
+        return courierEntities;
+    }
+
+    /**
+     * Write/save into the file object. Use JSON.
+     * Usually saves list of couriers.
+     *
+     * @param object the object for saving
+     */
     private void writeToFile(Object object) {
         try {
             objectMapper.writeValue(fileCouriers, object);

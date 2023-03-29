@@ -20,7 +20,7 @@ public class BakerRepositoryJSON implements BakerRepository {
     public BakerRepositoryJSON() {
         fileBakers = new File(Configuration.BAKERS);
         if (!fileBakers.exists()) {
-            bakers = new ArrayList<>();
+            bakers = initializationList();
             writeToFile(bakers);
         } else {
             try {
@@ -34,6 +34,12 @@ public class BakerRepositoryJSON implements BakerRepository {
 
     }
 
+    /**
+     * Write/save into the file object. Use JSON.
+     * Usually saves list of bakers.
+     *
+     * @param object the object for saving
+     */
     private void writeToFile(Object object) {
         try {
             objectMapper.writeValue(fileBakers, object);
@@ -46,6 +52,18 @@ public class BakerRepositoryJSON implements BakerRepository {
                 throw new RuntimeException(ex);
             }
         }
+    }
+
+    /**
+     * Creates initialize values, if there is no file
+     *
+     * @return list of couriers
+     */
+    private List<Baker> initializationList() {
+        List<Baker> bakers = new ArrayList<>();
+        bakers.add(new Baker(0L, "paul", 4, 4));
+        bakers.add(new Baker(1L, "albert", 8, 1));
+        return bakers;
     }
 
     @Override

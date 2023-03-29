@@ -1,9 +1,9 @@
-package nsu.fit.tsukanov.pizzeria.modern.common.objects;
+package nsu.fit.tsukanov.pizzeria.modern.common.dto;
 
 import java.util.function.Consumer;
 
 
-public record Order(String pizzaName, Consumer<Pizza> callOrderOwner, String clientName) {
+public record Order(String pizzaName, Consumer<Pizza> orderCallback, String clientName) {
 
     @Override
     public String toString() {
