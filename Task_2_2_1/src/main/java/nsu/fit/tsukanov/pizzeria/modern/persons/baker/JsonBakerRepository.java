@@ -11,13 +11,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BakerRepositoryJSON implements BakerRepository {
+public class JsonBakerRepository implements BakerRepository {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final File fileBakers;
 
     private List<Baker> bakers;
 
-    public BakerRepositoryJSON() {
+    public JsonBakerRepository() {
         fileBakers = new File(Configuration.BAKERS);
         if (!fileBakers.exists()) {
             bakers = initializationList();

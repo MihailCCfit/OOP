@@ -125,24 +125,24 @@ public class TestClass {
 
     @Test
     void testRepositories() {
-        BakerRepository bakerRepository = new BakerRepositoryJSON();
+        BakerRepository bakerRepository = new JsonBakerRepository();
         bakerRepository.delete(15L);
         Baker baker = new Baker(15L, "Og", 1, 1);
         Assertions.assertFalse(bakerRepository.findAll().contains(baker));
         bakerRepository.save(baker);
         Assertions.assertTrue(bakerRepository.findAll().contains(baker));
-        BakerRepository bakerRepository1 = new BakerRepositoryJSON();
+        BakerRepository bakerRepository1 = new JsonBakerRepository();
         Assertions.assertTrue(bakerRepository1.findAll().contains(baker));
         bakerRepository.delete(baker.id());
         Assertions.assertFalse(bakerRepository.findAll().contains(baker));
 
-        CourierRepository courierRepository = new CourierRepositoryJSON();
+        CourierRepository courierRepository = new JsonCourierRepository();
         courierRepository.delete(15L);
         Courier courier = new Courier(15L, "Og", 1, 1, 2);
         Assertions.assertFalse(courierRepository.findAll().contains(courier));
         courierRepository.save(courier);
         Assertions.assertTrue(courierRepository.findAll().contains(courier));
-        CourierRepository courierRepository1 = new CourierRepositoryJSON();
+        CourierRepository courierRepository1 = new JsonCourierRepository();
         Assertions.assertTrue(courierRepository1.findAll().contains(courier));
         courierRepository.delete(courier.getId());
         Assertions.assertFalse(courierRepository.findAll().contains(courier));
