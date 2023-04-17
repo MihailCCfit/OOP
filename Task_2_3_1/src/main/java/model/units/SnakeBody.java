@@ -24,7 +24,7 @@ public final class SnakeBody extends GameUnit {
     }
 
     public boolean isHead() {
-        return snake.head.equals(this);
+        return snake.getHead().equals(this);
     }
 
     public Snake getSnake() {
@@ -33,5 +33,22 @@ public final class SnakeBody extends GameUnit {
 
     public void setSnake(Snake snake) {
         this.snake = snake;
+    }
+
+    public void move() {
+        switch (direction) {
+            case LEFT -> {
+                setX(getX() - 1);
+            }
+            case UP -> {
+                setY(getY() + 1);
+            }
+            case RIGHT -> {
+                setX(getX() + 1);
+            }
+            case DOWN -> {
+                setY(getY() - 1);
+            }
+        }
     }
 }

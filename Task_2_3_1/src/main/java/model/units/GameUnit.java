@@ -7,5 +7,9 @@ public abstract sealed class GameUnit extends Point2 permits Food, SnakeBody, Wa
         super(x, y);
     }
 
+    public GameUnit(GameUnit unit) {
+        super(unit.getX(), unit.getY());
+    }
+
 
 }

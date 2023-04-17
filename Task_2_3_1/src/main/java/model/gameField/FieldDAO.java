@@ -1,6 +1,7 @@
 package model.gameField;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.gamelogic.Game;
 import model.units.Food;
 import model.units.SnakeBody;
 import model.units.Wall;
@@ -9,11 +10,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class FieldDTO {
+public class FieldDAO {
     private InputStream inputStream;
 
 
-    public FieldDTO(InputStream inputStream) {
+    public FieldDAO(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
@@ -21,7 +22,7 @@ public class FieldDTO {
         this.inputStream = inputStream;
     }
 
-    public GameField getField() {
+    public Game getField() {
         FieldData fieldData = null;
         try {
             fieldData = new ObjectMapper().readValue(inputStream, FieldData.class);
@@ -32,10 +33,8 @@ public class FieldDTO {
         FieldConstructor fieldConstructor = new FieldConstructor(fieldData.width(), fieldData.height());
         fieldData.foods().forEach(fieldConstructor::setUnit);
         fieldData.walls().forEach(fieldConstructor::setUnit);
-        fieldData.walls().forEach(fieldConstructor::setUnit);
         fieldData.snakeHeads().forEach(fieldConstructor::setUnit);
-
-        return null;
+        return fieldConstructor.getGameField();
     }
 }
 

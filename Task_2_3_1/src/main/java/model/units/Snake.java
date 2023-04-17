@@ -2,11 +2,12 @@ package model.units;
 
 import model.units.snake.Direction;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public final class Snake {
-    private ArrayList<SnakeBody> body;
-    SnakeBody head;
+    private LinkedList<SnakeBody> body;
+    private SnakeBody head;
+    private boolean isControllable = true;
 
     public Snake(SnakeBody head) {
         this.head = head;
@@ -37,7 +38,15 @@ public final class Snake {
         return head;
     }
 
-    public ArrayList<SnakeBody> getBody() {
+    public LinkedList<SnakeBody> getBody() {
         return body;
+    }
+
+    public boolean isControllable() {
+        return isControllable;
+    }
+
+    public void setControllable(boolean controllable) {
+        isControllable = controllable;
     }
 }
