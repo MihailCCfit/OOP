@@ -3,7 +3,6 @@ package model.gamelogic;
 import model.gameField.GameField;
 import model.units.GameUnit;
 import model.units.Snake;
-import model.units.SnakeBody;
 
 import java.util.List;
 
@@ -25,10 +24,8 @@ public class Game {
     }
 
     public void moveSnake(Snake snake) {
-        SnakeBody head = snake.getHead();
-        snake.getBody().add(new SnakeBody(head.getX(), head.getY(), head.getDirection()));
-        snake.getBody().removeLast();
-        head.move();
+
+//        head.move();
     }
 
     public void setGameUnit(GameUnit unit) {
@@ -39,5 +36,19 @@ public class Game {
         return field.get(x, y);
     }
 
+    public GameField getField() {
+        return field;
+    }
 
+    public List<Snake> getSnakeList() {
+        return snakeList;
+    }
+
+    public int width() {
+        return field.width();
+    }
+
+    public int height() {
+        return field.height();
+    }
 }

@@ -35,20 +35,4 @@ public final class SnakeBody extends GameUnit {
         this.snake = snake;
     }
 
-    public void move() {
-        switch (direction) {
-            case LEFT -> {
-                setX(getX() - 1);
-            }
-            case UP -> {
-                setY(getY() + 1);
-            }
-            case RIGHT -> {
-                setX(getX() + 1);
-            }
-            case DOWN -> {
-                setY(getY() - 1);
-            }
-        }
-    }
 }

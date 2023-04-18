@@ -49,4 +49,10 @@ public final class Snake {
     public void setControllable(boolean controllable) {
         isControllable = controllable;
     }
+
+    public void move(int x, int y) {
+        body.add(new SnakeBody(head.getX(), head.getY(), head.getDirection()));
+        body.removeLast();
+        head.move(x, y);
+    }
 }
