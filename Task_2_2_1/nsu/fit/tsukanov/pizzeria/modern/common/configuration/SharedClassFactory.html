@@ -109,16 +109,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../../persons/baker/BakerRepository.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.persons.baker">BakerRepository</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getBakerRepository()">getBakerRepository</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Idempotent function, that return the same object - bakerRepository.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../../persons/courier/CourierRepository.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.persons.courier">CourierRepository</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getCourierRepository()">getCourierRepository</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Idempotent function, that return the same object - courierRepository.</div>
+</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../buffer/OrderBoard.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">OrderBoard</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getOrderBoard()">getOrderBoard</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../buffer/Storage.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Storage</a></code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Idempotent function, that return the same object - orderBoard.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../buffer/Storage.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Storage</a>&lt;<a href="../dto/DeliveryOrder.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.dto">DeliveryOrder</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getStorage()">getStorage</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Idempotent function, that return the same object - storage.</div>
+</div>
 </div>
 </div>
 </div>
@@ -154,24 +162,44 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getBakerRepository()">
 <h3>getBakerRepository</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../persons/baker/BakerRepository.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.persons.baker">BakerRepository</a></span>&nbsp;<span class="element-name">getBakerRepository</span>()</div>
+<div class="block">Idempotent function, that return the same object - bakerRepository.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the same bakerRepository.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getCourierRepository()">
 <h3>getCourierRepository</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../persons/courier/CourierRepository.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.persons.courier">CourierRepository</a></span>&nbsp;<span class="element-name">getCourierRepository</span>()</div>
+<div class="block">Idempotent function, that return the same object - courierRepository.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the same courierRepository.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getOrderBoard()">
 <h3>getOrderBoard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../buffer/OrderBoard.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">OrderBoard</a></span>&nbsp;<span class="element-name">getOrderBoard</span>()</div>
+<div class="block">Idempotent function, that return the same object - orderBoard.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the same orderBoard.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getStorage()">
 <h3>getStorage</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../buffer/Storage.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Storage</a></span>&nbsp;<span class="element-name">getStorage</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../buffer/Storage.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Storage</a>&lt;<a href="../dto/DeliveryOrder.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.dto">DeliveryOrder</a>&gt;</span>&nbsp;<span class="element-name">getStorage</span>()</div>
+<div class="block">Idempotent function, that return the same object - storage.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the same storage.</dd>
+</dl>
 </section>
 </li>
 </ul>

@@ -1,8 +1,8 @@
 nsu.fit.tsukanov.pizzeria.modern
 nsu.fit.tsukanov.pizzeria.modern.common.buffer
 nsu.fit.tsukanov.pizzeria.modern.common.configuration
+nsu.fit.tsukanov.pizzeria.modern.common.dto
 nsu.fit.tsukanov.pizzeria.modern.common.interfaces
-nsu.fit.tsukanov.pizzeria.modern.common.objects
 nsu.fit.tsukanov.pizzeria.modern.controller
 nsu.fit.tsukanov.pizzeria.modern.persons.baker
 nsu.fit.tsukanov.pizzeria.modern.persons.client

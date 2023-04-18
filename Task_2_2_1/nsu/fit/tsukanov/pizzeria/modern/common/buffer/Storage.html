@@ -16,7 +16,11 @@
 <script type="text/javascript" src="../../../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var pathtoroot = "../../../../../../../";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "../../../../../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -41,7 +45,7 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
@@ -49,7 +53,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <div class="nav-list-search"><label for="search">SEARCH:</label>
@@ -67,24 +71,34 @@ loadScripts(document, 'script');</script>
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">nsu.fit.tsukanov.pizzeria.modern.common.buffer</a></div>
-<h1 title="Class Storage" class="title">Class Storage</h1>
+<h1 title="Class Storage" class="title">Class Storage&lt;T&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="BufferAbstract.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">nsu.fit.tsukanov.pizzeria.modern.common.buffer.BufferAbstract</a>&lt;<a href="../objects/DeliveryOrder.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.objects">DeliveryOrder</a>&gt;
-<div class="inheritance">nsu.fit.tsukanov.pizzeria.modern.common.buffer.Storage</div>
+<div class="inheritance"><a href="Buffer.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">nsu.fit.tsukanov.pizzeria.modern.common.buffer.Buffer</a>&lt;T&gt;
+<div class="inheritance">nsu.fit.tsukanov.pizzeria.modern.common.buffer.Storage&lt;T&gt;</div>
 </div>
 </div>
 <section class="description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../interfaces/Buffer.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.common.interfaces">Buffer</a>&lt;<a href="../objects/DeliveryOrder.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.objects">DeliveryOrder</a>&gt;</code></dd>
+<dd><code><a href="../interfaces/IBuffer.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.common.interfaces">IBuffer</a>&lt;T&gt;</code>, <code><a href="../interfaces/StorageInterface.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.common.interfaces">StorageInterface</a>&lt;T&gt;</code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Storage</span>
-<span class="extends-implements">extends <a href="BufferAbstract.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">BufferAbstract</a>&lt;<a href="../objects/DeliveryOrder.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.objects">DeliveryOrder</a>&gt;</span></div>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Storage&lt;T&gt;</span>
+<span class="extends-implements">extends <a href="Buffer.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Buffer</a>&lt;T&gt;
+implements <a href="../interfaces/StorageInterface.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.common.interfaces">StorageInterface</a>&lt;T&gt;</span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field.summary">
+<h2>Field Summary</h2>
+<div class="inherited-list">
+<h3 id="fields.inherited.from.class.nsu.fit.tsukanov.pizzeria.modern.common.buffer.Buffer">Fields inherited from class&nbsp;nsu.fit.tsukanov.pizzeria.modern.common.buffer.<a href="Buffer.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Buffer</a></h3>
+<code><a href="Buffer.html#buffer">buffer</a>, <a href="Buffer.html#canPut">canPut</a>, <a href="Buffer.html#canTake">canTake</a>, <a href="Buffer.html#capacity">capacity</a></code></div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor.summary">
@@ -104,12 +118,37 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="method-summary" id="method.summary">
 <h2>Method Summary</h2>
+<div id="method-summary-table">
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div id="method-summary-table.tabpanel" role="tabpanel">
+<div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Method</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#drainTo(java.util.Collection)">drainTo</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;collection)</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Removes all available elements from this queue and adds them
+ to the given collection.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#drainTo(java.util.Collection,int)">drainTo</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;collectionForSaving,
+ int&nbsp;maxElements)</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Removes at most the given number of available elements from this queue and adds them to the given collection.</div>
+</div>
+</div>
+</div>
+</div>
 <div class="inherited-list">
-<h3 id="methods.inherited.from.class.nsu.fit.tsukanov.pizzeria.modern.common.buffer.BufferAbstract">Methods inherited from class&nbsp;nsu.fit.tsukanov.pizzeria.modern.common.buffer.<a href="BufferAbstract.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">BufferAbstract</a></h3>
-<code><a href="BufferAbstract.html#capacity()">capacity</a>, <a href="BufferAbstract.html#drainTo(java.util.Collection)">drainTo</a>, <a href="BufferAbstract.html#drainTo(java.util.Collection,int)">drainTo</a>, <a href="BufferAbstract.html#isEmpty()">isEmpty</a>, <a href="BufferAbstract.html#isFull()">isFull</a>, <a href="BufferAbstract.html#notifyAllCanPut()">notifyAllCanPut</a>, <a href="BufferAbstract.html#notifyAllCanTake()">notifyAllCanTake</a>, <a href="BufferAbstract.html#notifyCanPut()">notifyCanPut</a>, <a href="BufferAbstract.html#notifyCanTake()">notifyCanTake</a>, <a href="BufferAbstract.html#put(T)">put</a>, <a href="BufferAbstract.html#size()">size</a>, <a href="BufferAbstract.html#take()">take</a></code></div>
+<h3 id="methods.inherited.from.class.nsu.fit.tsukanov.pizzeria.modern.common.buffer.Buffer">Methods inherited from class&nbsp;nsu.fit.tsukanov.pizzeria.modern.common.buffer.<a href="Buffer.html" title="class in nsu.fit.tsukanov.pizzeria.modern.common.buffer">Buffer</a></h3>
+<code><a href="Buffer.html#capacity()">capacity</a>, <a href="Buffer.html#isEmpty()">isEmpty</a>, <a href="Buffer.html#isFull()">isFull</a>, <a href="Buffer.html#notifyAllCanPut()">notifyAllCanPut</a>, <a href="Buffer.html#notifyAllCanTake()">notifyAllCanTake</a>, <a href="Buffer.html#notifyCanPut()">notifyCanPut</a>, <a href="Buffer.html#notifyCanTake()">notifyCanTake</a>, <a href="Buffer.html#put(T)">put</a>, <a href="Buffer.html#size()">size</a>, <a href="Buffer.html#take()">take</a></code></div>
 <div class="inherited-list">
 <h3 id="methods.inherited.from.class.java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods.inherited.from.class.nsu.fit.tsukanov.pizzeria.modern.common.interfaces.IBuffer">Methods inherited from interface&nbsp;nsu.fit.tsukanov.pizzeria.modern.common.interfaces.<a href="../interfaces/IBuffer.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.common.interfaces">IBuffer</a></h3>
+<code><a href="../interfaces/IBuffer.html#capacity()">capacity</a>, <a href="../interfaces/IBuffer.html#isEmpty()">isEmpty</a>, <a href="../interfaces/IBuffer.html#isFull()">isFull</a>, <a href="../interfaces/IBuffer.html#notifyAllCanPut()">notifyAllCanPut</a>, <a href="../interfaces/IBuffer.html#notifyAllCanTake()">notifyAllCanTake</a>, <a href="../interfaces/IBuffer.html#notifyCanPut()">notifyCanPut</a>, <a href="../interfaces/IBuffer.html#notifyCanTake()">notifyCanTake</a>, <a href="../interfaces/IBuffer.html#put(T)">put</a>, <a href="../interfaces/IBuffer.html#size()">size</a>, <a href="../interfaces/IBuffer.html#take()">take</a></code></div>
 </section>
 </li>
 </ul>
@@ -131,6 +170,53 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Storage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Storage</span>()</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<!-- ============ METHOD DETAIL ========== -->
+<li>
+<section class="method-details" id="method.detail">
+<h2>Method Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="drainTo(java.util.Collection)">
+<h3>drainTo</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">drainTo</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;collection)</span>
+            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Removes all available elements from this queue and adds them
+ to the given collection.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../interfaces/StorageInterface.html#drainTo(java.util.Collection)">drainTo</a></code>&nbsp;in interface&nbsp;<code><a href="../interfaces/StorageInterface.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.common.interfaces">StorageInterface</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>collection</code> - the collection to transfer elements into</dd>
+<dt>Returns:</dt>
+<dd>the number of elements transferred</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="drainTo(java.util.Collection,int)">
+<h3>drainTo</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">drainTo</span>&#8203;<span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? super <a href="Storage.html" title="type parameter in Storage">T</a>&gt;&nbsp;collectionForSaving,
+ int&nbsp;maxElements)</span>
+            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Removes at most the given number of available elements from this queue and adds them to the given collection.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../interfaces/StorageInterface.html#drainTo(java.util.Collection,int)">drainTo</a></code>&nbsp;in interface&nbsp;<code><a href="../interfaces/StorageInterface.html" title="interface in nsu.fit.tsukanov.pizzeria.modern.common.interfaces">StorageInterface</a>&lt;<a href="Storage.html" title="type parameter in Storage">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>collectionForSaving</code> - – the collection to transfer elements into</dd>
+<dd><code>maxElements</code> - – the maximum number of elements to transfer</dd>
+<dt>Returns:</dt>
+<dd>the number of elements transferred</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+</dl>
 </section>
 </li>
 </ul>
