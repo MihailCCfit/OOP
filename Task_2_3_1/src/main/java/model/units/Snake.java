@@ -55,4 +55,11 @@ public final class Snake {
         body.removeLast();
         head.move(x, y);
     }
+    public void eat(Food food){
+        var bod = body.getLast();
+        for (int i = 0; i < food.getValue(); i++) {
+            body.addLast(new SnakeBody(bod.getX(), bod.getY(),bod.getDirection()));
+        }
+
+    }
 }

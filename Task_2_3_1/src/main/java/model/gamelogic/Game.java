@@ -9,6 +9,8 @@ import java.util.List;
 public class Game {
     private GameField field;
     private List<Snake> snakeList;
+    private final GameLogic gameLogic;
+
 
     private GameUnit fieldGet(int x, int y) {
         return field.get(x, y);
@@ -17,6 +19,7 @@ public class Game {
     public Game(GameField field, List<Snake> snakes) {
         this.field = field;
         this.snakeList = snakes;
+        gameLogic = new GameLogic(this);
     }
 
     public void tick() {
@@ -24,8 +27,7 @@ public class Game {
     }
 
     public void moveSnake(Snake snake) {
-
-//        head.move();
+        gameLogic.moveSnake(snake);
     }
 
     public void setGameUnit(GameUnit unit) {
@@ -51,4 +53,5 @@ public class Game {
     public int height() {
         return field.height();
     }
+
 }

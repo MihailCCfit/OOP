@@ -1,5 +1,7 @@
 package model.gamelogic;
 
+import model.gamelogic.events.SnakeDeath;
+import model.gamelogic.events.SnakeEating;
 import model.units.*;
 
 import java.util.Random;
@@ -44,18 +46,19 @@ public class GameLogic {
         return true;
     }
 
-    public void SnakeWithFood(Snake snake, Food food) {
-        //TODO: Eat
+    public boolean SnakeWithFood(Snake snake, Food food) {
+        new SnakeEating(snake, game, food).run();
+        return true;
     }
 
-    public void SnakeWithWall(Snake snake, Wall wall) {
-        //TODO: удариться
+    public boolean SnakeWithWall(Snake snake, Wall wall) {
+        new SnakeDeath(snake, game).run();
+        return false;
     }
 
     public boolean SnakeToSnake(Snake movingSnake, SnakeBody stayingSnake) {
-
-
-        return true;
+        new SnakeDeath(movingSnake, game);
+        return false;
     }
 
     public boolean spawnFood() {
