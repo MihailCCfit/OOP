@@ -10,7 +10,7 @@ public class Game {
     private GameField field;
     private List<Snake> snakeList;
     private final GameLogic gameLogic;
-
+    private int tick = 0;
 
     private GameUnit fieldGet(int x, int y) {
         return field.get(x, y);
@@ -23,7 +23,13 @@ public class Game {
     }
 
     public void tick() {
-
+        snakeList.forEach(this::moveSnake);
+        if (tick++ == 1) {
+            gameLogic.spawnFood();
+        }
+        if (tick >= 1) {
+            tick = 0;
+        }
     }
 
     public void moveSnake(Snake snake) {

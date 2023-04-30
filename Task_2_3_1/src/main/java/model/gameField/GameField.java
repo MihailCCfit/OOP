@@ -29,6 +29,10 @@ public class GameField {
     }
 
     public GameUnit get(int x, int y) {
+        if (x < 0 || x > width() || y < 0 || y > height()) {
+            return null;
+            //throw new exception
+        }
         return field.get(x).get(y);
     }
 
@@ -38,5 +42,9 @@ public class GameField {
 
     public void set(GameUnit unit) {
         field.get(unit.getX()).set(unit.getY(), unit);
+    }
+
+    public List<GameUnit> getAll() {
+        return field.stream().reduce(new ArrayList<>(),(acc, units)-> {acc.addAll(units); return acc;});
     }
 }
