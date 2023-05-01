@@ -1,4 +1,4 @@
-package model.gameField;
+package model.game.field;
 
 import model.units.Empty;
 import model.units.GameUnit;

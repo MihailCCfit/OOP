@@ -1,6 +1,7 @@
-package model.gamelogic.events;
+package model.game.logic.events;
 
-import model.gamelogic.Game;
+import model.game.logic.Game;
+import model.units.Empty;
 import model.units.Food;
 import model.units.Snake;
 
@@ -15,5 +16,6 @@ public class SnakeEating extends SnakeEvent {
     @Override
     public void run() {
         snake.eat(food);
+        game.setGameUnit(new Empty(food.getX(), food.getY()));
     }
 }

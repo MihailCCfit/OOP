@@ -11,7 +11,7 @@ import console.menu.ConsoleMenuPresenter;
 import console.menu.states.MenuPage;
 import console.settings.ConsoleSettingsPresenter;
 import console.utils.MenuConfig;
-import model.gamelogic.Game;
+import model.game.logic.Game;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class ConsoleSnakePresenter {
                 case Game -> {
                     terminal.setCursorVisible(false);
                     screen.setCursorPosition(new TerminalPosition(1000, 1000));
-                    Game game = settings.getGame();
+                    Game game = settings.getGame().getCopy();
                     TerminalSize oldSize = screen.getTerminalSize();
                     GamePresenter gamePresenter = new GamePresenter(game, screen);
                     gamePresenter.start();
@@ -55,7 +55,6 @@ public class ConsoleSnakePresenter {
                 }
                 case FieldConstructor -> {
                     System.out.println("Field constructor");
-
                 }
             }
         }

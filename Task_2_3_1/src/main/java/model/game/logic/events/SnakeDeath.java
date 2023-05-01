@@ -1,6 +1,6 @@
-package model.gamelogic.events;
+package model.game.logic.events;
 
-import model.gamelogic.Game;
+import model.game.logic.Game;
 import model.units.Empty;
 import model.units.Food;
 import model.units.Snake;
@@ -20,13 +20,14 @@ public class SnakeDeath extends SnakeEvent implements Runnable {
         snakeBodies.add(snake.getHead());
         snakeBodies.forEach((snakeBody -> {
             if (game.getUnitAt(snakeBody.getX(), snakeBody.getY()) instanceof SnakeBody) {
-                if ((snakeBody.getX() ^ snakeBody.getY() % 2) == 0) {
+                if (((snakeBody.getX() ^ snakeBody.getY() % 2) & 1) == 0) {
                     game.setGameUnit(new Food(snakeBody.getX(), snakeBody.getY(), 1));
                 } else {
                     game.setGameUnit(new Empty(snakeBody));
                 }
             }
         }));
+        game.setGameUnit(new Empty(snake.getHead()));
 
     }
 }

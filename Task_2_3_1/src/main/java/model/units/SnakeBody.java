@@ -12,7 +12,13 @@ public final class SnakeBody extends GameUnit {
     }
 
     public SnakeBody(int x, int y) {
-        this(x, y, Direction.getRandomDirection());
+        this(x, y, Direction.LEFT);
+//        this(x, y, Direction.getRandomDirection());
+    }
+
+    @Override
+    public GameUnit getCopy() {
+        return new SnakeBody(getX(), getY());
     }
 
     public Direction getDirection() {

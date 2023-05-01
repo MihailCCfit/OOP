@@ -11,4 +11,9 @@ public final class Food extends GameUnit {
     public int getValue() {
         return value;
     }
+
+    @Override
+    public GameUnit getCopy() {
+        return new Food(getX(), getY(), value);
+    }
 }

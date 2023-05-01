@@ -51,16 +51,30 @@ public final class Snake {
     }
 
     public void move(int x, int y) {
-        body.add(new SnakeBody(head.getX(), head.getY(), head.getDirection()));
-        body.removeLast();
-        head.move(x, y);
+        if (isControllable) {
+            body.addFirst(new SnakeBody(head.getX(), head.getY(), head.getDirection()));
+            body.removeLast();
+            head.move(x, y);
+        }
+
     }
 
     public void eat(Food food) {
-        var bod = body.getLast();
-        for (int i = 0; i < food.getValue(); i++) {
-            body.addLast(new SnakeBody(bod.getX(), bod.getY(), bod.getDirection()));
+        if (isControllable) {
+
+
+            SnakeBody bod;
+            if (body.isEmpty()) {
+                bod = new SnakeBody(head.getX(), head.getY(), head.getDirection());
+            } else {
+                bod = body.getLast();
+            }
+
+            for (int i = 0; i < food.getValue(); i++) {
+                body.addLast(new SnakeBody(bod.getX(), bod.getY(), bod.getDirection()));
+            }
         }
+
     }
 
     public long length() {

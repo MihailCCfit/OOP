@@ -1,7 +1,8 @@
-package model.gamelogic;
+package model.game.logic;
 
-import model.gamelogic.events.SnakeDeath;
-import model.gamelogic.events.SnakeEating;
+import model.game.logic.events.SnakeDeath;
+import model.game.logic.events.SnakeEating;
+import model.game.logic.events.SnakeOutOfBorder;
 import model.units.*;
 
 import java.util.Random;
@@ -23,6 +24,12 @@ public class GameLogic {
             case UP -> nextY++;
             case RIGHT -> nextX++;
             case DOWN -> nextY--;
+        }
+        if (nextX < 0 || nextX >= game.width()
+                || nextY < 0 || nextY >= game.height()) {
+            SnakeOutOfBorder event = new SnakeOutOfBorder(snake, game);
+            event.run();
+            return;
         }
         if (!interaction(snake, game.getUnitAt(nextX, nextY))) return;
         snake.move(nextX, nextY);
@@ -59,13 +66,13 @@ public class GameLogic {
     }
 
     public boolean SnakeToSnake(Snake movingSnake, SnakeBody stayingSnake) {
-        new SnakeDeath(movingSnake, game);
+        new SnakeDeath(movingSnake, game).run();
         return false;
     }
 
     public boolean spawnFood() {
         if (amountOfFood > ((long) game.height() * game.width() -
-                game.getSnakeList().stream().map(Snake::length).reduce(0L, Long::sum)) / 10) {
+                game.getSnakeMap().values().stream().map(Snake::length).reduce(0L, Long::sum)) / 10) {
             return false;
         }
         Random random = new Random();

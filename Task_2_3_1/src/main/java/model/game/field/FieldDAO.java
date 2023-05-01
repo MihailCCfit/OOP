@@ -1,7 +1,7 @@
-package model.gameField;
+package model.game.field;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.gamelogic.Game;
+import model.game.logic.Game;
 import model.units.Food;
 import model.units.SnakeBody;
 import model.units.Wall;

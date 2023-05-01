@@ -1,13 +1,14 @@
-package model.gameField;
+package model.game.field;
 
-import model.gamelogic.Game;
+import model.game.logic.Game;
 import model.units.Empty;
 import model.units.GameUnit;
 import model.units.Snake;
 import model.units.SnakeBody;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class FieldConstructor {
@@ -44,7 +45,12 @@ public class FieldConstructor {
     }
 
     public Game getGameField() {
-        List<Snake> snakes = snakeHeads.stream().map(Snake::new).toList();
+        Map<Integer, Snake> snakes = new HashMap<>();
+        int i = 0;
+        for (SnakeBody snakeBody : snakeHeads) {
+            snakes.put(i, new Snake(snakeBody));
+            i++;
+        }
         return new Game(gameField, snakes);
     }
 }

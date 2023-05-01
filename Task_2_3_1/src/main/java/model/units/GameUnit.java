@@ -11,5 +11,7 @@ public abstract sealed class GameUnit extends Point permits Food, SnakeBody, Wal
         super(unit.getX(), unit.getY());
     }
 
+    abstract public GameUnit getCopy();
+
 
 }

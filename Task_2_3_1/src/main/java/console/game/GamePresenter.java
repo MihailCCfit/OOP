@@ -1,13 +1,16 @@
 package console.game;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import console.game.scenes.GameScene;
 import console.game.units.*;
-import model.gamelogic.Game;
+import console.utils.ConsoleUtils;
+import model.game.logic.Game;
 import model.units.Food;
 import model.units.SnakeBody;
 import model.units.Wall;
+import model.units.snake.Direction;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class GamePresenter {
             throw new RuntimeException(e);
         }
         while (loopCondition()) {
+            Direction direction = null;
             try {
                 KeyStroke keyStroke = screen.pollInput();
                 if (keyStroke != null) {
@@ -40,7 +44,10 @@ public class GamePresenter {
                         case Escape -> {
                             escapeFlag = true;
                         }
-
+                        case ArrowDown -> direction = Direction.UP;
+                        case ArrowUp -> direction = Direction.DOWN;
+                        case ArrowLeft -> direction = Direction.LEFT;
+                        case ArrowRight -> direction = Direction.RIGHT;
                     }
                 }
             } catch (IOException e) {
@@ -57,20 +64,28 @@ public class GamePresenter {
                 }
             }));
             List<SnakeDTO> snakeDTOS = new ArrayList<>();
-            game.getSnakeList().forEach(snake -> {
+            game.getSnakeMap().values().forEach(snake -> {
                 List<SnakeBodyDTO> bodyDTOS = new ArrayList<>();
                 snake.getBody().forEach(snakeBody -> {
                     bodyDTOS.add(new SnakeBodyDTO(new PointDTO(snakeBody.getX(), snakeBody.getY()),
                             DirectionDTO.valueOf(snakeBody.getDirection().toString())));
                 });
                 SnakeBody head = snake.getHead();
-                snakeDTOS.add(new SnakeDTO(bodyDTOS, new SnakeHeadDTO(new PointDTO(head.getX(), head.getY()),
-                        DirectionDTO.valueOf(head.getDirection().name()))));
+                snakeDTOS.add(new SnakeDTO
+                        (bodyDTOS, new SnakeHeadDTO(
+                                new PointDTO(head.getX(), head.getY()),
+                                DirectionDTO.valueOf(head.getDirection().name())),
+                                snake.isControllable())
+                );
             });
             gameScene.update(new GameStateDTO(snakeDTOS, walls, foods));
+            ConsoleUtils.printLine(screen, snakeDTOS.get(0).body().size() + "", new TerminalPosition(30, 30));
+            if (direction != null) {
+                game.changeDirection(0, direction);
+            }
             game.tick();
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

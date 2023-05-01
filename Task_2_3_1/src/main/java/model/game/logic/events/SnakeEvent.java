@@ -1,6 +1,6 @@
-package model.gamelogic.events;
+package model.game.logic.events;
 
-import model.gamelogic.Game;
+import model.game.logic.Game;
 import model.units.Snake;
 
 public abstract class SnakeEvent  implements Runnable{

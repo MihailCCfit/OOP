@@ -1,16 +1,11 @@
 package console;
 
 import console.settings.UserMode;
-import model.gameField.FieldConstructor;
-import model.gameField.FieldDAO;
-import model.gamelogic.Game;
+import model.game.field.FieldConstructor;
+import model.game.logic.Game;
 import model.units.Food;
 import model.units.SnakeBody;
 import model.units.Wall;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class GameSettings {
     private int gameSpeed;
@@ -19,7 +14,11 @@ public class GameSettings {
 
     public GameSettings()  {
         FieldConstructor constructor = new FieldConstructor(40, 40);
-        constructor.setUnit(new Food(1,1,1));
+        constructor.setUnit(new Food(10,5,1));
+        constructor.setUnit(new Food(5,10,1));
+        constructor.setUnit(new Food(5,3,1));
+        constructor.setUnit(new Food(3,5,1));
+        constructor.setUnit(new Food(2,5,1));
         constructor.setUnit(new Wall(0,0));
         constructor.setUnit(new Wall(0,1));
         constructor.setUnit(new Wall(0,2));
@@ -31,6 +30,7 @@ public class GameSettings {
         constructor.setUnit(new Wall(3,0));
         constructor.setUnit(new Wall(4,0));
         constructor.setUnit(new SnakeBody(5,5));
+        constructor.setUnit(new SnakeBody(12,5));
         game = constructor.getGameField();
     }
 

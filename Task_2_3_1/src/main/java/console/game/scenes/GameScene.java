@@ -31,7 +31,11 @@ public class GameScene {
         screen.clear();
         gameStateDTO.walls().forEach(this::drawWall);
         gameStateDTO.foodDTOS().forEach(this::drawFood);
-        gameStateDTO.snakes().forEach(this::drawSnake);
+        gameStateDTO.snakes().forEach(snakeDTO -> {
+            if (snakeDTO.isAlive()) {
+                drawSnake(snakeDTO);
+            }
+        });
         try {
             screen.refresh();
         } catch (IOException e) {
