@@ -1,8 +1,8 @@
 package model.units;
 
-import model.basic.Point2;
+import model.basic.Point;
 
-public abstract sealed class GameUnit extends Point2 permits Food, SnakeBody, Wall, Empty {
+public abstract sealed class GameUnit extends Point permits Food, SnakeBody, Wall, Empty {
     public GameUnit(int x, int y) {
         super(x, y);
     }

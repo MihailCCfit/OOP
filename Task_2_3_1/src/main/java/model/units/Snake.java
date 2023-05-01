@@ -5,7 +5,7 @@ import model.units.snake.Direction;
 import java.util.LinkedList;
 
 public final class Snake {
-    private LinkedList<SnakeBody> body;
+    private LinkedList<SnakeBody> body = new LinkedList<>();
     private SnakeBody head;
     private boolean isControllable = true;
 

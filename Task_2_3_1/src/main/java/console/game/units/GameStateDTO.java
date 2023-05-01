@@ -1,9 +1,8 @@
 package console.game.units;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class GameStateDTO {
-    private ArrayList<Snake> snakes;
-    private ArrayList<Wall> walls;
-    private ArrayList<Food> foods;
+public record GameStateDTO(List<SnakeDTO> snakes,
+                           List<WallDTO> walls,
+                           List<FoodDTO> foodDTOS) {
 }
