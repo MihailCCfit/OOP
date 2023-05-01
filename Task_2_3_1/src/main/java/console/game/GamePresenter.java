@@ -79,7 +79,11 @@ public class GamePresenter {
                 );
             });
             gameScene.update(new GameStateDTO(snakeDTOS, walls, foods));
-            ConsoleUtils.printLine(screen, snakeDTOS.get(0).body().size() + "", new TerminalPosition(30, 30));
+            try {
+                screen.refresh();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             if (direction != null) {
                 game.changeDirection(0, direction);
             }

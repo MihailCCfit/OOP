@@ -6,10 +6,7 @@ import model.units.GameUnit;
 import model.units.Snake;
 import model.units.SnakeBody;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class FieldConstructor {
     private final GameField gameField;
@@ -28,12 +25,10 @@ public class FieldConstructor {
         if (gameField.get(x, y) instanceof SnakeBody) {
             snakeHeads.remove(gameField.get(x, y));
         }
-        if (gameField.get(x, y) instanceof Empty) {
-            gameField.set(unit);
-        }
         if (unit instanceof SnakeBody) {
             snakeHeads.add((SnakeBody) unit);
         }
+        gameField.set(unit);
     }
 
     public void removeUnit(int x, int y) {
@@ -52,5 +47,13 @@ public class FieldConstructor {
             i++;
         }
         return new Game(gameField, snakes);
+    }
+
+    public List<GameUnit> getAll() {
+        return gameField.getAll();
+    }
+
+    public List<SnakeBody> getSnakes() {
+        return snakeHeads.stream().toList();
     }
 }
