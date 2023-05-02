@@ -30,12 +30,24 @@ public enum Direction {
     public static Direction getRandomDirection() {
         Random random = new Random();
         final int val = random.nextInt(4);
-        return switch (val) {
+        return getDirection(val);
+    }
+
+    public static Direction getDirection(int i) {
+        return switch (i) {
             case 0 -> LEFT;
             case 1 -> UP;
             case 2 -> RIGHT;
             case 3 -> DOWN;
-            default -> throw new IllegalStateException("Unexpected value: " + val);
+            default -> throw new IllegalStateException("Unexpected value: " + i);
         };
+    }
+
+    public Direction changeDirection(boolean isRighter) {
+        int delta = -1;
+        if (isRighter) {
+            delta = 1;
+        }
+        return getDirection((numberDirection + delta + 4) % 4);
     }
 }

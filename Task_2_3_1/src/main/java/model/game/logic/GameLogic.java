@@ -4,7 +4,9 @@ import model.game.logic.events.SnakeDeath;
 import model.game.logic.events.SnakeEating;
 import model.game.logic.events.SnakeOutOfBorder;
 import model.units.*;
+import model.units.snake.Direction;
 
+import java.util.Map;
 import java.util.Random;
 
 public class GameLogic {
@@ -99,4 +101,30 @@ public class GameLogic {
         return false;
     }
 
+    public static Map.Entry<Integer, Integer> nextStep(Direction direction, int x, int y) {
+        switch (direction) {
+            case LEFT -> x--;
+            case UP -> y++;
+            case RIGHT -> x++;
+            case DOWN -> y--;
+        }
+        int finalX = x;
+        int finalY = y;
+        return new Map.Entry<Integer, Integer>() {
+            @Override
+            public Integer getKey() {
+                return finalX;
+            }
+
+            @Override
+            public Integer getValue() {
+                return finalY;
+            }
+
+            @Override
+            public Integer setValue(Integer integer) {
+                throw new UnsupportedOperationException();
+            }
+        };
+    }
 }

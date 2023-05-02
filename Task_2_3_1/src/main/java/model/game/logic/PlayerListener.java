@@ -4,12 +4,12 @@ import model.units.Snake;
 import model.units.snake.Direction;
 
 abstract public class PlayerListener {
-    private final Game game;
-    private final Snake mySnake;
+    protected final Game game;
+    protected final Integer mySnakeId;
 
-    public PlayerListener(Game game, Snake botSnake) {
+    public PlayerListener(Game game, Integer snakeId) {
         this.game = game;
-        mySnake = botSnake;
+        mySnakeId = snakeId;
     }
 
     abstract public Direction nextDirection();

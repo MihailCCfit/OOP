@@ -8,6 +8,9 @@ import console.game.scenes.GameScene;
 import console.game.scenes.WinnerScene;
 import console.game.units.*;
 import model.game.logic.Game;
+import model.game.logic.PlayerListener;
+import model.players.CommonBotPlayer;
+import model.players.HumanPlayer;
 import model.units.Food;
 import model.units.SnakeBody;
 import model.units.Wall;
@@ -32,6 +35,13 @@ public class GamePresenter {
 
     public int start() {
         GameScene gameScene = new GameScene(screen);
+        HumanPlayer humanPlayer = new HumanPlayer(game, 0);
+        game.addPlayer(0, humanPlayer);
+        game.getSnakeMap().forEach(((id, snake) -> {
+            if (id != 0) {
+                game.addPlayer(id, getBot(id));
+            }
+        }));
         try {
             screen.readInput();
             screen.clear();
@@ -56,6 +66,7 @@ public class GamePresenter {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
             List<FoodDTO> foods = new ArrayList<>();
             List<WallDTO> walls = new ArrayList<>();
             game.getField().getAll().forEach((unit -> {
@@ -88,7 +99,7 @@ public class GamePresenter {
                 throw new RuntimeException(e);
             }
             if (direction != null) {
-                game.changeDirection(0, direction);
+                humanPlayer.setDirection(direction);
             }
             if (game.tick()) {
                 try {
@@ -122,6 +133,10 @@ public class GamePresenter {
     public boolean loopCondition() {
 
         return !escapeFlag;
+    }
+
+    private PlayerListener getBot(int id) {
+        return new CommonBotPlayer(game, id);
     }
 
 }

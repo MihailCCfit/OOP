@@ -32,17 +32,18 @@ public class Game {
 
     public boolean tick() {
         if (snakeMap.values().stream().anyMatch((Snake::isControllable))) {
-            if (tick % 2 == 0) {
-                players.forEach(((snakeId, playerListener) -> changeDirection(snakeId,
-                        playerListener.nextDirection())));
+            players.forEach(((snakeId, playerListener) -> changeDirection(snakeId,
+                    playerListener.nextDirection())));
+            if (tick % 4 == 0) {
+
                 snakeMap.values().forEach(this::moveSnake);
             }
 
-            if (tick % 5 == 0) {
+            if (tick % 10 == 0) {
                 gameLogic.spawnFood();
             }
             tick++;
-            if (tick >= 10) {
+            if (tick >= 20) {
                 tick = 0;
             }
 
@@ -61,7 +62,9 @@ public class Game {
     }
 
     public void addPlayer(Integer integer, PlayerListener player) {
-        players.put(integer, player);
+        if (snakeMap.containsKey(integer)) {
+            players.put(integer, player);
+        }
     }
 
     private void moveSnake(Snake snake) {
