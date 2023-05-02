@@ -7,6 +7,9 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
+/**
+ * Верховная база.
+ */
 public class Point {
     int x;
     int y;
