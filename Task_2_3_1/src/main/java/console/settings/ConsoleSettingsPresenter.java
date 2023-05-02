@@ -1,26 +1,55 @@
 package console.settings;
 
-import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.Screen;
 import console.GameSettings;
+import console.menu.states.MenuPage;
 
-import java.io.File;
+import java.io.IOException;
 
 public class ConsoleSettingsPresenter {
 
-    private GameSettings settings;
-    private Terminal terminal;
-    private File folder;
+    private SettingsView settingsView;
 
-    public ConsoleSettingsPresenter(Terminal terminal, GameSettings settings, File folder) {
-        this.folder = folder;
-        this.terminal = terminal;
-        this.settings = settings;
+    private Screen screen;
+    private int state = 0;
+    private GameSettings gameSettings;
+
+    public ConsoleSettingsPresenter(Screen screen, GameSettings gameSettings) {
+        this.screen = screen;
+        this.gameSettings = gameSettings;
     }
 
-    public void runSettings() {
-        System.out.println("Was something interesting");
+    public void start() throws IOException {
+        screen.clear();
+        settingsView = new SettingsView(screen, gameSettings.getGameSpeed());
+        while (true) {
+            KeyStroke keyStroke = screen.readInput();
+            KeyType keyType = keyStroke.getKeyType();
+            if (keyType.equals(KeyType.Enter)) {
+                break;
+            }
+            if (keyType.equals(KeyType.Escape)) {
+                break;
+            }
+            if (keyType.equals(KeyType.ArrowRight)) {
+                tryIncreaseSpeed(1);
+            }
+            if (keyType.equals(KeyType.ArrowLeft)) {
+                tryIncreaseSpeed(-1);
+            }
+            settingsView.changeSpeed(gameSettings.getGameSpeed());
+        }
+    }
 
-        return;
+    private boolean tryIncreaseSpeed(int deltaValue) {
+        int newSpeed = gameSettings.getGameSpeed() + deltaValue;
+        if (newSpeed < 1 || newSpeed > 5) {
+            return false;
+        }
+        gameSettings.setGameSpeed(newSpeed);
+        return true;
     }
 
 

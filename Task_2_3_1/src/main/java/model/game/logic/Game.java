@@ -11,8 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
-    private GameField field;
-    private Map<Integer, Snake> snakeMap;
+    private final GameField field;
+    private final Map<Integer, Snake> snakeMap;
+    private final Map<Integer, PlayerListener> players = new HashMap<>();
     private final GameLogic gameLogic;
     private int tick = 0;
 
@@ -29,18 +30,38 @@ public class Game {
         gameLogic = new GameLogic(this);
     }
 
-    public void tick() {
-        if (tick % 10 == 0) {
-            snakeMap.values().forEach(this::moveSnake);
-        }
+    public boolean tick() {
+        if (snakeMap.values().stream().anyMatch((Snake::isControllable))) {
+            if (tick % 2 == 0) {
+                players.forEach(((snakeId, playerListener) -> changeDirection(snakeId,
+                        playerListener.nextDirection())));
+                snakeMap.values().forEach(this::moveSnake);
+            }
 
-        if (tick % 50 == 0) {
-            gameLogic.spawnFood();
+            if (tick % 5 == 0) {
+                gameLogic.spawnFood();
+            }
+            tick++;
+            if (tick >= 10) {
+                tick = 0;
+            }
+
+            return true;
+        } else {
+            return false;
         }
-        tick++;
-        if (tick >= 100) {
-            tick = 0;
-        }
+    }
+
+    public Map<Integer, Long> getResults() {
+        Map<Integer, Long> results = new HashMap<>();
+        snakeMap.forEach(((id, snake) -> {
+            results.put(id, snake.length());
+        }));
+        return results;
+    }
+
+    public void addPlayer(Integer integer, PlayerListener player) {
+        players.put(integer, player);
     }
 
     private void moveSnake(Snake snake) {

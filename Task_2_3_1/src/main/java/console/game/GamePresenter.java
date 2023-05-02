@@ -1,11 +1,12 @@
 package console.game;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import console.GameSettings;
 import console.game.scenes.GameScene;
+import console.game.scenes.WinnerScene;
 import console.game.units.*;
-import console.utils.ConsoleUtils;
 import model.game.logic.Game;
 import model.units.Food;
 import model.units.SnakeBody;
@@ -21,10 +22,12 @@ public class GamePresenter {
     private Game game;
     private Screen screen;
     private boolean escapeFlag = false;
+    private GameSettings gameSettings;
 
-    public GamePresenter(Game game, Screen screen) {
+    public GamePresenter(Game game, GameSettings gameSettings, Screen screen) {
         this.game = game;
         this.screen = screen;
+        this.gameSettings = gameSettings;
     }
 
     public int start() {
@@ -87,12 +90,30 @@ public class GamePresenter {
             if (direction != null) {
                 game.changeDirection(0, direction);
             }
-            game.tick();
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (game.tick()) {
+                try {
+                    Thread.sleep(10 * ((long) (8 - gameSettings.getGameSpeed())));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                //TODO: Список победителей
+                WinnerScene winnerScene = new WinnerScene(screen, game.getResults());
+                winnerScene.showWinners();
+                while (true) {
+                    KeyStroke key = null;
+                    try {
+                        key = screen.readInput();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    if (key.getKeyType().equals(KeyType.Escape)) {
+                        break;
+                    }
+                }
+                break;
             }
+
         }
 
         return 1;

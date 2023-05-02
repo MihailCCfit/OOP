@@ -7,7 +7,7 @@ import model.game.logic.Game;
 import java.io.File;
 
 public class GameSettings {
-    private int gameSpeed;
+    private int gameSpeed = 1;
     private UserMode userMode;
     private Game game;
     private File file;

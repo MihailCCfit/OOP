@@ -57,13 +57,6 @@ public class ConsoleMenuPresenter {
         return MenuPage.getMenuPage(state);
     }
 
-    public Screen getScreen() {
-        return screen;
-    }
-
-    public void setScreen(Screen screen) {
-        this.screen = screen;
-    }
 
     public void close() {
         menuView.close();

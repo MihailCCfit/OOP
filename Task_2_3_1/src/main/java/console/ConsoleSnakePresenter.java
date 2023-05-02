@@ -46,15 +46,14 @@ public class ConsoleSnakePresenter {
                     terminal.setCursorVisible(false);
                     screen.setCursorPosition(new TerminalPosition(1000, 1000));
                     Game game = settings.getGame().getCopy();
-                    TerminalSize oldSize = screen.getTerminalSize();
-                    GamePresenter gamePresenter = new GamePresenter(game, screen);
+                    GamePresenter gamePresenter = new GamePresenter(game, settings, screen);
                     gamePresenter.start();
                 }
                 case Settings -> {
 
                     System.out.println(mapDir.getAbsolutePath());
-                    ConsoleSettingsPresenter settingsPresenter = new ConsoleSettingsPresenter(terminal, settings, mapDir);
-                    settingsPresenter.runSettings();
+                    ConsoleSettingsPresenter settingsPresenter = new ConsoleSettingsPresenter(screen, settings);
+                    settingsPresenter.start();
                 }
                 case Exit -> {
                     flag = false;
