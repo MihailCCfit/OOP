@@ -4,11 +4,10 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import console.GameSettings;
-import console.menu.states.MenuPage;
 
 import java.io.IOException;
 
-public class ConsoleSettingsPresenter {
+public class ConsoleSettingsScene {
 
     private SettingsView settingsView;
 
@@ -16,7 +15,7 @@ public class ConsoleSettingsPresenter {
     private int state = 0;
     private GameSettings gameSettings;
 
-    public ConsoleSettingsPresenter(Screen screen, GameSettings gameSettings) {
+    public ConsoleSettingsScene(Screen screen, GameSettings gameSettings) {
         this.screen = screen;
         this.gameSettings = gameSettings;
     }

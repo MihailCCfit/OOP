@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConstructorPresenter {
+public class ConstructorScene {
     private FieldConstructor fieldConstructor;
     private Screen screen;
     private TerminalPosition cursorPosition = new TerminalPosition(0, 0);
@@ -26,7 +26,7 @@ public class ConstructorPresenter {
     private int width;
     private int height;
 
-    public ConstructorPresenter(File file, Screen screen) {
+    public ConstructorScene(File file, Screen screen) {
         this.screen = screen;
         fieldDAO = new FieldDAO(file);
         var field = fieldDAO.getField().getField();

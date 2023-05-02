@@ -10,6 +10,6 @@ public class SnakeOutOfBorder extends SnakeEvent {
 
     @Override
     public void run() {
-//        new SnakeDeath(snake, game).run();
+        new SnakeDeath(snake, game).run();
     }
 }

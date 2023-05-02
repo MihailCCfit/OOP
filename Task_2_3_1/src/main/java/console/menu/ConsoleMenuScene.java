@@ -7,15 +7,16 @@ import console.menu.states.MenuPage;
 
 import java.io.IOException;
 
-public class ConsoleMenuPresenter {
+public class ConsoleMenuScene {
 
     private MenuView menuView;
 
     private Screen screen;
     private int state = 0;
 
-    public ConsoleMenuPresenter(Screen screen) {
+    public ConsoleMenuScene(Screen screen) {
         this.screen = screen;
+
     }
 
     public MenuPage start() throws IOException {

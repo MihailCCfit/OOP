@@ -75,7 +75,7 @@ public class EuristickBot extends PlayerListener {
     }
 
     private double distanceScale(double distance) {
-        return 1 / (distance * distance + 2*distance + 0.2);
+        return 1 / (distance * distance + 2 * distance + 0.2);
     }
 
     private Map.Entry<Integer, Integer> nextPoint(Direction direction, int x, int y) {
@@ -94,6 +94,9 @@ public class EuristickBot extends PlayerListener {
     }
 
     private double calculateTotalPenalty(GameUnit gameUnit) {
+        if (gameUnit == null) {
+            return -10000;
+        }
         int x = gameUnit.getX();
         int y = gameUnit.getY();
         double res = 0;

@@ -6,11 +6,11 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import console.constructor.ConstructorPresenter;
+import console.constructor.ConstructorScene;
 import console.game.GamePresenter;
-import console.menu.ConsoleMenuPresenter;
+import console.menu.ConsoleMenuScene;
 import console.menu.states.MenuPage;
-import console.settings.ConsoleSettingsPresenter;
+import console.settings.ConsoleSettingsScene;
 import console.utils.MenuConfig;
 import model.game.logic.Game;
 
@@ -37,7 +37,7 @@ public class ConsoleSnakePresenter {
 
     public void start() throws IOException {
 
-        ConsoleMenuPresenter menuPresenter = new ConsoleMenuPresenter(screen);
+        ConsoleMenuScene menuPresenter = new ConsoleMenuScene(screen);
         boolean flag = true;
         while (flag) {
             MenuPage menuPage = menuPresenter.start();
@@ -50,17 +50,15 @@ public class ConsoleSnakePresenter {
                     gamePresenter.start();
                 }
                 case Settings -> {
-
-                    System.out.println(mapDir.getAbsolutePath());
-                    ConsoleSettingsPresenter settingsPresenter = new ConsoleSettingsPresenter(screen, settings);
+                    ConsoleSettingsScene settingsPresenter = new ConsoleSettingsScene(screen, settings);
                     settingsPresenter.start();
                 }
                 case Exit -> {
                     flag = false;
                 }
                 case FieldConstructor -> {
-                    ConstructorPresenter constructorPresenter = new ConstructorPresenter(settings.getFile(), screen);
-                    settings.setGame(constructorPresenter.start());
+                    ConstructorScene constructorScene = new ConstructorScene(settings.getFile(), screen);
+                    settings.setGame(constructorScene.start());
                 }
             }
         }
