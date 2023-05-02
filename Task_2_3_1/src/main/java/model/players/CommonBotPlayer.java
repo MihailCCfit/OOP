@@ -3,10 +3,7 @@ package model.players;
 import model.game.logic.Game;
 import model.game.logic.GameLogic;
 import model.game.logic.PlayerListener;
-import model.units.GameUnit;
-import model.units.Snake;
-import model.units.SnakeBody;
-import model.units.Wall;
+import model.units.*;
 import model.units.snake.Direction;
 
 import java.util.Map;
@@ -29,6 +26,23 @@ public class CommonBotPlayer extends PlayerListener {
             if (isDangerous(getNextUnit(nextPoint(nextDirection, snakeHead.getX(), snakeHead.getY())))) {
                 nextDirection = snakeHead.getDirection().changeDirection(false);
             }
+            return nextDirection;
+        } else {
+            Direction tmp;
+            tmp = snakeHead.getDirection().changeDirection(true);
+            GameUnit unit;
+            unit = getNextUnit(nextPoint(tmp, snakeHead.getX(), snakeHead.getY()));
+            if (!isDangerous(unit) && unit instanceof Food) {
+                nextDirection = tmp;
+            }
+            else {
+                tmp = snakeHead.getDirection().changeDirection(false);
+                unit = getNextUnit(nextPoint(tmp, snakeHead.getX(), snakeHead.getY()));
+                if (!isDangerous(unit) && unit instanceof Food) {
+                    nextDirection = tmp;
+                }
+            }
+
         }
         return nextDirection;
     }

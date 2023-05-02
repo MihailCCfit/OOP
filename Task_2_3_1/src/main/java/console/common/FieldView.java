@@ -1,11 +1,10 @@
 package console.common;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.screen.Screen;
 import console.game.sprites.UnitsCharacters;
 import console.game.units.*;
-import console.utils.ConsoleUtils;
 
 import java.io.IOException;
 
@@ -45,10 +44,16 @@ public class FieldView {
             case LEFT -> headCharacter = UnitsCharacters.HEADLEFT;
             case RIGHT -> headCharacter = UnitsCharacters.HEADRIGHT;
         }
-        setCharacterAtPoint(new PointDTO(snakeHead.pointDTO().x(), snakeHead.pointDTO().y()), headCharacter);
+        TextColor textColor1 = TextColor.ANSI.DEFAULT;
+        if (snakeDTO.id() == 0) {
+            textColor1 = TextColor.ANSI.YELLOW;
+        }
+        final TextColor textColor = textColor1;
+        setCharacterAtPoint(new PointDTO(snakeHead.pointDTO().x(), snakeHead.pointDTO().y()),
+                new TextCharacter(headCharacter, textColor, TextColor.ANSI.BLACK));
         snakeDTO.body().forEach(snakeBodyDTO -> {
             var snakeBody = snakeBodyDTO.pointDTO();
-            setCharacterAtPoint(snakeBody, UnitsCharacters.BODY);
+            setCharacterAtPoint(snakeBody, new TextCharacter(UnitsCharacters.BODY, textColor, TextColor.ANSI.BLACK));
         });
 
     }
@@ -59,5 +64,9 @@ public class FieldView {
 
     private void setCharacterAtPoint(PointDTO point, Character character) {
         screen.setCharacter(point.x(), point.y(), new TextCharacter(character));
+    }
+
+    private void setCharacterAtPoint(PointDTO point, TextCharacter textCharacter) {
+        screen.setCharacter(point.x(), point.y(), textCharacter);
     }
 }

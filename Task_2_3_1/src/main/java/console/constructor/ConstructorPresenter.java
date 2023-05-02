@@ -112,7 +112,7 @@ public class ConstructorPresenter {
                     (bodyDTOS, new SnakeHeadDTO(
                             new PointDTO(snake.getX(), snake.getY()),
                             DirectionDTO.valueOf(snake.getDirection().name())),
-                            true)
+                            true, 1)
             );
         });
         return new GameStateDTO(snakeDTOS, walls, foods);

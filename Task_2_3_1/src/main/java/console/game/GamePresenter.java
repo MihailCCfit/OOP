@@ -48,24 +48,28 @@ public class GamePresenter {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Direction direction = null;
+
         while (loopCondition()) {
-            Direction direction = null;
             try {
-                KeyStroke keyStroke = screen.pollInput();
+                KeyStroke keyStroke = null;
+                KeyStroke tmpStroke;
+                while ((tmpStroke = screen.pollInput()) != null) {
+                    keyStroke = tmpStroke;
+                }
                 if (keyStroke != null) {
                     switch (keyStroke.getKeyType()) {
                         case Escape -> {
                             escapeFlag = true;
                         }
-                        case ArrowDown -> direction = Direction.UP;
-                        case ArrowUp -> direction = Direction.DOWN;
-                        case ArrowLeft -> direction = Direction.LEFT;
-                        case ArrowRight -> direction = Direction.RIGHT;
+                        default -> direction = gameSettings.keyDirection(keyStroke);
+
                     }
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
 
             List<FoodDTO> foods = new ArrayList<>();
             List<WallDTO> walls = new ArrayList<>();
@@ -78,7 +82,7 @@ public class GamePresenter {
                 }
             }));
             List<SnakeDTO> snakeDTOS = new ArrayList<>();
-            game.getSnakeMap().values().forEach(snake -> {
+            game.getSnakeMap().forEach((id, snake) -> {
                 List<SnakeBodyDTO> bodyDTOS = new ArrayList<>();
                 snake.getBody().forEach(snakeBody -> {
                     bodyDTOS.add(new SnakeBodyDTO(new PointDTO(snakeBody.getX(), snakeBody.getY()),
@@ -89,7 +93,7 @@ public class GamePresenter {
                         (bodyDTOS, new SnakeHeadDTO(
                                 new PointDTO(head.getX(), head.getY()),
                                 DirectionDTO.valueOf(head.getDirection().name())),
-                                snake.isControllable())
+                                snake.isControllable(), id)
                 );
             });
             gameScene.update(new GameStateDTO(snakeDTOS, walls, foods));
@@ -138,5 +142,6 @@ public class GamePresenter {
     private PlayerListener getBot(int id) {
         return new CommonBotPlayer(game, id);
     }
+
 
 }

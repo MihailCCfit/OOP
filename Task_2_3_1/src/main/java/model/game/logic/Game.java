@@ -32,8 +32,13 @@ public class Game {
 
     public boolean tick() {
         if (snakeMap.values().stream().anyMatch((Snake::isControllable))) {
-            players.forEach(((snakeId, playerListener) -> changeDirection(snakeId,
-                    playerListener.nextDirection())));
+            players.forEach(((snakeId, playerListener) -> {
+                Snake snake = snakeMap.get(snakeId);
+                if (snake.isControllable()) {
+                    snake.changeDirection(playerListener.nextDirection());
+                }
+            }
+            ));
             if (tick % 4 == 0) {
 
                 snakeMap.values().forEach(this::moveSnake);
@@ -77,11 +82,13 @@ public class Game {
         } else {
             field.set(new Empty(snake.getHead().getX(), snake.getHead().getY()));
         }
-        gameLogic.moveSnake(snake);
-        if (snake.isControllable()) {
-            snake.getBody().forEach(this::setGameUnit);
+        if (gameLogic.moveSnake(snake)) {
             setGameUnit(snake.getHead());
+            if (!snake.getBody().isEmpty()) {
+                setGameUnit(snake.getBody().getFirst());
+            }
         }
+
 
     }
 

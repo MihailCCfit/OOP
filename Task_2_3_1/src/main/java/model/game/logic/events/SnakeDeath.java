@@ -7,6 +7,7 @@ import model.units.Snake;
 import model.units.SnakeBody;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class SnakeDeath extends SnakeEvent implements Runnable {
     public SnakeDeath(Snake snake, Game game) {
@@ -16,8 +17,7 @@ public class SnakeDeath extends SnakeEvent implements Runnable {
     @Override
     public void run() {
         snake.setControllable(false);
-        LinkedList<SnakeBody> snakeBodies = new LinkedList<>(snake.getBody());
-        snakeBodies.add(snake.getHead());
+        List<SnakeBody> snakeBodies = new LinkedList<>(snake.getBody());
         snakeBodies.forEach((snakeBody -> {
             if (game.getUnitAt(snakeBody.getX(), snakeBody.getY()) instanceof SnakeBody) {
                 if (((snakeBody.getX() ^ snakeBody.getY() % 2) & 1) == 0) {

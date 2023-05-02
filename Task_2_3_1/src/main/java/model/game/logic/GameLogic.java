@@ -18,7 +18,7 @@ public class GameLogic {
         amountOfFood = game.getField().getAll().stream().filter((unit -> unit instanceof Food)).count();
     }
 
-    public void moveSnake(Snake snake) {
+    public boolean moveSnake(Snake snake) {
         SnakeBody head = snake.getHead();
         int nextX = head.getX(), nextY = head.getY();
         switch (head.getDirection()) {
@@ -31,10 +31,11 @@ public class GameLogic {
                 || nextY < 0 || nextY >= game.height()) {
             SnakeOutOfBorder event = new SnakeOutOfBorder(snake, game);
             event.run();
-            return;
+            return false;
         }
-        if (!interaction(snake, game.getUnitAt(nextX, nextY))) return;
+        if (!interaction(snake, game.getUnitAt(nextX, nextY))) return false;
         snake.move(nextX, nextY);
+        return true;
     }
 
     public boolean interaction(Snake snake, GameUnit unit) {
@@ -73,8 +74,12 @@ public class GameLogic {
     }
 
     public boolean spawnFood() {
-        if (amountOfFood > ((long) game.height() * game.width() -
-                game.getSnakeMap().values().stream().map(Snake::length).reduce(0L, Long::sum)) / 10) {
+        if (amountOfFood >
+//                ((long) game.height() * game.width() -
+//                game.getSnakeMap().values().stream().map(Snake::length).reduce(0L, Long::sum)) / 10
+                5
+
+        ) {
             return false;
         }
         Random random = new Random();
