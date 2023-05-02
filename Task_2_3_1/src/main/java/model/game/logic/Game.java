@@ -35,7 +35,11 @@ public class Game {
             players.forEach(((snakeId, playerListener) -> {
                 Snake snake = snakeMap.get(snakeId);
                 if (snake.isControllable()) {
-                    snake.changeDirection(playerListener.nextDirection());
+                    Direction nextDirection = playerListener.nextDirection();
+                    if (nextDirection!=null){
+                        snake.changeDirection(nextDirection);
+
+                    }
                 }
             }
             ));

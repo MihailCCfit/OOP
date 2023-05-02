@@ -10,6 +10,7 @@ import console.game.units.*;
 import model.game.logic.Game;
 import model.game.logic.PlayerListener;
 import model.players.CommonBotPlayer;
+import model.players.EuristickBot;
 import model.players.HumanPlayer;
 import model.units.Food;
 import model.units.SnakeBody;
@@ -140,7 +141,7 @@ public class GamePresenter {
     }
 
     private PlayerListener getBot(int id) {
-        return new CommonBotPlayer(game, id);
+        return new EuristickBot(game, id);
     }
 
 
