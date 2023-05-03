@@ -12,7 +12,7 @@ public class EuristickBot extends PlayerListener {
     private final int range;
 
     public EuristickBot(Game game, Integer snakeId) {
-        this(game, snakeId, 3);
+        this(game, snakeId, 4);
     }
 
     public EuristickBot(Game game, Integer snakeId, int range) {
@@ -46,7 +46,7 @@ public class EuristickBot extends PlayerListener {
 
     private double getPenalty(GameUnit gameUnit) {
         if (gameUnit == null) {
-            return 50;
+            return 60;
         }
         if (gameUnit instanceof Wall) {
             return 70;
@@ -58,7 +58,7 @@ public class EuristickBot extends PlayerListener {
             return -((double) food.getValue() + 1) / 2 * 100;
         }
         if (gameUnit instanceof SnakeBody snakeBody) {
-            double res = 50;
+            double res = 60;
             if (!snakeBody.getSnake().getBody().isEmpty() && snakeBody.getSnake().getBody().getLast() == snakeBody) {
                 res = 10;
             }

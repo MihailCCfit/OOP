@@ -31,6 +31,10 @@ public class GameLogic {
                 || nextY < 0 || nextY >= game.height()) {
             SnakeOutOfBorder event = new SnakeOutOfBorder(snake, game);
             event.run();
+//            if (nextX < 0) nextX = game.width() - 1;
+//            if (nextX >= game.width()) nextX = 0;
+//            if (nextY < 0) nextY = game.width() - 1;
+//            if (nextY >= game.width()) nextY = 0;
             return false;
         }
         if (!interaction(snake, game.getUnitAt(nextX, nextY))) return false;
@@ -77,7 +81,7 @@ public class GameLogic {
         if (amountOfFood >
 //                ((long) game.height() * game.width() -
 //                game.getSnakeMap().values().stream().map(Snake::length).reduce(0L, Long::sum)) / 10
-                5
+                10
 
         ) {
             return false;

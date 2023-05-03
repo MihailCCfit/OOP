@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 apply plugin: 'application'
 
@@ -10,6 +11,10 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+javafx {
+    version = '20-ea+4'
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
 dependencies {

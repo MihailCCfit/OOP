@@ -37,10 +37,10 @@ public class ConsoleSnakePresenter {
 
     public void start() throws IOException {
 
-        ConsoleMenuScene menuPresenter = new ConsoleMenuScene(screen);
+        ConsoleMenuScene menuScene = new ConsoleMenuScene(screen);
         boolean flag = true;
         while (flag) {
-            MenuPage menuPage = menuPresenter.start();
+            MenuPage menuPage = menuScene.start();
             switch (menuPage) {
                 case Game -> {
                     terminal.setCursorVisible(false);
@@ -62,7 +62,7 @@ public class ConsoleSnakePresenter {
                 }
             }
         }
-        menuPresenter.close();
+        menuScene.close();
     }
 
 
