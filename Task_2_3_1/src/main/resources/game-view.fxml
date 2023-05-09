@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane onKeyPressed="#type" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.tsukanov.snakegame.fx.game.GameController">
+    <Canvas fx:id="canvas" height="700.0" width="700.0"/>
+    <Separator layoutX="697.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="10.0"/>
+    <Separator layoutX="702.0" layoutY="57.0" prefHeight="3.0" prefWidth="345.0"/>
+    <Text layoutX="734.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:">
+        <font>
+            <Font size="19.0"/>
+        </font>
+    </Text>
+    <Text fx:id="score" layoutX="799.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0"
+          wrappingWidth="96.8687744140625">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Text>
+</AnchorPane>

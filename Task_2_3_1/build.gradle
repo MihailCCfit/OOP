@@ -12,8 +12,14 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
+application {
+    mainModule = 'oop'
+    mainClass = 'ru.nsu.tsukanov.snakegame.SnakeApp'
+}
+
 javafx {
-    version = '20-ea+4'
+    version = '19'
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
@@ -21,12 +27,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    implementation 'org.projectlombok:lombok:1.18.26'
     compileOnly 'org.projectlombok:lombok:1.18.26'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
     implementation 'com.googlecode.lanterna:lanterna:3.0.1'
+    implementation 'org.openjfx:javafx-media:20'
 
 }
 
