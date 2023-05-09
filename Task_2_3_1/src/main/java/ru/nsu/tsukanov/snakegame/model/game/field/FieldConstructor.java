@@ -56,4 +56,12 @@ public class FieldConstructor {
     public List<SnakeBody> getSnakes() {
         return snakeHeads.stream().toList();
     }
+
+    public int width() {
+        return gameField.width();
+    }
+
+    public int height() {
+        return gameField.height();
+    }
 }

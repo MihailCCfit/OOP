@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
     private final GameSettings gameSettings = GlobalGameSettings.gameSettings;
+
+
     @FXML
     private CheckBox observerBox;
     @FXML
@@ -51,5 +53,8 @@ public class SettingsController implements Initializable {
             gameSettings.setGameSpeed(newValue.intValue());
         });
 
+
     }
+
+
 }

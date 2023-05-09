@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.nsu.tsukanov.snakegame.fx.constructor.ConstructorController">
+    <Canvas fx:id="canvas" height="700.0" width="700.0" onMouseClicked="#mouseClick"/>
+    <Separator layoutX="697.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="10.0"/>
+    <Separator layoutX="702.0" layoutY="57.0" prefHeight="3.0" prefWidth="345.0"/>
+    <Text layoutX="734.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:">
+        <font>
+            <Font size="19.0"/>
+        </font>
+    </Text>
+    <RadioButton fx:id="emptyRadioButton" layoutX="781.0" layoutY="107.0" mnemonicParsing="false" text="Empty">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </RadioButton>
+    <RadioButton fx:id="snakeRadioButton" layoutX="782.0" layoutY="216.0" mnemonicParsing="false" text="Snake">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </RadioButton>
+    <RadioButton fx:id="wallRadioButton" layoutX="781.0" layoutY="336.0" mnemonicParsing="false" text="Wall">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </RadioButton>
+    <RadioButton fx:id="foodRadioButton" layoutX="778.0" layoutY="435.0" mnemonicParsing="false" text="Food">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </RadioButton>
+
+
+    <Button id="menuButton" layoutX="734.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToMenu"
+            text="back to Menu"/>
+    <ImageView fitHeight="71.0" fitWidth="64.0" layoutX="707.0" layoutY="198.0" pickOnBounds="true"
+               preserveRatio="true">
+        <image>
+            <Image url="@textures/snakeHead.png"/>
+        </image>
+    </ImageView>
+    <ImageView fitHeight="71.0" fitWidth="64.0" layoutX="706.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@textures/pointer.png"/>
+        </image>
+    </ImageView>
+    <ImageView fitHeight="71.0" fitWidth="64.0" layoutX="707.0" layoutY="318.0" pickOnBounds="true"
+               preserveRatio="true">
+        <image>
+            <Image url="@textures/wall.png"/>
+        </image>
+    </ImageView>
+    <ImageView fitHeight="84.0" fitWidth="102.0" layoutX="697.0" layoutY="421.0" pickOnBounds="true"
+               preserveRatio="true">
+        <image>
+            <Image url="@textures/food_0.png"/>
+        </image>
+    </ImageView>
+    <Button id="saveButton" layoutX="733.0" layoutY="594.0" mnemonicParsing="false" onAction="#saveField" text="Save"/>
+</AnchorPane>

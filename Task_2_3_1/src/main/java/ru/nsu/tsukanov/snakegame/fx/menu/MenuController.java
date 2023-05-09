@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ru.nsu.tsukanov.snakegame.console.GameSettings;
 import ru.nsu.tsukanov.snakegame.fx.GlobalGameSettings;
+import ru.nsu.tsukanov.snakegame.fx.constructor.ConstructorController;
 import ru.nsu.tsukanov.snakegame.fx.game.GameController;
 
 import java.io.IOException;
@@ -39,7 +40,14 @@ public class MenuController {
     }
 
     public void switchToConstructor(ActionEvent event) throws IOException {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/constructor-view.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        ConstructorController constructorController = loader.getController();
+        constructorController.init();
+        stage.show();
     }
 
 

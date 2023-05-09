@@ -117,7 +117,7 @@ public class GameController {
     }
 
     private void startGame() {
-        timeline = new Timeline(new KeyFrame(Duration.millis((double) 200 / gameSettings.getGameSpeed()), ev -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis((double) 100 / gameSettings.getGameSpeed()), ev -> {
             timeline.stop();
             game.tick();
             update();
@@ -263,7 +263,7 @@ public class GameController {
     }
 
 
-    class ImageCollector {
+    public static class ImageCollector {
         public static Image light_grass = loadImage("light_grass.png");
         public static Image dark_grass = loadImage("dark_grass.png");
         public static Image wall = loadImage("wall.png");

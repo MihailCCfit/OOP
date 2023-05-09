@@ -6,6 +6,7 @@ import com.googlecode.lanterna.screen.Screen;
 import ru.nsu.tsukanov.snakegame.console.common.FieldView;
 import ru.nsu.tsukanov.snakegame.model.game.field.FieldConstructor;
 import ru.nsu.tsukanov.snakegame.model.game.field.FieldDAO;
+import ru.nsu.tsukanov.snakegame.model.game.field.GameField;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.units.Empty;
 import ru.nsu.tsukanov.snakegame.model.units.Food;
@@ -29,7 +30,7 @@ public class ConstructorScene {
     public ConstructorScene(File file, Screen screen) {
         this.screen = screen;
         fieldDAO = new FieldDAO(file);
-        var field = fieldDAO.getField().getField();
+        GameField field = fieldDAO.getField().getField();
         fieldConstructor = new FieldConstructor(field.width(), field.height());
         field.getAll().forEach((gameUnit) -> fieldConstructor.setUnit(gameUnit));
         width = field.width();

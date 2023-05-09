@@ -16,5 +16,12 @@ public abstract class GameUnit extends Point {
 
     abstract public GameUnit getCopy();
 
+    public GameUnit getCopy(int x, int y) {
+        GameUnit gameUnit = getCopy();
+        gameUnit.setX(x);
+        gameUnit.setY(y);
+        return gameUnit;
+    }
+
 
 }
