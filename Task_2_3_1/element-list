@@ -5,10 +5,10 @@ ru.nsu.tsukanov.snakegame.console.constructor
 ru.nsu.tsukanov.snakegame.console.game
 ru.nsu.tsukanov.snakegame.console.game.scenes
 ru.nsu.tsukanov.snakegame.console.game.sprites
+ru.nsu.tsukanov.snakegame.console.game.sprites.utils
 ru.nsu.tsukanov.snakegame.console.menu
 ru.nsu.tsukanov.snakegame.console.menu.states
 ru.nsu.tsukanov.snakegame.console.settings
-ru.nsu.tsukanov.snakegame.console.utils
 ru.nsu.tsukanov.snakegame.fx
 ru.nsu.tsukanov.snakegame.fx.constructor
 ru.nsu.tsukanov.snakegame.fx.game
