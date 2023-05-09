@@ -12,7 +12,7 @@ public class EuristickBot extends PlayerListener {
     private final int range;
 
     public EuristickBot(Game game, Integer snakeId) {
-        this(game, snakeId, 6);
+        this(game, snakeId, 4);
     }
 
     public EuristickBot(Game game, Integer snakeId, int range) {

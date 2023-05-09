@@ -10,8 +10,9 @@
     <children>
         <Button id="menuButton" layoutX="33.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchToMenu"
                 text="back to Menu"/>
-        <CheckBox id="observerBox" layoutX="33.0" layoutY="52.0" mnemonicParsing="false" text="ObserverMode"/>
-        <Slider layoutX="33.0" layoutY="130.0"/>
+        <CheckBox fx:id="observerBox" layoutX="33.0" layoutY="52.0" mnemonicParsing="false" text="ObserverMode"/>
+        <Slider fx:id="levelSlider" blockIncrement="1.0" layoutX="33.0" layoutY="130.0" max="5.0" min="1.0"
+                value="1.0"/>
         <Text layoutX="36.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GameSpeed"
               wrappingWidth="82.93670654296875"/>
     </children>

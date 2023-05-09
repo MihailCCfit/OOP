@@ -13,6 +13,7 @@ public class GameLogic {
     private Game game;
     private long amountOfFood;
 
+
     public GameLogic(Game game) {
         this.game = game;
         amountOfFood = game.getField().getAll().stream().filter((unit -> unit instanceof Food)).count();
@@ -43,7 +44,7 @@ public class GameLogic {
     }
 
     public boolean interaction(Snake snake, GameUnit unit) {
-        SnakeBody head = snake.getHead();
+//        SnakeBody head = snake.getHead();
         if (unit instanceof Food) {
             SnakeWithFood(snake, (Food) unit);
             return true;
@@ -73,11 +74,14 @@ public class GameLogic {
     }
 
     public boolean SnakeToSnake(Snake movingSnake, SnakeBody stayingSnake) {
-        if (movingSnake != stayingSnake.getSnake()) {
-            new SnakeDeath(movingSnake, game).run();
-            return false;
-        }
-        return true;
+        new SnakeDeath(movingSnake, game).run();
+        return false;
+
+//        if (movingSnake != stayingSnake.getSnake()) {
+//            new SnakeDeath(movingSnake, game).run();
+//            return false;
+//        }
+//        return true;
 
     }
 
@@ -85,7 +89,7 @@ public class GameLogic {
         if (amountOfFood >
 //                ((long) game.height() * game.width() -
 //                game.getSnakeMap().values().stream().map(Snake::length).reduce(0L, Long::sum)) / 10
-                10
+                15
 
         ) {
             return false;
@@ -114,6 +118,10 @@ public class GameLogic {
         return false;
     }
 
+    public void addToFood(int delta) {
+        amountOfFood += delta;
+    }
+
     public static Map.Entry<Integer, Integer> nextStep(Direction direction, int x, int y) {
         switch (direction) {
             case LEFT -> x--;
@@ -140,4 +148,5 @@ public class GameLogic {
             }
         };
     }
+
 }

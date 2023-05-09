@@ -139,4 +139,7 @@ public class Game {
         snakeMap.get(snakeID).changeDirection(direction);
     }
 
+    public GameLogic getGameLogic() {
+        return gameLogic;
+    }
 }

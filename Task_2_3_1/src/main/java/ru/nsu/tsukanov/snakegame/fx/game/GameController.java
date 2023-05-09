@@ -85,40 +85,52 @@ public class GameController {
         cellHeight = canvas.getHeight() / gameHeight;
         update();
         initPlayers();
-        startGame(beforeStart());
+//        beforeStart();
+        startGame();
     }
 
-    private Timeline beforeStart() {
-        Timeline timeline1 = null;
-
-        if (humanPlayer != null) {
-            var point = humanPlayer.getCoordinates();
-            gc.drawImage(ImageCollector.pointer, (point.getX() - 1) * cellWidth, (point.getY() - 1) * cellHeight,
-                    cellWidth * 3, cellHeight * 3);
-            timeline1 = new Timeline(new KeyFrame(Duration.millis(1000), (event -> {
-            })));
-            timeline1.play();
-        }
-        return timeline1;
-
-    }
+//    private Timeline beforeStart() {
+//        Timeline timeline1 = null;
+//
+//        if (humanPlayer != null) {
+//            var point = humanPlayer.getCoordinates();
+//            gc.drawImage(ImageCollector.pointer, (point.getX() - 1) * cellWidth, (point.getY() - 1) * cellHeight,
+//                    cellWidth * 3, cellHeight * 3);
+//            timeline1 = new Timeline(new KeyFrame(Duration.millis(1000), (event -> {
+//            })));
+//            timeline1.play();
+//        }
+//        return timeline1;
+//
+//    }
 
     private void startGame(Timeline beforeStart) {
         beforeStart.setOnFinished((actionEvent) -> {
-
+            beforeStart.stop();
             timeline = new Timeline(new KeyFrame(Duration.millis((double) 200 / gameSettings.getGameSpeed()), ev -> {
                 game.tick();
                 update();
             }));
-
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         });
+    }
+
+    private void startGame() {
+        timeline = new Timeline(new KeyFrame(Duration.millis((double) 200 / gameSettings.getGameSpeed()), ev -> {
+            timeline.stop();
+            game.tick();
+            update();
+            timeline.play();
+        }));
+//        timeline.setCycleCount(1);
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
 
     }
 
     private void initPlayers() {
-        System.out.println(gameSettings.getUserMode());
         playersAmount = game.getSnakeMap().size();
         humanPlayer = new HumanPlayer(game, 0);
         if (gameSettings.getUserMode() == UserMode.Player) {
@@ -150,6 +162,8 @@ public class GameController {
                 imageView.setRotate(randomRotation());
                 gc.drawImage(imageView.getImage(), x * cellWidth, y * cellHeight,
                         cellWidth, cellHeight);
+                imageView = null;
+
             }
         }
     }
@@ -178,6 +192,7 @@ public class GameController {
         PointDTO point = foodDTO.foodPoint();
         gc.drawImage(ImageCollector.randomFood(), point.x() * cellWidth, point.y() * cellHeight,
                 cellWidth, cellHeight);
+        point = null;
     }
 
     private void drawSnake(SnakeDTO snakeDTO) {
@@ -194,7 +209,7 @@ public class GameController {
 
         ImageView headView = new ImageView(ImageCollector.snakeHead);
         headView.setRotate(head.directionDTO().getAngle());
-        var color = new ColorAdjust((double) id / playersAmount * 1.1, 0, 0, 0);
+        ColorAdjust color = new ColorAdjust((double) id / playersAmount * 1.1, 0, 0, 0);
         headView.setEffect(color);
 
         Image image = headView.snapshot(parameters, null);
@@ -210,6 +225,9 @@ public class GameController {
         }));
         gc.drawImage(image, head.pointDTO().x() * cellWidth, head.pointDTO().y() * cellHeight,
                 cellWidth, cellHeight);
+        bodyList = null;
+        headView = null;
+        image = null;
 
 
     }
@@ -237,9 +255,10 @@ public class GameController {
         game = GlobalGameSettings.gameSettings.getGame().getCopy();
         initPlayers();
         update();
-        beforeStart().setOnFinished(
-                (event) -> timeline.play()
-        );
+        timeline.play();
+//        beforeStart().setOnFinished(
+//                (event) -> timeline.play()
+//        );
 //        init();
     }
 
