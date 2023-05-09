@@ -8,10 +8,10 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import ru.nsu.tsukanov.snakegame.console.constructor.ConstructorScene;
 import ru.nsu.tsukanov.snakegame.console.game.GamePresenter;
+import ru.nsu.tsukanov.snakegame.console.game.sprites.utils.MenuConfig;
 import ru.nsu.tsukanov.snakegame.console.menu.ConsoleMenuScene;
 import ru.nsu.tsukanov.snakegame.console.menu.states.MenuPage;
 import ru.nsu.tsukanov.snakegame.console.settings.ConsoleSettingsScene;
-import ru.nsu.tsukanov.snakegame.console.utils.MenuConfig;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 
 import java.io.File;

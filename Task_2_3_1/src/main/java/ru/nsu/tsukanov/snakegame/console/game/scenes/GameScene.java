@@ -3,7 +3,7 @@ package ru.nsu.tsukanov.snakegame.console.game.scenes;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.screen.Screen;
 import ru.nsu.tsukanov.snakegame.console.common.FieldView;
-import ru.nsu.tsukanov.snakegame.console.utils.ConsoleUtils;
+import ru.nsu.tsukanov.snakegame.console.game.sprites.utils.ConsoleUtils;
 import ru.nsu.tsukanov.snakegame.units.GameStateDTO;
 
 import java.io.IOException;

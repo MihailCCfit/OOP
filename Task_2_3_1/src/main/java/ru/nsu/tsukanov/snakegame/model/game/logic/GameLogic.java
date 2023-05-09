@@ -73,8 +73,12 @@ public class GameLogic {
     }
 
     public boolean SnakeToSnake(Snake movingSnake, SnakeBody stayingSnake) {
-        new SnakeDeath(movingSnake, game).run();
-        return false;
+        if (movingSnake != stayingSnake.getSnake()) {
+            new SnakeDeath(movingSnake, game).run();
+            return false;
+        }
+        return true;
+
     }
 
     public boolean spawnFood() {

@@ -1,4 +1,4 @@
-package ru.nsu.tsukanov.snakegame.console.utils;
+package ru.nsu.tsukanov.snakegame.console.game.sprites.utils;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextCharacter;

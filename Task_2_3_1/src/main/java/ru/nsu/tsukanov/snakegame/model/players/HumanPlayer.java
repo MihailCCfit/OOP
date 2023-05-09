@@ -28,4 +28,8 @@ public class HumanPlayer extends PlayerListener {
     public Point getCoordinates() {
         return game.getSnakeMap().get(mySnakeId).getHead().getCopy();
     }
+
+    public int getScore() {
+        return game.getSnakeMap().get(mySnakeId).getBody().size();
+    }
 }

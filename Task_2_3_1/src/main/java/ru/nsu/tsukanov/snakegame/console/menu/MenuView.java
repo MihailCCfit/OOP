@@ -4,7 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.screen.Screen;
-import ru.nsu.tsukanov.snakegame.console.utils.ConsoleUtils;
+import ru.nsu.tsukanov.snakegame.console.game.sprites.utils.ConsoleUtils;
 
 import java.io.IOException;
 

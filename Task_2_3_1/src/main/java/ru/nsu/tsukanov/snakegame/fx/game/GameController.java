@@ -73,12 +73,12 @@ public class GameController {
     public void init() {
         gameSettings = GlobalGameSettings.gameSettings;
         speed = gameSettings.getGameSpeed();
-        game = gameSettings.getGame().getCopy();
         userMode = gameSettings.getUserMode();
         canvas.getScene().setOnKeyPressed((event -> {
             keyResolver.resolveKeyCode(event.getCode());
         }));
         gc = canvas.getGraphicsContext2D();
+        game = gameSettings.getGame().getCopy();
         gameWidth = game.width();
         gameHeight = game.height();
         cellWidth = canvas.getWidth() / gameWidth;
@@ -105,11 +105,12 @@ public class GameController {
 
     private void startGame(Timeline beforeStart) {
         beforeStart.setOnFinished((actionEvent) -> {
-            timeline.setRate(1);
+
             timeline = new Timeline(new KeyFrame(Duration.millis((double) 200 / gameSettings.getGameSpeed()), ev -> {
                 game.tick();
                 update();
             }));
+
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         });
@@ -157,6 +158,14 @@ public class GameController {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         drawField();
         drawGameObjects(GameStateDTO.getGameState(game));
+        updateStatistics();
+    }
+
+    private void updateStatistics() {
+        if (humanPlayer != null) {
+            score.setText(humanPlayer.getScore() + "");
+        }
+
     }
 
     private void drawGameObjects(GameStateDTO gameStateDTO) {
@@ -223,6 +232,17 @@ public class GameController {
         };
     }
 
+    private void restart() {
+        timeline.stop();
+        game = GlobalGameSettings.gameSettings.getGame().getCopy();
+        initPlayers();
+        update();
+        beforeStart().setOnFinished(
+                (event) -> timeline.play()
+        );
+//        init();
+    }
+
 
     class ImageCollector {
         public static Image light_grass = loadImage("light_grass.png");
@@ -287,7 +307,7 @@ public class GameController {
         private final Map<KeyCode, Runnable> keyMap
                 = Map.of(
                 KeyCode.R, () -> {
-                    //
+                    restart();
                 },
                 KeyCode.Q, () -> {
                     exitToMenu();
