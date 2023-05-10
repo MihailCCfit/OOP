@@ -12,16 +12,16 @@ import java.util.Map;
 
 public class WinnerScene {
     private Screen screen;
-    private Map<Integer, Long> results;
+    private Map<Integer, Integer> results;
 
-    public WinnerScene(Screen screen, Map<Integer, Long> results) {
+    public WinnerScene(Screen screen, Map<Integer, Integer> results) {
         this.screen = screen;
 
         this.results = results;
     }
 
     public void showWinners() {
-        List<Map.Entry<Integer, Long>> listOfWinners = results.entrySet().stream()
+        List<Map.Entry<Integer, Integer>> listOfWinners = results.entrySet().stream()
                 .sorted((entry1, entry2) -> -Long.compare(entry1.getValue(), entry2.getValue()))
                 .limit(3).toList();
         TerminalSize size = screen.getTerminalSize();
@@ -29,7 +29,7 @@ public class WinnerScene {
                 1), TextColor.ANSI.CYAN);
         int maxIndex = 0;
         for (int i = 0; i < listOfWinners.size(); i++) {
-            Map.Entry<Integer, Long> player = listOfWinners.get(i);
+            Map.Entry<Integer, Integer> player = listOfWinners.get(i);
             ConsoleUtils.printLine(screen, "Player " + player.getKey() + ": " + player.getValue() + "       ",
                     new TerminalPosition(size.getColumns() / 2 - 4,
                             2 + i));

@@ -112,7 +112,7 @@ public class ConstructorController {
 
     private void drawFood(FoodDTO foodDTO) {
         PointDTO point = foodDTO.foodPoint();
-        gc.drawImage(GameController.ImageCollector.randomFood(), point.x() * cellWidth, point.y() * cellHeight,
+        gc.drawImage(GameController.ImageCollector.getFood(foodDTO.value()), point.x() * cellWidth, point.y() * cellHeight,
                 cellWidth, cellHeight);
     }
 

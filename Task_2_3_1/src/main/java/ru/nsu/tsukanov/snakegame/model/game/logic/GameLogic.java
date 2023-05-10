@@ -85,6 +85,8 @@ public class GameLogic {
 
     }
 
+    private Random random = new Random();
+
     public boolean spawnFood() {
         if (amountOfFood >
 //                ((long) game.height() * game.width() -
@@ -94,14 +96,17 @@ public class GameLogic {
         ) {
             return false;
         }
-        Random random = new Random();
+
         int x = random.nextInt(game.width());
         int y = random.nextInt(game.height());
         if (game.getUnitAt(x, y) instanceof Empty) {
-            game.setGameUnit(new Food(x, y, 1));
+            game.setGameUnit(new Food(x, y, random.nextInt(2) + 1
+//                    random.nextInt(2) + 1)
+            ));
             amountOfFood++;
             return true;
         } else {
+//            return false;
             return trySpawnFood(x - 1, y) || trySpawnFood(x, y - 1)
                     || trySpawnFood(x + 1, y) || trySpawnFood(x - 1, y);
         }

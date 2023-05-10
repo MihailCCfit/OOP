@@ -36,23 +36,23 @@ public class Game {
                 Snake snake = snakeMap.get(snakeId);
                 if (snake.isControllable()) {
                     Direction nextDirection = playerListener.nextDirection();
-                    if (nextDirection!=null){
+                    if (nextDirection != null) {
                         snake.changeDirection(nextDirection);
 
                     }
                 }
             }
             ));
-            if (tick % 4 == 0) {
+            if (tick % 2 == 0) {
 
                 snakeMap.values().forEach(this::moveSnake);
             }
 
-            if (tick % 10 == 0) {
+            if (tick % 5 == 0) {
                 gameLogic.spawnFood();
             }
             tick++;
-            if (tick >= 20) {
+            if (tick >= 10) {
                 tick = 0;
             }
 
@@ -62,8 +62,8 @@ public class Game {
         }
     }
 
-    public Map<Integer, Long> getResults() {
-        Map<Integer, Long> results = new HashMap<>();
+    public Map<Integer, Integer> getResults() {
+        Map<Integer, Integer> results = new HashMap<>();
         snakeMap.forEach(((id, snake) -> {
             results.put(id, snake.length());
         }));
@@ -81,10 +81,14 @@ public class Game {
             return;
         }
         if (!snake.getBody().isEmpty()) {
-            SnakeBody body = snake.getBody().getLast();
-            field.set(new Empty(body.getX(), body.getY()));
+            if (!snake.isGrowing()) {
+                SnakeBody body = snake.getBody().getLast();
+                field.set(new Empty(body.getX(), body.getY()));
+            }
         } else {
-            field.set(new Empty(snake.getHead().getX(), snake.getHead().getY()));
+            var head = snake.getHead();
+            field.set(new Empty(head.getX(), head.getY()));
+
         }
         if (gameLogic.moveSnake(snake)) {
             setGameUnit(snake.getHead());

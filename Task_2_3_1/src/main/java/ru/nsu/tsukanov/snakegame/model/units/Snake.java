@@ -2,12 +2,18 @@ package ru.nsu.tsukanov.snakegame.model.units;
 
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
+import java.util.Deque;
 import java.util.LinkedList;
 
 public final class Snake {
-    private LinkedList<SnakeBody> body = new LinkedList<>();
+    private Deque<SnakeBody> body = new LinkedList<>();
     private SnakeBody head;
     private boolean isControllable = true;
+    private int snakeFullness = 0;
+
+    public boolean isGrowing() {
+        return snakeFullness > 0;
+    }
 
     public Snake(SnakeBody head) {
         this.head = head;
@@ -38,7 +44,7 @@ public final class Snake {
         return head;
     }
 
-    public LinkedList<SnakeBody> getBody() {
+    public Deque<SnakeBody> getBody() {
         return body;
     }
 
@@ -55,7 +61,13 @@ public final class Snake {
             var newBody = new SnakeBody(head.getX(), head.getY(), head.getDirection());
             newBody.setSnake(this);
             body.addFirst(newBody);
-            body.removeLast();
+            if (snakeFullness <= 0) {
+                body.pollLast();
+
+            }
+            if (snakeFullness > 0) {
+                snakeFullness--;
+            }
             head.move(x, y);
         }
 
@@ -63,26 +75,13 @@ public final class Snake {
 
     public void eat(Food food) {
         if (isControllable) {
-
-
             SnakeBody bod;
-            if (body.isEmpty()) {
-                bod = new SnakeBody(head.getX(), head.getY(), head.getDirection());
-                bod.setSnake(this);
-            } else {
-                bod = body.getLast();
-            }
-
-            for (int i = 0; i < food.getValue(); i++) {
-                var newBody = new SnakeBody(bod.getX(), bod.getY(), bod.getDirection());
-                newBody.setSnake(this);
-                body.addLast(newBody);
-            }
+            snakeFullness += food.getValue();
         }
 
     }
 
-    public long length() {
+    public int length() {
         return body.size() + 1;
     }
 }

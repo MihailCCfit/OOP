@@ -33,6 +33,7 @@ import ru.nsu.tsukanov.snakegame.units.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -44,8 +45,19 @@ public class GameController {
     public Canvas canvas;
     public GraphicsContext gc;
     public Game game;
-    private int speed;
-    private UserMode userMode;
+    public Text scorePlayer1;
+    public Text namePlayer2;
+    public Text namePlayer1;
+    public ImageView imagePlayer1;
+    public ImageView imagePlayer2;
+    public Text scorePlayer2;
+    public ImageView imagePlayer3;
+    public Text namePlayer3;
+    public Text scorePlayer3;
+    public ImageView personImage;
+    public Text personName;
+    public ImageView winnerImage;
+    public Text winnerText;
     private int gameWidth;
     private int gameHeight;
 
@@ -54,9 +66,10 @@ public class GameController {
     private double cellHeight;
     private GameSettings gameSettings;
     private Timeline timeline = new Timeline();
-    private int playersAmount;
     private HumanPlayer humanPlayer;
     private KeyResolver keyResolver = new KeyResolver();
+    private SnakeDrawer snakeDrawer;
+    private LeaderBoard leaderBoard;
 
     int i = 0;
 
@@ -72,8 +85,6 @@ public class GameController {
 
     public void init() {
         gameSettings = GlobalGameSettings.gameSettings;
-        speed = gameSettings.getGameSpeed();
-        userMode = gameSettings.getUserMode();
         canvas.getScene().setOnKeyPressed((event -> {
             keyResolver.resolveKeyCode(event.getCode());
         }));
@@ -83,13 +94,21 @@ public class GameController {
         gameHeight = game.height();
         cellWidth = canvas.getWidth() / gameWidth;
         cellHeight = canvas.getHeight() / gameHeight;
+        snakeDrawer = new SnakeDrawer(game.getSnakeMap().size());
+
+        winnerImage.setOpacity(0);
+        winnerImage.setImage(ImageCollector.winner);
+        winnerText.setOpacity(0);
+
+        initLeaderBoard();
         update();
         initPlayers();
+
 //        beforeStart();
         startGame();
     }
 
-//    private Timeline beforeStart() {
+    //    private Timeline beforeStart() {
 //        Timeline timeline1 = null;
 //
 //        if (humanPlayer != null) {
@@ -103,6 +122,11 @@ public class GameController {
 //        return timeline1;
 //
 //    }
+    private void initLeaderBoard() {
+        leaderBoard = new LeaderBoard(List.of(imagePlayer1, imagePlayer2, imagePlayer3),
+                List.of(scorePlayer1, scorePlayer2, scorePlayer3),
+                List.of(namePlayer1, namePlayer2, namePlayer3));
+    }
 
     private void startGame(Timeline beforeStart) {
         beforeStart.setOnFinished((actionEvent) -> {
@@ -117,24 +141,28 @@ public class GameController {
     }
 
     private void startGame() {
-        timeline = new Timeline(new KeyFrame(Duration.millis((double) 100 / gameSettings.getGameSpeed()), ev -> {
+        System.out.println(gameSettings.getGameSpeed());
+        timeline = new Timeline(new KeyFrame(Duration.millis((double) 20 / gameSettings.getGameSpeed()), ev -> {
             timeline.stop();
-            game.tick();
+            if (!game.tick()) {
+                showWinner();
+                return;
+            }
             update();
             timeline.play();
         }));
 //        timeline.setCycleCount(1);
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-
-
     }
 
     private void initPlayers() {
-        playersAmount = game.getSnakeMap().size();
         humanPlayer = new HumanPlayer(game, 0);
         if (gameSettings.getUserMode() == UserMode.Player) {
             game.addPlayer(0, humanPlayer);
+            personImage.setImage(ImageCollector.snakeBody);
+            personName.setText("0");
+            //TODO: name for player
         } else {
             game.addPlayer(0, getBot(0));
         }
@@ -153,19 +181,20 @@ public class GameController {
     private void drawField() {
         for (int x = 0; x < gameWidth; x++) {
             for (int y = 0; y < gameHeight; y++) {
-                ImageView imageView;
-                if (((x + y) & 1) == 0) {
-                    imageView = new ImageView(ImageCollector.light_grass);
-                } else {
-                    imageView = new ImageView(ImageCollector.dark_grass);
-                }
-                imageView.setRotate(randomRotation());
-                gc.drawImage(imageView.getImage(), x * cellWidth, y * cellHeight,
-                        cellWidth, cellHeight);
-                imageView = null;
-
+                drawCell(x, y);
             }
         }
+    }
+
+    private void drawCell(int x, int y) {
+        Image image;
+        if (((x + y) & 1) == 0) {
+            image = ImageCollector.light_grass;
+        } else {
+            image = ImageCollector.dark_grass;
+        }
+        gc.drawImage(image, x * cellWidth, y * cellHeight,
+                cellWidth, cellHeight);
     }
 
     public void update() {
@@ -173,64 +202,30 @@ public class GameController {
         drawField();
         drawGameObjects(GameStateDTO.getGameState(game));
         updateStatistics();
+        snakeDrawer.updateLeaders();
     }
 
     private void updateStatistics() {
         if (humanPlayer != null) {
             score.setText(humanPlayer.getScore() + "");
         }
+        personImage.setImage(ImageCollector.snakeHead);
 
     }
 
     private void drawGameObjects(GameStateDTO gameStateDTO) {
         gameStateDTO.foodDTOS().forEach(this::drawFood);
         gameStateDTO.walls().forEach(this::drawWall);
-        gameStateDTO.snakes().forEach(this::drawSnake);
+        gameStateDTO.snakes().forEach(snakeDrawer::drawSnake);
     }
 
     private void drawFood(FoodDTO foodDTO) {
         PointDTO point = foodDTO.foodPoint();
-        gc.drawImage(ImageCollector.randomFood(), point.x() * cellWidth, point.y() * cellHeight,
+        gc.drawImage(ImageCollector.getFood(foodDTO.value()), point.x() * cellWidth, point.y() * cellHeight,
                 cellWidth, cellHeight);
         point = null;
     }
 
-    private void drawSnake(SnakeDTO snakeDTO) {
-        if (!snakeDTO.isAlive()) {
-            return;
-        }
-        SnapshotParameters parameters = new SnapshotParameters();
-        parameters.setFill(Color.TRANSPARENT);
-
-        int id = snakeDTO.id();
-        SnakeHeadDTO head = snakeDTO.head();
-        List<SnakeBodyDTO> bodyList = snakeDTO.body();
-
-
-        ImageView headView = new ImageView(ImageCollector.snakeHead);
-        headView.setRotate(head.directionDTO().getAngle());
-        ColorAdjust color = new ColorAdjust((double) id / playersAmount * 1.1, 0, 0, 0);
-        headView.setEffect(color);
-
-        Image image = headView.snapshot(parameters, null);
-
-
-        bodyList.forEach((snakeBodyDTO -> {
-            ImageView bodyView = new ImageView(ImageCollector.snakeBody);
-            bodyView.setRotate(snakeBodyDTO.directionDTO().getAngle());
-            bodyView.setEffect(color);
-            gc.drawImage(bodyView.snapshot(parameters, null),
-                    snakeBodyDTO.pointDTO().x() * cellWidth, snakeBodyDTO.pointDTO().y() * cellHeight,
-                    cellWidth, cellHeight);
-        }));
-        gc.drawImage(image, head.pointDTO().x() * cellWidth, head.pointDTO().y() * cellHeight,
-                cellWidth, cellHeight);
-        bodyList = null;
-        headView = null;
-        image = null;
-
-
-    }
 
     private void drawWall(WallDTO wallDTO) {
         PointDTO point = wallDTO.point();
@@ -238,17 +233,6 @@ public class GameController {
                 cellWidth, cellHeight);
     }
 
-
-    private double randomRotation() {
-        Random random = new Random();
-        return switch (random.nextInt(4)) {
-            case 0 -> 0.0;
-            case 1 -> 90.0;
-            case 2 -> 180.0;
-            case 3 -> 270.0;
-            default -> 0;
-        };
-    }
 
     private void restart() {
         timeline.stop();
@@ -262,6 +246,98 @@ public class GameController {
 //        init();
     }
 
+    private void showWinner() {
+        winnerImage.setOpacity(0.8);
+        winnerText.setOpacity(1);
+    }
+
+
+    private class SnakeDrawer {
+        private final SnapshotParameters parameters;
+        private final int playersAmount;
+        private final Map<Integer, HeadBody> imageViewMap = new HashMap<>();
+
+        public SnakeDrawer(int playersAmount) {
+            this.playersAmount = playersAmount;
+            parameters = new SnapshotParameters();
+            parameters.setFill(Color.TRANSPARENT);
+            initSkinMap();
+        }
+
+        private void initSkinMap() {
+            for (int id = 0; id < playersAmount; id++) {
+                ImageView headView = new ImageView(ImageCollector.snakeHead);
+                ImageView bodyView = new ImageView(ImageCollector.snakeBody);
+                ColorAdjust color = new ColorAdjust((double) id / playersAmount * 1.1, 0, 0, 0);
+                headView.setEffect(color);
+                bodyView.setEffect(color);
+                imageViewMap.put(id, new HeadBody(headView, bodyView));
+            }
+        }
+
+        private record HeadBody(ImageView headView, ImageView bodyView) {
+        }
+
+        private void drawSnake(SnakeDTO snakeDTO) {
+            if (!snakeDTO.isAlive()) {
+                return;
+            }
+            SnakeHeadDTO head = snakeDTO.head();
+            List<SnakeBodyDTO> bodyList = snakeDTO.body();
+            HeadBody headBody = imageViewMap.get(snakeDTO.id());
+            ImageView headView = headBody.headView;
+            int headRotation = head.directionDTO().getAngle();
+            headView.setRotate(headRotation);
+            Image image = headView.snapshot(parameters, null);
+            ImageView bodyView = headBody.bodyView;
+            for (SnakeBodyDTO snakeBodyDTO : bodyList) {
+                int angle = snakeBodyDTO.directionDTO().getAngle();
+                bodyView.setRotate(angle);
+                gc.drawImage(bodyView.snapshot(parameters, null),
+                        snakeBodyDTO.pointDTO().x() * cellWidth, snakeBodyDTO.pointDTO().y() * cellHeight,
+                        cellWidth, cellHeight);
+                bodyView.setRotate(-angle);
+            }
+            gc.drawImage(image, head.pointDTO().x() * cellWidth, head.pointDTO().y() * cellHeight,
+                    cellWidth, cellHeight);
+            headView.setRotate(-headRotation);
+        }
+
+        public void updateLeaders() {
+            Map<Integer, Integer> results = game.getResults();
+            List<Map.Entry<Integer, Integer>> listOfWinners = results.entrySet().stream()
+                    .sorted((entry1, entry2) -> -Long.compare(entry1.getValue(), entry2.getValue()))
+                    .limit(3).toList();
+
+            int maxIndex = 0;
+            for (int i = 0; i < listOfWinners.size(); i++) {
+                Map.Entry<Integer, Integer> player = listOfWinners.get(i);
+                leaderBoard.update(i,
+                        imageViewMap.get(player.getKey()).headView.snapshot(parameters, null),
+                        player.getValue(),
+                        player.getKey() + "");
+
+            }
+            maxIndex += 1;
+//            ConsoleUtils.printLine(screen, "Press Esc for exit      ",
+//                    new TerminalPosition(size.getColumns() / 2 - 4,
+//                            2 + maxIndex));
+//            try {
+//                screen.refresh();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+        }
+    }
+
+    private record LeaderBoard(List<ImageView> leaderViews, List<Text> boardScores, List<Text> boardNames) {
+        public void update(int index, Image playerImage, int newScore, String playerName) {
+            leaderViews.get(index).setImage(playerImage);
+            boardScores.get(index).setText(newScore + "");
+            boardNames.get(index).setText(playerName);
+        }
+    }
+
 
     public static class ImageCollector {
         public static Image light_grass = loadImage("light_grass.png");
@@ -270,12 +346,16 @@ public class GameController {
         public static Image snakeBody = loadImage("snakeBody.png");
         public static Image snakeHead = loadImage("snakeHead.png");
         public static Image pointer = loadImage("pointer.png");
-        public static int maxFood = 1;
+        public static Image winner = loadImage("win.png");
+        public static int maxFood = 2;
         private static final Random random = new Random();
 
-        public static Image randomFood() {
-
-            return loadImage("food_" + random.nextInt(maxFood) + ".png");
+        public static Image getFood(int foodValue) {
+            if (foodValue > maxFood) {
+                foodValue = maxFood;
+            }
+            foodValue -= 1;
+            return loadImage("food_" + foodValue + ".png");
         }
 
 
@@ -292,7 +372,7 @@ public class GameController {
     }
 
     private void exitToMenu() {
-
+        timeline.stop();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/menu-view.fxml"));
