@@ -1,6 +1,7 @@
 package ru.nsu.tsukanov.snakegame.model.game.logic;
 
 import ru.nsu.tsukanov.snakegame.model.game.field.GameField;
+import ru.nsu.tsukanov.snakegame.model.players.PlayerListener;
 import ru.nsu.tsukanov.snakegame.model.units.Empty;
 import ru.nsu.tsukanov.snakegame.model.units.GameUnit;
 import ru.nsu.tsukanov.snakegame.model.units.Snake;

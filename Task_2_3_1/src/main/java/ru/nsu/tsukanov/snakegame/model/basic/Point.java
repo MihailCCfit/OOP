@@ -1,7 +1,7 @@
 package ru.nsu.tsukanov.snakegame.model.basic;
 
 /**
- * Верховная база.
+ * General type of game logic
  */
 public class Point {
     int x;

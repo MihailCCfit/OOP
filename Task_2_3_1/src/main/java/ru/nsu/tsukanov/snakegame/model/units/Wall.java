@@ -1,5 +1,8 @@
 package ru.nsu.tsukanov.snakegame.model.units;
 
+/**
+ * Just wall, that can kill snake.
+ */
 public final class Wall extends GameUnit {
     public Wall(int x, int y) {
         super(x, y);

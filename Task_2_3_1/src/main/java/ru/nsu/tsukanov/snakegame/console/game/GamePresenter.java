@@ -8,10 +8,10 @@ import ru.nsu.tsukanov.snakegame.console.game.scenes.GameScene;
 import ru.nsu.tsukanov.snakegame.console.game.scenes.WinnerScene;
 import ru.nsu.tsukanov.snakegame.console.settings.UserMode;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
-import ru.nsu.tsukanov.snakegame.model.game.logic.PlayerListener;
 import ru.nsu.tsukanov.snakegame.model.players.CommonBotPlayer;
 import ru.nsu.tsukanov.snakegame.model.players.EuristickBot;
 import ru.nsu.tsukanov.snakegame.model.players.HumanPlayer;
+import ru.nsu.tsukanov.snakegame.model.players.PlayerListener;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 import ru.nsu.tsukanov.snakegame.units.GameStateDTO;
 

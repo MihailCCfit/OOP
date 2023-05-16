@@ -19,6 +19,12 @@ public class GameLogic {
         amountOfFood = game.getField().getAll().stream().filter((unit -> unit instanceof Food)).count();
     }
 
+    /**
+     * Проверяет, может ли змея двинуться. Так же разрешает коллизии с помощью событий.
+     *
+     * @param snake - змея которая двинется
+     * @return true если всё прошло нормально и змея подвинулась
+     */
     public boolean moveSnake(Snake snake) {
         SnakeBody head = snake.getHead();
         int nextX = head.getX(), nextY = head.getY();
@@ -87,6 +93,11 @@ public class GameLogic {
 
     private Random random = new Random();
 
+    /**
+     * Пытается добавить еду, учитывая ограничения.
+     *
+     * @return true if food was added
+     */
     public boolean spawnFood() {
         if (amountOfFood >
 //                ((long) game.height() * game.width() -
@@ -112,6 +123,13 @@ public class GameLogic {
         }
     }
 
+    /**
+     * Пытается добавить еду. Если место занято, то не добовляет
+     *
+     * @param x x coordinate
+     * @param y y coordinate
+     * @return true if food was added
+     */
     private boolean trySpawnFood(int x, int y) {
         if (x > 0 && y > 0
                 && x < game.width() && y < game.height()

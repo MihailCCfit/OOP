@@ -2,6 +2,9 @@ package ru.nsu.tsukanov.snakegame.model.units.snake;
 
 import java.util.Random;
 
+/**
+ * Direction, with angles and indexes of direction. Useful for view and gamelogic
+ */
 public enum Direction {
     LEFT(0), UP(1), RIGHT(2), DOWN(3);
     private final int numberDirection;

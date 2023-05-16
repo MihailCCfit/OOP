@@ -2,9 +2,11 @@ package ru.nsu.tsukanov.snakegame.model.players;
 
 import ru.nsu.tsukanov.snakegame.model.basic.Point;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
-import ru.nsu.tsukanov.snakegame.model.game.logic.PlayerListener;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
+/**
+ * Игрок, который может менять состояние переданной змеи. Соответственно он не влияет на игру напрямую.
+ */
 public class HumanPlayer extends PlayerListener {
     private Direction direction = Direction.getRandomDirection();
 

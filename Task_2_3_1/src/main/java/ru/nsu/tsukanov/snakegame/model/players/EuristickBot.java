@@ -2,12 +2,15 @@ package ru.nsu.tsukanov.snakegame.model.players;
 
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.game.logic.GameLogic;
-import ru.nsu.tsukanov.snakegame.model.game.logic.PlayerListener;
 import ru.nsu.tsukanov.snakegame.model.units.*;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 import java.util.Map;
 
+/**
+ * Бот построенный на эвристике.
+ * Каждый ход считает абстрактный штраф для трёх направлений и выбирает то, где штраф меньше
+ */
 public class EuristickBot extends PlayerListener {
     private final int range;
 
