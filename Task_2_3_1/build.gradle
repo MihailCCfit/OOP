@@ -64,6 +64,7 @@ jacocoTestReport {
                     //"<package>.Main.class" Указывайте полное имея пакета с точками
             ])
         }))
+
     }
 
 }
