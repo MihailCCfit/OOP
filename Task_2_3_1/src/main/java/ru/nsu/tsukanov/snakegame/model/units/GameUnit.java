@@ -5,7 +5,7 @@ import ru.nsu.tsukanov.snakegame.model.basic.Point;
 /**
  * Base of game logic after point.
  */
-public abstract sealed class GameUnit extends Point permits Empty, Food, SnakeBody, Wall {
+public abstract class GameUnit extends Point {
     public GameUnit(int x, int y) {
         super(x, y);
     }
