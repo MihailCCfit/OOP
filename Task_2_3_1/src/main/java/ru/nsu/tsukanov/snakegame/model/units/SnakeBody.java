@@ -3,7 +3,7 @@ package ru.nsu.tsukanov.snakegame.model.units;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 /**
- * Тело змеи, которое может быть и головой. Имеет направление и ссылку на саму змею.
+ * The body of a snake, which can also be a head. Has direction and reference to the snake itself.
  */
 public final class SnakeBody extends GameUnit {
     private Direction direction;

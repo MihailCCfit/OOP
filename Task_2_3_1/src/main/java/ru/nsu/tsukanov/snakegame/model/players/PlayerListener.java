@@ -4,8 +4,8 @@ import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 /**
- * Используется в логике игры. Где с каждого игрока спрашивается его следующее направление.
- * Позволяет реализовывать множество возможных вариантов для управления змейкой, хоть через http-запросы.
+ * Used in game logic. Where each player is asked his next direction.
+ * Allows you to implement many possible options for managing the snake, even through http requests.
  */
 abstract public class PlayerListener {
     protected final Game game;
@@ -17,10 +17,10 @@ abstract public class PlayerListener {
     }
 
     /**
-     * Следующее направление для змейки, которая передастся внутрь игры. Но например змейка не может
-     * повернуться за раз на 180 градусов. Так что порой указания не будут работать.
+     * The next direction for the snake, which will be transferred to the inside of the game.
+     * However, a snake cannot turn 180 degrees at a time. So sometimes the directions won't work.
      *
-     * @return куда игрок хочет повернут змейку.
+     * @return the direction
      */
     abstract public Direction nextDirection();
 }

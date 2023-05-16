@@ -63,7 +63,7 @@ public class Game {
         }
     }
 
-    @Deprecated
+//    @Deprecated
     public void moveSnakes() {
         players.forEach(((snakeId, playerListener) -> {
             Snake snake = snakeMap.get(snakeId);
@@ -150,9 +150,8 @@ public class Game {
             Snake newSnake = new Snake((SnakeBody) gameField.get(snake.getHead().getX(), snake.getHead().getY()));
             newSnakeMap.put(id, newSnake);
         });
-        Game newGame = new Game(gameField, newSnakeMap);
 
-        return newGame;
+        return new Game(gameField, newSnakeMap);
     }
 
     public void changeDirection(Integer snakeID, Direction direction) {

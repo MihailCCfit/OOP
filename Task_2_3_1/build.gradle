@@ -57,7 +57,10 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
-                    "Main.class",
+                    "ru/nsu/tsukanov/snakegame/HelloApplication.class",
+                    "ru/nsu/tsukanov/snakegame/fx/*",
+                    "ru/nsu/tsukanov/snakegame/console/*",
+                    "ru/nsu/tsukanov/snakegame/game/units/*",
                     //"<package>.Main.class" Указывайте полное имея пакета с точками
             ])
         }))

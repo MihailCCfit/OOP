@@ -5,7 +5,7 @@ import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 /**
- * Игрок, который может менять состояние переданной змеи. Соответственно он не влияет на игру напрямую.
+ * Player who can change the state of the passed snake. Accordingly, he did not notice the game on the screen.
  */
 public class HumanPlayer extends PlayerListener {
     private Direction direction = Direction.getRandomDirection();
