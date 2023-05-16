@@ -84,8 +84,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">PlayerListener</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Используется в логике игры. Где с каждого игрока спрашивается его следующее направление.
- Позволяет реализовывать множество возможных вариантов для управления змейкой, хоть через http-запросы.</div>
+<div class="block">Used in game logic. Where each player is asked his next direction.
+ Allows you to implement many possible options for managing the snake, even through http requests.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -135,7 +135,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code>abstract <a href="../units/snake/Direction.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.snake">Direction</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3"><code><span class="member-name-link"><a href="#nextDirection()">nextDirection</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table method-summary-table-tab3">
-<div class="block">Следующее направление для змейки, которая передастся внутрь игры.</div>
+<div class="block">The next direction for the snake, which will be transferred to the inside of the game.</div>
 </div>
 </div>
 </div>
@@ -193,11 +193,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="nextDirection()">
 <h3>nextDirection</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="../units/snake/Direction.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.snake">Direction</a></span>&nbsp;<span class="element-name">nextDirection</span>()</div>
-<div class="block">Следующее направление для змейки, которая передастся внутрь игры. Но например змейка не может
- повернуться за раз на 180 градусов. Так что порой указания не будут работать.</div>
+<div class="block">The next direction for the snake, which will be transferred to the inside of the game.
+ However, a snake cannot turn 180 degrees at a time. So sometimes the directions won't work.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>куда игрок хочет повернут змейку.</dd>
+<dd>the direction</dd>
 </dl>
 </section>
 </li>
