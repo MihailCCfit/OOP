@@ -60,7 +60,7 @@ jacocoTestReport {
                     "ru/nsu/tsukanov/snakegame/HelloApplication.class",
                     "ru/nsu/tsukanov/snakegame/fx/*",
                     "ru/nsu/tsukanov/snakegame/console/*",
-                    "ru/nsu/tsukanov/snakegame/game/units/*",
+                    "ru/nsu/tsukanov/snakegame/units/*",
                     //"<package>.Main.class" Указывайте полное имея пакета с точками
             ])
         }))
