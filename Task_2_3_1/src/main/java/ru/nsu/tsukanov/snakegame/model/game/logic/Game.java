@@ -63,6 +63,21 @@ public class Game {
         }
     }
 
+    @Deprecated
+    public void moveSnakes() {
+        players.forEach(((snakeId, playerListener) -> {
+            Snake snake = snakeMap.get(snakeId);
+            if (snake.isControllable()) {
+                Direction nextDirection = playerListener.nextDirection();
+                if (nextDirection != null) {
+                    snake.changeDirection(nextDirection);
+
+                }
+            }
+        }));
+        snakeMap.values().forEach(this::moveSnake);
+    }
+
     public Map<Integer, Integer> getResults() {
         Map<Integer, Integer> results = new HashMap<>();
         snakeMap.forEach(((id, snake) -> {
