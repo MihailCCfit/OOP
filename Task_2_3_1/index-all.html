@@ -55,7 +55,7 @@ loadScripts(document, 'script');</script>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a href="#I:X">X</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/Game.html#addPlayer(java.lang.Integer,ru.nsu.tsukanov.snakegame.model.game.logic.PlayerListener)">addPlayer(Integer, PlayerListener)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/Game.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">Game</a></dt>
+<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/Game.html#addPlayer(java.lang.Integer,ru.nsu.tsukanov.snakegame.model.players.PlayerListener)">addPlayer(Integer, PlayerListener)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/Game.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">Game</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html#addToFood(int)">addToFood(int)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">GameLogic</a></dt>
 <dd>&nbsp;</dd>
@@ -133,7 +133,9 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.ImageCollector.html#dark_grass">dark_grass</a></span> - Static variable in class ru.nsu.tsukanov.snakegame.fx.game.<a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.ImageCollector.html" title="class in ru.nsu.tsukanov.snakegame.fx.game">GameController.ImageCollector</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/snake/Direction.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.snake"><span class="type-name-link">Direction</span></a> - Enum Class in <a href="ru/nsu/tsukanov/snakegame/model/units/snake/package-summary.html">ru.nsu.tsukanov.snakegame.model.units.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Direction, with angles and indexes of direction.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/units/SnakeBodyDTO.html#directionDTO()">directionDTO()</a></span> - Method in record class ru.nsu.tsukanov.snakegame.units.<a href="ru/nsu/tsukanov/snakegame/units/SnakeBodyDTO.html" title="class in ru.nsu.tsukanov.snakegame.units">SnakeBodyDTO</a></dt>
 <dd>
 <div class="block">Returns the value of the <code>directionDTO</code> record component.</div>
@@ -156,9 +158,9 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html#eat(ru.nsu.tsukanov.snakegame.model.units.Food)">eat(Food)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/Empty.html" title="class in ru.nsu.tsukanov.snakegame.model.units"><span class="type-name-link">Empty</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/units/package-summary.html">ru.nsu.tsukanov.snakegame.model.units</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html#Empty">Empty</a></span> - Enum constant in enum class ru.nsu.tsukanov.snakegame.model.units.util.<a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util">UnitType</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Empty cell without any other units.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Empty.html#%3Cinit%3E(int,int)">Empty(int, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Empty.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Empty</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Empty.html#%3Cinit%3E(ru.nsu.tsukanov.snakegame.model.units.GameUnit)">Empty(GameUnit)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Empty.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Empty</a></dt>
@@ -202,7 +204,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/players/EuristickBot.html" title="class in ru.nsu.tsukanov.snakegame.model.players"><span class="type-name-link">EuristickBot</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/players/package-summary.html">ru.nsu.tsukanov.snakegame.model.players</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Бот построенный на эвристике.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/EuristickBot.html#%3Cinit%3E(ru.nsu.tsukanov.snakegame.model.game.logic.Game,java.lang.Integer)">EuristickBot(Game, Integer)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/EuristickBot.html" title="class in ru.nsu.tsukanov.snakegame.model.players">EuristickBot</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/EuristickBot.html#%3Cinit%3E(ru.nsu.tsukanov.snakegame.model.game.logic.Game,java.lang.Integer,int)">EuristickBot(Game, Integer, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/EuristickBot.html" title="class in ru.nsu.tsukanov.snakegame.model.players">EuristickBot</a></dt>
@@ -229,8 +233,6 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/console/common/FieldView.html#%3Cinit%3E(com.googlecode.lanterna.screen.Screen)">FieldView(Screen)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.console.common.<a href="ru/nsu/tsukanov/snakegame/console/common/FieldView.html" title="class in ru.nsu.tsukanov.snakegame.console.common">FieldView</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/Food.html" title="class in ru.nsu.tsukanov.snakegame.model.units"><span class="type-name-link">Food</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/units/package-summary.html">ru.nsu.tsukanov.snakegame.model.units</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html#Food">Food</a></span> - Enum constant in enum class ru.nsu.tsukanov.snakegame.model.units.util.<a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util">UnitType</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Food.html#%3Cinit%3E(int,int,int)">Food(int, int, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Food.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Food</a></dt>
 <dd>&nbsp;</dd>
@@ -265,7 +267,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/events/SnakeEvent.html#game">game</a></span> - Variable in class ru.nsu.tsukanov.snakegame.model.game.logic.events.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/events/SnakeEvent.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic.events">SnakeEvent</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html#game">game</a></span> - Variable in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">PlayerListener</a></dt>
+<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html#game">game</a></span> - Variable in class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">PlayerListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/game/logic/Game.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic"><span class="type-name-link">Game</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/game/logic/package-summary.html">ru.nsu.tsukanov.snakegame.model.game.logic</a></dt>
 <dd>&nbsp;</dd>
@@ -313,7 +315,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/GameUnit.html" title="class in ru.nsu.tsukanov.snakegame.model.units"><span class="type-name-link">GameUnit</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/units/package-summary.html">ru.nsu.tsukanov.snakegame.model.units</a></dt>
 <dd>
-<div class="block">Это база.</div>
+<div class="block">Base of game logic after point.</div>
 </dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/GameUnit.html#%3Cinit%3E(int,int)">GameUnit(int, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/GameUnit.html" title="class in ru.nsu.tsukanov.snakegame.model.units">GameUnit</a></dt>
 <dd>&nbsp;</dd>
@@ -342,7 +344,9 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Food.html#getCopy()">getCopy()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Food.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Food</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/GameUnit.html#getCopy()">getCopy()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/GameUnit.html" title="class in ru.nsu.tsukanov.snakegame.model.units">GameUnit</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Create new instance of this.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/SnakeBody.html#getCopy()">getCopy()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/SnakeBody.html" title="class in ru.nsu.tsukanov.snakegame.model.units">SnakeBody</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Wall.html#getCopy()">getCopy()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Wall.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Wall</a></dt>
@@ -378,8 +382,6 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/units/GameStateDTO.html#getGameState(ru.nsu.tsukanov.snakegame.model.game.logic.Game)">getGameState(Game)</a></span> - Static method in record class ru.nsu.tsukanov.snakegame.units.<a href="ru/nsu/tsukanov/snakegame/units/GameStateDTO.html" title="class in ru.nsu.tsukanov.snakegame.units">GameStateDTO</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html#getHead()">getHead()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Snake</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html#getIntType()">getIntType()</a></span> - Method in enum class ru.nsu.tsukanov.snakegame.model.units.util.<a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util">UnitType</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/console/menu/states/MenuPage.html#getMenuPage(int)">getMenuPage(int)</a></span> - Static method in enum class ru.nsu.tsukanov.snakegame.console.menu.states.<a href="ru/nsu/tsukanov/snakegame/console/menu/states/MenuPage.html" title="enum class in ru.nsu.tsukanov.snakegame.console.menu.states">MenuPage</a></dt>
 <dd>&nbsp;</dd>
@@ -481,7 +483,9 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/HelloApplication.html#%3Cinit%3E()">HelloApplication()</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.<a href="ru/nsu/tsukanov/snakegame/HelloApplication.html" title="class in ru.nsu.tsukanov.snakegame">HelloApplication</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/players/HumanPlayer.html" title="class in ru.nsu.tsukanov.snakegame.model.players"><span class="type-name-link">HumanPlayer</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/players/package-summary.html">ru.nsu.tsukanov.snakegame.model.players</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Игрок, который может менять состояние переданной змеи.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/HumanPlayer.html#%3Cinit%3E(ru.nsu.tsukanov.snakegame.model.game.logic.Game,java.lang.Integer)">HumanPlayer(Game, Integer)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/HumanPlayer.html" title="class in ru.nsu.tsukanov.snakegame.model.players">HumanPlayer</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -563,10 +567,14 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/basic/Point.html#move(int,int)">move(int, int)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.basic.<a href="ru/nsu/tsukanov/snakegame/model/basic/Point.html" title="class in ru.nsu.tsukanov.snakegame.model.basic">Point</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html#move(int,int)">move(int, int)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Двигается с изменением тела и положением головы</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html#moveSnake(ru.nsu.tsukanov.snakegame.model.units.Snake)">moveSnake(Snake)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">GameLogic</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html#mySnakeId">mySnakeId</a></span> - Variable in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">PlayerListener</a></dt>
+<dd>
+<div class="block">Проверяет, может ли змея двинуться.</div>
+</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html#mySnakeId">mySnakeId</a></span> - Variable in class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">PlayerListener</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:N">N</h2>
@@ -577,14 +585,16 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.html#namePlayer3">namePlayer3</a></span> - Variable in class ru.nsu.tsukanov.snakegame.fx.game.<a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.html" title="class in ru.nsu.tsukanov.snakegame.fx.game">GameController</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html#nextDirection()">nextDirection()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">PlayerListener</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/CommonBotPlayer.html#nextDirection()">nextDirection()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/CommonBotPlayer.html" title="class in ru.nsu.tsukanov.snakegame.model.players">CommonBotPlayer</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/EuristickBot.html#nextDirection()">nextDirection()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/EuristickBot.html" title="class in ru.nsu.tsukanov.snakegame.model.players">EuristickBot</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/HumanPlayer.html#nextDirection()">nextDirection()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/HumanPlayer.html" title="class in ru.nsu.tsukanov.snakegame.model.players">HumanPlayer</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html#nextDirection()">nextDirection()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">PlayerListener</a></dt>
+<dd>
+<div class="block">Следующее направление для змейки, которая передастся внутрь игры.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html#nextStep(ru.nsu.tsukanov.snakegame.model.units.snake.Direction,int,int)">nextStep(Direction, int, int)</a></span> - Static method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">GameLogic</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -605,9 +615,11 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/console/settings/UserMode.html#Player">Player</a></span> - Enum constant in enum class ru.nsu.tsukanov.snakegame.console.settings.<a href="ru/nsu/tsukanov/snakegame/console/settings/UserMode.html" title="enum class in ru.nsu.tsukanov.snakegame.console.settings">UserMode</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic"><span class="type-name-link">PlayerListener</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/game/logic/package-summary.html">ru.nsu.tsukanov.snakegame.model.game.logic</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html#%3Cinit%3E(ru.nsu.tsukanov.snakegame.model.game.logic.Game,java.lang.Integer)">PlayerListener(Game, Integer)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">PlayerListener</a></dt>
+<dt><a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players"><span class="type-name-link">PlayerListener</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/players/package-summary.html">ru.nsu.tsukanov.snakegame.model.players</a></dt>
+<dd>
+<div class="block">Используется в логике игры.</div>
+</dd>
+<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html#%3Cinit%3E(ru.nsu.tsukanov.snakegame.model.game.logic.Game,java.lang.Integer)">PlayerListener(Game, Integer)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.players.<a href="ru/nsu/tsukanov/snakegame/model/players/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">PlayerListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/field/data/FoodData.html#point()">point()</a></span> - Method in record class ru.nsu.tsukanov.snakegame.model.game.field.data.<a href="ru/nsu/tsukanov/snakegame/model/game/field/data/FoodData.html" title="class in ru.nsu.tsukanov.snakegame.model.game.field.data">FoodData</a></dt>
 <dd>
@@ -619,7 +631,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/basic/Point.html" title="class in ru.nsu.tsukanov.snakegame.model.basic"><span class="type-name-link">Point</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/basic/package-summary.html">ru.nsu.tsukanov.snakegame.model.basic</a></dt>
 <dd>
-<div class="block">Верховная база.</div>
+<div class="block">General type of game logic</div>
 </dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/basic/Point.html#%3Cinit%3E(int,int)">Point(int, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.basic.<a href="ru/nsu/tsukanov/snakegame/model/basic/Point.html" title="class in ru.nsu.tsukanov.snakegame.model.basic">Point</a></dt>
 <dd>&nbsp;</dd>
@@ -708,8 +720,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/snake/package-summary.html">ru.nsu.tsukanov.snakegame.model.units.snake</a> - package ru.nsu.tsukanov.snakegame.model.units.snake</dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/tsukanov/snakegame/model/units/util/package-summary.html">ru.nsu.tsukanov.snakegame.model.units.util</a> - package ru.nsu.tsukanov.snakegame.model.units.util</dt>
-<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/units/package-summary.html">ru.nsu.tsukanov.snakegame.units</a> - package ru.nsu.tsukanov.snakegame.units</dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/fx/SnakeFXApp.html#run()">run()</a></span> - Method in class ru.nsu.tsukanov.snakegame.fx.<a href="ru/nsu/tsukanov/snakegame/fx/SnakeFXApp.html" title="class in ru.nsu.tsukanov.snakegame.fx">SnakeFXApp</a></dt>
@@ -788,7 +798,9 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/events/SnakeEvent.html#snake">snake</a></span> - Variable in class ru.nsu.tsukanov.snakegame.model.game.logic.events.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/events/SnakeEvent.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic.events">SnakeEvent</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units"><span class="type-name-link">Snake</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/units/package-summary.html">ru.nsu.tsukanov.snakegame.model.units</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Snake is head and list of its body.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html#%3Cinit%3E(int,int)">Snake(int, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html#%3Cinit%3E(int,int,ru.nsu.tsukanov.snakegame.model.units.snake.Direction)">Snake(int, int, Direction)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Snake</a></dt>
@@ -798,9 +810,9 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.ImageCollector.html#snakeBody">snakeBody</a></span> - Static variable in class ru.nsu.tsukanov.snakegame.fx.game.<a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.ImageCollector.html" title="class in ru.nsu.tsukanov.snakegame.fx.game">GameController.ImageCollector</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/SnakeBody.html" title="class in ru.nsu.tsukanov.snakegame.model.units"><span class="type-name-link">SnakeBody</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/units/package-summary.html">ru.nsu.tsukanov.snakegame.model.units</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html#SnakeBody">SnakeBody</a></span> - Enum constant in enum class ru.nsu.tsukanov.snakegame.model.units.util.<a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util">UnitType</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Тело змеи, которое может быть и головой.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/SnakeBody.html#%3Cinit%3E(int,int)">SnakeBody(int, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/SnakeBody.html" title="class in ru.nsu.tsukanov.snakegame.model.units">SnakeBody</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/SnakeBody.html#%3Cinit%3E(int,int,ru.nsu.tsukanov.snakegame.model.units.snake.Direction)">SnakeBody(int, int, Direction)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/SnakeBody.html" title="class in ru.nsu.tsukanov.snakegame.model.units">SnakeBody</a></dt>
@@ -866,7 +878,9 @@ loadScripts(document, 'script');</script>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html#SnakeWithWall(ru.nsu.tsukanov.snakegame.model.units.Snake,ru.nsu.tsukanov.snakegame.model.units.Wall)">SnakeWithWall(Snake, Wall)</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">GameLogic</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html#spawnFood()">spawnFood()</a></span> - Method in class ru.nsu.tsukanov.snakegame.model.game.logic.<a href="ru/nsu/tsukanov/snakegame/model/game/logic/GameLogic.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">GameLogic</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Пытается добавить еду, учитывая ограничения.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/console/ConsoleSnakePresenter.html#start()">start()</a></span> - Method in class ru.nsu.tsukanov.snakegame.console.<a href="ru/nsu/tsukanov/snakegame/console/ConsoleSnakePresenter.html" title="class in ru.nsu.tsukanov.snakegame.console">ConsoleSnakePresenter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/console/constructor/ConstructorScene.html#start()">start()</a></span> - Method in class ru.nsu.tsukanov.snakegame.console.constructor.<a href="ru/nsu/tsukanov/snakegame/console/constructor/ConstructorScene.html" title="class in ru.nsu.tsukanov.snakegame.console.constructor">ConstructorScene</a></dt>
@@ -941,8 +955,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/console/game/sprites/UnitsCharacters.html#%3Cinit%3E()">UnitsCharacters()</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.console.game.sprites.<a href="ru/nsu/tsukanov/snakegame/console/game/sprites/UnitsCharacters.html" title="class in ru.nsu.tsukanov.snakegame.console.game.sprites">UnitsCharacters</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util"><span class="type-name-link">UnitType</span></a> - Enum Class in <a href="ru/nsu/tsukanov/snakegame/model/units/util/package-summary.html">ru.nsu.tsukanov.snakegame.model.units.util</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/snake/Direction.html#UP">UP</a></span> - Enum constant in enum class ru.nsu.tsukanov.snakegame.model.units.snake.<a href="ru/nsu/tsukanov/snakegame/model/units/snake/Direction.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.snake">Direction</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/units/DirectionDTO.html#UP">UP</a></span> - Enum constant in enum class ru.nsu.tsukanov.snakegame.units.<a href="ru/nsu/tsukanov/snakegame/units/DirectionDTO.html" title="enum class in ru.nsu.tsukanov.snakegame.units">DirectionDTO</a></dt>
@@ -978,10 +990,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html#valueOf(java.lang.String)">valueOf(String)</a></span> - Static method in enum class ru.nsu.tsukanov.snakegame.model.units.util.<a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util">UnitType</a></dt>
-<dd>
-<div class="block">Returns the enum constant of this class with the specified name.</div>
-</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/units/DirectionDTO.html#valueOf(java.lang.String)">valueOf(String)</a></span> - Static method in enum class ru.nsu.tsukanov.snakegame.units.<a href="ru/nsu/tsukanov/snakegame/units/DirectionDTO.html" title="enum class in ru.nsu.tsukanov.snakegame.units">DirectionDTO</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
@@ -1001,11 +1009,6 @@ the order they are declared.</div>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html#values()">values()</a></span> - Static method in enum class ru.nsu.tsukanov.snakegame.model.units.util.<a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util">UnitType</a></dt>
-<dd>
-<div class="block">Returns an array containing the constants of this enum class, in
-the order they are declared.</div>
-</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/units/DirectionDTO.html#values()">values()</a></span> - Static method in enum class ru.nsu.tsukanov.snakegame.units.<a href="ru/nsu/tsukanov/snakegame/units/DirectionDTO.html" title="enum class in ru.nsu.tsukanov.snakegame.units">DirectionDTO</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
@@ -1017,9 +1020,9 @@ the order they are declared.</div>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.ImageCollector.html#wall">wall</a></span> - Static variable in class ru.nsu.tsukanov.snakegame.fx.game.<a href="ru/nsu/tsukanov/snakegame/fx/game/GameController.ImageCollector.html" title="class in ru.nsu.tsukanov.snakegame.fx.game">GameController.ImageCollector</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/tsukanov/snakegame/model/units/Wall.html" title="class in ru.nsu.tsukanov.snakegame.model.units"><span class="type-name-link">Wall</span></a> - Class in <a href="ru/nsu/tsukanov/snakegame/model/units/package-summary.html">ru.nsu.tsukanov.snakegame.model.units</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html#Wall">Wall</a></span> - Enum constant in enum class ru.nsu.tsukanov.snakegame.model.units.util.<a href="ru/nsu/tsukanov/snakegame/model/units/util/UnitType.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.util">UnitType</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Just wall, that can kill snake.</div>
+</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/model/units/Wall.html#%3Cinit%3E(int,int)">Wall(int, int)</a></span> - Constructor for class ru.nsu.tsukanov.snakegame.model.units.<a href="ru/nsu/tsukanov/snakegame/model/units/Wall.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Wall</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="member-name-link"><a href="ru/nsu/tsukanov/snakegame/console/game/sprites/UnitsCharacters.html#WALL">WALL</a></span> - Static variable in class ru.nsu.tsukanov.snakegame.console.game.sprites.<a href="ru/nsu/tsukanov/snakegame/console/game/sprites/UnitsCharacters.html" title="class in ru.nsu.tsukanov.snakegame.console.game.sprites">UnitsCharacters</a></dt>

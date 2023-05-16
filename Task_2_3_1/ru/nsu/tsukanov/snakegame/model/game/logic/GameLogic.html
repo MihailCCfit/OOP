@@ -116,7 +116,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#moveSnake(ru.nsu.tsukanov.snakegame.model.units.Snake)">moveSnake</a></span>&#8203;(<a href="../../units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Snake</a>&nbsp;snake)</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Проверяет, может ли змея двинуться.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code>static <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Map.Entry.html" title="class or interface in java.util" class="external-link">Map.Entry</a>&lt;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,&#8203;<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table-tab1 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#nextStep(ru.nsu.tsukanov.snakegame.model.units.snake.Direction,int,int)">nextStep</a></span>&#8203;(<a href="../../units/snake/Direction.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.snake">Direction</a>&nbsp;direction,
  int&nbsp;x,
@@ -136,7 +138,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#spawnFood()">spawnFood</a></span>()</code></div>
-<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Пытается добавить еду, учитывая ограничения.</div>
+</div>
 </div>
 </div>
 </div>
@@ -172,6 +176,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="moveSnake(ru.nsu.tsukanov.snakegame.model.units.Snake)">
 <h3>moveSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">moveSnake</span>&#8203;<span class="parameters">(<a href="../../units/Snake.html" title="class in ru.nsu.tsukanov.snakegame.model.units">Snake</a>&nbsp;snake)</span></div>
+<div class="block">Проверяет, может ли змея двинуться. Так же разрешает коллизии с помощью событий.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>snake</code> - - змея которая двинется</dd>
+<dt>Returns:</dt>
+<dd>true если всё прошло нормально и змея подвинулась</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -206,6 +217,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="spawnFood()">
 <h3>spawnFood</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">spawnFood</span>()</div>
+<div class="block">Пытается добавить еду, учитывая ограничения.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if food was added</dd>
+</dl>
 </section>
 </li>
 <li>

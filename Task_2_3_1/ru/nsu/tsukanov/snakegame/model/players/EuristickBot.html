@@ -74,14 +74,16 @@ loadScripts(document, 'script');</script>
 <h1 title="Class EuristickBot" class="title">Class EuristickBot</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance"><a href="../game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">ru.nsu.tsukanov.snakegame.model.game.logic.PlayerListener</a>
+<div class="inheritance"><a href="PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">ru.nsu.tsukanov.snakegame.model.players.PlayerListener</a>
 <div class="inheritance">ru.nsu.tsukanov.snakegame.model.players.EuristickBot</div>
 </div>
 </div>
 <section class="description">
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">EuristickBot</span>
-<span class="extends-implements">extends <a href="../game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">PlayerListener</a></span></div>
+<span class="extends-implements">extends <a href="PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">PlayerListener</a></span></div>
+<div class="block">Бот построенный на эвристике.
+ Каждый ход считает абстрактный штраф для трёх направлений и выбирает то, где штраф меньше</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,8 +92,8 @@ loadScripts(document, 'script');</script>
 <section class="field-summary" id="field.summary">
 <h2>Field Summary</h2>
 <div class="inherited-list">
-<h3 id="fields.inherited.from.class.ru.nsu.tsukanov.snakegame.model.game.logic.PlayerListener">Fields inherited from class&nbsp;ru.nsu.tsukanov.snakegame.model.game.logic.<a href="../game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">PlayerListener</a></h3>
-<code><a href="../game/logic/PlayerListener.html#game">game</a>, <a href="../game/logic/PlayerListener.html#mySnakeId">mySnakeId</a></code></div>
+<h3 id="fields.inherited.from.class.ru.nsu.tsukanov.snakegame.model.players.PlayerListener">Fields inherited from class&nbsp;ru.nsu.tsukanov.snakegame.model.players.<a href="PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">PlayerListener</a></h3>
+<code><a href="PlayerListener.html#game">game</a>, <a href="PlayerListener.html#mySnakeId">mySnakeId</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -125,7 +127,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../units/snake/Direction.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.snake">Direction</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#nextDirection()">nextDirection</a></span>()</code></div>
-<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
+<div class="block">Следующее направление для змейки, которая передастся внутрь игры.</div>
+</div>
 </div>
 </div>
 </div>
@@ -170,9 +174,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="nextDirection()">
 <h3>nextDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../units/snake/Direction.html" title="enum class in ru.nsu.tsukanov.snakegame.model.units.snake">Direction</a></span>&nbsp;<span class="element-name">nextDirection</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="PlayerListener.html#nextDirection()">PlayerListener</a></code></span></div>
+<div class="block">Следующее направление для змейки, которая передастся внутрь игры. Но например змейка не может
+ повернуться за раз на 180 градусов. Так что порой указания не будут работать.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../game/logic/PlayerListener.html#nextDirection()">nextDirection</a></code>&nbsp;in class&nbsp;<code><a href="../game/logic/PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.game.logic">PlayerListener</a></code></dd>
+<dd><code><a href="PlayerListener.html#nextDirection()">nextDirection</a></code>&nbsp;in class&nbsp;<code><a href="PlayerListener.html" title="class in ru.nsu.tsukanov.snakegame.model.players">PlayerListener</a></code></dd>
+<dt>Returns:</dt>
+<dd>куда игрок хочет повернут змейку.</dd>
 </dl>
 </section>
 </li>

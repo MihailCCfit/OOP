@@ -23,5 +23,4 @@ ru.nsu.tsukanov.snakegame.model.game.logic.exceptions
 ru.nsu.tsukanov.snakegame.model.players
 ru.nsu.tsukanov.snakegame.model.units
 ru.nsu.tsukanov.snakegame.model.units.snake
-ru.nsu.tsukanov.snakegame.model.units.util
 ru.nsu.tsukanov.snakegame.units
