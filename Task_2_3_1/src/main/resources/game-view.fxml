@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-<AnchorPane onKeyPressed="#type" prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19"
+<AnchorPane prefHeight="700.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/19"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.tsukanov.snakegame.fx.game.GameController">
    <Canvas fx:id="canvas" height="700.0" width="700.0"/>
    <Separator layoutX="697.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="10.0"/>
