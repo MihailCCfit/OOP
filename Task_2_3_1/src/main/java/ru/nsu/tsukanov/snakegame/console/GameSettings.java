@@ -1,21 +1,27 @@
 package ru.nsu.tsukanov.snakegame.console;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import ru.nsu.tsukanov.snakegame.console.settings.SavedSettings;
 import ru.nsu.tsukanov.snakegame.console.settings.UserMode;
 import ru.nsu.tsukanov.snakegame.model.game.field.FieldDAO;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GameSettings {
     private int gameSpeed = 1;
+
+    private double difficult = 1;
     private UserMode userMode = UserMode.Player;
     private Game game;
     private File file;
+    private final File settingFile = new File("resources/settings.json");
 
     private final Map<Character, Direction> keyCharacterDirectionMap;
     private final Map<KeyType, Direction> keyTypeDirectionMap;
@@ -27,7 +33,37 @@ public class GameSettings {
         keyCharacterDirectionMap = new HashMap<>();
         keyTypeDirectionMap = new HashMap<>();
         initializeKeyMap();
+        initializeFromSaved();
+    }
 
+    private void initializeFromSaved() {
+
+        if (settingFile.exists()) {
+            try {
+                SavedSettings savedSettings = new ObjectMapper().readValue(settingFile, SavedSettings.class);
+                gameSpeed = savedSettings.speed();
+                userMode = savedSettings.userMode();
+//                difficult = savedSettings.difficult();
+            } catch (IOException e) {
+                System.err.println("There is problem with json");
+            }
+        } else {
+            SavedSettings savedSettings = new SavedSettings(gameSpeed, userMode, difficult);
+            try {
+                new ObjectMapper().writeValue(settingFile, savedSettings);
+            } catch (IOException e) {
+                System.err.println("Not saved");
+            }
+        }
+    }
+
+    public void saveIntoFile() {
+        SavedSettings savedSettings = new SavedSettings(gameSpeed, userMode, difficult);
+        try {
+            new ObjectMapper().writeValue(settingFile, savedSettings);
+        } catch (IOException e) {
+            System.err.println("Not saved");
+        }
     }
 
     public Game getRandomGame() {
@@ -94,5 +130,13 @@ public class GameSettings {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public double getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 }

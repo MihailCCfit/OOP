@@ -26,8 +26,11 @@ public class SettingsController implements Initializable {
     private CheckBox observerBox;
     @FXML
     private Slider levelSlider;
+    @FXML
+    private Slider difficultSlider;
 
     public void switchToMenu(ActionEvent event) throws IOException {
+        gameSettings.saveIntoFile();
         Parent root = FXMLLoader.load(getClass().getResource("/menu-view.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -38,6 +41,7 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        observerBox.selectedProperty().setValue(gameSettings.getUserMode().equals(UserMode.Observer));
         observerBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals(true)) {
                 gameSettings.setUserMode(UserMode.Observer);
@@ -45,6 +49,10 @@ public class SettingsController implements Initializable {
                 gameSettings.setUserMode(UserMode.Player);
             }
             System.out.println(gameSettings.getUserMode());
+        });
+        difficultSlider.setValue(gameSettings.getDifficult());
+        difficultSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            gameSettings.setDifficult(newValue.intValue());
         });
         levelSlider.setMin(1);
         levelSlider.setMax(5);

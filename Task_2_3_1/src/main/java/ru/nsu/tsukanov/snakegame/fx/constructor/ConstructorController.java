@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import ru.nsu.tsukanov.snakegame.console.GameSettings;
 import ru.nsu.tsukanov.snakegame.fx.GlobalGameSettings;
-import ru.nsu.tsukanov.snakegame.fx.game.GameController;
+import ru.nsu.tsukanov.snakegame.fx.game.ImageCollector;
 import ru.nsu.tsukanov.snakegame.model.game.field.FieldConstructor;
 import ru.nsu.tsukanov.snakegame.model.game.field.FieldDAO;
 import ru.nsu.tsukanov.snakegame.model.game.field.GameField;
@@ -87,9 +87,9 @@ public class ConstructorController {
             for (int y = 0; y < gameHeight; y++) {
                 ImageView imageView;
                 if (((x + y) & 1) == 0) {
-                    imageView = new ImageView(GameController.ImageCollector.light_grass);
+                    imageView = new ImageView(ImageCollector.light_grass);
                 } else {
-                    imageView = new ImageView(GameController.ImageCollector.dark_grass);
+                    imageView = new ImageView(ImageCollector.dark_grass);
                 }
                 gc.drawImage(imageView.getImage(), x * cellWidth, y * cellHeight,
                         cellWidth, cellHeight);
@@ -112,7 +112,7 @@ public class ConstructorController {
 
     private void drawFood(FoodDTO foodDTO) {
         PointDTO point = foodDTO.foodPoint();
-        gc.drawImage(GameController.ImageCollector.getFood(foodDTO.value()), point.x() * cellWidth, point.y() * cellHeight,
+        gc.drawImage(ImageCollector.getFood(foodDTO.value()), point.x() * cellWidth, point.y() * cellHeight,
                 cellWidth, cellHeight);
     }
 
@@ -128,12 +128,12 @@ public class ConstructorController {
         List<SnakeBodyDTO> bodyList = snakeDTO.body();
 
 
-        Image image = GameController.ImageCollector.snakeHead;
+        Image image = ImageCollector.snakeHead;
 
 
         bodyList.forEach((snakeBodyDTO -> {
 
-            gc.drawImage(GameController.ImageCollector.snakeBody,
+            gc.drawImage(ImageCollector.snakeBody,
                     snakeBodyDTO.pointDTO().x() * cellWidth, snakeBodyDTO.pointDTO().y() * cellHeight,
                     cellWidth, cellHeight);
         }));
@@ -143,7 +143,7 @@ public class ConstructorController {
 
     private void drawWall(WallDTO wallDTO) {
         PointDTO point = wallDTO.point();
-        gc.drawImage(GameController.ImageCollector.wall, point.x() * cellWidth, point.y() * cellHeight,
+        gc.drawImage(ImageCollector.wall, point.x() * cellWidth, point.y() * cellHeight,
                 cellWidth, cellHeight);
     }
 
