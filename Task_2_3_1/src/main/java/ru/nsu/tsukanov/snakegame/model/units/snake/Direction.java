@@ -24,9 +24,9 @@ public enum Direction {
     public int getAngle() {
         return switch (this) {
             case LEFT -> -90;
-            case UP -> 0;
+            case UP -> 180;
             case RIGHT -> 90;
-            case DOWN -> 180;
+            case DOWN -> 0;
         };
     }
 

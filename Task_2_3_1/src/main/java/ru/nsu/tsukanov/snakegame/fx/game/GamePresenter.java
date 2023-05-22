@@ -8,12 +8,13 @@ import javafx.util.Duration;
 import ru.nsu.tsukanov.snakegame.console.GameSettings;
 import ru.nsu.tsukanov.snakegame.console.settings.UserMode;
 import ru.nsu.tsukanov.snakegame.fx.GlobalGameSettings;
+import ru.nsu.tsukanov.snakegame.model.game.field.GameField;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.players.EuristickBot;
 import ru.nsu.tsukanov.snakegame.model.players.HumanPlayer;
 import ru.nsu.tsukanov.snakegame.model.players.PlayerListener;
+import ru.nsu.tsukanov.snakegame.model.units.*;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
-import ru.nsu.tsukanov.snakegame.units.*;
 
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class GamePresenter {
         gameHeight = game.height();
         cellWidth = gameController.getCanvasWidth() / gameWidth;
         cellHeight = gameController.getCanvasHeight() / gameHeight;
-        snakeDrawer = new SnakeDrawer(game.getSnakeMap().size(), gameController);//TODO:
+        snakeDrawer = new SnakeDrawer(game.getSnakeMap().size());//TODO:
         gameController.setSize(cellWidth, cellHeight);
     }
 
@@ -71,7 +72,7 @@ public class GamePresenter {
     public void update() {
         gameController.clear();
         drawField();
-        drawGameObjects(GameStateDTO.getGameState(game));
+        drawGameObjects();
         updateStatistics();
         updateLeaders();
     }
@@ -84,10 +85,18 @@ public class GamePresenter {
 
     }
 
-    private void drawGameObjects(GameStateDTO gameStateDTO) {
-        gameStateDTO.foodDTOS().forEach(this::drawFood);
-        gameStateDTO.walls().forEach(this::drawWall);
-        gameStateDTO.snakes().forEach(this::drawSnakes);
+    private void drawGameObjects() {
+        GameField field = game.getField();
+        Map<Integer, Snake> snakeMap = game.getSnakeMap();
+        for (GameUnit gameUnit : field.getAll()) {
+            if (gameUnit instanceof Food food) {
+                drawFood(food);
+            }
+            if (gameUnit instanceof Wall wall) {
+                drawWall(wall);
+            }
+        }
+        snakeMap.forEach(this::drawSnake);
     }
 
     private void drawField() {
@@ -98,9 +107,8 @@ public class GamePresenter {
         }
     }
 
-    private void drawWall(WallDTO wallDTO) {
-        PointDTO point = wallDTO.point();
-        gameController.drawImage(ImageCollector.wall, point.x(), point.y());
+    private void drawWall(Wall wall) {
+        gameController.drawImage(ImageCollector.wall, wall.getX(), wall.getY());
     }
 
     private void drawCell(int x, int y) {
@@ -113,10 +121,9 @@ public class GamePresenter {
         gameController.drawImage(image, x, y);
     }
 
-    private void drawFood(FoodDTO foodDTO) {
-        PointDTO point = foodDTO.foodPoint();
-        gameController.drawImage(ImageCollector.getFood(foodDTO.value()),
-                point.x(), point.y());
+    private void drawFood(Food food) {
+        gameController.drawImage(ImageCollector.getFood(food.getValue()),
+                food.getX(), food.getY());
     }
 
     private void restart() {
@@ -124,23 +131,21 @@ public class GamePresenter {
         game = GlobalGameSettings.gameSettings.getGame().getCopy();
         update();
         initPlayers();
-
+        gameController.hideWinner();
         timeline.play();
     }
 
-    public void drawSnakes(SnakeDTO snakeDTO) {
-        if (snakeDTO.isAlive()) {
-            int id = snakeDTO.id();
+    public void drawSnake(int id, Snake snake) {
+        if (snake.isControllable()) {
 
-            for (SnakeBodyDTO snakeBodyDTO : snakeDTO.body()) {
-                PointDTO point = snakeBodyDTO.pointDTO();
-                Image bodyImage = snakeDrawer.getBodyImage(snakeBodyDTO.directionDTO(), id);
-                gameController.drawImage(bodyImage, point.x() * cellWidth, point.y() * cellWidth,
+            for (SnakeBody snakeBody : snake.getBody()) {
+                Image bodyImage = snakeDrawer.getBodyImage(snakeBody.getDirection(), id);
+                gameController.drawImage(bodyImage, snakeBody.getX() * cellWidth, snakeBody.getY() * cellWidth,
                         cellWidth, cellHeight);
             }
-            PointDTO point = snakeDTO.head().pointDTO();
-            Image headImage = snakeDrawer.getHeadImage(snakeDTO.head().directionDTO(), id);
-            gameController.drawImage(headImage, point.x() * cellWidth, point.y() * cellWidth,
+            SnakeBody head = snake.getHead();
+            Image headImage = snakeDrawer.getHeadImage(head.getDirection(), id);
+            gameController.drawImage(headImage, head.getX() * cellWidth, head.getY() * cellWidth,
                     cellWidth, cellHeight);
         }
 

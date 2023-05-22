@@ -5,7 +5,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import ru.nsu.tsukanov.snakegame.units.DirectionDTO;
+import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,13 +13,10 @@ import java.util.Map;
 public class SnakeDrawer {
     private final SnapshotParameters parameters;
     private final int playersAmount;
-    private final Map<Integer, HeadBody> imageViewMap = new HashMap<>();
-
-    private GameController gameController;
+    private final Map<Integer, Map<Direction, HeadBody>> imageViewMap = new HashMap<>();
 
 
-    public SnakeDrawer(int playersAmount, GameController gameController) {
-        this.gameController = gameController;
+    public SnakeDrawer(int playersAmount) {
         this.playersAmount = playersAmount;
         parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
@@ -33,38 +30,37 @@ public class SnakeDrawer {
             ColorAdjust color = new ColorAdjust((double) id / playersAmount * 1.1, 0, 0, 0);
             headView.setEffect(color);
             bodyView.setEffect(color);
-            imageViewMap.put(id, new HeadBody(headView, bodyView));
+            Map<Direction, HeadBody> directionMap = new HashMap<>();
+            for (Direction value : Direction.values()) {
+                double angle = value.getAngle();
+                headView.setRotate(angle);
+                bodyView.setRotate(angle);
+                directionMap.put(value, new HeadBody(headView.snapshot(parameters, null),
+                        bodyView.snapshot(parameters, null)));
+                headView.setRotate(-angle);
+                bodyView.setRotate(-angle);
+            }
+            imageViewMap.put(id, directionMap);
         }
     }
 
-    private record HeadBody(ImageView headView, ImageView bodyView) {
+    private record HeadBody(Image headImage, Image bodyImage) {
     }
 
 
-    public Image getHeadImage(DirectionDTO headDirection, int id) {
-        HeadBody headBody = imageViewMap.get(id);
-        ImageView headView = headBody.headView;
-        int headRotation = headDirection.getAngle();
-        headView.setRotate(headRotation);
-        Image headImage = headView.snapshot(parameters, null);
-        headView.setRotate(-headRotation);
-        return headImage;
+    public Image getHeadImage(Direction headDirection, int id) {
+        HeadBody headBody = imageViewMap.get(id).get(headDirection);
+        return headBody.headImage;
     }
 
     public Image getHeadImage(int id) {
-        HeadBody headBody = imageViewMap.get(id);
-        ImageView headView = headBody.headView;
-        return headView.snapshot(parameters, null);
+        HeadBody headBody = imageViewMap.get(id).get(Direction.UP);
+        return headBody.headImage;
     }
 
-    public Image getBodyImage(DirectionDTO bodyDirection, int id) {
-        HeadBody headBody = imageViewMap.get(id);
-        ImageView bodyView = headBody.bodyView;
-        int angle = bodyDirection.getAngle();
-        bodyView.setRotate(angle);
-        Image bodyImage = bodyView.snapshot(parameters, null);
-        bodyView.setRotate(-angle);
-        return bodyImage;
+    public Image getBodyImage(Direction bodyDirection, int id) {
+        HeadBody headBody = imageViewMap.get(id).get(bodyDirection);
+        return headBody.bodyImage;
     }
 
 

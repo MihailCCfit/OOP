@@ -56,14 +56,18 @@ public class GameController {
         }));
         gc = canvas.getGraphicsContext2D();
 
-        winnerImage.setOpacity(0);
-        winnerImage.setImage(ImageCollector.winner);
-        winnerText.setOpacity(0);
+        hideWinner();
 
         initLeaderBoard();
         gamePresenter.update();
         gamePresenter.init();
         gamePresenter.startGame();
+    }
+
+    public void hideWinner() {
+        winnerImage.setOpacity(0);
+        winnerImage.setImage(ImageCollector.winner);
+        winnerText.setOpacity(0);
     }
 
     public void setSize(double cellWidth, double cellHeight) {
