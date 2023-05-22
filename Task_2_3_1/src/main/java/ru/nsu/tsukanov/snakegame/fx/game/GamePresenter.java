@@ -26,12 +26,9 @@ public class GamePresenter {
     private final KeyResolver keyResolver = new KeyResolver();
     private final int gameWidth;
     private final int gameHeight;
-
     private final double cellWidth;
-
     private final double cellHeight;
     private final GameSettings gameSettings = GlobalGameSettings.gameSettings;
-
     private Game game;
     private final SnakeDrawer snakeDrawer;
 
@@ -152,7 +149,7 @@ public class GamePresenter {
     }
 
     void startGame() {
-        timeline = new Timeline(new KeyFrame(Duration.millis((double) 20 / gameSettings.getGameSpeed()), ev -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis((double) 100 / (gameSettings.getGameSpeed())), ev -> {
             timeline.stop();
             if (!game.tick()) {
                 gameController.showWinner();

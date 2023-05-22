@@ -2,6 +2,7 @@ package ru.nsu.tsukanov.snakegame.model.game.logic.events;
 
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.units.Empty;
+import ru.nsu.tsukanov.snakegame.model.units.Food;
 import ru.nsu.tsukanov.snakegame.model.units.Snake;
 import ru.nsu.tsukanov.snakegame.model.units.SnakeBody;
 
@@ -17,6 +18,8 @@ public class SnakeDeath extends SnakeEvent {
     public void run() {
         snake.setControllable(false);
         List<SnakeBody> snakeBodies = new LinkedList<>(snake.getBody());
+        SnakeBody head = snake.getHead();
+
         snakeBodies.forEach((snakeBody -> {
             if (game.getUnitAt(snakeBody.getX(), snakeBody.getY()) instanceof SnakeBody) {
 //                if (((snakeBody.getX() ^ snakeBody.getY() % 2) & 1) == 0) {
@@ -28,7 +31,7 @@ public class SnakeDeath extends SnakeEvent {
                 game.setGameUnit(new Empty(snakeBody));
             }
         }));
-        game.setGameUnit(new Empty(snake.getHead()));
+        game.setGameUnit(new Food(head.getX(), head.getY(), 3));
 
     }
 }

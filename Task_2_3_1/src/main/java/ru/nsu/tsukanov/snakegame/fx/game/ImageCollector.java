@@ -16,7 +16,7 @@ public class ImageCollector {
     public final static Image snakeHead = loadImage("snakeHead.png");
     public final static Image pointer = loadImage("pointer.png");
     public final static Image winner = loadImage("win.png");
-    public static int maxFood = 2;
+    public static int maxFood = 3;
     private static final Random random = new Random();
 
     public static Image getFood(int foodValue) {
