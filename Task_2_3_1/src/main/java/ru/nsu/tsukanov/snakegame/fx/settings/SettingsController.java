@@ -51,8 +51,9 @@ public class SettingsController implements Initializable {
             System.out.println(gameSettings.getUserMode());
         });
         difficultSlider.setValue(gameSettings.getDifficult());
+        difficultSlider.setBlockIncrement(0.1);
         difficultSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            gameSettings.setDifficult(newValue.intValue());
+            gameSettings.setDifficult(newValue.doubleValue());
         });
         levelSlider.setMin(1);
         levelSlider.setMax(5);

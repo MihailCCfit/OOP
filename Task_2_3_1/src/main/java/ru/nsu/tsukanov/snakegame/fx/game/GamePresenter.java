@@ -10,7 +10,7 @@ import ru.nsu.tsukanov.snakegame.console.settings.UserMode;
 import ru.nsu.tsukanov.snakegame.fx.GlobalGameSettings;
 import ru.nsu.tsukanov.snakegame.model.game.field.GameField;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
-import ru.nsu.tsukanov.snakegame.model.players.EuristickBot;
+import ru.nsu.tsukanov.snakegame.model.players.CustomizableEuristickBot;
 import ru.nsu.tsukanov.snakegame.model.players.HumanPlayer;
 import ru.nsu.tsukanov.snakegame.model.players.PlayerListener;
 import ru.nsu.tsukanov.snakegame.model.units.*;
@@ -18,6 +18,7 @@ import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class GamePresenter {
     private final GameController gameController;
@@ -163,9 +164,33 @@ public class GamePresenter {
     }
 
     private PlayerListener getBot(int id) {
-//        CustomizableEuristickBot.BotBuilder botBuilder = new CustomizableEuristickBot.BotBuilder(game, id);
-//        botBuilder.setCorrect(gameSettings.getDifficult());
-        return new EuristickBot(game, id);
+        PlayerListener playerListener;
+        switch (new Random().nextInt(6)) {
+
+            case 0 -> {
+                CustomizableEuristickBot euristickBot = new CustomizableEuristickBot(game, id);
+                euristickBot.setCoefficient(new Double[]{
+                        0.7664159201915209, -1.8893220925635683, 0.3414123838630473, -0.2366503429610878, 0.5539281285241162, -1.3241101679514, 1.2229872111885416, -1.999601995370626, 1.354171404201951, 0.4315954979823856
+                });
+                playerListener = euristickBot;
+                euristickBot.setCorrect(gameSettings.getDifficult());
+            }
+            case 1 -> {
+                CustomizableEuristickBot euristickBot = new CustomizableEuristickBot(game, id);
+                euristickBot.setCoefficient(new Double[]{
+                        0.7664221551452993, -2.3292002242198406, 0.3750945478344285, -1.0191706203924107, 0.990466926647421, -0.24505616190359297, 0.47664983093143076, -2.0664856125919777, 1.0459271897885696, 0.7929273437018975
+                });
+                playerListener = euristickBot;
+                euristickBot.setCorrect(gameSettings.getDifficult());
+            }
+            default -> {
+                CustomizableEuristickBot euristickBot = new CustomizableEuristickBot(game, id);
+                euristickBot.setCorrect(gameSettings.getDifficult());
+                playerListener = euristickBot;
+            }
+        }
+
+        return playerListener;
     }
 
     public void stop() {

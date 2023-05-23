@@ -9,39 +9,58 @@ import java.util.Map;
 import java.util.Random;
 
 public class CustomizableEuristickBot extends PlayerListener {
+
+    private final int range;
     /**
      * Should be from 0 to 1.
      */
-    private double correct = 1;
-    private int range = 3;
-    private double distanceSquare = 1;
-    private double distanceLinear = 2;
+    private double correct = 1.0;
+
+    private double distanceSquare = 1.0;
+    private double distanceLinear = 2.0;
     private double distanceConstant = 0.2;
-
-
     private double tailPenalty = 10;
     private double anotherSnakePenalty = 40;
-    private Map<Class<? extends GameUnit>, Double> penalties;
+    private double emptyPenalty = -5.0;
+    private double wallPenalty = 80.0;
+    private double foodPenalty = -100.0;
+    private double snakeBodyPenalty = 80.0;
+    private double nullPenalty = 40.0;
     private final Random random = new Random();
 
-    public CustomizableEuristickBot(Game game, Integer snakeId) {
-        super(game, snakeId);
-        penalties = getInitPenalties();
+    public Double[] getCoefficientArr() {
+        return new Double[]{distanceSquare, distanceLinear, distanceConstant,
+                tailPenalty, anotherSnakePenalty, emptyPenalty,
+                wallPenalty, foodPenalty, snakeBodyPenalty, nullPenalty};
     }
 
-    public Map<Class<? extends GameUnit>, Double> getInitPenalties() {
-        Map<Class<? extends GameUnit>, Double> map = Map.of(
-                Empty.class, -5.0,
-                Wall.class, 80.0,
-                Food.class, -120.0,
-                SnakeBody.class, 50.0
-        );
-        return map;
+    public void setCoefficient(Double[] coefficient) {
+        distanceSquare = coefficient[0];
+        distanceLinear = coefficient[1];
+        distanceConstant = coefficient[2];
+        tailPenalty = coefficient[3];
+        anotherSnakePenalty = coefficient[4];
+        emptyPenalty = coefficient[5];
+        wallPenalty = coefficient[6];
+        foodPenalty = coefficient[7];
+        snakeBodyPenalty = coefficient[8];
+        nullPenalty = coefficient[9];
+
+    }
+
+    public CustomizableEuristickBot(Game game, Integer snakeId) {
+        this(game, snakeId, 3);
+    }
+
+    public CustomizableEuristickBot(Game game, Integer snakeId, int range) {
+        super(game, snakeId);
+        this.range = range;
     }
 
     public Direction nextDirection() {
         SnakeBody snakeHead = game.getSnakeMap().get(mySnakeId).getHead();
         double continuePenalty = calculateTotalPenalty(getNextUnit(nextPoint(snakeHead)));
+        continuePenalty *= Math.max(random.nextDouble(), correct);
         GameUnit nextUnit;
         nextUnit = getNextUnit(
                 nextPoint(snakeHead.getDirection().changeDirection(true),
@@ -65,13 +84,19 @@ public class CustomizableEuristickBot extends PlayerListener {
 
     private double getPenalty(GameUnit gameUnit) {
         if (gameUnit == null) {
-            return 40;
+            return nullPenalty;
         }
         if (gameUnit instanceof Food food) {
-            return -((double) food.getValue() + 1) / 2 * penalties.get(Food.class);
+            return ((double) food.getValue() + 1) / 2 * foodPenalty;
+        }
+        if (gameUnit instanceof Empty) {
+            return emptyPenalty;
+        }
+        if (gameUnit instanceof Wall) {
+            return wallPenalty;
         }
         if (gameUnit instanceof SnakeBody snakeBody) {
-            double res = penalties.get(SnakeBody.class);
+            double res = snakeBodyPenalty;
             if (!snakeBody.getSnake().getBody().isEmpty() && snakeBody.getSnake().getBody().getLast() == snakeBody) {
                 res = tailPenalty;
             }
@@ -83,18 +108,18 @@ public class CustomizableEuristickBot extends PlayerListener {
                 res += anotherSnakePenalty;
             }
             return res;
-        } else {
-            return penalties.get(gameUnit.getClass());
         }
+        return 0;
     }
 
     private double distanceScale(double distance) {
-        return 1 / (distance * distance + 2 * distance + 0.2);
-    }
-
-
-    public void addPenalty(Class<? extends GameUnit> gameUnitClass, double penalty) {
-        penalties.put(gameUnitClass, penalty);
+        double koef = (distance * distance * Math.abs(distanceSquare)
+                + Math.abs(distanceLinear) * distance
+                + Math.abs(distanceConstant));
+        if (Math.abs(koef) < 0.001) {
+            koef = 0.001;
+        }
+        return 1 / koef;
     }
 
     private Map.Entry<Integer, Integer> nextPoint(Direction direction, int x, int y) {
@@ -127,29 +152,11 @@ public class CustomizableEuristickBot extends PlayerListener {
         return res;
     }
 
+    public double getCorrect() {
+        return correct;
+    }
 
-    static public class BotBuilder {
-        private final CustomizableEuristickBot customizableEuristickBot;
-
-        public BotBuilder(Game game, Integer snakeId) {
-            customizableEuristickBot = new CustomizableEuristickBot(game, snakeId);
-        }
-
-        public BotBuilder addBasicPenalties(Class<? extends GameUnit> gameUnitClass,
-                                            Double penalty) {
-            customizableEuristickBot.penalties.put(gameUnitClass, penalty);
-            return this;
-        }
-
-        public BotBuilder setCorrect(Double correct) {
-            if (correct >= 0 && correct <= 1) {
-                customizableEuristickBot.correct = correct;
-            }
-            return this;
-        }
-
-        public CustomizableEuristickBot build() {
-            return customizableEuristickBot;
-        }
+    public void setCorrect(double correct) {
+        this.correct = correct;
     }
 }

@@ -43,7 +43,7 @@ public class GameSettings {
                 SavedSettings savedSettings = new ObjectMapper().readValue(settingFile, SavedSettings.class);
                 gameSpeed = savedSettings.speed();
                 userMode = savedSettings.userMode();
-//                difficult = savedSettings.difficult();
+                difficult = savedSettings.difficult();
             } catch (IOException e) {
                 System.err.println("There is problem with json");
             }
@@ -136,7 +136,7 @@ public class GameSettings {
         return difficult;
     }
 
-    public void setDifficult(int difficult) {
+    public void setDifficult(double difficult) {
         this.difficult = difficult;
     }
 }

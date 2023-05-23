@@ -21,6 +21,7 @@ public class Game {
     private boolean endFLag = false;
     private boolean lastFLag = false;
     private int maxScore = 0;
+    private int currentTick = 0;
 
     private GameUnit fieldGet(int x, int y) {
         return field.get(x, y);
@@ -37,6 +38,10 @@ public class Game {
 
     private boolean isContinue() {
         if (endFLag) {
+            return false;
+        }
+        if (currentTick > 2000) {
+            endFLag = true;
             return false;
         }
         List<Snake> snakeList = snakeMap.values().stream()
@@ -71,6 +76,7 @@ public class Game {
     }
 
     public boolean tick() {
+        currentTick++;
         if (isContinue()) {
             players.forEach(((snakeId, playerListener) -> {
                 Snake snake = snakeMap.get(snakeId);
