@@ -102,7 +102,7 @@ public class GameLogic {
         if (amountOfFood >
 //                ((long) game.height() * game.width() -
 //                game.getSnakeMap().values().stream().map(Snake::length).reduce(0L, Long::sum)) / 10
-                15
+                20
 
         ) {
             return false;

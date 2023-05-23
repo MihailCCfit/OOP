@@ -34,6 +34,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
     implementation 'com.googlecode.lanterna:lanterna:3.0.1'
     implementation 'org.openjfx:javafx-media:20'
+    implementation 'org.ejml:ejml-core:0.43'
+    implementation 'org.ejml:ejml-simple:0.43'
 
 }
 
