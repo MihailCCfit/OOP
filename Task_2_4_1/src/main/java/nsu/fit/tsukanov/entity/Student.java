@@ -6,6 +6,9 @@ import lombok.Data;
 public class Student {
     String name;
     String githubName;
-    String repoUrl;
     String defaultBranch;
+
+    String repoName;
+    private String repoUrl;
+
 }

@@ -1,4 +1,4 @@
 name = "Mikhail"
 githubName = "MihailCCFit"
-repoUrl = "oop"
+repoName = "oop"
 defaultBranch = "main"
