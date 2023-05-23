@@ -35,9 +35,9 @@ public class CustomizableEuristickBot extends PlayerListener {
     }
 
     public void setCoefficient(Double[] coefficient) {
-        distanceSquare = coefficient[0];
-        distanceLinear = coefficient[1];
-        distanceConstant = coefficient[2];
+//        distanceSquare = coefficient[0];
+//        distanceLinear = coefficient[1];
+//        distanceConstant = coefficient[2];
         tailPenalty = coefficient[3];
         anotherSnakePenalty = coefficient[4];
         emptyPenalty = coefficient[5];
