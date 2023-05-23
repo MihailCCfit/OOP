@@ -10,11 +10,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ru.nsu.tsukanov.snakegame.fx.gameview.GameView;
 
 import java.io.IOException;
 import java.util.List;
 
-public class GameController {
+public class GameController implements GameView {
     @FXML
     public Text score;
     @FXML
@@ -68,6 +69,16 @@ public class GameController {
         winnerImage.setOpacity(0);
         winnerImage.setImage(ImageCollector.winner);
         winnerText.setOpacity(0);
+    }
+
+    @Override
+    public double getViewWidth() {
+        return getCanvasWidth();
+    }
+
+    @Override
+    public double getViewHeight() {
+        return getCanvasHeight();
     }
 
     public void setSize(double cellWidth, double cellHeight) {

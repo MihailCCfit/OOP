@@ -8,19 +8,20 @@ import javafx.util.Duration;
 import ru.nsu.tsukanov.snakegame.console.GameSettings;
 import ru.nsu.tsukanov.snakegame.console.settings.UserMode;
 import ru.nsu.tsukanov.snakegame.fx.GlobalGameSettings;
-import ru.nsu.tsukanov.snakegame.model.game.field.GameField;
+import ru.nsu.tsukanov.snakegame.fx.gameview.DefaultGamePresenter;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.players.CustomizableEuristickBot;
 import ru.nsu.tsukanov.snakegame.model.players.HumanPlayer;
 import ru.nsu.tsukanov.snakegame.model.players.PlayerListener;
-import ru.nsu.tsukanov.snakegame.model.units.*;
+import ru.nsu.tsukanov.snakegame.model.units.Snake;
+import ru.nsu.tsukanov.snakegame.model.units.SnakeBody;
 import ru.nsu.tsukanov.snakegame.model.units.snake.Direction;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class GamePresenter {
+public class GamePresenter extends DefaultGamePresenter {
     private final GameController gameController;
     private Timeline timeline = new Timeline();
     private HumanPlayer humanPlayer;
@@ -34,8 +35,10 @@ public class GamePresenter {
     private final SnakeDrawer snakeDrawer;
 
     public GamePresenter(GameController gameController) {
+        super(gameController);
         this.gameController = gameController;
         game = gameSettings.getGame().getCopy();
+        super.setGame(game);
         gameWidth = game.width();
         gameHeight = game.height();
         cellWidth = gameController.getCanvasWidth() / gameWidth;
@@ -67,6 +70,7 @@ public class GamePresenter {
         }));
     }
 
+    @Override
     public void update() {
         gameController.clear();
         drawField();
@@ -83,46 +87,6 @@ public class GamePresenter {
 
     }
 
-    private void drawGameObjects() {
-        GameField field = game.getField();
-        Map<Integer, Snake> snakeMap = game.getSnakeMap();
-        for (GameUnit gameUnit : field.getAll()) {
-            if (gameUnit instanceof Food food) {
-                drawFood(food);
-            }
-            if (gameUnit instanceof Wall wall) {
-                drawWall(wall);
-            }
-        }
-        snakeMap.forEach(this::drawSnake);
-    }
-
-    private void drawField() {
-        for (int x = 0; x < gameWidth; x++) {
-            for (int y = 0; y < gameHeight; y++) {
-                drawCell(x, y);
-            }
-        }
-    }
-
-    private void drawWall(Wall wall) {
-        gameController.drawImage(ImageCollector.wall, wall.getX(), wall.getY());
-    }
-
-    private void drawCell(int x, int y) {
-        Image image;
-        if (((x + y) & 1) == 0) {
-            image = ImageCollector.light_grass;
-        } else {
-            image = ImageCollector.dark_grass;
-        }
-        gameController.drawImage(image, x, y);
-    }
-
-    private void drawFood(Food food) {
-        gameController.drawImage(ImageCollector.getFood(food.getValue()),
-                food.getX(), food.getY());
-    }
 
     private void restart() {
         timeline.stop();
@@ -133,6 +97,7 @@ public class GamePresenter {
         timeline.play();
     }
 
+    @Override
     public void drawSnake(int id, Snake snake) {
         if (snake.isControllable()) {
 

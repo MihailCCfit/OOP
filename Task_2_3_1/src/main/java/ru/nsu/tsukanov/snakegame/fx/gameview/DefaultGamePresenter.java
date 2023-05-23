@@ -38,7 +38,7 @@ public class DefaultGamePresenter {
         drawGameObjects();
     }
 
-    private void drawGameObjects() {
+    protected void drawGameObjects() {
         GameField field = game.getField();
         Map<Integer, Snake> snakeMap = game.getSnakeMap();
         for (GameUnit gameUnit : field.getAll()) {
@@ -52,7 +52,7 @@ public class DefaultGamePresenter {
         snakeMap.forEach(this::drawSnake);
     }
 
-    private void drawField() {
+    protected void drawField() {
         for (int x = 0; x < gameWidth; x++) {
             for (int y = 0; y < gameHeight; y++) {
                 drawCell(x, y);
@@ -60,11 +60,11 @@ public class DefaultGamePresenter {
         }
     }
 
-    private void drawWall(Wall wall) {
+    protected void drawWall(Wall wall) {
         gameView.drawImage(ImageCollector.wall, wall.getX(), wall.getY());
     }
 
-    private void drawCell(int x, int y) {
+    protected void drawCell(int x, int y) {
         Image image;
         if (((x + y) & 1) == 0) {
             image = ImageCollector.light_grass;
@@ -74,12 +74,12 @@ public class DefaultGamePresenter {
         gameView.drawImage(image, x, y);
     }
 
-    private void drawFood(Food food) {
+    protected void drawFood(Food food) {
         gameView.drawImage(ImageCollector.getFood(food.getValue()),
                 food.getX(), food.getY());
     }
 
-    public void drawSnake(int id, Snake snake) {
+    protected void drawSnake(int id, Snake snake) {
         if (snake.isControllable()) {
 
             for (SnakeBody snakeBody : snake.getBody()) {
