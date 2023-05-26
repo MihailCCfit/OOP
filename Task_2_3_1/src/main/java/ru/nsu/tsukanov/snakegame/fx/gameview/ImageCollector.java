@@ -1,4 +1,4 @@
-package ru.nsu.tsukanov.snakegame.fx.game;
+package ru.nsu.tsukanov.snakegame.fx.gameview;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;

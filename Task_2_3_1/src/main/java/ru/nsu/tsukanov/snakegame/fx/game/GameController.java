@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ru.nsu.tsukanov.snakegame.fx.gameview.GameView;
+import ru.nsu.tsukanov.snakegame.fx.gameview.ImageCollector;
 
 import java.io.IOException;
 import java.util.List;

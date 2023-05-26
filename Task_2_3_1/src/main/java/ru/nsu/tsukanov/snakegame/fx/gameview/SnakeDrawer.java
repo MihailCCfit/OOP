@@ -1,4 +1,4 @@
-package ru.nsu.tsukanov.snakegame.fx.game;
+package ru.nsu.tsukanov.snakegame.fx.gameview;
 
 import javafx.scene.SnapshotParameters;
 import javafx.scene.effect.ColorAdjust;

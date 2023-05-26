@@ -3,8 +3,6 @@ package ru.nsu.tsukanov.snakegame.fx.gameview;
 import javafx.scene.image.Image;
 import ru.nsu.tsukanov.snakegame.console.GameSettings;
 import ru.nsu.tsukanov.snakegame.fx.GlobalGameSettings;
-import ru.nsu.tsukanov.snakegame.fx.game.ImageCollector;
-import ru.nsu.tsukanov.snakegame.fx.game.SnakeDrawer;
 import ru.nsu.tsukanov.snakegame.model.game.field.GameField;
 import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
 import ru.nsu.tsukanov.snakegame.model.units.*;
@@ -18,7 +16,7 @@ public class DefaultGamePresenter {
     private final double cellWidth;
     private final double cellHeight;
     private final GameSettings gameSettings = GlobalGameSettings.gameSettings;
-    private Game game;
+    protected Game game;
     private final SnakeDrawer snakeDrawer;
 
     public DefaultGamePresenter(GameView gameView) {

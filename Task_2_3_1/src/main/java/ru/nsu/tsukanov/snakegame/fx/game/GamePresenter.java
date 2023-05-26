@@ -9,7 +9,8 @@ import ru.nsu.tsukanov.snakegame.console.GameSettings;
 import ru.nsu.tsukanov.snakegame.console.settings.UserMode;
 import ru.nsu.tsukanov.snakegame.fx.GlobalGameSettings;
 import ru.nsu.tsukanov.snakegame.fx.gameview.DefaultGamePresenter;
-import ru.nsu.tsukanov.snakegame.model.game.logic.Game;
+import ru.nsu.tsukanov.snakegame.fx.gameview.ImageCollector;
+import ru.nsu.tsukanov.snakegame.fx.gameview.SnakeDrawer;
 import ru.nsu.tsukanov.snakegame.model.players.CustomizableEuristickBot;
 import ru.nsu.tsukanov.snakegame.model.players.HumanPlayer;
 import ru.nsu.tsukanov.snakegame.model.players.PlayerListener;
@@ -31,14 +32,12 @@ public class GamePresenter extends DefaultGamePresenter {
     private final double cellWidth;
     private final double cellHeight;
     private final GameSettings gameSettings = GlobalGameSettings.gameSettings;
-    private Game game;
     private final SnakeDrawer snakeDrawer;
 
     public GamePresenter(GameController gameController) {
         super(gameController);
         this.gameController = gameController;
         game = gameSettings.getGame().getCopy();
-        super.setGame(game);
         gameWidth = game.width();
         gameHeight = game.height();
         cellWidth = gameController.getCanvasWidth() / gameWidth;
