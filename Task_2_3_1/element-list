@@ -12,8 +12,11 @@ ru.nsu.tsukanov.snakegame.console.settings
 ru.nsu.tsukanov.snakegame.fx
 ru.nsu.tsukanov.snakegame.fx.constructor
 ru.nsu.tsukanov.snakegame.fx.game
+ru.nsu.tsukanov.snakegame.fx.gameview
 ru.nsu.tsukanov.snakegame.fx.menu
 ru.nsu.tsukanov.snakegame.fx.settings
+ru.nsu.tsukanov.snakegame.genetic
+ru.nsu.tsukanov.snakegame.genetic.neural
 ru.nsu.tsukanov.snakegame.model.basic
 ru.nsu.tsukanov.snakegame.model.game.field
 ru.nsu.tsukanov.snakegame.model.game.field.data
