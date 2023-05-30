@@ -13,5 +13,7 @@ public @interface Closure {
      *
      * @return the closure Name
      */
-    String value() default "";
+    String name() default "";
+
+    boolean hasName() default false;
 }

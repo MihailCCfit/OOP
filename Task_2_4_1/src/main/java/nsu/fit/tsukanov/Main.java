@@ -45,6 +45,7 @@ public class Main {
         }
 
         Group config = new Group(); // наш бин с конфигурацией
+
         script.setDelegate(config);
         script.run();
         System.out.println(config);
