@@ -2,6 +2,7 @@ nsu.fit.tsukanov
 nsu.fit.tsukanov.dsl
 nsu.fit.tsukanov.entity
 nsu.fit.tsukanov.entity.common
+nsu.fit.tsukanov.entity.fixes
 nsu.fit.tsukanov.entity.group
 nsu.fit.tsukanov.entity.tasks
 nsu.fit.tsukanov.git
