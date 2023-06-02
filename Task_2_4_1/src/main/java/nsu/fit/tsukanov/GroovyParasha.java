@@ -1,14 +1,15 @@
 package nsu.fit.tsukanov;
 
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
-import groovy.util.DelegatingScript;
+import nsu.fit.tsukanov.dsl.GroovyParser;
 import nsu.fit.tsukanov.entity.common.GeneralConfig;
+import nsu.fit.tsukanov.entity.common.GitConfig;
 import nsu.fit.tsukanov.entity.fixes.FixConfig;
 import nsu.fit.tsukanov.entity.fixes.StudentInformation;
 import nsu.fit.tsukanov.entity.group.GroupConfig;
+import nsu.fit.tsukanov.entity.tasks.Task;
 import nsu.fit.tsukanov.entity.tasks.TaskConfig;
-import org.codehaus.groovy.control.CompilerConfiguration;
+import nsu.fit.tsukanov.git.PersonGit;
+import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,96 +17,46 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GroovyParasha {
-    private final GroovyShell sh;
-
-    public GroovyParasha() {
-        CompilerConfiguration cc = new CompilerConfiguration();
-        cc.setScriptBaseClass(DelegatingScript.class.getName());
-        this.sh = new GroovyShell(GroovyParasha.class.getClassLoader(), new Binding(), cc);
-    }
-
-    public DelegatingScript getScript(File file) throws IOException {
-        return (DelegatingScript) sh.parse(file);
-    }
-
-    public DelegatingScript getScript(String filePath) throws IOException {
-        return getScript(new File(filePath));
-    }
-
-    public void parseScript(String filePath, Object delegate) throws IOException {
-        DelegatingScript script = getScript(filePath);
-        script.setDelegate(delegate);
-        script.run();
-    }
-
-
-    private GeneralConfig readGeneral() {
-        GeneralConfig generalConfig = new GeneralConfig();
-        try {
-            parseScript("scripts/general.groovy", generalConfig);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return generalConfig;
-    }
-
-    private TaskConfig readTasks(GeneralConfig generalConfig) {
-        TaskConfig taskConfig = new TaskConfig(generalConfig);
-        try {
-            parseScript("scripts/tasks.groovy", taskConfig);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return taskConfig;
-
-    }
-
-    private GroupConfig readGroup(GeneralConfig generalConfig) {
-        GroupConfig groupConfig = new GroupConfig(generalConfig); // наш бин с конфигурацией
-        try {
-            parseScript("scripts/group21214.groovy", groupConfig);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return groupConfig;
-    }
-
-    private FixConfig readFixes(Map<String, StudentInformation> studentInformation) {
-        FixConfig fixConfig = new FixConfig(studentInformation); // наш бин с конфигурацией
-        try {
-            parseScript("scripts/fixes.groovy", fixConfig);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return fixConfig;
-    }
-
-    public static Map<String, StudentInformation> getStudentInformationMap(GroupConfig groupConfig,
-                                                                           TaskConfig taskConfig) {
-        Map<String, StudentInformation> informationMap = new HashMap<>();
-        groupConfig.getStudentConfigs()
-                .forEach(studentConfig -> informationMap.put(studentConfig.getGitName(),
-                        new StudentInformation(studentConfig, taskConfig)
-                ));
-        return informationMap;
-    }
 
     public static void main(String[] args) {
-        GroovyParasha groovyParasha = new GroovyParasha();
-
-        GeneralConfig generalConfig = groovyParasha.readGeneral();
-
-        GroupConfig group = groovyParasha.readGroup(generalConfig);
-
-        TaskConfig taskConfig = groovyParasha.readTasks(generalConfig);
-
+        GroovyParser groovyParser = new GroovyParser();
+        GeneralConfig generalConfig = groovyParser.readGeneral("scripts/general.groovy");
+        GroupConfig group = groovyParser.readGroup(generalConfig, "scripts/group21214.groovy");
+        TaskConfig taskConfig = groovyParser.readTasks(generalConfig, "scripts/tasks.groovy");
         Map<String, StudentInformation> studentInformationMap =
-                getStudentInformationMap(group, taskConfig);
+                GroovyParser.getStudentInformationMap(group, taskConfig);
+        FixConfig fixes = groovyParser.readFixes(studentInformationMap, "scripts/fixes.groovy");
 
-        FixConfig fixes = groovyParasha.readFixes(studentInformationMap);
+//        StudentInformation meInfo = fixes.getInformationMap().get("MihailCCfit");
+//        StudentConfig me = meInfo.getStudentConfig();
 
-        System.out.println(fixes.getInformationMap().get("MihailCCfit"));
+        GitConfig gitConfig = generalConfig.getGit();
+        File generalDir = new File("newFolder");
+        Map<String, PersonGit> personalGits = new HashMap<>();
+        fixes.getInformationMap().forEach(((name, studentInformation) -> {
+            try {
+                File dir = new File(generalDir, studentInformation.getStudentConfig().getGitName());
+                PersonGit personGit = new PersonGit(gitConfig, studentInformation, dir);
+                personalGits.put(name, personGit);
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            } catch (GitAPIException e) {
+                System.err.println(e.getMessage());
+            }
+        }));
+
+        Task task = taskConfig.getTasks().get(taskConfig.getTasks().size() - 1);
+        System.out.println(task);
+        personalGits.forEach(((s, personGit) -> {
+            try {
+                personGit.switchTaskIfNotExists(task);
+            } catch (GitAPIException e) {
+                System.err.println(e);
+            } catch (IOException e) {
+                System.err.println("There is no file for task " + task.id() + ", " + e);
+            }
+        }));
+
 
     }
 }

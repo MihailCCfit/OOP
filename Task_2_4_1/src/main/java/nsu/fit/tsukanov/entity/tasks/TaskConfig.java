@@ -33,7 +33,8 @@ public class TaskConfig {
                 .replace("$1", fst.toString())
                 .replace("$2", snd.toString())
                 .replace("$3", thd.toString());
-        task(name, folderName, branchName);
+        Task tsk = task(name, folderName, branchName);
+        tsk.numbers = List.of(fst, snd, thd);
     }
 
     public void createTask(String name, Integer fst, Integer snd,
@@ -46,18 +47,21 @@ public class TaskConfig {
                 .replace("$1", fst.toString())
                 .replace("$2", snd.toString())
                 .replace("$3", thd.toString());
-        task(name, folderName, branchName, closure);
+        Task tsk = task(name, folderName, branchName, closure);
+        tsk.numbers = List.of(fst, snd, thd);
     }
 
-    public void task(String name, String folder, String branch) {
+    public Task task(String name, String folder, String branch) {
         Task task = new Task(name, folder, branch, taskScore);
         tasks.add(task);
+        return task;
     }
 
-    public void task(String name, String folder,
+    public Task task(String name, String folder,
                      String branch, Closure<?> closure) {
-        Task task = new Task(name, folder, branch);
+        Task task = new Task(name, folder, branch, taskScore);
         Delegator.groovyDelegate(task, closure);
         tasks.add(task);
+        return task;
     }
 }

@@ -2,6 +2,8 @@ package nsu.fit.tsukanov.entity.tasks;
 
 import lombok.Data;
 
+import java.util.List;
+
 
 @Data
 public class Task {
@@ -13,8 +15,9 @@ public class Task {
     String branch;
     Double points;
     Boolean runTests = true;
+    List<Integer> numbers;
 
-    public Task(String name, String folder, String branch) {
+    private Task(String name, String folder, String branch) {
         this.name = name;
         this.folder = folder;
         this.branch = branch;

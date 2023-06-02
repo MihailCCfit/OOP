@@ -6,31 +6,16 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import java.io.File;
 
 public class GitApi {
-    private String githubLinkPrefix = "https://github.com/";
-    private String githubLinkPostfix = ".git";
-    private File saveClonedDirectory = new File(
-            "./save");
-
-    public GitApi(String githubLinkPrefix, String githubLinkPostfix, File saveClonedDirectory) {
-        this.githubLinkPrefix = githubLinkPrefix;
-        this.githubLinkPostfix = githubLinkPostfix;
-        this.saveClonedDirectory = saveClonedDirectory;
-    }
-
-    public GitApi() {
-    }
-
-    public void cloneRepository(String repositoryName) {
-        saveClonedDirectory.mkdirs();
+    public static Git cloneRepository(File directory, String URI) {
         try {
-            Git git = Git.cloneRepository()
-                    .setURI(githubLinkPrefix + repositoryName + githubLinkPostfix)
-                    .setDirectory(saveClonedDirectory)
+            return Git.cloneRepository()
+                    .setDirectory(directory)
+                    .setURI(URI)
                     .setCloneAllBranches(true)
                     .call();
         } catch (GitAPIException e) {
+            System.err.println("gfqs");
             throw new RuntimeException(e);
         }
     }
-
 }

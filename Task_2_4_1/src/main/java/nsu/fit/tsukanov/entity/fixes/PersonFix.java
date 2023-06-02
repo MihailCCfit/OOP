@@ -43,6 +43,9 @@ public class PersonFix {
     }
 
     public void changeFolderPattern(String newPattern) {
+        System.out.println("asdasf: " + studentInformation.folderPattern + " to " + newPattern
+                + " for " + studentInformation.studentConfig.getGitName());
+
         studentInformation.folderPattern = newPattern;
     }
 
