@@ -4,19 +4,23 @@ import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import groovy.util.DelegatingScript;
 import nsu.fit.tsukanov.entity.common.GeneralConfig;
+import nsu.fit.tsukanov.entity.fixes.FixConfig;
+import nsu.fit.tsukanov.entity.fixes.StudentInformation;
 import nsu.fit.tsukanov.entity.group.GroupConfig;
 import nsu.fit.tsukanov.entity.tasks.TaskConfig;
 import org.codehaus.groovy.control.CompilerConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GroovyParasha {
     private final GroovyShell sh;
 
     public GroovyParasha() {
         CompilerConfiguration cc = new CompilerConfiguration();
-        cc.setScriptBaseClass(DelegatingScript.class.getName()); // благодаря этой настройке все создаваемые groovy скрипты будут наследоваться от DelegatingScript
+        cc.setScriptBaseClass(DelegatingScript.class.getName());
         this.sh = new GroovyShell(GroovyParasha.class.getClassLoader(), new Binding(), cc);
     }
 
@@ -65,17 +69,43 @@ public class GroovyParasha {
             throw new RuntimeException(e);
         }
         return groupConfig;
+    }
 
+    private FixConfig readFixes(Map<String, StudentInformation> studentInformation) {
+        FixConfig fixConfig = new FixConfig(studentInformation); // наш бин с конфигурацией
+        try {
+            parseScript("scripts/fixes.groovy", fixConfig);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return fixConfig;
+    }
+
+    public static Map<String, StudentInformation> getStudentInformationMap(GroupConfig groupConfig,
+                                                                           TaskConfig taskConfig) {
+        Map<String, StudentInformation> informationMap = new HashMap<>();
+        groupConfig.getStudentConfigs()
+                .forEach(studentConfig -> informationMap.put(studentConfig.getGitName(),
+                        new StudentInformation(studentConfig, taskConfig)
+                ));
+        return informationMap;
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello DSL!");
         GroovyParasha groovyParasha = new GroovyParasha();
+
         GeneralConfig generalConfig = groovyParasha.readGeneral();
-        System.out.println(generalConfig);
+
         GroupConfig group = groovyParasha.readGroup(generalConfig);
-        System.out.println(group);
+
         TaskConfig taskConfig = groovyParasha.readTasks(generalConfig);
-        System.out.println(taskConfig);
+
+        Map<String, StudentInformation> studentInformationMap =
+                getStudentInformationMap(group, taskConfig);
+
+        FixConfig fixes = groovyParasha.readFixes(studentInformationMap);
+
+        System.out.println(fixes.getInformationMap().get("MihailCCfit"));
+
     }
 }

@@ -8,7 +8,7 @@ tasks {
     createTask 'Graph', 1, 2, 3
     createTask 'Substring finder', 1, 3, 1
     task 'Record book', 'Task_1_4_1', 'task-1-4-1'
-    createTask('Calculator', 1, 2, 3){
+    createTask('Calculator', 1, 5, 1){
         points = 2.0
     }
     task 'Notebook', 'Task_1_5_2', 'task-1-5-2'

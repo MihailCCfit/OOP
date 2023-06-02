@@ -12,8 +12,8 @@ import java.util.List;
 public class TaskConfig {
     List<Task> tasks = new ArrayList<>();
     Double taskScore;
-    String branchPattern = "task-$1-$2-$3";
-    String folderPattern = "Task_$1_$2_$3";
+    private String branchPattern = "task-$1-$2-$3";
+    private String folderPattern = "Task_$1_$2_$3";
 
     public TaskConfig(GeneralConfig generalConfig) {
         taskScore = generalConfig.getEvaluation().getTaskScore();
@@ -33,7 +33,7 @@ public class TaskConfig {
                 .replace("$1", fst.toString())
                 .replace("$2", snd.toString())
                 .replace("$3", thd.toString());
-        task(name, branchName, folderName);
+        task(name, folderName, branchName);
     }
 
     public void createTask(String name, Integer fst, Integer snd,
@@ -46,7 +46,7 @@ public class TaskConfig {
                 .replace("$1", fst.toString())
                 .replace("$2", snd.toString())
                 .replace("$3", thd.toString());
-        task(name, branchName, folderName, closure);
+        task(name, folderName, branchName, closure);
     }
 
     public void task(String name, String folder, String branch) {
