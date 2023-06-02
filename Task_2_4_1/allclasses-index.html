@@ -16,7 +16,11 @@
 <script type="text/javascript" src="script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="all-classes-index-page">
-<script type="text/javascript">var pathtoroot = "./";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "./";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -53,8 +57,9 @@ loadScripts(document, 'script');</script>
 <h1 title="All&amp;nbsp;Classes" class="title">All&nbsp;Classes</h1>
 </div>
 <div id="all-classes-table">
-<div class="caption"><span>Class Summary</span></div>
-<div class="summary-table two-column-summary">
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Class Summary</button><button id="all-classes-table-tab3" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab3', 2)" class="table-tab">Enum Class Summary</button></div>
+<div id="all-classes-table.tabpanel" role="tabpanel">
+<div class="summary-table two-column-summary" aria-labelledby="all-classes-table-tab0">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/dsl/Delegator.html" title="class in nsu.fit.tsukanov.dsl">Delegator</a></div>
@@ -71,20 +76,31 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
 <div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/GroovyParasha.html" title="class in nsu.fit.tsukanov">GroovyParasha</a></div>
 <div class="col-last even-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/group/GroupConfig.html" title="class in nsu.fit.tsukanov.entity.group">GroupConfig</a></div>
+<div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/dsl/GroovyParser.html" title="class in nsu.fit.tsukanov.dsl">GroovyParser</a></div>
 <div class="col-last odd-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/group/GroupConfig.html" title="class in nsu.fit.tsukanov.entity.group">GroupConfig</a></div>
+<div class="col-last even-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
+<div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/xml/JacocoReportParser.html" title="class in nsu.fit.tsukanov.xml">JacocoReportParser</a></div>
+<div class="col-last odd-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/xml/JacocoReportParser.Counter.html" title="class in nsu.fit.tsukanov.xml">JacocoReportParser.Counter</a></div>
+<div class="col-last even-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="nsu/fit/tsukanov/xml/JacocoReportParser.CounterType.html" title="enum class in nsu.fit.tsukanov.xml">JacocoReportParser.CounterType</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/Lesson.html" title="class in nsu.fit.tsukanov.entity">Lesson</a></div>
 <div class="col-last even-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
 <div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/fixes/PersonFix.html" title="class in nsu.fit.tsukanov.entity.fixes">PersonFix</a></div>
 <div class="col-last odd-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/group/StudentConfig.html" title="class in nsu.fit.tsukanov.entity.group">StudentConfig</a></div>
+<div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/git/PersonGit.html" title="class in nsu.fit.tsukanov.git">PersonGit</a></div>
 <div class="col-last even-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/fixes/StudentInformation.html" title="class in nsu.fit.tsukanov.entity.fixes">StudentInformation</a></div>
+<div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/group/StudentConfig.html" title="class in nsu.fit.tsukanov.entity.group">StudentConfig</a></div>
 <div class="col-last odd-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/tasks/Task.html" title="class in nsu.fit.tsukanov.entity.tasks">Task</a></div>
+<div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/fixes/StudentInformation.html" title="class in nsu.fit.tsukanov.entity.fixes">StudentInformation</a></div>
 <div class="col-last even-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/tasks/TaskConfig.html" title="class in nsu.fit.tsukanov.entity.tasks">TaskConfig</a></div>
+<div class="col-first odd-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/tasks/Task.html" title="class in nsu.fit.tsukanov.entity.tasks">Task</a></div>
 <div class="col-last odd-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table-tab2 all-classes-table"><a href="nsu/fit/tsukanov/entity/tasks/TaskConfig.html" title="class in nsu.fit.tsukanov.entity.tasks">TaskConfig</a></div>
+<div class="col-last even-row-color all-classes-table-tab2 all-classes-table">&nbsp;</div>
+</div>
 </div>
 </div>
 </main>
