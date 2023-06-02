@@ -14,7 +14,7 @@ public class PersonFix {
     }
 
     public void changeBranch(String taskId, String newBranchName) {
-        if (!studentInformation.branchRename.containsKey(taskId)) {
+        if (!studentInformation.extraScore.containsKey(taskId)) {
             System.err.println("No such taskId: " + taskId);
             System.out.println(studentInformation.branchRename);
             throw new RuntimeException("No such taskId: " + taskId);
@@ -23,7 +23,7 @@ public class PersonFix {
     }
 
     public void changeFolder(String taskId, String newFolderName) {
-        if (!studentInformation.folderRename.containsKey(taskId)) {
+        if (!studentInformation.extraScore.containsKey(taskId)) {
             System.err.println("No such taskId: " + taskId);
             throw new RuntimeException("No such taskId: " + taskId);
         }

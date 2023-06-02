@@ -25,8 +25,6 @@ public class StudentInformation {
         branchPattern = taskConfig.getBranchPattern();
         folderPattern = taskConfig.getFolderPattern();
         taskConfig.getTasks().forEach(task -> {
-            branchRename.put(task.id(), null);
-            folderRename.put(task.id(), null);
             extraScore.put(task.id(), 0.0);
         });
     }

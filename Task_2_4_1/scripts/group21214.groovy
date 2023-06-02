@@ -7,16 +7,16 @@ group("21214"){
         defaultBranch = "empty"
     }
     student ('streafy', 'Бадин Иван Андреевич'){
-        repository = "OOP"
+        repository = 'OOP'
     }
     student ('Fagorym', 'Вебер Олег Владимирович'){
-        repository = "OOP"
+        repository = 'OOP'
     }
     student ('NikFive', 'Константинов Никита Игоревич') {
-        repository = "OOP"
+        repository = 'OOP'
     }
     student ('SophyaL', 'Лылова Софья Сергеевна'){
-        repository = "OOP"
+        repository = 'OOP'
     }
     student('rafi2002', 'Масуд Рофикул Ал') {
     }
