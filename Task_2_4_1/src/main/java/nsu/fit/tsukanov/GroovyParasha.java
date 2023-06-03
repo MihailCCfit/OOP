@@ -45,18 +45,48 @@ public class GroovyParasha {
             }
         }));
 
+
         Task task = taskConfig.getTasks().get(taskConfig.getTasks().size() - 1);
         System.out.println(task);
-        personalGits.forEach(((s, personGit) -> {
-            try {
-                personGit.switchTaskIfNotExists(task);
-            } catch (GitAPIException e) {
-                System.err.println(e);
-            } catch (IOException e) {
-                System.err.println("There is no file for task " + task.id() + ", " + e);
-            }
-        }));
+        System.out.println(personalGits);
 
+//        for (Map.Entry<String, PersonGit> entry : personalGits.entrySet()) {
+//            String s = entry.getKey();
+//            PersonGit personGit = entry.getValue();
+//            try {
+//                File moduleDir = personGit.switchTaskIfNotExists(task);
+//                File workingDir = moduleDir.getParentFile();
+//                System.out.println(workingDir);
+//                System.out.println("People: " + s);
+//                String moduleName = moduleDir.getAbsolutePath().replace(workingDir.getAbsolutePath(), "");
+//                moduleName = moduleName.replace("\\", "").replace("/", "");
+//                GradleTool.TaskList taskList = GradleTool.TaskList.builder()
+//                        .taskPair(new GradleTool.TaskPair("clear", () -> {
+//                                    System.out.println("clean");
+//                                }
+//                                )
+//                        )
+//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "build",
+//                                () -> System.out.println("build?")))
+//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "javadoc",
+//                                () -> System.out.println("javadoc?")))
+//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "test",
+//                                () -> System.out.println("test?")))
+//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "jacocoTestReport",
+//                                () -> System.out.println("jacoco?")))
+//                        .build();
+//                try (GradleTool gradleTool = new GradleTool(workingDir)) {
+//                    gradleTool.runTask(taskList.taskPairs);
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
+//            } catch (GitAPIException e) {
+//                System.err.println(e);
+//            } catch (IOException e) {
+//                System.err.println("There is no file for task " + task.id() + ", " + e);
+//            }
+//        }
+//
 
     }
 }

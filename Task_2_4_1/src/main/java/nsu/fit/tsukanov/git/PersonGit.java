@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class PersonGit {
+public class PersonGit implements AutoCloseable {
     Git git;
     StudentInformation studentInfo;
     StudentConfig studentConfig;
@@ -114,12 +114,16 @@ public class PersonGit {
 
 
     private void initFolder() throws IOException, GitAPIException {
+        System.out.println(workingDir);
+        System.out.println(studentConfig.getRepository());
         if (workingDir.exists()) {
             git = Git.open(workingDir);
 
             try {
+
                 switchBranch("origin/" + studentConfig.getDefaultBranch());
             } catch (RefAlreadyExistsException e) {
+                System.err.println("WHY?");
                 switchBranch(studentConfig.getDefaultBranch());
             }
         } else {
@@ -132,5 +136,10 @@ public class PersonGit {
                     .call();
         }
 
+    }
+
+    @Override
+    public void close() throws Exception {
+        git.close();
     }
 }
