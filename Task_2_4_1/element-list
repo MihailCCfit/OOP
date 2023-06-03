@@ -6,4 +6,6 @@ nsu.fit.tsukanov.entity.fixes
 nsu.fit.tsukanov.entity.group
 nsu.fit.tsukanov.entity.tasks
 nsu.fit.tsukanov.git
+nsu.fit.tsukanov.gradle
+nsu.fit.tsukanov.util
 nsu.fit.tsukanov.xml
