@@ -8,12 +8,11 @@ import nsu.fit.tsukanov.entity.fixes.StudentInformation;
 import nsu.fit.tsukanov.entity.group.GroupConfig;
 import nsu.fit.tsukanov.entity.tasks.Task;
 import nsu.fit.tsukanov.entity.tasks.TaskConfig;
-import nsu.fit.tsukanov.git.PersonGit;
+import nsu.fit.tsukanov.evaluator.StudentEvaluator;
 import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class GroovyParasha {
@@ -27,66 +26,27 @@ public class GroovyParasha {
                 GroovyParser.getStudentInformationMap(group, taskConfig);
         FixConfig fixes = groovyParser.readFixes(studentInformationMap, "scripts/fixes.groovy");
 
-//        StudentInformation meInfo = fixes.getInformationMap().get("MihailCCfit");
-//        StudentConfig me = meInfo.getStudentConfig();
-
         GitConfig gitConfig = generalConfig.getGit();
         File generalDir = new File("newFolder");
-        Map<String, PersonGit> personalGits = new HashMap<>();
-        fixes.getInformationMap().forEach(((name, studentInformation) -> {
+
+        studentInformationMap = fixes.getInformationMap();
+
+
+        Task task = taskConfig.getTasks().get(1);
+        studentInformationMap.forEach((name, studentInfo) -> {
             try {
-                File dir = new File(generalDir, studentInformation.getStudentConfig().getGitName());
-                PersonGit personGit = new PersonGit(gitConfig, studentInformation, dir);
-                personalGits.put(name, personGit);
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
+                System.out.println(studentInfo);
+                StudentEvaluator studentEvaluator = new StudentEvaluator(studentInfo, generalDir,
+                        generalConfig);
+                System.out.println(studentEvaluator.evaluateTask(task));
             } catch (GitAPIException e) {
-                System.err.println(e.getMessage());
+                System.err.println(name + ": " + e);
+            } catch (IOException e) {
+                System.err.println(name + ": " + e);
             }
-        }));
+        });
 
 
-        Task task = taskConfig.getTasks().get(taskConfig.getTasks().size() - 1);
-        System.out.println(task);
-        System.out.println(personalGits);
-
-//        for (Map.Entry<String, PersonGit> entry : personalGits.entrySet()) {
-//            String s = entry.getKey();
-//            PersonGit personGit = entry.getValue();
-//            try {
-//                File moduleDir = personGit.switchTaskIfNotExists(task);
-//                File workingDir = moduleDir.getParentFile();
-//                System.out.println(workingDir);
-//                System.out.println("People: " + s);
-//                String moduleName = moduleDir.getAbsolutePath().replace(workingDir.getAbsolutePath(), "");
-//                moduleName = moduleName.replace("\\", "").replace("/", "");
-//                GradleTool.TaskList taskList = GradleTool.TaskList.builder()
-//                        .taskPair(new GradleTool.TaskPair("clear", () -> {
-//                                    System.out.println("clean");
-//                                }
-//                                )
-//                        )
-//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "build",
-//                                () -> System.out.println("build?")))
-//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "javadoc",
-//                                () -> System.out.println("javadoc?")))
-//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "test",
-//                                () -> System.out.println("test?")))
-//                        .taskPair(new GradleTool.TaskPair(moduleName + ":" + "jacocoTestReport",
-//                                () -> System.out.println("jacoco?")))
-//                        .build();
-//                try (GradleTool gradleTool = new GradleTool(workingDir)) {
-//                    gradleTool.runTask(taskList.taskPairs);
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                }
-//            } catch (GitAPIException e) {
-//                System.err.println(e);
-//            } catch (IOException e) {
-//                System.err.println("There is no file for task " + task.id() + ", " + e);
-//            }
-//        }
-//
 
     }
 }

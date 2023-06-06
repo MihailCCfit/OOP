@@ -5,6 +5,8 @@ evaluation {
     jacocoPercentage = 80
     jacocoScore = 1.0
     checkStyleScore = 1.0
+    buildScore = 1.0
+    docScore = 1.0
 }
 
 git {

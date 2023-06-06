@@ -4,6 +4,7 @@ import nsu.fit.tsukanov.entity.common.GitConfig;
 import nsu.fit.tsukanov.entity.fixes.StudentInformation;
 import nsu.fit.tsukanov.entity.group.StudentConfig;
 import nsu.fit.tsukanov.entity.tasks.Task;
+import nsu.fit.tsukanov.util.FileManager;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
@@ -39,31 +40,9 @@ public class PersonGit implements AutoCloseable {
     }
 
     private File tryFile(Task task) throws IOException {
-        File taskDir = new File(workingDir, task.getFolder());
-        if (taskDir.exists()) {
-            return taskDir;
-        }
-        String dir = studentInfo.getFolderRename().get(task.id());
-        if (dir != null) {
-            taskDir = new File(workingDir, dir);
-            if (taskDir.exists()) {
-                return taskDir;
-            }
-        }
-        List<Integer> numbers = task.getNumbers();
-        if (numbers != null && numbers.size() == 3) {
-            dir = studentInfo.getFolderPattern()
-                    .replace("$1", numbers.get(0).toString())
-                    .replace("$2", numbers.get(1).toString())
-                    .replace("$3", numbers.get(2).toString());
-            taskDir = new File(workingDir, dir);
-            if (taskDir.exists()) {
-                return taskDir;
-            }
-        }
-        throw new IOException("There is no folder for " + studentConfig.getGitName() + ":" + taskDir);
-
+        return FileManager.getTaskFolder(task, studentInfo, workingDir);
     }
+
 
     public void switchTaskBranch(Task task) throws GitAPIException {
         String taskBranch = task.getBranch();

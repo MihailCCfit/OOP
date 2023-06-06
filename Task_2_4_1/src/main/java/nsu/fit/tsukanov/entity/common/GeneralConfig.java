@@ -7,14 +7,14 @@ import nsu.fit.tsukanov.dsl.Delegator;
 @Data
 public class GeneralConfig {
     GitConfig git = new GitConfig();
-    EvaluationConfig evaluation = new EvaluationConfig();
+    EvaluationConfig evaluationConfig = new EvaluationConfig();
 
     public void git(Closure<?> closure) {
         Delegator.groovyDelegate(git, closure);
     }
 
     public void evaluation(Closure<?> closure) {
-        Delegator.groovyDelegate(evaluation, closure);
+        Delegator.groovyDelegate(evaluationConfig, closure);
     }
 
 }

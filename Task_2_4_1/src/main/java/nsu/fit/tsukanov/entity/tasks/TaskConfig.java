@@ -16,7 +16,7 @@ public class TaskConfig {
     private String folderPattern = "Task_$1_$2_$3";
 
     public TaskConfig(GeneralConfig generalConfig) {
-        taskScore = generalConfig.getEvaluation().getTaskScore();
+        taskScore = generalConfig.getEvaluationConfig().getTaskScore();
     }
 
     public void tasks(Closure<?> closure) {

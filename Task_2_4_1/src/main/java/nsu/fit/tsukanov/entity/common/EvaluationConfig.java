@@ -10,4 +10,6 @@ public class EvaluationConfig {
     Double jacocoPercentage = 80.0;
     Double jacocoScore = 1.0;
     Double checkStyleScore = 1.0;
+    Double buildScore;
+    Double docScore;
 }

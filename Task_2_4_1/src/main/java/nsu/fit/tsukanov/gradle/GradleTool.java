@@ -12,17 +12,21 @@ import java.util.List;
 
 
 public class GradleTool implements AutoCloseable {
-    private final File taskFolder;
+    private final File projectFolder;
     private ProjectConnection projectConnection;
 
-    public GradleTool(File taskFolder) {
-        this.taskFolder = taskFolder;
+    public GradleTool(File projectFolder) {
+        this.projectFolder = projectFolder;
         connect();
+    }
+
+    public File getProjectFolder() {
+        return projectFolder;
     }
 
     public void connect() {
         projectConnection = GradleConnector.newConnector()
-                .forProjectDirectory(taskFolder)
+                .forProjectDirectory(projectFolder)
                 .connect();
 
     }
