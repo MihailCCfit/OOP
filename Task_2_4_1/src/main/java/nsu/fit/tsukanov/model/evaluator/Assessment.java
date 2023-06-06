@@ -61,11 +61,7 @@ public class Assessment {
 
     @Override
     public String toString() {
-        return "Assessment[" +
-                "compileMark=" + buildMark + ", " +
-                "docsMark=" + docsMark + ", " +
-                "testMark=" + testMark + ", " +
-                "extraScores=" + extraScores + ']';
+        return buildMark + "|" + docsMark + "|" + testMark + "|" + extraScores;
     }
 
 

@@ -28,6 +28,17 @@ public class PersonGit implements AutoCloseable {
         this.studentConfig = studentInfo.getStudentConfig();
         this.workingDir = workingDir;
         initFolder();
+//        git.log().call().forEach((revCommit -> {
+//            System.out.println(revCommit.getCommitTime() + "|" + revCommit.getCommitterIdent().getTimeZone() + "|"
+//                    + revCommit.getCommitterIdent().getWhen() + "|" + revCommit);
+//        }));
+//        try (DiffFormatter diffFormatter = new DiffFormatter(DisabledOutputStream.INSTANCE)) {
+//            diffFormatter.setRepository(git.getRepository());
+//            List<DiffEntry> diffEntries = diffFormatter.scan(git.log().call().iterator().next(),
+//                    git.log().call().iterator().next());
+//            FileHeader fileHeader = diffFormatter.toFileHeader(diffEntries.get(0));
+//            System.out.println(fileHeader.toEditList());
+//        }
     }
 
     public File switchTaskIfNotExists(Task task) throws GitAPIException, IOException {
@@ -119,6 +130,7 @@ public class PersonGit implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
+
         git.close();
     }
 }
