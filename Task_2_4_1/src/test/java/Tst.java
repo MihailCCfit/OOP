@@ -1,5 +1,5 @@
 import nsu.fit.tsukanov.GroovyParasha;
-import nsu.fit.tsukanov.entity.group.GroupConfig;
+import nsu.fit.tsukanov.model.entity.group.GroupConfig;
 import org.junit.jupiter.api.Test;
 
 public class Tst {
