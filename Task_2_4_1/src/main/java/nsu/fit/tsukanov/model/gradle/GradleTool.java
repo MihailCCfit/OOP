@@ -27,6 +27,7 @@ public class GradleTool implements AutoCloseable {
     public void connect() {
         projectConnection = GradleConnector.newConnector()
                 .forProjectDirectory(projectFolder)
+                .useGradleVersion("7.6")
                 .connect();
 
     }

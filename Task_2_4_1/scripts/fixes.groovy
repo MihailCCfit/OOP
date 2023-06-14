@@ -12,7 +12,7 @@ forStudent("ttrubinov") {
     changeFolderPattern 'task_$1_$2_$3'
     changeFolder 'Task_1_1_1', 'task_1_1_1_1'
     changeBranch 'Task_1_2_1', '1-2-1'
-    changeBranch 'Task_2_3_1', '2-3-1'
+//    changeBranch 'Task_2_3_1', '2-3-1'
 }
 forStudent("Tretiakovv") {
     changeFolderPattern 'task_$1_$2_$3'

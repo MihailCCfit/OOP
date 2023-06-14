@@ -29,6 +29,7 @@ public class TaskEvaluator {
         boolean runTests = task.getRunTests();
         Assessment.AssessmentBuilder assessmentBuilder = Assessment.builder();
 
+
         var builder = GradleTool.TaskList.builder()
                 .taskPair(new GradleTool.TaskPair(moduleTaskName("clean"),
                         () -> System.out.println("clean")))
@@ -43,6 +44,18 @@ public class TaskEvaluator {
         } else {
             assessmentBuilder.buildMark(evaluationConfig.getJacocoPercentage());
         }
+        try {
+            FileManager.addCheckStyle(moduleDir, new File("google_checks.xml"));
+            builder.taskPair(new GradleTool.TaskPair(moduleTaskName("checkStyleMain"), () -> {
+                assessmentBuilder.styleScores(evaluationConfig.getCheckStyleScore());
+            }));
+
+        } catch (IOException e) {
+            System.err.println("checkstyleProblem: " + e);
+            assessmentBuilder.styleScores(0.0);
+        }
+
+
         assessmentBuilder.extraScores(studentInfo.getExtraScore().get(task.id()));
         var taskList = builder.build();
         gradleTool.runTask(taskList.taskPairs);

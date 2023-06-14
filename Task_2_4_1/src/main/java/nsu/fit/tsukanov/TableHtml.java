@@ -6,13 +6,14 @@ import javax.swing.text.html.HTML;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class TableHtml {
     private HTML html;
 
     public TableHtml() {
-
+        LinkedList<?> linkedList;
     }
 
     public void smth(OutputStream outputStream, Map<String, Assessment> assessmentMap) throws IOException {

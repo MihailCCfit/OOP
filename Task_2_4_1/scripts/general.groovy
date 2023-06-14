@@ -4,13 +4,13 @@ evaluation {
     hardDeadLinePenalty = -0.5
     jacocoPercentage = 80
     jacocoScore = 1.0
-    checkStyleScore = 1.0
-    buildScore = 1.0
-    docScore = 1.0
+    checkStyleScore = 0.2
+    buildScore = 0.2
+    docScore = 0.2
 }
 
 git {
-    repoLinkPrefix = 'https://github.com/' // possible to switch to ssh
+    repoLinkPrefix = 'https://github.com/'
     repoLinkPostfix = '.git'
     defaultRepository = 'oop'
     docsBranch = 'gh-pages'

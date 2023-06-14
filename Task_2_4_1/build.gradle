@@ -1,7 +1,10 @@
 plugins {
+    id 'checkstyle'
+
     id 'java'
     id 'jacoco'
 }
+
 
 group 'nsu.fit.tsukanov'
 version '1.0-SNAPSHOT'
@@ -12,6 +15,8 @@ repositories {
 }
 
 dependencies {
+
+
     implementation 'org.codehaus.groovy:groovy-all:2.4.21'
 
     compileOnly 'org.projectlombok:lombok:1.18.26'
@@ -59,5 +64,15 @@ jacocoTestReport {
             ])
         }))
     }
+}
+configurations {
+    checkstyleConfig
+}
 
+checkstyle {
+    toolVersion '10.9.1'
+    //config = resources.text.fromArchiveEntry(configurations.checkstyleConfig, 'google_checks.xml')
+}
+dependencies {
+    checkstyleConfig('com.puppycrawl.tools:checkstyle:10.9.1') { transitive = false }
 }

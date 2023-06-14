@@ -17,7 +17,7 @@ tasks {
     createTask('Pizzeria', 2, 2, 1) {
         runTests = false
     }
-    createTask('Javafx snake game', 2, 3, 1) {
-        points = 2.0
-    }
+//    createTask('Javafx snake game', 2, 3, 1) {
+//        points = 2.0
+//    }
 }

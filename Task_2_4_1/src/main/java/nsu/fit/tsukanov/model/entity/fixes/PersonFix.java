@@ -17,17 +17,19 @@ public class PersonFix {
         if (!studentInformation.extraScore.containsKey(taskId)) {
             System.err.println("No such taskId: " + taskId);
             System.out.println(studentInformation.branchRename);
-            throw new RuntimeException("No such taskId: " + taskId);
+        } else {
+            studentInformation.branchRename.put(taskId, newBranchName);
         }
-        studentInformation.branchRename.put(taskId, newBranchName);
+
     }
 
     public void changeFolder(String taskId, String newFolderName) {
         if (!studentInformation.extraScore.containsKey(taskId)) {
             System.err.println("No such taskId: " + taskId);
-            throw new RuntimeException("No such taskId: " + taskId);
+        } else {
+            studentInformation.folderRename.put(taskId, newFolderName);
         }
-        studentInformation.folderRename.put(taskId, newFolderName);
+
     }
 
     public void changeBranch(Map<String, String> changes) {
@@ -53,9 +55,10 @@ public class PersonFix {
         if (!studentInformation.extraScore.containsKey(taskId)) {
             System.out.println(studentInformation.extraScore);
             System.err.println("No such taskId: " + taskId);
-            throw new RuntimeException("No such taskId: " + taskId);
+        } else {
+            studentInformation.extraScore.put(taskId, score.doubleValue());
         }
-        studentInformation.extraScore.put(taskId, score.doubleValue());
+
     }
 
     public void changeExtraScore(Map<String, BigDecimal> changes) {

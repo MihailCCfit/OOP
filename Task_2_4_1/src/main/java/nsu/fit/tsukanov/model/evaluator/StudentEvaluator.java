@@ -31,6 +31,7 @@ public class StudentEvaluator implements AutoCloseable {
 
     public Assessment evaluateTask(Task task) throws IOException, GitAPIException {
         personGit.switchTaskIfNotExists(task);
+
         return TaskEvaluator.evaluate(gradleTool, task, studentInformation, evaluationConfig);
     }
 
