@@ -1,7 +1,7 @@
 nsu.fit.tsukanov
 nsu.fit.tsukanov.model
 nsu.fit.tsukanov.model.dsl
-nsu.fit.tsukanov.model.entity
+nsu.fit.tsukanov.model.entity.attendance
 nsu.fit.tsukanov.model.entity.common
 nsu.fit.tsukanov.model.entity.fixes
 nsu.fit.tsukanov.model.entity.group
@@ -10,4 +10,5 @@ nsu.fit.tsukanov.model.evaluator
 nsu.fit.tsukanov.model.evaluator.xml
 nsu.fit.tsukanov.model.git
 nsu.fit.tsukanov.model.gradle
+nsu.fit.tsukanov.model.html
 nsu.fit.tsukanov.model.util

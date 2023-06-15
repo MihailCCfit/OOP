@@ -56,7 +56,7 @@ loadScripts(document, 'script');</script>
 <li><a href="nsu/fit/tsukanov/package-tree.html">nsu.fit.tsukanov</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/package-tree.html">nsu.fit.tsukanov.model</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/dsl/package-tree.html">nsu.fit.tsukanov.model.dsl</a>, </li>
-<li><a href="nsu/fit/tsukanov/model/entity/package-tree.html">nsu.fit.tsukanov.model.entity</a>, </li>
+<li><a href="nsu/fit/tsukanov/model/entity/attendance/package-tree.html">nsu.fit.tsukanov.model.entity.attendance</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/entity/common/package-tree.html">nsu.fit.tsukanov.model.entity.common</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/entity/fixes/package-tree.html">nsu.fit.tsukanov.model.entity.fixes</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/entity/group/package-tree.html">nsu.fit.tsukanov.model.entity.group</a>, </li>
@@ -65,6 +65,7 @@ loadScripts(document, 'script');</script>
 <li><a href="nsu/fit/tsukanov/model/evaluator/xml/package-tree.html">nsu.fit.tsukanov.model.evaluator.xml</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/git/package-tree.html">nsu.fit.tsukanov.model.git</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/gradle/package-tree.html">nsu.fit.tsukanov.model.gradle</a>, </li>
+<li><a href="nsu/fit/tsukanov/model/html/package-tree.html">nsu.fit.tsukanov.model.html</a>, </li>
 <li><a href="nsu/fit/tsukanov/model/util/package-tree.html">nsu.fit.tsukanov.model.util</a></li>
 </ul>
 </div>
@@ -74,6 +75,8 @@ loadScripts(document, 'script');</script>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link"><span class="type-name-link">Object</span></a>
 <ul>
 <li class="circle">nsu.fit.tsukanov.model.evaluator.<a href="nsu/fit/tsukanov/model/evaluator/Assessment.html" title="class in nsu.fit.tsukanov.model.evaluator"><span class="type-name-link">Assessment</span></a></li>
+<li class="circle">nsu.fit.tsukanov.model.entity.attendance.<a href="nsu/fit/tsukanov/model/entity/attendance/AttendanceConfig.html" title="class in nsu.fit.tsukanov.model.entity.attendance"><span class="type-name-link">AttendanceConfig</span></a></li>
+<li class="circle">nsu.fit.tsukanov.model.evaluator.xml.<a href="nsu/fit/tsukanov/model/evaluator/xml/CheckStyleParser.html" title="class in nsu.fit.tsukanov.model.evaluator.xml"><span class="type-name-link">CheckStyleParser</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.dsl.<a href="nsu/fit/tsukanov/model/dsl/Delegator.html" title="class in nsu.fit.tsukanov.model.dsl"><span class="type-name-link">Delegator</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.entity.common.<a href="nsu/fit/tsukanov/model/entity/common/EvaluationConfig.html" title="class in nsu.fit.tsukanov.model.entity.common"><span class="type-name-link">EvaluationConfig</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.util.<a href="nsu/fit/tsukanov/model/util/FileManager.html" title="class in nsu.fit.tsukanov.model.util"><span class="type-name-link">FileManager</span></a></li>
@@ -88,20 +91,24 @@ loadScripts(document, 'script');</script>
 <li class="circle">nsu.fit.tsukanov.model.dsl.<a href="nsu/fit/tsukanov/model/dsl/GroovyParser.html" title="class in nsu.fit.tsukanov.model.dsl"><span class="type-name-link">GroovyParser</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.entity.group.<a href="nsu/fit/tsukanov/model/entity/group/GroupConfig.html" title="class in nsu.fit.tsukanov.model.entity.group"><span class="type-name-link">GroupConfig</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.evaluator.xml.<a href="nsu/fit/tsukanov/model/evaluator/xml/JacocoReportParser.html" title="class in nsu.fit.tsukanov.model.evaluator.xml"><span class="type-name-link">JacocoReportParser</span></a></li>
-<li class="circle">nsu.fit.tsukanov.model.entity.<a href="nsu/fit/tsukanov/model/entity/Lesson.html" title="class in nsu.fit.tsukanov.model.entity"><span class="type-name-link">Lesson</span></a></li>
+<li class="circle">nsu.fit.tsukanov.model.entity.attendance.<a href="nsu/fit/tsukanov/model/entity/attendance/LessonsConfig.html" title="class in nsu.fit.tsukanov.model.entity.attendance"><span class="type-name-link">LessonsConfig</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.entity.fixes.<a href="nsu/fit/tsukanov/model/entity/fixes/PersonFix.html" title="class in nsu.fit.tsukanov.model.entity.fixes"><span class="type-name-link">PersonFix</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.git.<a href="nsu/fit/tsukanov/model/git/PersonGit.html" title="class in nsu.fit.tsukanov.model.git"><span class="type-name-link">PersonGit</span></a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html" title="class or interface in java.lang" class="external-link">AutoCloseable</a>)</li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link"><span class="type-name-link">Record</span></a>
 <ul>
+<li class="circle">nsu.fit.tsukanov.model.evaluator.xml.<a href="nsu/fit/tsukanov/model/evaluator/xml/CheckStyleParser.CheckStyleResults.html" title="class in nsu.fit.tsukanov.model.evaluator.xml"><span class="type-name-link">CheckStyleParser.CheckStyleResults</span></a></li>
+<li class="circle">nsu.fit.tsukanov.model.evaluator.xml.<a href="nsu/fit/tsukanov/model/evaluator/xml/CheckStyleParser.error.html" title="class in nsu.fit.tsukanov.model.evaluator.xml"><span class="type-name-link">CheckStyleParser.error</span></a></li>
+<li class="circle">nsu.fit.tsukanov.model.evaluator.xml.<a href="nsu/fit/tsukanov/model/evaluator/xml/CheckStyleParser.file.html" title="class in nsu.fit.tsukanov.model.evaluator.xml"><span class="type-name-link">CheckStyleParser.file</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.gradle.<a href="nsu/fit/tsukanov/model/gradle/GradleTool.TaskPair.html" title="class in nsu.fit.tsukanov.model.gradle"><span class="type-name-link">GradleTool.TaskPair</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.evaluator.xml.<a href="nsu/fit/tsukanov/model/evaluator/xml/JacocoReportParser.Counter.html" title="class in nsu.fit.tsukanov.model.evaluator.xml"><span class="type-name-link">JacocoReportParser.Counter</span></a></li>
+<li class="circle">nsu.fit.tsukanov.model.entity.attendance.<a href="nsu/fit/tsukanov/model/entity/attendance/Lesson.html" title="class in nsu.fit.tsukanov.model.entity.attendance"><span class="type-name-link">Lesson</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.util.<a href="nsu/fit/tsukanov/model/util/Pair.html" title="class in nsu.fit.tsukanov.model.util"><span class="type-name-link">Pair</span></a>&lt;F,&#8203;S&gt;</li>
 </ul>
 </li>
 <li class="circle">nsu.fit.tsukanov.model.entity.group.<a href="nsu/fit/tsukanov/model/entity/group/StudentConfig.html" title="class in nsu.fit.tsukanov.model.entity.group"><span class="type-name-link">StudentConfig</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.evaluator.<a href="nsu/fit/tsukanov/model/evaluator/StudentEvaluator.html" title="class in nsu.fit.tsukanov.model.evaluator"><span class="type-name-link">StudentEvaluator</span></a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/AutoCloseable.html" title="class or interface in java.lang" class="external-link">AutoCloseable</a>)</li>
 <li class="circle">nsu.fit.tsukanov.model.entity.fixes.<a href="nsu/fit/tsukanov/model/entity/fixes/StudentInformation.html" title="class in nsu.fit.tsukanov.model.entity.fixes"><span class="type-name-link">StudentInformation</span></a></li>
-<li class="circle">nsu.fit.tsukanov.<a href="nsu/fit/tsukanov/TableHtml.html" title="class in nsu.fit.tsukanov"><span class="type-name-link">TableHtml</span></a></li>
+<li class="circle">nsu.fit.tsukanov.model.html.<a href="nsu/fit/tsukanov/model/html/TableHtml.html" title="class in nsu.fit.tsukanov.model.html"><span class="type-name-link">TableHtml</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.entity.tasks.<a href="nsu/fit/tsukanov/model/entity/tasks/Task.html" title="class in nsu.fit.tsukanov.model.entity.tasks"><span class="type-name-link">Task</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.entity.tasks.<a href="nsu/fit/tsukanov/model/entity/tasks/TaskConfig.html" title="class in nsu.fit.tsukanov.model.entity.tasks"><span class="type-name-link">TaskConfig</span></a></li>
 <li class="circle">nsu.fit.tsukanov.model.evaluator.<a href="nsu/fit/tsukanov/model/evaluator/TaskEvaluator.html" title="class in nsu.fit.tsukanov.model.evaluator"><span class="type-name-link">TaskEvaluator</span></a></li>
