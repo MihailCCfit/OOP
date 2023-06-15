@@ -12,18 +12,19 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GroovyModel {
-    GroovyParser groovyParser = new GroovyParser();
-    GeneralConfig generalConfig;
-    GroupConfig group;
-    TaskConfig taskConfig;
-    Map<String, StudentInformation> studentInformationMap;
-    FixConfig fixes;
+    public final GroovyParser groovyParser = new GroovyParser();
+    public final GeneralConfig generalConfig;
+    public final GroupConfig group;
+    public final TaskConfig taskConfig;
+    public final Map<String, StudentInformation> studentInformationMap;
+    public final FixConfig fixes;
 
-    File generalDir;
+    public final File generalDir;
 
     public GroovyModel(File scriptsDir, File generalDir) {
         this.generalDir = generalDir;
@@ -36,12 +37,7 @@ public class GroovyModel {
     }
 
     public Map<String, Map<String, Assessment>> evaluateAll() {
-        Map<String, Map<String, Assessment>> persons = new HashMap<>();
-        studentInformationMap.forEach((name, studentInfo) -> {
-            persons.put(name, evaluatePerson(studentInfo));
-        });
-
-        return persons;
+        return evaluatePersons(studentInformationMap.keySet());
     }
 
     public Map<String, Assessment> evaluatePerson(StudentInformation studentInfo) {
@@ -66,5 +62,13 @@ public class GroovyModel {
 
     public Map<String, Assessment> evaluatePerson(String gitName) {
         return evaluatePerson(studentInformationMap.get(gitName));
+    }
+
+    public Map<String, Map<String, Assessment>> evaluatePersons(Collection<String> gitNames) {
+        Map<String, Map<String, Assessment>> studentResults = new HashMap<>();
+        for (String studentGit : gitNames) {
+            studentResults.put(studentGit, evaluatePerson(studentInformationMap.get(studentGit)));
+        }
+        return studentResults;
     }
 }

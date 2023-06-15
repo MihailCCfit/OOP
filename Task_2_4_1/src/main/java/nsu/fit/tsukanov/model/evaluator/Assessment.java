@@ -17,6 +17,10 @@ public class Assessment {
     @Builder.Default
     private Double styleScores = .0;
 
+    public Assessment() {
+
+    }
+
     public Assessment(Double buildMark, Double docsMark,
                       Double testMark, Double extraScores, Double styleScores) {
         this.buildMark = buildMark;
@@ -27,7 +31,12 @@ public class Assessment {
     }
 
     public double getSummary() {
+        if (buildMark == 0) {
+            return 0;
+        }
+
         return buildMark + docsMark + testMark + extraScores + styleScores;
+
     }
 
     public Double compileMark() {
@@ -69,7 +78,24 @@ public class Assessment {
 
     @Override
     public String toString() {
-        return buildMark + "|" + docsMark + "|" + testMark + "|" + extraScores + "|" + styleScores;
+        return buildMark + " " + docsMark + " " + testMark + " " + styleScores + " " + extraScores + " " + getSummary();
+    }
+
+    public String formalize() {
+        return notZero(buildMark, "b")
+                + " " + notZero(docsMark, "d")
+                + " " + notZero(testMark, "t")
+                + " " + notZero(styleScores, "s")
+                + " " + notZero(extraScores, "e")
+                + " " + getSummary();
+    }
+
+    public static String toFormat(Assessment assessment) {
+        return assessment.formalize();
+    }
+
+    private String notZero(Double d, String common) {
+        return d != .0 ? common : "-";
     }
 
 

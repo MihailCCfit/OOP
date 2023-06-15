@@ -37,7 +37,6 @@ public class FileManager {
     public static void styleFileCreate(File taskDir, File checkStyleFile) throws IOException {
         File checkstyleDir = new File(taskDir.getParentFile(), "config/checkstyle");
         checkstyleDir.mkdirs();
-        System.out.println(checkstyleDir);
         File newCheckStyleFile = new File(checkstyleDir, "checkstyle.xml");
         newCheckStyleFile.createNewFile();
         FileWriter fileWriter = new FileWriter(newCheckStyleFile);

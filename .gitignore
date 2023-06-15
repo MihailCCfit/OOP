@@ -143,3 +143,4 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all
+./Task_2_4_1/newFolder

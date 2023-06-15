@@ -1,11 +1,14 @@
 package nsu.fit.tsukanov.model.entity.fixes;
 
 import lombok.Data;
+import nsu.fit.tsukanov.model.entity.attendance.Lesson;
 import nsu.fit.tsukanov.model.entity.group.StudentConfig;
 import nsu.fit.tsukanov.model.entity.tasks.TaskConfig;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Data
 public class StudentInformation {
@@ -15,6 +18,8 @@ public class StudentInformation {
     Map<String, Double> extraScore = new HashMap<>();
     String branchPattern;
     String folderPattern;
+
+    Set<Lesson> studentAttendance = new LinkedHashSet<>();
 
     public StudentInformation(StudentConfig studentConfig) {
         this.studentConfig = studentConfig;
