@@ -7,11 +7,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Data
 public class LessonsConfig {
-    private List<Lesson> lessonList;
+    private final Set<Lesson> lessonList = new LinkedHashSet<>();
     private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public void lesson(String dateString) {
@@ -19,12 +20,14 @@ public class LessonsConfig {
         try {
             Lesson lesson = new Lesson(dateFormat.parse(dateString));
             lessonList.add(lesson);
+            System.out.println(lesson);
         } catch (ParseException e) {
             System.err.println("Problem with lesson date: " + dateString);
         }
     }
 
     public void lessons(String startDateString, String stopDateString, int interval) {
+
         Date startDate;
         try {
             startDate = dateFormat.parse(startDateString);
@@ -32,9 +35,10 @@ public class LessonsConfig {
             System.err.println(e);
             return;
         }
+
         Date stopDate;
         try {
-            stopDate = dateFormat.parse(startDateString);
+            stopDate = dateFormat.parse(stopDateString);
         } catch (ParseException e) {
             System.err.println(e);
             return;
@@ -48,7 +52,7 @@ public class LessonsConfig {
 
         while (tmpInstant.isBefore(stopInstant)) {
             lessonList.add(new Lesson(Date.from(tmpInstant)));
-            tmpInstant = tmpInstant.plusSeconds(interval);
+            tmpInstant = tmpInstant.plusSeconds(interval * 86400L);
         }
 
     }

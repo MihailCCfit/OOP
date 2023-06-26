@@ -16,4 +16,11 @@ public record Lesson(Date date) {
     public int hashCode() {
         return Objects.hash(date);
     }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "date=" + date +
+                '}';
+    }
 }

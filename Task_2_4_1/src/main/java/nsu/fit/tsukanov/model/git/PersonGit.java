@@ -9,6 +9,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
+import org.eclipse.jgit.revwalk.RevCommit;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,16 @@ public class PersonGit implements AutoCloseable {
     StudentConfig studentConfig;
     GitConfig gitConfig;
     File workingDir;
+
+    public String gitName() {
+        return studentConfig.getGitName();
+    }
+    public StudentConfig studentConfig(){
+        return studentConfig;
+    }
+    public StudentInformation studentInfo(){
+        return studentInfo;
+    }
 
     public PersonGit(GitConfig gitConfig, StudentInformation studentInfo,
                      File workingDir) throws IOException, GitAPIException {
@@ -126,6 +137,10 @@ public class PersonGit implements AutoCloseable {
                     .call();
         }
 
+    }
+
+    public Iterable<RevCommit> getCommits() throws GitAPIException {
+        return git.log().call();
     }
 
     @Override

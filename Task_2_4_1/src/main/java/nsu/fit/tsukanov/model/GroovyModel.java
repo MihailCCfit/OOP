@@ -1,6 +1,8 @@
 package nsu.fit.tsukanov.model;
 
 import nsu.fit.tsukanov.model.dsl.GroovyParser;
+import nsu.fit.tsukanov.model.entity.attendance.AttendanceConfig;
+import nsu.fit.tsukanov.model.entity.attendance.LessonsConfig;
 import nsu.fit.tsukanov.model.entity.common.GeneralConfig;
 import nsu.fit.tsukanov.model.entity.fixes.FixConfig;
 import nsu.fit.tsukanov.model.entity.fixes.StudentInformation;
@@ -23,6 +25,8 @@ public class GroovyModel {
     public final TaskConfig taskConfig;
     public final Map<String, StudentInformation> studentInformationMap;
     public final FixConfig fixes;
+    public final AttendanceConfig attendanceConfig;
+    public final LessonsConfig lessonsConfig;
 
     public final File generalDir;
 
@@ -34,6 +38,11 @@ public class GroovyModel {
         group = groovyParser.readGroup(generalConfig, scriptPath + "group21214.groovy");
         fixes = groovyParser.readFixes(studentInformationMap = GroovyParser.getStudentInformationMap(group, taskConfig),
                 scriptPath + "fixes.groovy");
+        lessonsConfig = groovyParser.readLessons(scriptPath +"lessons.groovy");
+
+        attendanceConfig = groovyParser.readAttendance(studentInformationMap, lessonsConfig.getLessonList(),
+                scriptPath + "attendance.groovy");
+
     }
 
     public Map<String, Map<String, Assessment>> evaluateAll() {

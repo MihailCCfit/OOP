@@ -16,7 +16,7 @@ public class PersonFix {
     public void changeBranch(String taskId, String newBranchName) {
         if (!studentInformation.extraScore.containsKey(taskId)) {
             System.err.println("No such taskId: " + taskId);
-            System.out.println(studentInformation.branchRename);
+            System.err.println(studentInformation.branchRename);
         } else {
             studentInformation.branchRename.put(taskId, newBranchName);
         }

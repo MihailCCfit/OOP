@@ -9,16 +9,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Data
 public class AttendanceConfig {
 
     private final Map<String, StudentInformation> studentInformationMap;
-    private final List<Lesson> lessons;
+    private final Set<Lesson> lessons;
 
     private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public AttendanceConfig(Map<String, StudentInformation> studentInformationMap, List<Lesson> lessons) {
+    public AttendanceConfig(Map<String, StudentInformation> studentInformationMap, Set<Lesson> lessons) {
         this.studentInformationMap = studentInformationMap;
         this.lessons = lessons;
     }
@@ -34,11 +35,11 @@ public class AttendanceConfig {
         Lesson lesson = new Lesson(date);
         if (lessons.contains(lesson)) {
             studentInformationMap.get(student).getStudentAttendance().add(lesson);
+            System.out.println("added " + lesson);
         }
     }
 
     public void attended(String student, String dateStartString, String dateEndString) {
-
 
     }
 }

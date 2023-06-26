@@ -87,7 +87,7 @@ public class Assessment {
                 + " " + notZero(testMark, "t")
                 + " " + notZero(styleScores, "s")
                 + " " + notZero(extraScores, "e")
-                + " " + getSummary();
+                + " " + "%.2f".formatted(getSummary());
     }
 
     public static String toFormat(Assessment assessment) {

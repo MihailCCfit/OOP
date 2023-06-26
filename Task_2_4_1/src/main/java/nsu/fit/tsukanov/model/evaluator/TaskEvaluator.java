@@ -112,7 +112,7 @@ public class TaskEvaluator {
                                     try {
                                         return Files.readAllLines(path).size();
                                     } catch (IOException e) {
-                                        return 0;
+                                        return 1;
                                     }
                                 }))
                                 .reduce(0, Integer::sum);
@@ -121,7 +121,7 @@ public class TaskEvaluator {
             return ((double) warningsAmount) / linesAmount + 0.000001;
         } catch (IOException e) {
             System.err.println(e);
-            return 0.;
+            return 0.00001;
         }
 
     }

@@ -4,6 +4,9 @@ import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import groovy.util.DelegatingScript;
 import nsu.fit.tsukanov.GroovyParasha;
+import nsu.fit.tsukanov.model.entity.attendance.AttendanceConfig;
+import nsu.fit.tsukanov.model.entity.attendance.Lesson;
+import nsu.fit.tsukanov.model.entity.attendance.LessonsConfig;
 import nsu.fit.tsukanov.model.entity.common.GeneralConfig;
 import nsu.fit.tsukanov.model.entity.fixes.FixConfig;
 import nsu.fit.tsukanov.model.entity.fixes.StudentInformation;
@@ -14,7 +17,9 @@ import org.codehaus.groovy.control.CompilerConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class GroovyParser {
     private final GroovyShell sh;
@@ -80,6 +85,27 @@ public class GroovyParser {
             throw new RuntimeException(e);
         }
         return fixConfig;
+    }
+
+    public LessonsConfig readLessons(String scriptPath) {
+        LessonsConfig lessonsConfig = new LessonsConfig();
+        try {
+            parseScript(scriptPath, lessonsConfig);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return lessonsConfig;
+    }
+
+    public AttendanceConfig readAttendance(Map<String, StudentInformation> studentInformation,
+                                           Set<Lesson> lessons, String scriptPath) {
+        AttendanceConfig attendanceConfig = new AttendanceConfig(studentInformation, lessons);
+        try {
+            parseScript(scriptPath, attendanceConfig);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return attendanceConfig;
     }
 
     public static Map<String, StudentInformation> getStudentInformationMap(GroupConfig groupConfig,

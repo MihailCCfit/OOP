@@ -9,7 +9,7 @@ evaluation {
     docScore = 0.2
 
     jacocoPercentage = 80
-    checkStylePercentage = 0.2
+    checkStylePercentage = 1
 }
 
 git {
