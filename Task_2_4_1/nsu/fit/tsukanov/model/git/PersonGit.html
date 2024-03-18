@@ -117,6 +117,18 @@ implements <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base
 <div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#close()">close</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;org.eclipse.jgit.revwalk.RevCommit&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getCommits()">getCommits</a></span>()</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#gitName()">gitName</a></span>()</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../entity/group/StudentConfig.html" title="class in nsu.fit.tsukanov.model.entity.group">StudentConfig</a></code></div>
+<div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#studentConfig()">studentConfig</a></span>()</code></div>
+<div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../entity/fixes/StudentInformation.html" title="class in nsu.fit.tsukanov.model.entity.fixes">StudentInformation</a></code></div>
+<div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#studentInfo()">studentInfo</a></span>()</code></div>
+<div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#switchTaskBranch(nsu.fit.tsukanov.model.entity.tasks.Task)">switchTaskBranch</a></span>&#8203;(<a href="../entity/tasks/Task.html" title="class in nsu.fit.tsukanov.model.entity.tasks">Task</a>&nbsp;task)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">&nbsp;</div>
@@ -164,6 +176,24 @@ org.eclipse.jgit.api.errors.GitAPIException</span></div>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="gitName()">
+<h3>gitName</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">gitName</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="studentConfig()">
+<h3>studentConfig</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../entity/group/StudentConfig.html" title="class in nsu.fit.tsukanov.model.entity.group">StudentConfig</a></span>&nbsp;<span class="element-name">studentConfig</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="studentInfo()">
+<h3>studentInfo</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../entity/fixes/StudentInformation.html" title="class in nsu.fit.tsukanov.model.entity.fixes">StudentInformation</a></span>&nbsp;<span class="element-name">studentInfo</span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="switchTaskIfNotExists(nsu.fit.tsukanov.model.entity.tasks.Task)">
 <h3>switchTaskIfNotExists</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a></span>&nbsp;<span class="element-name">switchTaskIfNotExists</span>&#8203;<span class="parameters">(<a href="../entity/tasks/Task.html" title="class in nsu.fit.tsukanov.model.entity.tasks">Task</a>&nbsp;task)</span>
@@ -181,6 +211,17 @@ org.eclipse.jgit.api.errors.GitAPIException</span></div>
 <h3>switchTaskBranch</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">switchTaskBranch</span>&#8203;<span class="parameters">(<a href="../entity/tasks/Task.html" title="class in nsu.fit.tsukanov.model.entity.tasks">Task</a>&nbsp;task)</span>
                       throws <span class="exceptions">org.eclipse.jgit.api.errors.GitAPIException</span></div>
+<dl class="notes">
+<dt>Throws:</dt>
+<dd><code>org.eclipse.jgit.api.errors.GitAPIException</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCommits()">
+<h3>getCommits</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;org.eclipse.jgit.revwalk.RevCommit&gt;</span>&nbsp;<span class="element-name">getCommits</span>()
+                                                        throws <span class="exceptions">org.eclipse.jgit.api.errors.GitAPIException</span></div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code>org.eclipse.jgit.api.errors.GitAPIException</code></dd>
